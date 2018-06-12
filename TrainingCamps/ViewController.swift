@@ -8,20 +8,49 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
+class ViewController: NSSplitViewController, CampViewControllerProtocol, CampGroupViewControllerProtocol {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @objc dynamic var managedObjectContext: NSManagedObjectContext
 
-        // Do any additional setup after loading the view.
+    
+    
+    required init?(coder: NSCoder) {
+        
+        self.managedObjectContext = CoreDataStack.shared.trainingCampsPC.viewContext
+        super.init(coder: coder)
+        
     }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
+    
+    @IBAction func newCampGroup(_ sender: Any){
+        let _ = CoreDataStack.shared.newCampGroup()
+    }
+    
+    @IBAction func importFromFile(_ sender: Any){
+        if let url = OpenAndSaveDialogues().selectedPath(withTitle: "chose .json file",andFileTypes: ["json"]) {
+            JSONImporter().importCampGroup(fromURL: url)
+            print(url)
+           
         }
     }
-
+    
+    func setCamp(_ camp: Camp) {
+        for c in childViewControllers{
+            if let cvcp = c as? CampViewControllerProtocol{
+                cvcp.setCamp(camp)
+            }
+        }
+        if let w = view.window{
+            w.title = camp.campName ?? "Unkown Camp"
+        }
+    }
+    
+    func setCampGroup(_ campGroup: CampGroup) {
+        for c in childViewControllers{
+            if let cgvcp = c as? CampGroupViewControllerProtocol{
+                cgvcp.setCampGroup(campGroup)
+            }
+        }
+    }
 
 }
 

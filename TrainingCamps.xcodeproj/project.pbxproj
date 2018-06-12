@@ -7,14 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7305E97B20D03D5E001748D5 /* RaceDefinition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7305E97A20D03D5E001748D5 /* RaceDefinition.storyboard */; };
+		7305E97D20D06C1B001748D5 /* RaceDefinitionSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7305E97C20D06C1B001748D5 /* RaceDefinitionSplitViewController.swift */; };
+		7346382020C6FFC800406C74 /* CampDays.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7346381F20C6FFC800406C74 /* CampDays.storyboard */; };
+		7346382220C700C000406C74 /* CampViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7346382120C700C000406C74 /* CampViewControllerProtocol.swift */; };
+		7346382420C700F500406C74 /* CampViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7346382320C700F500406C74 /* CampViewController.swift */; };
+		7346382620C7029000406C74 /* CampsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7346382520C7029000406C74 /* CampsListViewController.swift */; };
+		7346382820C7044000406C74 /* CampSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7346382720C7044000406C74 /* CampSplitViewController.swift */; };
+		7346382A20C705F000406C74 /* CampsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7346382920C705F000406C74 /* CampsTabViewController.swift */; };
+		73479C2F20C796AE0098E7D9 /* Races.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73479C2E20C796AE0098E7D9 /* Races.storyboard */; };
 		73653C5C20C6D08E001A6E07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73653C5B20C6D08E001A6E07 /* AppDelegate.swift */; };
 		73653C5E20C6D08E001A6E07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73653C5D20C6D08E001A6E07 /* ViewController.swift */; };
 		73653C6120C6D08E001A6E07 /* TrainingCamps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73653C5F20C6D08E001A6E07 /* TrainingCamps.xcdatamodeld */; };
 		73653C6320C6D08E001A6E07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73653C6220C6D08E001A6E07 /* Assets.xcassets */; };
 		73653C6620C6D08F001A6E07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73653C6420C6D08F001A6E07 /* Main.storyboard */; };
+		73653C6F20C6D4D6001A6E07 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73653C6E20C6D4D6001A6E07 /* CoreDataStack.swift */; };
+		73653C7120C6DDEB001A6E07 /* OpenAndSaveDialogues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73653C7020C6DDEB001A6E07 /* OpenAndSaveDialogues.swift */; };
+		73653C7420C6DF63001A6E07 /* JSONImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73653C7320C6DF63001A6E07 /* JSONImporter.swift */; };
+		73653C7620C6E027001A6E07 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73653C7520C6E027001A6E07 /* Date+Extension.swift */; };
+		73653C7820C6E1F1001A6E07 /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73653C7720C6E1F1001A6E07 /* Enumerations.swift */; };
+		7365EE3A20C7179A00E1A4EB /* CampDaysSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7365EE3920C7179A00E1A4EB /* CampDaysSplitViewController.swift */; };
+		73B8276D20C84AD400E33064 /* Participant+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8276C20C84AD400E33064 /* Participant+Extension.swift */; };
+		73D8CB6320C7DF4E00F7D322 /* RacesSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8CB6220C7DF4E00F7D322 /* RacesSplitViewController.swift */; };
+		73D8CB6520C8200500F7D322 /* Participants.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D8CB6420C8200500F7D322 /* Participants.storyboard */; };
+		73D8CB6720C8202500F7D322 /* CampGroupViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8CB6620C8202500F7D322 /* CampGroupViewControllerProtocol.swift */; };
+		73D8CB6920C8205800F7D322 /* CampGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8CB6820C8205800F7D322 /* CampGroupViewController.swift */; };
+		73D8CB6B20C820AE00F7D322 /* CampGroupSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8CB6A20C820AE00F7D322 /* CampGroupSplitViewController.swift */; };
+		73D8CB6D20C825BE00F7D322 /* ParticipantsSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8CB6C20C825BE00F7D322 /* ParticipantsSplitViewController.swift */; };
+		73D8CB6F20C8491B00F7D322 /* CampGroup+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8CB6E20C8491B00F7D322 /* CampGroup+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7305E97A20D03D5E001748D5 /* RaceDefinition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RaceDefinition.storyboard; sourceTree = "<group>"; };
+		7305E97C20D06C1B001748D5 /* RaceDefinitionSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceDefinitionSplitViewController.swift; sourceTree = "<group>"; };
+		7346381F20C6FFC800406C74 /* CampDays.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CampDays.storyboard; sourceTree = "<group>"; };
+		7346382120C700C000406C74 /* CampViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampViewControllerProtocol.swift; sourceTree = "<group>"; };
+		7346382320C700F500406C74 /* CampViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampViewController.swift; sourceTree = "<group>"; };
+		7346382520C7029000406C74 /* CampsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampsListViewController.swift; sourceTree = "<group>"; };
+		7346382720C7044000406C74 /* CampSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampSplitViewController.swift; sourceTree = "<group>"; };
+		7346382920C705F000406C74 /* CampsTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampsTabViewController.swift; sourceTree = "<group>"; };
+		73479C2E20C796AE0098E7D9 /* Races.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Races.storyboard; sourceTree = "<group>"; };
 		73653C5820C6D08E001A6E07 /* TrainingCamps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainingCamps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73653C5B20C6D08E001A6E07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73653C5D20C6D08E001A6E07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -23,6 +55,20 @@
 		73653C6520C6D08F001A6E07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		73653C6720C6D08F001A6E07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73653C6820C6D08F001A6E07 /* TrainingCamps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrainingCamps.entitlements; sourceTree = "<group>"; };
+		73653C6E20C6D4D6001A6E07 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		73653C7020C6DDEB001A6E07 /* OpenAndSaveDialogues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAndSaveDialogues.swift; sourceTree = "<group>"; };
+		73653C7320C6DF63001A6E07 /* JSONImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONImporter.swift; sourceTree = "<group>"; };
+		73653C7520C6E027001A6E07 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		73653C7720C6E1F1001A6E07 /* Enumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumerations.swift; sourceTree = "<group>"; };
+		7365EE3920C7179A00E1A4EB /* CampDaysSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampDaysSplitViewController.swift; sourceTree = "<group>"; };
+		73B8276C20C84AD400E33064 /* Participant+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Participant+Extension.swift"; sourceTree = "<group>"; };
+		73D8CB6220C7DF4E00F7D322 /* RacesSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RacesSplitViewController.swift; sourceTree = "<group>"; };
+		73D8CB6420C8200500F7D322 /* Participants.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Participants.storyboard; sourceTree = "<group>"; };
+		73D8CB6620C8202500F7D322 /* CampGroupViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampGroupViewControllerProtocol.swift; sourceTree = "<group>"; };
+		73D8CB6820C8205800F7D322 /* CampGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampGroupViewController.swift; sourceTree = "<group>"; };
+		73D8CB6A20C820AE00F7D322 /* CampGroupSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampGroupSplitViewController.swift; sourceTree = "<group>"; };
+		73D8CB6C20C825BE00F7D322 /* ParticipantsSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsSplitViewController.swift; sourceTree = "<group>"; };
+		73D8CB6E20C8491B00F7D322 /* CampGroup+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CampGroup+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,13 +103,44 @@
 			children = (
 				73653C5B20C6D08E001A6E07 /* AppDelegate.swift */,
 				73653C5D20C6D08E001A6E07 /* ViewController.swift */,
+				73653C7320C6DF63001A6E07 /* JSONImporter.swift */,
+				73653C7720C6E1F1001A6E07 /* Enumerations.swift */,
+				73653C6E20C6D4D6001A6E07 /* CoreDataStack.swift */,
+				7346382520C7029000406C74 /* CampsListViewController.swift */,
+				7346382120C700C000406C74 /* CampViewControllerProtocol.swift */,
+				73D8CB6620C8202500F7D322 /* CampGroupViewControllerProtocol.swift */,
+				73D8CB6220C7DF4E00F7D322 /* RacesSplitViewController.swift */,
+				7365EE3920C7179A00E1A4EB /* CampDaysSplitViewController.swift */,
+				7346382320C700F500406C74 /* CampViewController.swift */,
+				7305E97C20D06C1B001748D5 /* RaceDefinitionSplitViewController.swift */,
+				73D8CB6820C8205800F7D322 /* CampGroupViewController.swift */,
+				73D8CB6E20C8491B00F7D322 /* CampGroup+Extension.swift */,
+				73B8276C20C84AD400E33064 /* Participant+Extension.swift */,
+				73D8CB6A20C820AE00F7D322 /* CampGroupSplitViewController.swift */,
+				7346382720C7044000406C74 /* CampSplitViewController.swift */,
+				7346382920C705F000406C74 /* CampsTabViewController.swift */,
 				73653C6220C6D08E001A6E07 /* Assets.xcassets */,
 				73653C6420C6D08F001A6E07 /* Main.storyboard */,
+				73D8CB6420C8200500F7D322 /* Participants.storyboard */,
+				73D8CB6C20C825BE00F7D322 /* ParticipantsSplitViewController.swift */,
+				7305E97A20D03D5E001748D5 /* RaceDefinition.storyboard */,
+				73479C2E20C796AE0098E7D9 /* Races.storyboard */,
+				7346381F20C6FFC800406C74 /* CampDays.storyboard */,
+				73653C7220C6DE09001A6E07 /* From Training Diary */,
 				73653C6720C6D08F001A6E07 /* Info.plist */,
 				73653C6820C6D08F001A6E07 /* TrainingCamps.entitlements */,
 				73653C5F20C6D08E001A6E07 /* TrainingCamps.xcdatamodeld */,
 			);
 			path = TrainingCamps;
+			sourceTree = "<group>";
+		};
+		73653C7220C6DE09001A6E07 /* From Training Diary */ = {
+			isa = PBXGroup;
+			children = (
+				73653C7520C6E027001A6E07 /* Date+Extension.swift */,
+				73653C7020C6DDEB001A6E07 /* OpenAndSaveDialogues.swift */,
+			);
+			path = "From Training Diary";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +203,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				73653C6320C6D08E001A6E07 /* Assets.xcassets in Resources */,
+				73479C2F20C796AE0098E7D9 /* Races.storyboard in Resources */,
+				7305E97B20D03D5E001748D5 /* RaceDefinition.storyboard in Resources */,
 				73653C6620C6D08F001A6E07 /* Main.storyboard in Resources */,
+				73D8CB6520C8200500F7D322 /* Participants.storyboard in Resources */,
+				7346382020C6FFC800406C74 /* CampDays.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +219,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				73653C5E20C6D08E001A6E07 /* ViewController.swift in Sources */,
+				7305E97D20D06C1B001748D5 /* RaceDefinitionSplitViewController.swift in Sources */,
+				7346382A20C705F000406C74 /* CampsTabViewController.swift in Sources */,
+				73D8CB6F20C8491B00F7D322 /* CampGroup+Extension.swift in Sources */,
+				7346382620C7029000406C74 /* CampsListViewController.swift in Sources */,
+				73653C7120C6DDEB001A6E07 /* OpenAndSaveDialogues.swift in Sources */,
+				73D8CB6320C7DF4E00F7D322 /* RacesSplitViewController.swift in Sources */,
 				73653C5C20C6D08E001A6E07 /* AppDelegate.swift in Sources */,
 				73653C6120C6D08E001A6E07 /* TrainingCamps.xcdatamodeld in Sources */,
+				73653C7620C6E027001A6E07 /* Date+Extension.swift in Sources */,
+				73653C6F20C6D4D6001A6E07 /* CoreDataStack.swift in Sources */,
+				73653C7420C6DF63001A6E07 /* JSONImporter.swift in Sources */,
+				7346382820C7044000406C74 /* CampSplitViewController.swift in Sources */,
+				7346382220C700C000406C74 /* CampViewControllerProtocol.swift in Sources */,
+				73D8CB6920C8205800F7D322 /* CampGroupViewController.swift in Sources */,
+				73653C7820C6E1F1001A6E07 /* Enumerations.swift in Sources */,
+				73D8CB6B20C820AE00F7D322 /* CampGroupSplitViewController.swift in Sources */,
+				7346382420C700F500406C74 /* CampViewController.swift in Sources */,
+				7365EE3A20C7179A00E1A4EB /* CampDaysSplitViewController.swift in Sources */,
+				73D8CB6720C8202500F7D322 /* CampGroupViewControllerProtocol.swift in Sources */,
+				73B8276D20C84AD400E33064 /* Participant+Extension.swift in Sources */,
+				73D8CB6D20C825BE00F7D322 /* ParticipantsSplitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
