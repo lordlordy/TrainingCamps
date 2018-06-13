@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewController: NSSplitViewController, CampViewControllerProtocol, CampGroupViewControllerProtocol {
+class ViewController: NSSplitViewController, CampGroupViewControllerProtocol {
 
     @objc dynamic var managedObjectContext: NSManagedObjectContext
 
@@ -18,6 +18,8 @@ class ViewController: NSSplitViewController, CampViewControllerProtocol, CampGro
         
         self.managedObjectContext = CoreDataStack.shared.trainingCampsPC.viewContext
         super.init(coder: coder)
+        
+        ValueTransformer.setValueTransformer(TransformerNSNumberToTimeFormat(), forName: NSValueTransformerName(rawValue: "TransformerNSNumberToTimeFormat"))
         
     }
     
@@ -33,7 +35,7 @@ class ViewController: NSSplitViewController, CampViewControllerProtocol, CampGro
         }
     }
     
-    func setCamp(_ camp: Camp) {
+/*    func setCamp(_ camp: Camp) {
         for c in childViewControllers{
             if let cvcp = c as? CampViewControllerProtocol{
                 cvcp.setCamp(camp)
@@ -43,7 +45,7 @@ class ViewController: NSSplitViewController, CampViewControllerProtocol, CampGro
             w.title = camp.campName ?? "Unkown Camp"
         }
     }
-    
+    */
     func setCampGroup(_ campGroup: CampGroup) {
         for c in childViewControllers{
             if let cgvcp = c as? CampGroupViewControllerProtocol{

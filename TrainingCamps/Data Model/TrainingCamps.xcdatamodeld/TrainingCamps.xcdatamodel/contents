@@ -80,6 +80,7 @@
         <attribute name="pointsIncrementOverride" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="pointsRaceNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="camp" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Camp" inverseName="races" inverseEntity="Camp" syncable="YES"/>
+        <relationship name="raceDefinition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RaceDefinition" inverseName="races" inverseEntity="RaceDefinition" syncable="YES"/>
         <relationship name="results" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RaceResult" inverseName="race" inverseEntity="RaceResult" syncable="YES"/>
     </entity>
     <entity name="RaceDefinition" representedClassName="RaceDefinition" syncable="YES" codeGenerationType="class">
@@ -96,6 +97,7 @@
         <attribute name="t2Description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="campGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CampGroup" inverseName="raceDefinitions" inverseEntity="CampGroup" syncable="YES"/>
+        <relationship name="races" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Race" inverseName="raceDefinition" inverseEntity="Race" syncable="YES"/>
     </entity>
     <entity name="RaceResult" representedClassName="RaceResult" syncable="YES" codeGenerationType="class">
         <attribute name="bikeSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -111,13 +113,13 @@
     </entity>
     <elements>
         <element name="Camp" positionX="-29" positionY="-9" width="128" height="193"/>
-        <element name="CampGroup" positionX="-47" positionY="-171" width="128" height="103"/>
-        <element name="CampParticipant" positionX="-227" positionY="33" width="128" height="88"/>
-        <element name="Day" positionX="-243" positionY="189" width="128" height="225"/>
+        <element name="CampGroup" positionX="-72" positionY="-234" width="128" height="103"/>
+        <element name="CampParticipant" positionX="-227" positionY="9" width="128" height="88"/>
+        <element name="Day" positionX="-378" positionY="198" width="128" height="225"/>
         <element name="Participant" positionX="-387" positionY="-198" width="128" height="210"/>
         <element name="ParticipantDay" positionX="-99" positionY="431" width="128" height="253"/>
-        <element name="Race" positionX="198" positionY="30" width="128" height="255"/>
+        <element name="Race" positionX="198" positionY="30" width="128" height="268"/>
         <element name="RaceResult" positionX="151" positionY="336" width="128" height="195"/>
-        <element name="RaceDefinition" positionX="-198" positionY="108" width="128" height="238"/>
+        <element name="RaceDefinition" positionX="153" positionY="-270" width="128" height="253"/>
     </elements>
 </model>

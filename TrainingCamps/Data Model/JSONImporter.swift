@@ -110,7 +110,21 @@ class JSONImporter{
     }
     
     private func addCampParticipants(forJSON campParticipants: [[String:Any]], toCamp camp: Camp){
-        
+        for participant in campParticipants{
+            let newCampParticipant: CampParticipant = CoreDataStack.shared.newCampParticipant()
+            camp.mutableSetValue(forKey: CampProperty.campParticipants.rawValue).add(newCampParticipant)
+            for i in participant{
+                switch i.key{
+                case "uniqueName": // move to enum
+                    if let p = camp.campGroup?.participant(withUniqueName: i.value as? String ?? ""){
+                        newCampParticipant.participant = p
+                    }
+                default:
+                    newCampParticipant.setValue(i.value, forKey: i.key)
+                }
+                
+            }
+        }
         
         
     }

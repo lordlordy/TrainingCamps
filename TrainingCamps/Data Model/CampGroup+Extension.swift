@@ -22,4 +22,8 @@ extension CampGroup{
         return participants?.allObjects as? [Participant] ?? []
     }
     
+    private func raceDefinitionArray() -> [RaceDefinition]{
+        return raceDefinitions?.allObjects as? [RaceDefinition] ?? []
+    }
+    
 }

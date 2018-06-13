@@ -67,4 +67,5 @@ enum RaceDefinitionProperty: String{
     case swimDescription, swimKM, bikeDescription, bikeKM, runDescription, runKM
     case t1Description, t2Description
     case location, name, raceDescription, type
+    case races
 }

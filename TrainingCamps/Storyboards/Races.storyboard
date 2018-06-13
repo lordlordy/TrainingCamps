@@ -33,14 +33,14 @@
                 <customObject id="pgy-PP-zJa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <arrayController mode="entity" entityName="Race" automaticallyPreparesContent="YES" id="qfC-Y9-GtT" userLabel="Races AC">
                     <connections>
-                        <binding destination="kId-pR-f01" name="contentSet" keyPath="camp.races" id="bNU-b5-P0f"/>
                         <binding destination="kId-pR-f01" name="managedObjectContext" keyPath="camp.managedObjectContext" id="0P7-Dc-GYT"/>
+                        <binding destination="kId-pR-f01" name="contentSet" keyPath="camp.races" id="bNU-b5-P0f"/>
                     </connections>
                 </arrayController>
                 <arrayController mode="entity" entityName="RaceResult" automaticallyPreparesContent="YES" id="emc-EK-qxE" userLabel="Results AC">
                     <connections>
-                        <binding destination="qfC-Y9-GtT" name="contentSet" keyPath="selection.results" id="UIW-Kq-MHA"/>
                         <binding destination="kId-pR-f01" name="managedObjectContext" keyPath="camp.managedObjectContext" id="D7K-Zy-4Al"/>
+                        <binding destination="qfC-Y9-GtT" name="contentSet" keyPath="selection.results" id="UIW-Kq-MHA"/>
                     </connections>
                 </arrayController>
             </objects>
@@ -94,7 +94,7 @@
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSp-Cp-UxY">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="279"/>
                                 <clipView key="contentView" id="2sj-19-mpJ">
-                                    <rect key="frame" x="1" y="23" width="448" height="255"/>
+                                    <rect key="frame" x="1" y="0.0" width="448" height="278"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveName="racesTable" rowSizeStyle="automatic" headerView="Dyv-7y-TiA" viewBased="YES" id="p48-i2-bRY">
@@ -544,11 +544,11 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.9970149253731343" horizontal="YES" id="m64-UG-aIw">
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="m64-UG-aIw">
                                     <rect key="frame" x="1" y="262" width="448" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="urP-xU-wyc">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="urP-xU-wyc">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -620,7 +620,7 @@
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMP-lJ-o8x">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="279"/>
                                 <clipView key="contentView" id="tug-1a-rpg">
-                                    <rect key="frame" x="1" y="23" width="448" height="255"/>
+                                    <rect key="frame" x="1" y="0.0" width="448" height="278"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="5Fq-Om-ubz" viewBased="YES" id="jEe-z3-Dm0">
@@ -963,11 +963,11 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="fBC-kB-Ixe">
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="fBC-kB-Ixe">
                                     <rect key="frame" x="1" y="262" width="448" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="0xJ-p7-596">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="0xJ-p7-596">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

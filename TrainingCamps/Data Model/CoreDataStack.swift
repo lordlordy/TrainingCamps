@@ -98,5 +98,10 @@ class CoreDataStack{
         return raceDefinition as! RaceDefinition
     }
     
+    func newCampParticipant() -> CampParticipant{
+        let campParticipant: NSManagedObject = NSEntityDescription.insertNewObject(forEntityName: ENTITY.CampParticipant.rawValue, into: trainingCampsPC.viewContext)
+        return campParticipant as! CampParticipant
+    }
+    
 }
 

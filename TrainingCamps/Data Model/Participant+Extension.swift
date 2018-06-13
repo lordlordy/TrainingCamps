@@ -10,6 +10,8 @@ import Foundation
 
 extension Participant{
     
-    
+    @objc dynamic var campsAttended: Int{
+        return campParticipations?.count ?? 0
+    }
     
 }
