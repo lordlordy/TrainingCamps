@@ -12,7 +12,7 @@ class ViewController: NSSplitViewController, CampGroupViewControllerProtocol {
 
     @objc dynamic var managedObjectContext: NSManagedObjectContext
 
-    
+    @objc dynamic var swimColour: NSColor = NSColor.blue
     
     required init?(coder: NSCoder) {
         

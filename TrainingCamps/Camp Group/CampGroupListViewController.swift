@@ -12,6 +12,7 @@ class CampGroupListViewController: NSViewController, NSTableViewDelegate{
     
     @IBOutlet var campGroupArrayController: NSArrayController!
     
+
     
     func tableViewSelectionDidChange(_ notification: Notification) {
 

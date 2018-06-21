@@ -694,11 +694,11 @@
             <objects>
                 <viewController id="ulc-VC-5bW" customClass="CampGroupListViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="9wE-Zo-k75">
-                        <rect key="frame" x="0.0" y="0.0" width="297" height="71"/>
+                        <rect key="frame" x="0.0" y="0.0" width="297" height="66"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mx0-RU-sec">
-                                <rect key="frame" x="1" y="32" width="19" height="38"/>
+                                <rect key="frame" x="1" y="27" width="19" height="38"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K6O-RV-HU6">
                                         <rect key="frame" x="0.0" y="18" width="19" height="21"/>
@@ -741,16 +741,17 @@
                                 </customSpacing>
                             </stackView>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8le-FE-uwF">
-                                <rect key="frame" x="21" y="0.0" width="276" height="70"/>
+                                <rect key="frame" x="21" y="0.0" width="276" height="65"/>
                                 <clipView key="contentView" id="jks-JV-6Lh">
-                                    <rect key="frame" x="1" y="0.0" width="274" height="69"/>
+                                    <rect key="frame" x="1" y="0.0" width="274" height="64"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView identifier="campGroupTable" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveName="campGroupTable" rowSizeStyle="automatic" headerView="Kd5-nW-Azr" viewBased="YES" id="WjL-0O-bLj">
-                                            <rect key="frame" x="0.0" y="0.0" width="274" height="46"/>
+                                        <tableView identifier="campGroupTable" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveName="campGroupTable" rowSizeStyle="automatic" headerView="Kd5-nW-Azr" viewBased="YES" id="WjL-0O-bLj">
+                                            <rect key="frame" x="0.0" y="0.0" width="274" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="" width="116" minWidth="40" maxWidth="1000" id="2rT-3k-cul">
@@ -779,7 +780,7 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="UXf-qQ-RWn" name="value" keyPath="objectValue.name" id="gYD-5l-r5u"/>
+                                                                        <binding destination="UXf-qQ-RWn" name="value" keyPath="objectValue.name" id="y3h-m3-H6M"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -832,6 +833,9 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="0YJ-qs-yyU"/>
+                                </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Kae-Dh-T8n">
                                     <rect key="frame" x="1" y="53" width="274" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
@@ -866,7 +870,7 @@
                     </connections>
                 </arrayController>
             </objects>
-            <point key="canvasLocation" x="684.5" y="488.5"/>
+            <point key="canvasLocation" x="684.5" y="482.5"/>
         </scene>
         <!--Camps Tab View Controller-->
         <scene sceneID="LoP-mT-vm9">
@@ -876,6 +880,8 @@
                         <tabViewItem id="JLD-dy-Afp"/>
                         <tabViewItem id="b4a-Q9-rhe"/>
                         <tabViewItem id="zWZ-ge-yrc"/>
+                        <tabViewItem id="8e0-kq-uyV"/>
+                        <tabViewItem id="OAd-Gc-dNn"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="XKO-hY-O7J">
                         <rect key="frame" x="131" y="0.0" width="454" height="300"/>
@@ -891,6 +897,8 @@
                         <segue destination="hNO-CN-OLw" kind="relationship" relationship="tabItems" id="eyO-mm-gHO"/>
                         <segue destination="kRS-5n-aAp" kind="relationship" relationship="tabItems" id="qV5-b1-KcZ"/>
                         <segue destination="3X1-Xf-Nap" kind="relationship" relationship="tabItems" id="FMO-2R-DIE"/>
+                        <segue destination="P2C-GN-Pli" kind="relationship" relationship="tabItems" id="Ous-Rr-k79"/>
+                        <segue destination="uvh-r8-W9W" kind="relationship" relationship="tabItems" id="qio-mr-s1d"/>
                     </connections>
                 </tabViewController>
                 <customObject id="YaN-1m-YRW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -912,6 +920,22 @@
                 <customObject id="U6a-zq-8dB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="826" y="1173"/>
+        </scene>
+        <!--Locations-->
+        <scene sceneID="dme-5c-DAe">
+            <objects>
+                <controllerPlaceholder storyboardName="Locations" id="P2C-GN-Pli" sceneMemberID="viewController"/>
+                <customObject id="8cW-Mo-JGs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="758" y="1288"/>
+        </scene>
+        <!--CampTypes-->
+        <scene sceneID="PAT-O9-QYp">
+            <objects>
+                <controllerPlaceholder storyboardName="CampTypes" id="uvh-r8-W9W" sceneMemberID="viewController"/>
+                <customObject id="XFZ-wv-MZF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="857" y="1316"/>
         </scene>
         <!--RaceDefinition-->
         <scene sceneID="Sfv-E4-flL">

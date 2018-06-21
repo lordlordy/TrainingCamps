@@ -10,6 +10,13 @@ import Foundation
 
 enum ENTITY: String{
     case CampGroup, Camp, Day, ParticipantDay, Race, RaceResult, Participant, CampParticipant, RaceDefinition
+    case Location, CampType
+}
+
+enum RaceCompletionStatus: String{
+    case Y, DNS, DNF
+    case Ydnf = "Y-dnf"
+    static let All: [RaceCompletionStatus] = [Y, DNS, DNF, Ydnf]
 }
 
 enum CampProperty: String{
@@ -32,14 +39,17 @@ enum ParticipantDayProperty: String{
     case bikeAscentMetres, bikeKM, bikeSeconds, bikeWildcardUsed
     case runAscentMetres, runKM, runSeconds, runWildcardUsed
     case swimKM, swimSeconds, swimWildcardUsed
+    case totalSeconds, totalKM, totalAscentMetres
+    case trainingCompletionStatus, swimComplete, bikeComplete, runComplete, dayComplete
 
 }
 
 enum RaceProperty: String{
-    case date, name, results
+    case date, raceNameString, results
     case includesSwim, includesBike, includesRun
     case isForCampPoints, isGuessYourTime, isHandicap
     case pointsIncrementOverride, pointsBasedOn, pointsForWinOverride, pointsRaceNumber
+    case raceDefinition
 }
 
 enum RaceResultProperty: String{
@@ -56,16 +66,54 @@ enum ParticipantProperty: String{
 }
 
 enum CampParticipantProperty: String{
-    case role, participant, camp
+    case role, participant, camp, bonusPoints  
 }
 
 enum CampGroupProperty: String{
-    case name, camps, participants, raceDefinitions
+    case name, camps, participants, raceDefinitions, locations, campTypes
 }
 
 enum RaceDefinitionProperty: String{
     case swimDescription, swimKM, bikeDescription, bikeKM, runDescription, runKM
     case t1Description, t2Description
     case location, name, raceDescription, type
-    case races
+    case races, locationString
 }
+
+enum Gender: String{
+    case Male, Female
+}
+
+enum Coach: String{
+    case Jo, Ste
+}
+
+enum DateFormatString: String{
+    case ValidCampDate = "EEE dd MMM yy"
+}
+
+enum CoachingRelationship: String{
+    case None
+    case FormerAthlete = "Former Athlete"
+    case CurrentAthlete = "Current Athlete"
+}
+
+enum Role: String{
+    case Athlete, Coach, Masseuse, Physio
+    case RideSupport = "Ride Support"
+    static var All: [Role] = [Athlete, Coach, Masseuse, Physio, RideSupport]
+}
+
+enum PointsMethod: String{
+    case NotAPointsRace = "Not A Points Race"
+    case Handicap
+    case GuessYourTime = "Guess Your Time"
+    case OutrightResult = "Outright Result"
+    static let All: [PointsMethod] = [NotAPointsRace, Handicap, GuessYourTime, OutrightResult]
+}
+
+enum UserDefaultKey: String{
+    case swimColour, bikeColour, runColour
+}
+
+

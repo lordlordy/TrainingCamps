@@ -15,6 +15,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+
+        //set up default colours for different disciplines
+        UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: NSColor.blue) as NSData?, forKey: UserDefaultKey.swimColour.rawValue)
+        UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: NSColor.brown) as NSData?, forKey: UserDefaultKey.bikeColour.rawValue)
+        UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: NSColor.red) as NSData?, forKey: UserDefaultKey.runColour.rawValue)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

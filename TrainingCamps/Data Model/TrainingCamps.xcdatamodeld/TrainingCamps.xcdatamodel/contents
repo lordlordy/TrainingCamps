@@ -2,26 +2,37 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Camp" representedClassName="Camp" syncable="YES" codeGenerationType="class">
         <attribute name="campEnd" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="campLocation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="campName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="campShortName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="campStart" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="campType" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="campGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CampGroup" inverseName="camps" inverseEntity="CampGroup" syncable="YES"/>
         <relationship name="campParticipants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CampParticipant" inverseName="camp" inverseEntity="CampParticipant" syncable="YES"/>
         <relationship name="days" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Day" inverseName="camp" inverseEntity="Day" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="camps" inverseEntity="Location" syncable="YES"/>
         <relationship name="races" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Race" inverseName="camp" inverseEntity="Race" syncable="YES"/>
+        <relationship name="type" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CampType" inverseName="camps" inverseEntity="CampType" syncable="YES"/>
     </entity>
     <entity name="CampGroup" representedClassName="CampGroup" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="camps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Camp" inverseName="campGroup" inverseEntity="Camp" syncable="YES"/>
+        <relationship name="campTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CampType" inverseName="campGroup" inverseEntity="CampType" syncable="YES"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Location" inverseName="campGroup" inverseEntity="Location" syncable="YES"/>
         <relationship name="participants" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Participant" inverseName="campGroup" inverseEntity="Participant" syncable="YES"/>
         <relationship name="raceDefinitions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RaceDefinition" inverseName="campGroup" inverseEntity="RaceDefinition" syncable="YES"/>
     </entity>
     <entity name="CampParticipant" representedClassName="CampParticipant" syncable="YES" codeGenerationType="class">
+        <attribute name="bonusPoints" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="rankInCompetition" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="role" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="camp" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Camp" inverseName="campParticipants" inverseEntity="Camp" syncable="YES"/>
+        <relationship name="days" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="ParticipantDay" inverseName="campParticipant" inverseEntity="ParticipantDay" syncable="YES"/>
         <relationship name="participant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Participant" inverseName="campParticipations" inverseEntity="Participant" syncable="YES"/>
+        <relationship name="raceResults" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="RaceResult" inverseName="campParticipant" inverseEntity="RaceResult" syncable="YES"/>
+    </entity>
+    <entity name="CampType" representedClassName="CampType" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="campGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CampGroup" inverseName="campTypes" inverseEntity="CampGroup" syncable="YES"/>
+        <relationship name="camps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Camp" inverseName="type" inverseEntity="Camp" syncable="YES"/>
     </entity>
     <entity name="Day" representedClassName="Day" syncable="YES" codeGenerationType="class">
         <attribute name="completionBikeKM" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -35,11 +46,17 @@
         <attribute name="earnWildcardRunSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="earnWildcardSwimSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="camp" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Camp" inverseName="days" inverseEntity="Camp" syncable="YES"/>
-        <relationship name="participantDays" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ParticipantDay" inverseName="day" inverseEntity="ParticipantDay" syncable="YES"/>
+        <relationship name="participantDays" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="ParticipantDay" inverseName="day" inverseEntity="ParticipantDay" syncable="YES"/>
+    </entity>
+    <entity name="Location" representedClassName="Location" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="campGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CampGroup" inverseName="locations" inverseEntity="CampGroup" syncable="YES"/>
+        <relationship name="camps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Camp" inverseName="location" inverseEntity="Camp" syncable="YES"/>
+        <relationship name="raceDefinitions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RaceDefinition" inverseName="location" inverseEntity="RaceDefinition" syncable="YES"/>
     </entity>
     <entity name="Participant" representedClassName="Participant" syncable="YES" codeGenerationType="class">
         <attribute name="coach" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="coachingRelationship" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="coachingRelationship" optional="YES" attributeType="String" defaultValueString="None" syncable="YES"/>
         <attribute name="emailAddress" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="emailOK" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
@@ -56,7 +73,6 @@
         <attribute name="bikeSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="bikeWildcardUsed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="brick" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="participant" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="runAscentMetres" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="runKM" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="runSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -64,17 +80,14 @@
         <attribute name="swimKM" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="swimSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="swimWildcardUsed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="campParticipant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CampParticipant" inverseName="days" inverseEntity="CampParticipant" syncable="YES"/>
         <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="participantDays" inverseEntity="Day" syncable="YES"/>
     </entity>
     <entity name="Race" representedClassName="Race" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="includesBike" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="includesRun" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="includesSwim" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isForCampPoints" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isGuessYourTime" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isHandicap" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pointsBasedOn" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pointsForWinOverride" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="pointsIncrementOverride" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -86,7 +99,6 @@
     <entity name="RaceDefinition" representedClassName="RaceDefinition" syncable="YES" codeGenerationType="class">
         <attribute name="bikeDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bikeKM" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="raceDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="runDescription" optional="YES" attributeType="String" syncable="YES"/>
@@ -97,29 +109,44 @@
         <attribute name="t2Description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="campGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CampGroup" inverseName="raceDefinitions" inverseEntity="CampGroup" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="raceDefinitions" inverseEntity="Location" syncable="YES"/>
         <relationship name="races" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Race" inverseName="raceDefinition" inverseEntity="Race" syncable="YES"/>
     </entity>
     <entity name="RaceResult" representedClassName="RaceResult" syncable="YES" codeGenerationType="class">
+        <attribute name="bikeRank" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="bikeSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="campPoints" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="handicapSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="includeInCampPoints" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isRelay" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="participant" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="raceCompletionStatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rank" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="rankAfterHandicap" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="rankGuess" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="runRank" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="runSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="swimRank" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="swimSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="t1Rank" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="t1Seconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="t2Rank" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="t2Seconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="timeGuessSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="wasHandicapEstimate" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="campParticipant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CampParticipant" inverseName="raceResults" inverseEntity="CampParticipant" syncable="YES"/>
         <relationship name="race" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Race" inverseName="results" inverseEntity="Race" syncable="YES"/>
     </entity>
     <elements>
         <element name="Camp" positionX="-29" positionY="-9" width="128" height="193"/>
-        <element name="CampGroup" positionX="-72" positionY="-234" width="128" height="103"/>
-        <element name="CampParticipant" positionX="-227" positionY="9" width="128" height="88"/>
+        <element name="CampGroup" positionX="-38" positionY="-270" width="128" height="133"/>
+        <element name="CampParticipant" positionX="-74" positionY="224" width="128" height="150"/>
+        <element name="CampType" positionX="-171" positionY="-108" width="128" height="90"/>
         <element name="Day" positionX="-378" positionY="198" width="128" height="225"/>
-        <element name="Participant" positionX="-387" positionY="-198" width="128" height="210"/>
+        <element name="Location" positionX="-254" positionY="-270" width="128" height="105"/>
+        <element name="Participant" positionX="-522" positionY="-198" width="128" height="210"/>
         <element name="ParticipantDay" positionX="-99" positionY="431" width="128" height="253"/>
-        <element name="Race" positionX="198" positionY="30" width="128" height="268"/>
-        <element name="RaceResult" positionX="151" positionY="336" width="128" height="195"/>
-        <element name="RaceDefinition" positionX="153" positionY="-270" width="128" height="253"/>
+        <element name="Race" positionX="198" positionY="30" width="128" height="210"/>
+        <element name="RaceDefinition" positionX="153" positionY="-270" width="128" height="255"/>
+        <element name="RaceResult" positionX="187" positionY="336" width="128" height="375"/>
     </elements>
 </model>

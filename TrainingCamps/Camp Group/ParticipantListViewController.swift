@@ -8,12 +8,36 @@
 
 import Cocoa
 
-class ParticipantListViewController: CampGroupViewController{
+class ParticipantListViewController: CampGroupViewController, NSTableViewDelegate{
     
     @IBAction func filterOnUniqueName(_ sender: NSTextField) {
         if let p = parent as? ParticipantsSplitViewController{
             p.filter(forName: sender.stringValue)
         }
     }
+    
+    @IBAction func addParticipant(_ sender: Any){
+        if let p = parent as? ParticipantsSplitViewController{
+            if let pac = p.participantsAC{
+                pac.add(sender)
+            }
+        }
+    }
+    
+    @IBAction func removeParticipant(_ sender: Any){
+        if let p = parent as? ParticipantsSplitViewController{
+            if let pac = p.participantsAC{
+                pac.remove(sender)
+            }
+        }
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        if let p = parent as? ParticipantsSplitViewController{
+            p.createTree()
+        }
+    }
+    
+
     
 }

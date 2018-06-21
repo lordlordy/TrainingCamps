@@ -103,5 +103,15 @@ class CoreDataStack{
         return campParticipant as! CampParticipant
     }
     
+    func newLocation() -> Location{
+        let location: NSManagedObject = NSEntityDescription.insertNewObject(forEntityName: ENTITY.Location.rawValue, into: trainingCampsPC.viewContext)
+        return location as! Location
+    }
+    
+    func newCampType() -> CampType{
+        let campType: NSManagedObject = NSEntityDescription.insertNewObject(forEntityName: ENTITY.CampType.rawValue, into: trainingCampsPC.viewContext)
+        return campType as! CampType
+    }
+    
 }
 

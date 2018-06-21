@@ -195,7 +195,7 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="TKw-j4-R8J" name="value" keyPath="objectValue.location" id="txo-Ed-JCD"/>
+                                                                        <binding destination="TKw-j4-R8J" name="value" keyPath="objectValue.locationString" id="3Uv-5Q-nsA"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -268,6 +268,11 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="Ngw-6y-3lg" name="value" keyPath="objectValue.swimKM" id="Hnz-bD-mLo"/>
+                                                                        <binding destination="aCu-1S-8kL" name="textColor" keyPath="values.swimColour" id="zq8-GN-BGj">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
+                                                                            </dictionary>
+                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -376,6 +381,11 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="mgA-Em-ZBW" name="value" keyPath="objectValue.bikeKM" id="N5w-lY-pEc"/>
+                                                                        <binding destination="aCu-1S-8kL" name="textColor" keyPath="values.bikeColour" id="WYJ-kB-TfH">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
+                                                                            </dictionary>
+                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -484,6 +494,11 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="aNo-bJ-K8e" name="value" keyPath="objectValue.runKM" id="rWt-PR-q9F"/>
+                                                                        <binding destination="aCu-1S-8kL" name="textColor" keyPath="values.runColour" id="lTN-jo-Anz">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
+                                                                            </dictionary>
+                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -576,7 +591,7 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="lRi-4z-2CN">
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.64155844155844155" horizontal="YES" id="lRi-4z-2CN">
                                     <rect key="frame" x="1" y="262" width="448" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -601,6 +616,7 @@
                     </view>
                 </viewController>
                 <customObject id="Kmt-su-fIz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="aCu-1S-8kL"/>
             </objects>
             <point key="canvasLocation" x="488" y="-61"/>
         </scene>

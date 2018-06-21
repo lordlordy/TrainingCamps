@@ -16,25 +16,46 @@ class JSONImporter{
         if let json = importJSON(fromURL: url) {
             let newCampGroup = CoreDataStack.shared.newCampGroup()
             
-            for i in json{
-                print(i.key)
-                switch i.key{
-                case CampGroupProperty.camps.rawValue:
-                    if let camps = i.value as? [[String:Any]]{
-                        addCamps(fromJSON: camps, toCampGroup: newCampGroup)
-                    }
-                case CampGroupProperty.participants.rawValue:
-                    if let participants = i.value as? [[String:Any]]{
-                        addParticipants(fromJSON: participants, toCampGroup: newCampGroup)
-                    }
-                case CampGroupProperty.raceDefinitions.rawValue:
-                    if let raceDefinitions = i.value as? [[String:Any]]{
-                        addRaceDefinitions(fromJSON: raceDefinitions, toCampGroup: newCampGroup)
-                    }
-                default:
-                    print("Not imported \(i.key) in to CampGroup")
-                }
+            //import participants and race definitions first
+            if let p = json[CampGroupProperty.participants.rawValue] as? [[String:Any]]{
+                addParticipants(fromJSON: p, toCampGroup: newCampGroup)
+            }else{
+                print("Participants not found and not imported")
             }
+            
+            if let rd = json[CampGroupProperty.raceDefinitions.rawValue] as? [[String:Any]]{
+                addRaceDefinitions(fromJSON: rd, toCampGroup: newCampGroup)
+            }else{
+                print("Race definitions not found and not imported")
+            }
+            
+            // finally camps
+            if let camps = json[CampGroupProperty.camps.rawValue] as? [[String:Any]]{
+                addCamps(fromJSON: camps, toCampGroup: newCampGroup)
+            }else{
+                print("Camps not found and not imported")
+            }
+            
+            
+//            for i in json{
+//                print(i.key)
+//                switch i.key{
+//                case CampGroupProperty.camps.rawValue:
+//                    if let camps = i.value as? [[String:Any]]{
+//                        addCamps(fromJSON: camps, toCampGroup: newCampGroup)
+//                    }
+//                case CampGroupProperty.participants.rawValue:
+//                    if let participants = i.value as? [[String:Any]]{
+//                        addParticipants(fromJSON: participants, toCampGroup: newCampGroup)
+//                    }
+//                case CampGroupProperty.raceDefinitions.rawValue:
+//                    if let raceDefinitions = i.value as? [[String:Any]]{
+//                        addRaceDefinitions(fromJSON: raceDefinitions, toCampGroup: newCampGroup)
+//                    }
+//                default:
+//                    print("Not imported \(i.key) in to CampGroup")
+//                }
+//            }
             
             newCampGroup.setValue("JSON IMPORT - \(Date().jsonString())", forKey: "name")
         }
@@ -71,6 +92,14 @@ class JSONImporter{
             cg.mutableSetValue(forKey: CampGroupProperty.raceDefinitions.rawValue).add(newRaceDefinition)
             
             for i in r{
+                if i.key == RaceDefinitionProperty.locationString.rawValue{
+                    if let l = i.value as? String{
+                        if cg.location(forName: l) == nil{
+                            //set up location
+                            cg.createNewLocation(forName: l)
+                        }
+                    }
+                }
                 newRaceDefinition.setValue(i.value, forKey: i.key)
             }
         }
@@ -81,6 +110,12 @@ class JSONImporter{
             let newCamp: Camp = CoreDataStack.shared.newCamp()
             cg.mutableSetValue(forKey: CampGroupProperty.camps.rawValue).add(newCamp)
             
+            //add camp participant first as these objects need to exist when everything else is added
+            if let campParticipants = camp[CampProperty.campParticipants.rawValue] as? [[String:Any]]{
+                addCampParticipants(forJSON: campParticipants, toCamp: newCamp)
+            }
+            
+            
             for i in camp{
                 switch i.key{
                 case CampProperty.campStart.rawValue, CampProperty.campEnd.rawValue:
@@ -88,7 +123,7 @@ class JSONImporter{
                     if let d = Date.dateFromJSONString(i.value as! String){
                         newCamp.setValue(d, forKey: i.key)
                     }
-                case CampProperty.campLocation.rawValue, CampProperty.campName.rawValue, CampProperty.campShortName.rawValue, CampProperty.campType.rawValue:
+                case CampProperty.campName.rawValue, CampProperty.campShortName.rawValue:
                     newCamp.setValue(i.value, forKey: i.key)
                 case CampProperty.days.rawValue:
                     if let days = i.value as? [[String:Any]]{
@@ -99,8 +134,20 @@ class JSONImporter{
                         addRaces(forJSON: races, toCamp: newCamp)
                     }
                 case CampProperty.campParticipants.rawValue:
-                    if let campParticipants = i.value as? [[String:Any]]{
-                        addCampParticipants(forJSON: campParticipants, toCamp: newCamp)
+                    print("Camp Participants added first")
+                case CampProperty.campLocation.rawValue:
+                    if let location = cg.location(forName: i.value as! String){
+                        newCamp.location = location
+                    }else{
+                        cg.createNewLocation(forName: i.value as! String)
+                        newCamp.location = cg.location(forName: i.value as! String)
+                    }
+                case CampProperty.campType.rawValue:
+                        if let campType = cg.campType(forName: i.value as! String){
+                            newCamp.type = campType
+                        }else{
+                            cg.createNewCampType(forName: i.value as! String)
+                            newCamp.type = cg.campType(forName: i.value as! String)
                     }
                 default:
                     print("Not imported \(i.key) in to Camp")
@@ -164,8 +211,10 @@ class JSONImporter{
             
             for i in pday{
                 switch i.key{
-                case ParticipantDayProperty.participant.rawValue, ParticipantDayProperty.bikeAscentMetres.rawValue, ParticipantDayProperty.bikeKM.rawValue,  ParticipantDayProperty.bikeSeconds.rawValue, ParticipantDayProperty.bikeWildcardUsed.rawValue, ParticipantDayProperty.brick.rawValue, ParticipantDayProperty.runAscentMetres.rawValue, ParticipantDayProperty.runKM.rawValue, ParticipantDayProperty.runSeconds.rawValue, ParticipantDayProperty.runWildcardUsed.rawValue, ParticipantDayProperty.swimKM.rawValue, ParticipantDayProperty.swimSeconds.rawValue, ParticipantDayProperty.swimWildcardUsed.rawValue:
+                case ParticipantDayProperty.bikeAscentMetres.rawValue, ParticipantDayProperty.bikeKM.rawValue,  ParticipantDayProperty.bikeSeconds.rawValue, ParticipantDayProperty.bikeWildcardUsed.rawValue, ParticipantDayProperty.brick.rawValue, ParticipantDayProperty.runAscentMetres.rawValue, ParticipantDayProperty.runKM.rawValue, ParticipantDayProperty.runSeconds.rawValue, ParticipantDayProperty.runWildcardUsed.rawValue, ParticipantDayProperty.swimKM.rawValue, ParticipantDayProperty.swimSeconds.rawValue, ParticipantDayProperty.swimWildcardUsed.rawValue:
                     newPDay.setValue(i.value, forKey: i.key)
+                case ParticipantDayProperty.participant.rawValue:
+                    newPDay.campParticipant = day.camp?.campParticipant(forUniqueName: i.value as! String)
                 default:
                     print("Not imported \(i.key) in to ParticipantDay")
                 }
@@ -181,8 +230,7 @@ class JSONImporter{
             
             for i in race{
                 switch i.key{
-                case RaceProperty.includesBike.rawValue, RaceProperty.includesRun.rawValue, RaceProperty.includesSwim.rawValue, RaceProperty.isForCampPoints.rawValue, RaceProperty.isGuessYourTime.rawValue, RaceProperty.isHandicap.rawValue, RaceProperty.name.rawValue, RaceProperty.pointsBasedOn.rawValue, RaceProperty.pointsForWinOverride.rawValue, RaceProperty.pointsIncrementOverride.rawValue, RaceProperty.pointsRaceNumber.rawValue:
-                    newRace.setValue(i.value, forKey: i.key)
+//                case RaceProperty.includesBike.rawValue, RaceProperty.includesRun.rawValue, RaceProperty.includesSwim.rawValue, RaceProperty.isForCampPoints.rawValue, RaceProperty.isGuessYourTime.rawValue, RaceProperty.isHandicap.rawValue, RaceProperty.pointsBasedOn.rawValue, RaceProperty.pointsForWinOverride.rawValue, RaceProperty.pointsIncrementOverride.rawValue, RaceProperty.pointsRaceNumber.rawValue:
                 case RaceProperty.date.rawValue:
                     if let d = Date.dateFromJSONString(i.value as! String){
                         newRace.setValue(d, forKey: i.key)
@@ -192,7 +240,7 @@ class JSONImporter{
                         addResults(forJSON: results, toRace: newRace)
                     }
                 default:
-                    print("Not imported \(i.key) in to Race")
+                    newRace.setValue(i.value, forKey: i.key)
                 }
             }
             
@@ -206,7 +254,11 @@ class JSONImporter{
             race.mutableSetValue(forKey: RaceProperty.results.rawValue).add(newResult)
             
             for i in result{
-                newResult.setValue(i.value, forKey: i.key )
+                if i.key == RaceResultProperty.participant.rawValue{
+                    newResult.campParticipant = race.camp?.campParticipant(forUniqueName: i.value as! String)
+                }else{
+                    newResult.setValue(i.value, forKey: i.key )
+                }
             }
         }
         

@@ -8,8 +8,15 @@
 
 import Cocoa
 
-class CampDaysSplitViewController: CampSplitViewController{
+class CampDaysSplitViewController: CampSplitViewController, DayViewControllerProtocol{
     
-    @IBOutlet var campDaysAC: NSArrayController!
-    @IBOutlet var participantDaysAC: NSArrayController!
+
+    func setDay(_ day: Day) {
+        for c in childViewControllers{
+            if let dvcp = c as? DayViewControllerProtocol{
+                dvcp.setDay(day)
+            }
+        }
+    }
+    
 }

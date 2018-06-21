@@ -23,4 +23,10 @@ extension Date{
         return dateFormatter.date(from: s)
     }
     
+    func dayOfWeek() -> String{
+        let df = DateFormatter()
+        df.dateFormat = "EEEE"
+        return df.string(from: self)
+    }
+    
 }

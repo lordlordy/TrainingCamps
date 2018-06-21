@@ -16,12 +16,18 @@ class TransformerNSNumberToTimeFormat: ValueTransformer {
     override class func allowsReverseTransformation() -> Bool {return true}
     
     override func transformedValue(_ value: Any?) -> Any? {
-        guard let s = value as? Int else { return nil }
+        guard let s: Int = value as? Int else { return nil }
         
-        let secs = s % 60
-        let mins = (s / 60) % 60
-        let hours = (s / 3600)
-        return String(format: "%02d:%02d:%02d", hours, mins, secs)
+        let isNegative: Bool = s < 0
+        
+        let secs = abs(s) % 60
+        let mins = (abs(s) / 60) % 60
+        let hours = (abs(s) / 3600)
+        if isNegative{
+            return String(format: "-%02d:%02d:%02d", hours, mins, secs)
+        }else{
+            return String(format: "%02d:%02d:%02d", hours, mins, secs)
+        }
         
     }
     
@@ -29,8 +35,19 @@ class TransformerNSNumberToTimeFormat: ValueTransformer {
         guard let type = value as? NSString else { return nil }
         
         let myString: String = type as String
+        let isNegative: Bool = myString.hasPrefix("-")
         let b = myString.split(separator: ":") as [NSString]
-        let total = b[0].integerValue*3600 + b[1].integerValue*60 + b[2].integerValue
+        var total = 0
+        if b.count == 1{
+            total = abs(b[0].integerValue*3600)
+        }else if b.count == 2{
+            total = abs(b[0].integerValue*3600) + b[1].integerValue*60
+        }else{
+            total = abs(b[0].integerValue*3600) + b[1].integerValue*60 + b[2].integerValue
+        }
+        if isNegative{
+            total = -1 * total
+        }
         return NSNumber(value: total)
     }
 }
