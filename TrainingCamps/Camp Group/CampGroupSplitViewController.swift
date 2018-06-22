@@ -20,5 +20,6 @@ class CampGroupSplitViewController: NSSplitViewController, CampGroupViewControll
             }
         }
     }
+
     
 }

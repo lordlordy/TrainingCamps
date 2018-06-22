@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension ParticipantDay{
+extension ParticipantDay: Rankable{
     
     @objc dynamic var totalSeconds: Double{
         return swimSeconds + bikeSeconds + runSeconds   
@@ -105,6 +105,64 @@ extension ParticipantDay{
             return keyPaths.union(Set([ParticipantDayProperty.swimComplete.rawValue, ParticipantDayProperty.bikeComplete.rawValue, ParticipantDayProperty.runComplete.rawValue]))
         default:
             return keyPaths
+        }
+    }
+    
+    func valueFor(activity: Activity, unit: Unit, gender: Gender, role: Role, location: Location?, participant: Participant?, camp: Camp?) -> Double {
+
+        if participantIs(gender: gender, role: role, participant: participant){
+            if camp == nil || camp == campParticipant!.camp!{
+                if location == nil || location == campParticipant!.camp!.location!{
+                    return valueFor(activity: activity, unit: unit)
+                }
+            }
+        }
+        return 0.0
+    }
+    
+    private func participantIs(gender: Gender, role: Role, participant: Participant?) -> Bool{
+        let isParticipant: Bool = (participant == nil) || (participant == self.campParticipant!.participant!)
+        let isGender: Bool = (gender == Gender.All) || (campParticipant!.participant!.gender! == gender.rawValue)
+        let isRole: Bool = (role == Role.All) || (campParticipant!.role! == role.rawValue)
+        
+        return isParticipant && isGender && isRole
+    }
+    
+    private func valueFor(activity: Activity, unit: Unit) -> Double{
+        switch unit{
+        case .Seconds:
+            switch activity{
+            case .total: return totalSeconds
+            case .swim: return swimSeconds
+            case .t1: return 0.0
+            case .bike: return bikeSeconds
+            case .t2: return 0.0
+            case .run: return runSeconds
+            case .guessDifference: return 0.0
+            case .handicapAdjusted: return 0.0
+            }
+        case .Ascent:
+            switch activity{
+            case .total: return totalAscentMetres
+            case .swim: return 0.0
+            case .t1: return 0.0
+            case .bike: return bikeAscentMetres
+            case .t2: return 0.0
+            case .run: return runAscentMetres
+            case .guessDifference: return 0.0
+            case .handicapAdjusted: return 0.0
+            }
+        case .KM:
+            switch activity{
+            case .total: return totalKM
+            case .swim: return swimKM
+            case .t1: return 0.0
+            case .bike: return bikeKM
+            case .t2: return 0.0
+            case .run: return runKM
+            case .guessDifference: return 0.0
+            case .handicapAdjusted: return 0.0
+            }
         }
     }
 }

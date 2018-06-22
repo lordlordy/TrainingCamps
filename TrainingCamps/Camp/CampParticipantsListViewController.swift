@@ -23,6 +23,9 @@ class CampParticipantsListViewController: CampViewController, NSComboBoxDataSour
     //MARK: - NSTableViewDelegate
     func tableViewSelectionDidChange(_ notification: Notification) {
         if let cp = getSelectedParticipant(){
+            if let vc = parent as? RaceResultsViewControllerProtocol{
+                vc.setRaceResults(cp.raceResults ?? NSSet())
+            }
             if let vc = parent as? CampParticipantViewControllerProtocol{
                 vc.setCampParticipant(cp)
             }

@@ -11,7 +11,7 @@ import Foundation
 extension CampParticipant{
     
     @objc dynamic var trainingComplete: Bool{ return getDays().reduce(true, {$0 && $1.dayComplete})}
-    @objc dynamic var racesComplete: Bool { return getRaces().reduce(true, {$0 && $1.campComplete}) && getRaces().count == camp?.races?.count ?? 0}
+    @objc dynamic var racesComplete: Bool { return getRaces().reduce(true, {$0 && $1.raceComplete}) && getRaces().count == camp?.races?.count ?? 0}
     @objc dynamic var campComplete: Bool{ return trainingComplete && racesComplete}
     
     @objc dynamic var campPoints: Int{ return Int(getRaces().reduce(0, {$0 + $1.campPoints}) + bonusPoints)}

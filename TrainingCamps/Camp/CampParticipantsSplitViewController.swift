@@ -8,15 +8,10 @@
 
 import Cocoa
 
-class CampParticipantsSplitViewController: NSSplitViewController, CampViewControllerProtocol, CampParticipantViewControllerProtocol{
+class CampParticipantsSplitViewController: NSSplitViewController, CampViewControllerProtocol, CampParticipantViewControllerProtocol, RaceResultsViewControllerProtocol{
     
-//    @objc dynamic var camp: Camp?
-//    @IBOutlet var campParticipantsAC: NSArrayController!
-//    @IBOutlet var participantDaysAC: NSArrayController!
-//    @IBOutlet var raceResultsAC: NSArrayController!
     
     func setCamp(_ camp: Camp) {
-//        self.camp = camp
         for child in childViewControllers{
             if let c = child as? CampViewControllerProtocol{
                 c.setCamp(camp)
@@ -28,6 +23,14 @@ class CampParticipantsSplitViewController: NSSplitViewController, CampViewContro
         for c in childViewControllers{
             if let vc = c as? CampParticipantViewControllerProtocol{
                 vc.setCampParticipant(campParticipant)
+            }
+        }
+    }
+    
+    func setRaceResults(_ raceResults: NSSet) {
+        for c in childViewControllers{
+            if let vc = c as? RaceResultsViewControllerProtocol{
+                vc.setRaceResults(raceResults)
             }
         }
     }

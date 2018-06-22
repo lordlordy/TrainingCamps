@@ -18,14 +18,27 @@ class CampRaceResultViewController: CampViewController, RaceViewControllerProtoc
     }
     
     @objc dynamic var race: Race?
+    @IBOutlet var ranksAC: NSArrayController!
+    
+    @IBAction func rankRace(_ sender: Any) {
+        if let r = race{
+            let ranker = RaceRanker()
+            ranker.rank(r)
+            raceResultsTableView.reloadData()
+        }
+    }
     
     @IBOutlet weak var raceResultsTableView: NSTableView!
-    
     
     @IBAction func showAllColumns(_ sender: Any?){
         for col in raceResultsTableView.tableColumns{
             col.isHidden = false
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        ranksAC.filterPredicate = NSPredicate.init(format: "hasRankings == TRUE", argumentArray: nil)
     }
     
     func setRace(_ race: Race) {
@@ -35,16 +48,12 @@ class CampRaceResultViewController: CampViewController, RaceViewControllerProtoc
     
     //MARK: - NSComboBoxDataSource
     func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
-        
-
-        
         if let displayNames: [String] = race?.camp?.campParticipantDisplayNames(){
             if index < displayNames.count{
                 return displayNames[index]
             }
         }
         return nil
-        
     }
     
     

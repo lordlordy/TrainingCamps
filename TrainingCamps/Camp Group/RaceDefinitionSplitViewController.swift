@@ -8,10 +8,20 @@
 
 import Cocoa
 
-class RaceDefinitionSplitViewController: CampGroupSplitViewController{
+class RaceDefinitionSplitViewController: CampGroupSplitViewController, RaceDefinitionViewControllerProtocol{
+    
+    func setRaceDefinition(_ raceDefinition: RaceDefinition) {
+        for c in childViewControllers{
+            if let vc = c as? RaceDefinitionViewControllerProtocol{
+                vc.setRaceDefinition(raceDefinition)
+            }
+            if let vc = c as? RaceResultsViewControllerProtocol{
+                vc.setRaceResults(raceDefinition.allRaceResults)
+            }
+        }
+    }
     
     
-    @IBOutlet var raceDefinitionAC: NSArrayController!
     
     
 }

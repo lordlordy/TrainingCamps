@@ -20,7 +20,7 @@ class RaceResultNode: NSObject, TreeNode{
     var name: String
     var date: Date  {return raceResult.race!.date!}
     
-    var campComplete: Bool{ return raceResult.campComplete }
+    var campComplete: Bool{ return raceResult.raceComplete }
     var completionStatus: String{ return campComplete ? "Yes":"No"}
     var completionCount: Int{ return campComplete ? 1 : 0}
     
@@ -50,9 +50,9 @@ class RaceResultNode: NSObject, TreeNode{
         self.raceResult = raceResult
         name = raceResult.campParticipant?.participant?.displayName ?? "NAME NOT SET IN RaceResultNode"
         rank = Int(raceResult.rank)
-        swimRank = Int(raceResult.swimRank)
-        bikeRank = Int(raceResult.bikeRank)
-        runRank = Int(raceResult.runRank)
+        swimRank = Int(raceResult.swimRank.camp)
+        bikeRank = Int(raceResult.bikeRank.camp)
+        runRank = Int(raceResult.runRank.camp)
     }
     
 }

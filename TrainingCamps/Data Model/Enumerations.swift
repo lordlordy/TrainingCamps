@@ -8,9 +8,37 @@
 
 import Foundation
 
+struct Constants{
+    static let lastPlaceRank: Int32 = 9999
+}
+
+enum Gender: String{
+    case Male, Female, All
+    static let Rankable: [Gender] = [Male, Female, All]
+}
+
+enum Role: String{
+    case Athlete, Coach, Masseuse, Physio
+    case RideSupport = "Ride Support"
+    case All
+    static var AllRoles: [Role] = [Athlete, Coach, Masseuse, Physio, RideSupport]
+    static var Rankable: [Role]  = [Athlete, Coach, Masseuse, Physio, RideSupport, All]
+}
+
+enum Activity: String{
+    case swim, bike, run, t1, t2
+    case total, guessDifference, handicapAdjusted //these are all totals
+//    static var Rankable: [Activity] = [swim, bike, run, t1, t2, total, guessDifference, handicapAdjusted]
+}
+
+enum Unit: String{
+    case KM, Seconds, Ascent
+    static var Rankable: [Unit] = [KM, Seconds, Ascent]
+}
+
 enum ENTITY: String{
     case CampGroup, Camp, Day, ParticipantDay, Race, RaceResult, Participant, CampParticipant, RaceDefinition
-    case Location, CampType
+    case Location, CampType, Rank
 }
 
 enum RaceCompletionStatus: String{
@@ -54,8 +82,8 @@ enum RaceProperty: String{
 
 enum RaceResultProperty: String{
     case swimSeconds, bikeSeconds, runSeconds, t1Seconds, t2Seconds
-    case handicapSeconds, timeGuessSeconds
-    case isRelay, participant
+    case handicapSeconds, guessSeconds
+    case isRelay, participant, rankings
 }
 
 enum ParticipantProperty: String{
@@ -80,9 +108,6 @@ enum RaceDefinitionProperty: String{
     case races, locationString
 }
 
-enum Gender: String{
-    case Male, Female
-}
 
 enum Coach: String{
     case Jo, Ste
@@ -96,12 +121,6 @@ enum CoachingRelationship: String{
     case None
     case FormerAthlete = "Former Athlete"
     case CurrentAthlete = "Current Athlete"
-}
-
-enum Role: String{
-    case Athlete, Coach, Masseuse, Physio
-    case RideSupport = "Ride Support"
-    static var All: [Role] = [Athlete, Coach, Masseuse, Physio, RideSupport]
 }
 
 enum PointsMethod: String{

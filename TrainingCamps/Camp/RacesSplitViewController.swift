@@ -8,7 +8,16 @@
 
 import Cocoa
 
-class RacesSplitViewController: CampSplitViewController{
+class RacesSplitViewController: NSSplitViewController, CampViewControllerProtocol, RaceViewControllerProtocol{
+    
+    func setCamp(_ camp: Camp) {
+        for c in childViewControllers{
+            if let vc = c as? CampViewControllerProtocol{
+                vc.setCamp(camp)
+            }
+        }
+    }
+    
     
     
 //    @IBOutlet var racesAC: NSArrayController!
@@ -21,9 +30,19 @@ class RacesSplitViewController: CampSplitViewController{
 //    }
     
     func setRace(_ race: Race) {
-        for i in getRaceViewControllerProtocols(){
-            i.setRace(race)
+        for c in childViewControllers{
+            if let r = c as? RaceViewControllerProtocol{
+                r.setRace(race)
+            }
+            if let r = c as? RaceResultsViewControllerProtocol{
+//                r.setRaceResults(race.mutableSetValue(forKey: RaceProperty.results.rawValue))
+            }
         }
+        
+//        for i in getRaceViewControllerProtocols(){
+//            i.setRace(race)
+//        }
+    
     }
     
 //    private func selectedRace() -> Race?{
@@ -36,13 +55,13 @@ class RacesSplitViewController: CampSplitViewController{
 //    }
 
     
-    private func getRaceViewControllerProtocols() -> [RaceViewControllerProtocol]{
-        var result: [RaceViewControllerProtocol] = []
-        for c in childViewControllers{
-            if let r = c as? RaceViewControllerProtocol{
-                result.append(r)
-            }
-        }
-        return result
-    }
+//    private func getRaceViewControllerProtocols() -> [RaceViewControllerProtocol]{
+//        var result: [RaceViewControllerProtocol] = []
+//        for c in childViewControllers{
+//            if let r = c as? RaceViewControllerProtocol{
+//                result.append(r)
+//            }
+//        }
+//        return result
+//    }
 }

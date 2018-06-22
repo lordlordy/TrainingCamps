@@ -752,14 +752,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="ecz-wL-ukA">
-                                                            <rect key="frame" x="224" y="1" width="64" height="40"/>
+                                                            <rect key="frame" x="224" y="1" width="64" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="8k4-pm-J3u">
-                                                                    <rect key="frame" x="-2" y="-2" width="68" height="17"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="13" id="W82-G8-EyB"/>
-                                                                    </constraints>
+                                                                    <rect key="frame" x="-2" y="-2" width="68" height="24"/>
                                                                     <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" state="on" inset="2" id="VIT-Bk-74v">
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
@@ -771,7 +768,8 @@
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="8k4-pm-J3u" firstAttribute="centerX" secondItem="ecz-wL-ukA" secondAttribute="centerX" id="4qj-uz-9mJ"/>
-                                                                <constraint firstItem="8k4-pm-J3u" firstAttribute="top" secondItem="ecz-wL-ukA" secondAttribute="top" constant="27" id="m7n-85-ABx"/>
+                                                                <constraint firstAttribute="bottom" secondItem="8k4-pm-J3u" secondAttribute="bottom" id="JCG-iW-z1L"/>
+                                                                <constraint firstItem="8k4-pm-J3u" firstAttribute="top" secondItem="ecz-wL-ukA" secondAttribute="top" id="m7n-85-ABx"/>
                                                                 <constraint firstItem="8k4-pm-J3u" firstAttribute="leading" secondItem="ecz-wL-ukA" secondAttribute="leading" id="uE9-9j-Zyr"/>
                                                             </constraints>
                                                         </tableCellView>
@@ -909,11 +907,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="P8g-BN-VOw">
-                                                            <rect key="frame" x="492" y="1" width="64" height="40"/>
+                                                            <rect key="frame" x="492" y="1" width="64" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="cR5-Ve-Yzu">
-                                                                    <rect key="frame" x="-2" y="-2" width="68" height="44"/>
+                                                                    <rect key="frame" x="-2" y="-2" width="68" height="24"/>
                                                                     <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" state="on" inset="2" id="Hn5-Ue-icP">
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
@@ -947,25 +945,26 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="RFX-bZ-VsB">
-                                                            <rect key="frame" x="559" y="1" width="64" height="40"/>
+                                                            <rect key="frame" x="559" y="1" width="64" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mJS-vc-XbY">
-                                                                    <rect key="frame" x="0.0" y="23" width="64" height="17"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="QFs-s3-syw">
+                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="RLQ-eE-E8E">
+                                                                    <rect key="frame" x="-2" y="-2" width="68" height="24"/>
+                                                                    <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" state="on" inset="2" id="eZf-Vo-3tT">
+                                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
+                                                                    </buttonCell>
                                                                     <connections>
-                                                                        <binding destination="RFX-bZ-VsB" name="value" keyPath="objectValue.brick" id="cOI-Sa-amy"/>
+                                                                        <binding destination="RFX-bZ-VsB" name="value" keyPath="objectValue.brick" id="Knr-xq-ZJj"/>
                                                                     </connections>
-                                                                </textField>
+                                                                </button>
                                                             </subviews>
-                                                            <connections>
-                                                                <outlet property="textField" destination="mJS-vc-XbY" id="aVE-hJ-tLj"/>
-                                                            </connections>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="RLQ-eE-E8E" secondAttribute="trailing" id="ETY-fi-Ouu"/>
+                                                                <constraint firstItem="RLQ-eE-E8E" firstAttribute="leading" secondItem="RFX-bZ-VsB" secondAttribute="leading" id="InP-uI-HfN"/>
+                                                                <constraint firstAttribute="bottom" secondItem="RLQ-eE-E8E" secondAttribute="bottom" id="X2t-P4-bfA"/>
+                                                                <constraint firstItem="RLQ-eE-E8E" firstAttribute="top" secondItem="RFX-bZ-VsB" secondAttribute="top" id="Zoc-GI-2oQ"/>
+                                                            </constraints>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
@@ -1305,10 +1304,10 @@
                                 </customSpacing>
                             </stackView>
                             <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OH5-eP-eQc">
-                                <rect key="frame" x="45" y="275" width="140" height="26"/>
+                                <rect key="frame" x="175" y="275" width="140" height="26"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="Tsy-AB-yrn"/>
-                                    <constraint firstAttribute="width" constant="137" id="jXG-qk-Hup"/>
+                                    <constraint firstAttribute="height" constant="20" id="a6e-BF-Sdw"/>
+                                    <constraint firstAttribute="width" constant="137" id="ph9-Al-2lS"/>
                                 </constraints>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="select..." drawsBackground="YES" buttonBordered="NO" usesDataSource="YES" numberOfVisibleItems="12" id="ZRv-wm-qtg">
                                     <font key="font" metaFont="system"/>
@@ -1320,15 +1319,32 @@
                                     <outlet property="dataSource" destination="4OZ-Oi-q01" id="RwI-Q4-eVr"/>
                                 </connections>
                             </comboBox>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wks-ZW-M1D">
+                                <rect key="frame" x="43" y="278" width="129" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="NY2-5G-Z9M"/>
+                                    <constraint firstAttribute="width" constant="125" id="fhW-9o-Iob"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="center" id="3u1-o1-irM">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="4OZ-Oi-q01" name="value" keyPath="day.dateString" id="7xK-V4-wFd"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Fx3-G4-Xn4" firstAttribute="leading" secondItem="uD8-TO-0ez" secondAttribute="leading" constant="1" id="3Cd-se-j2l"/>
                             <constraint firstItem="FUc-mb-Ho6" firstAttribute="leading" secondItem="uD8-TO-0ez" secondAttribute="leading" id="5EE-Ar-xv7"/>
-                            <constraint firstItem="OH5-eP-eQc" firstAttribute="leading" secondItem="Fx3-G4-Xn4" secondAttribute="trailing" constant="5" id="89N-yJ-ejX"/>
+                            <constraint firstItem="wks-ZW-M1D" firstAttribute="leading" secondItem="Fx3-G4-Xn4" secondAttribute="trailing" constant="5" id="F6S-OD-rR6"/>
+                            <constraint firstItem="OH5-eP-eQc" firstAttribute="top" secondItem="uD8-TO-0ez" secondAttribute="top" constant="1" id="I9d-cc-dke"/>
                             <constraint firstItem="Fx3-G4-Xn4" firstAttribute="top" secondItem="uD8-TO-0ez" secondAttribute="top" constant="1" id="NLv-sP-uj3"/>
                             <constraint firstAttribute="bottom" secondItem="FUc-mb-Ho6" secondAttribute="bottom" id="Rqt-jB-nbV"/>
+                            <constraint firstItem="wks-ZW-M1D" firstAttribute="top" secondItem="uD8-TO-0ez" secondAttribute="top" id="VbU-s7-abU"/>
+                            <constraint firstItem="OH5-eP-eQc" firstAttribute="leading" secondItem="wks-ZW-M1D" secondAttribute="trailing" constant="5" id="adb-Wv-YWq"/>
                             <constraint firstItem="FUc-mb-Ho6" firstAttribute="top" secondItem="Fx3-G4-Xn4" secondAttribute="bottom" constant="1" id="cjV-Fp-Nkm"/>
-                            <constraint firstItem="OH5-eP-eQc" firstAttribute="top" secondItem="uD8-TO-0ez" secondAttribute="top" constant="1" id="daa-yW-oTw"/>
                             <constraint firstAttribute="trailing" secondItem="FUc-mb-Ho6" secondAttribute="trailing" id="f9J-sL-2p8"/>
                         </constraints>
                     </view>

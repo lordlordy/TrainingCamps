@@ -78,6 +78,11 @@ class CoreDataStack{
         return participantDay as! ParticipantDay
     }
     
+    func newRank() -> Rank{
+        let rank: NSManagedObject = NSEntityDescription.insertNewObject(forEntityName: ENTITY.Rank.rawValue, into: trainingCampsPC.viewContext)
+        return rank as! Rank
+    }
+    
     func newRace() -> Race{
         let race: NSManagedObject = NSEntityDescription.insertNewObject(forEntityName: ENTITY.Race.rawValue, into: trainingCampsPC.viewContext)
         return race as! Race
@@ -111,6 +116,10 @@ class CoreDataStack{
     func newCampType() -> CampType{
         let campType: NSManagedObject = NSEntityDescription.insertNewObject(forEntityName: ENTITY.CampType.rawValue, into: trainingCampsPC.viewContext)
         return campType as! CampType
+    }
+    
+    private init(){
+        
     }
     
 }

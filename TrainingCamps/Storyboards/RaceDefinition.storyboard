@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="zAw-aX-egD">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="qbm-9G-F49">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -7,15 +7,15 @@
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
-        <!--Race Definition-->
+        <!--Race Details-->
         <scene sceneID="klp-aE-OaX">
             <objects>
-                <splitViewController title="Race Definition" id="zAw-aX-egD" customClass="RaceDefinitionSplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController title="Race Details" id="zAw-aX-egD" customClass="CampGroupSplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="IqC-h1-u1K"/>
                         <splitViewItem id="BmX-My-gvg"/>
                     </splitViewItems>
-                    <splitView key="splitView" vertical="YES" id="BhU-LM-Dvi">
+                    <splitView key="splitView" id="BhU-LM-Dvi">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
@@ -23,26 +23,52 @@
                         </connections>
                     </splitView>
                     <connections>
-                        <outlet property="raceDefinitionAC" destination="EW5-6n-bdo" id="LJA-e4-zvA"/>
                         <outlet property="splitView" destination="BhU-LM-Dvi" id="sgP-xt-xDT"/>
                         <segue destination="0RJ-BK-LJN" kind="relationship" relationship="splitItems" id="xxr-SU-DWJ"/>
                         <segue destination="ECB-aL-JSv" kind="relationship" relationship="splitItems" id="jA8-ml-CkH"/>
                     </connections>
                 </splitViewController>
                 <customObject id="Fba-nY-Yac" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController mode="entity" entityName="RaceDefinition" id="EW5-6n-bdo" userLabel="Race Definition AC">
-                    <connections>
-                        <binding destination="zAw-aX-egD" name="managedObjectContext" keyPath="campGroup.managedObjectContext" id="55Z-Ub-n3b"/>
-                        <binding destination="zAw-aX-egD" name="contentSet" keyPath="campGroup.raceDefinitions" id="WIn-63-8io"/>
-                    </connections>
-                </arrayController>
             </objects>
-            <point key="canvasLocation" x="-182" y="125"/>
+            <point key="canvasLocation" x="-60" y="4"/>
         </scene>
-        <!--Camp Group View Controller-->
+        <!--Race Definition-->
+        <scene sceneID="qqK-45-lJg">
+            <objects>
+                <splitViewController title="Race Definition" id="qbm-9G-F49" customClass="RaceDefinitionSplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem id="ZP7-0E-ap2"/>
+                        <splitViewItem id="Rer-Iq-og3"/>
+                    </splitViewItems>
+                    <splitView key="splitView" dividerStyle="thin" vertical="YES" id="Chv-FJ-65x">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <outlet property="delegate" destination="qbm-9G-F49" id="7Pb-bQ-697"/>
+                        </connections>
+                    </splitView>
+                    <connections>
+                        <outlet property="splitView" destination="Chv-FJ-65x" id="E3s-tD-1xZ"/>
+                        <segue destination="zAw-aX-egD" kind="relationship" relationship="splitItems" id="MAx-XF-Wkq"/>
+                        <segue destination="jOa-Jx-LTM" kind="relationship" relationship="splitItems" id="4IM-4U-t6O"/>
+                    </connections>
+                </splitViewController>
+                <customObject id="zRc-Ud-Slc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-595" y="200"/>
+        </scene>
+        <!--SingleRaceResults-->
+        <scene sceneID="ss7-d1-W6C">
+            <objects>
+                <controllerPlaceholder storyboardName="SingleRaceResults" id="jOa-Jx-LTM" sceneMemberID="viewController"/>
+                <customObject id="GKZ-xx-O1K" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-8" y="311"/>
+        </scene>
+        <!--Race Definition List View Controller-->
         <scene sceneID="iUY-Zd-DCP">
             <objects>
-                <viewController id="0RJ-BK-LJN" customClass="CampGroupViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0RJ-BK-LJN" customClass="RaceDefinitionListViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="spI-Jj-QhB">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -59,6 +85,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="add:" target="AN5-eo-ufX" id="7gH-A0-cBi"/>
+                                        </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="x6I-JY-2I3">
                                         <rect key="frame" x="20" y="-1" width="19" height="21"/>
@@ -69,6 +98,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="remove:" target="AN5-eo-ufX" id="k23-3v-krG"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -90,7 +122,7 @@
                                     <rect key="frame" x="1" y="0.0" width="448" height="278"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="VgK-kN-RuG" viewBased="YES" id="0yi-Cd-yn0">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveName="RaceDefinitionTableView" rowSizeStyle="automatic" headerView="VgK-kN-RuG" viewBased="YES" id="0yi-Cd-yn0">
                                             <rect key="frame" x="0.0" y="0.0" width="833" height="255"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -585,13 +617,15 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
-                                                <binding destination="0RJ-BK-LJN" name="content" keyPath="parentViewController.raceDefinitionAC.arrangedObjects" id="QeG-xR-RGz"/>
-                                                <binding destination="0RJ-BK-LJN" name="selectionIndexes" keyPath="parentViewController.raceDefinitionAC.selectionIndexes" previousBinding="QeG-xR-RGz" id="CwY-ax-D8d"/>
+                                                <binding destination="AN5-eo-ufX" name="content" keyPath="arrangedObjects" id="e52-EX-dLn"/>
+                                                <binding destination="AN5-eo-ufX" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="e52-EX-dLn" id="4VR-Tg-iOw"/>
+                                                <binding destination="AN5-eo-ufX" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="4VR-Tg-iOw" id="cIz-7S-aIL"/>
+                                                <outlet property="delegate" destination="0RJ-BK-LJN" id="6nR-5L-fyn"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.64155844155844155" horizontal="YES" id="lRi-4z-2CN">
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="lRi-4z-2CN">
                                     <rect key="frame" x="1" y="262" width="448" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -604,19 +638,45 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ppy-LT-a5B">
+                                <rect key="frame" x="43" y="277" width="154" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="Qe8-Fs-5o5"/>
+                                    <constraint firstAttribute="width" constant="150" id="qrz-nu-qEC"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" id="iwk-Tv-nrk">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="0RJ-BK-LJN" name="value" keyPath="campGroup.name" id="i2S-9l-pa3"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="z3U-aG-JER" secondAttribute="trailing" id="4MM-gd-hH5"/>
+                            <constraint firstItem="Ppy-LT-a5B" firstAttribute="leading" secondItem="n8n-LZ-16y" secondAttribute="trailing" constant="5" id="EVU-b9-ljh"/>
                             <constraint firstItem="z3U-aG-JER" firstAttribute="leading" secondItem="spI-Jj-QhB" secondAttribute="leading" id="FHO-y1-nrW"/>
                             <constraint firstAttribute="bottom" secondItem="z3U-aG-JER" secondAttribute="bottom" id="KWS-em-hW0"/>
+                            <constraint firstItem="Ppy-LT-a5B" firstAttribute="top" secondItem="spI-Jj-QhB" secondAttribute="top" constant="1" id="caL-zp-HcH"/>
                             <constraint firstItem="n8n-LZ-16y" firstAttribute="top" secondItem="spI-Jj-QhB" secondAttribute="top" constant="1" id="kxi-OU-z8l"/>
                             <constraint firstItem="z3U-aG-JER" firstAttribute="top" secondItem="n8n-LZ-16y" secondAttribute="bottom" constant="1" id="sgc-u8-Kpd"/>
                             <constraint firstItem="n8n-LZ-16y" firstAttribute="leading" secondItem="spI-Jj-QhB" secondAttribute="leading" constant="1" id="zSP-xt-iqd"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="raceDefinitionsAC" destination="AN5-eo-ufX" id="uAj-52-LMe"/>
+                    </connections>
                 </viewController>
                 <customObject id="Kmt-su-fIz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="aCu-1S-8kL"/>
+                <arrayController mode="entity" entityName="RaceDefinition" automaticallyPreparesContent="YES" id="AN5-eo-ufX">
+                    <connections>
+                        <binding destination="0RJ-BK-LJN" name="managedObjectContext" keyPath="campGroup.managedObjectContext" id="aVM-Ma-J3M"/>
+                        <binding destination="0RJ-BK-LJN" name="contentSet" keyPath="campGroup.raceDefinitions" id="QZE-iM-RaU"/>
+                    </connections>
+                </arrayController>
             </objects>
             <point key="canvasLocation" x="488" y="-61"/>
         </scene>

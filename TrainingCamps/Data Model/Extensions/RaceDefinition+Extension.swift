@@ -37,5 +37,17 @@ extension RaceDefinition{
     @objc dynamic var disciplineCount: Int{
         return (swimKM > 0.0 ? 1:0) + (bikeKM > 0.0 ? 1:0) + (runKM > 0.0 ? 1:0)
     }
+
+    @objc dynamic var allRaceResults: NSSet{
+        var results: [RaceResult] = []
+        if let allRaces = races?.allObjects as? [Race]{
+            for r in allRaces{
+                if let newResults = r.results?.allObjects as? [RaceResult]{
+                    results.append(contentsOf: newResults)
+                }
+            }
+        }
+        return NSSet(array: results.filter({$0.campParticipant != nil})) 
+    }
     
 }
