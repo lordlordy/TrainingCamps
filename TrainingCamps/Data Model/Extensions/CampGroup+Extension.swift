@@ -10,6 +10,14 @@ import Foundation
 
 extension CampGroup{
     
+    @objc dynamic var totalSeconds: Double{
+        var result: Double = 0.0
+        for c in campsArray(){
+            result += c.totalSeconds
+        }
+        return result
+    }
+    
     func participant(withUniqueName name: String) -> Participant?{
         let filteredArray = participantArray().filter({$0.uniqueName == name})
         if filteredArray.count > 0{

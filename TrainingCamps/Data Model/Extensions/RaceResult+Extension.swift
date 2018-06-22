@@ -21,6 +21,13 @@ extension RaceResult: Rankable{
         return false
     }
     
+    @objc dynamic var raceNeededForCompletion: String{
+        if race?.neededForCompletion ?? false{
+            return "Needed For Completion"
+        }
+        return ""
+    }
+    
     @objc dynamic var completionStatus: String{ return raceComplete ? "Race Complete":""}
     @objc dynamic var totalSeconds: Double{ return swimSeconds + bikeSeconds + runSeconds}
     @objc dynamic var guessDifferenceSeconds: Double { return abs(totalSeconds - guessSeconds)}

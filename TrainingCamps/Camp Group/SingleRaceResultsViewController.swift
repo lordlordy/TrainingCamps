@@ -38,6 +38,7 @@ class SingleRaceResultsViewController: NSViewController, RaceResultsViewControll
     @IBOutlet weak var raceResultsTableView: NSTableView!
     @IBOutlet var resultsAC: NSArrayController!
     
+    private var stdFilterPredicateString: String = "raceCompletionStatus == 'Y'"
     
     @IBAction func showAllColumns(_ sender: Any?){
         for col in raceResultsTableView.tableColumns{
@@ -48,6 +49,11 @@ class SingleRaceResultsViewController: NSViewController, RaceResultsViewControll
     @IBAction func filterChanged(_sender: Any?){
         updatePredicate()
         print(resultsAC.filterPredicate)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        resultsAC.filterPredicate = NSPredicate(format: stdFilterPredicateString, argumentArray: nil)
     }
     
     
@@ -180,8 +186,9 @@ class SingleRaceResultsViewController: NSViewController, RaceResultsViewControll
         }
         
         if predicateString == "" {
-            resultsAC.filterPredicate = nil
+            resultsAC.filterPredicate = NSPredicate(format: stdFilterPredicateString, argumentArray: nil)
         }else{
+            predicateString = addTo(predicateString: predicateString, withPredicateString: stdFilterPredicateString, isFirstPredicate)
             resultsAC.filterPredicate = NSPredicate.init(format: predicateString, argumentArray: arguments)
         }
 

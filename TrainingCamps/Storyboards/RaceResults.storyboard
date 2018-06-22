@@ -20,7 +20,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveName="raceResultsTableView" rowHeight="40" rowSizeStyle="automatic" headerView="Z3A-2G-hzX" viewBased="YES" id="kxx-tP-4Dw">
-                                            <rect key="frame" x="0.0" y="0.0" width="1256" height="274"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1323" height="274"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -724,6 +724,42 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
+                                                <tableColumn identifier="" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" headerToolTip="Must complete race to complete camp" id="2Mm-k9-73D">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Needed For Completion">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="2FY-6b-1Dh">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="MhJ-mx-91X">
+                                                            <rect key="frame" x="1257" y="1" width="64" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PLu-Sf-0rO">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="gmu-JI-bcw">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="MhJ-mx-91X" name="value" keyPath="objectValue.raceNeededForCompletion" id="GgB-u4-3aE"/>
+                                                                    </connections>
+                                                                </textField>
+                                                            </subviews>
+                                                            <connections>
+                                                                <outlet property="textField" destination="PLu-Sf-0rO" id="KkO-qu-Gwz"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
                                             </tableColumns>
                                             <connections>
                                                 <binding destination="uph-AM-t3S" name="content" keyPath="arrangedObjects" id="bs9-bi-UTE"/>
@@ -733,7 +769,7 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="pkz-M1-Hcb">
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="pkz-M1-Hcb">
                                     <rect key="frame" x="1" y="281" width="446" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -742,7 +778,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="Z3A-2G-hzX">
-                                    <rect key="frame" x="0.0" y="0.0" width="1256" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1323" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>

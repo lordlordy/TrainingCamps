@@ -22,6 +22,7 @@ extension Camp{
     }
     
     @objc dynamic var participantCount: Int { return campParticipants?.count ?? 0}
+    @objc dynamic var pointsForAWin: Int { return campParticipantsArray().filter({$0.isInPointsCompetition}).count}
     
     @objc var totalKM: Double { return swimKM + bikeKM + runKM }
     @objc var swimKM: Double { return campDaysArray().reduce(0.0, {$0 + $1.swimKM})}
@@ -75,6 +76,10 @@ extension Camp{
                 type = cg.campType(forName: newValue)
             }
         }
+    }
+    
+    func getRacesArray() -> [Race]{
+        return races?.allObjects as? [Race] ?? []
     }
     
     func campParticipantUniqueNames() -> [String]{

@@ -24,6 +24,7 @@ class CampRaceResultViewController: CampViewController, RaceViewControllerProtoc
         if let r = race{
             let ranker = RaceRanker()
             ranker.rank(r)
+            r.generatePoints()
             raceResultsTableView.reloadData()
         }
     }

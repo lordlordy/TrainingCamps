@@ -791,7 +791,7 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                                 <tableColumn identifier="" width="152" minWidth="40" maxWidth="1000" id="TsN-Iq-yUv">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Total Duration">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -815,6 +815,13 @@
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="3ti-eh-gu4" name="value" keyPath="objectValue.totalSeconds" id="Uxr-AO-b9a">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSValueTransformerName">TransformerNSNumberToTimeFormat</string>
+                                                                            </dictionary>
+                                                                        </binding>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <connections>

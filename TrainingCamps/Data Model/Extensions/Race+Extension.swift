@@ -14,14 +14,20 @@ extension Race{
     @objc dynamic var includesSwim: Bool { return (raceDefinition?.swimKM ?? 0.0) > 0.0}
     @objc dynamic var includesBike: Bool { return (raceDefinition?.bikeKM ?? 0.0) > 0.0}
     @objc dynamic var includesRun:  Bool { return (raceDefinition?.runKM ?? 0.0) > 0.0}
-
-    var pointsMethod: PointsMethod{
-        if let pbo = pointsBasedOn{
-            if let method = PointsMethod(rawValue: pbo){
-                return method
-            }
+    
+    @objc dynamic var pointsForAWin: Int{
+        if pointsForWinOverride > 0.0{
+            return Int(pointsForWinOverride)
+        }else{
+            return camp!.pointsForAWin
         }
-        return PointsMethod.NotAPointsRace
+    }
+    @objc dynamic var pointsIncrement: Int{
+        if pointsIncrementOverride > 0.0{
+            return Int(pointsIncrementOverride)
+        }else{
+            return 1
+        }
     }
     
     @objc dynamic var dateString: String{
@@ -52,6 +58,44 @@ extension Race{
                 raceDefinition = cg.raceDefinition(withName: newValue)
             }
         }
+    }
+    
+    func generatePoints(){
+        if isForCampPoints{
+            let pointsResults = resultsOrderedForPoints().filter({$0.campParticipant!.isInPointsCompetition})
+            var points: Int16 = Int16(pointsForAWin)
+            let increment: Int16 = Int16(pointsIncrement)
+            
+            for r in pointsResults{
+                if r.raceCompletionStatus == RaceCompletionStatus.Y.rawValue{
+                    r.campPoints = points
+                    points -= increment
+                }else{
+                    r.campPoints = 0
+                }
+            }
+        }
+    }
+    
+    private func resultsOrderedForPoints() -> [RaceResult]{
+        if let pointsMethod = pointsBasedOn{
+            switch pointsMethod{
+            case PointsMethod.GuessYourTime.rawValue:
+                return raceResultsArray().sorted(by: {$0.guessRank.camp < $1.guessRank.camp})
+            case PointsMethod.OutrightResult.rawValue:
+                return raceResultsArray().sorted(by: {$0.rank < $1.rank})
+            case PointsMethod.Handicap.rawValue:
+                return raceResultsArray().sorted(by: {$0.handicapRank.camp < $1.handicapRank.camp})
+            default:
+                return []
+            }
+        }
+        return []
+        
+    }
+    
+    private func raceResultsArray() -> [RaceResult]{
+        return results?.allObjects as? [RaceResult] ?? []
     }
     
 }

@@ -967,7 +967,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
-                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="guessDiff"/>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="guessDifferenceSeconds"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="UN9-ND-ywl">
@@ -1213,7 +1213,7 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.95398009950248752" horizontal="YES" id="55g-U4-ZP5">
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.62562189054726369" horizontal="YES" id="55g-U4-ZP5">
                                     <rect key="frame" x="1" y="255" width="834" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1244,7 +1244,7 @@
                                 <rect key="frame" x="197" y="278" width="500" height="20"/>
                                 <subviews>
                                     <comboBox identifier="campCB" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SAx-9h-VuX">
-                                        <rect key="frame" x="0.0" y="-2" width="103" height="23"/>
+                                        <rect key="frame" x="0.0" y="-2" width="127" height="23"/>
                                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" placeholderString="camp..." buttonBordered="NO" usesDataSource="YES" numberOfVisibleItems="12" id="wmf-jD-G1n">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1256,7 +1256,7 @@
                                         </connections>
                                     </comboBox>
                                     <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4x6-0P-qzP" customClass="GenderComboBox" customModule="TrainingCamps" customModuleProvider="target">
-                                        <rect key="frame" x="101" y="-2" width="99" height="23"/>
+                                        <rect key="frame" x="125" y="-2" width="128" height="23"/>
                                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" placeholderString="gender..." buttonBordered="NO" numberOfVisibleItems="5" id="jNf-w2-d5B">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1267,7 +1267,7 @@
                                         </connections>
                                     </comboBox>
                                     <comboBox identifier="participantCB" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o4U-wV-eQt">
-                                        <rect key="frame" x="198" y="-2" width="99" height="23"/>
+                                        <rect key="frame" x="251" y="-2" width="127" height="23"/>
                                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" placeholderString="participant..." buttonBordered="NO" usesDataSource="YES" numberOfVisibleItems="12" id="0qF-Qh-70d">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1279,7 +1279,7 @@
                                         </connections>
                                     </comboBox>
                                     <comboBox identifier="roleCB" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Km0-H0-kTu" customClass="RoleComboBox" customModule="TrainingCamps" customModuleProvider="target">
-                                        <rect key="frame" x="295" y="-2" width="208" height="23"/>
+                                        <rect key="frame" x="376" y="-2" width="127" height="23"/>
                                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" placeholderString="role..." buttonBordered="NO" numberOfVisibleItems="5" id="Mg4-pL-Kt4">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

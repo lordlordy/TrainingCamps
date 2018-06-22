@@ -33,7 +33,6 @@ class RaceRanker{
         print("Ranking took \(Int(Date().timeIntervalSince(start)))s")
         
     }
-
     
     fileprivate func rankFor(_ activity: Activity, _ unit: Unit, _ raceDefinition: RaceDefinition) {
         let key: String = activity.rawValue + unit.rawValue

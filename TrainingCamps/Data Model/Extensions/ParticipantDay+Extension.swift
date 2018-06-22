@@ -102,7 +102,7 @@ extension ParticipantDay: Rankable{
         case ParticipantDayProperty.runComplete.rawValue:
             return keyPaths.union(Set([ParticipantDayProperty.runSeconds.rawValue]))
         case ParticipantDayProperty.dayComplete.rawValue, ParticipantDayProperty.trainingCompletionStatus.rawValue:
-            return keyPaths.union(Set([ParticipantDayProperty.swimComplete.rawValue, ParticipantDayProperty.bikeComplete.rawValue, ParticipantDayProperty.runComplete.rawValue]))
+            return keyPaths.union(Set([ParticipantDayProperty.swimComplete.rawValue, ParticipantDayProperty.bikeComplete.rawValue, ParticipantDayProperty.runComplete.rawValue, ParticipantDayProperty.runWildcardUsed.rawValue, ParticipantDayProperty.swimWildcardUsed.rawValue, ParticipantDayProperty.bikeWildcardUsed.rawValue]))
         default:
             return keyPaths
         }
