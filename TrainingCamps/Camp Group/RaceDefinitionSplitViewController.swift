@@ -18,6 +18,11 @@ class RaceDefinitionSplitViewController: CampGroupSplitViewController, RaceDefin
             if let vc = c as? RaceResultsViewControllerProtocol{
                 vc.setRaceResults(raceDefinition.allRaceResults)
             }
+            for gc in c.childViewControllers{
+                if let vc = gc as? RaceDefinitionViewControllerProtocol{
+                    vc.setRaceDefinition(raceDefinition)
+                }
+            }
         }
     }
     

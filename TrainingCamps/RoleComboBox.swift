@@ -11,7 +11,7 @@ class RoleComboBox: NSComboBox{
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.addItems(withObjectValues: Role.AllRoles.map({$0.rawValue}))
+        self.addItems(withObjectValues: Role.AllRoles.map({$0.rawValue}).sorted(by: {$0 < $1}))
     }
     
 }

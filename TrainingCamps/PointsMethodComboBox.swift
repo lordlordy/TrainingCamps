@@ -11,7 +11,7 @@ class PointsMethodComboBox: NSComboBox{
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.addItems(withObjectValues: PointsMethod.All.map({$0.rawValue}))
+        self.addItems(withObjectValues: PointsMethod.All.map({$0.rawValue}).sorted(by: {$0 < $1}))
     }
 
     

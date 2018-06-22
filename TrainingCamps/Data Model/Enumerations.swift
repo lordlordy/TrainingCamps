@@ -135,4 +135,9 @@ enum UserDefaultKey: String{
     case swimColour, bikeColour, runColour
 }
 
+enum RaceType: String{
+    case Swim, Bike, Run, Aquathon, Triathlon, Duathlon
+    static let All: [RaceType] = [ Swim, Bike, Run, Aquathon, Triathlon, Duathlon]
+}
+
 

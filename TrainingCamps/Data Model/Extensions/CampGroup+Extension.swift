@@ -74,6 +74,10 @@ extension CampGroup{
         return [root]
     }
     
+    func campsArray() -> [Camp]{
+        return camps?.allObjects as? [Camp] ?? []
+    }
+    
     func participantArray() -> [Participant]{
         return participants?.allObjects as? [Participant] ?? []
     }
@@ -95,9 +99,5 @@ extension CampGroup{
     }
     
 
-    
-    private func campsArray() -> [Camp]{
-        return camps?.allObjects as? [Camp] ?? []
-    }
     
 }

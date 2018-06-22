@@ -11,6 +11,7 @@ import Foundation
 extension RaceDefinition{
     
     @objc dynamic var raceCount: Int{return races?.count ?? 0}
+    @objc dynamic var resultsCount: Int { return allRaceResults.count }
     @objc dynamic var locationString: String {
         get{
             return location?.name ?? "Location not set"

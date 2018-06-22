@@ -12,7 +12,7 @@ class GenderComboBox: NSComboBox{
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.addItems(withObjectValues: [Gender.Male.rawValue, Gender.Female.rawValue])
+        self.addItems(withObjectValues: [Gender.Female.rawValue, Gender.Male.rawValue])
     }
 
     

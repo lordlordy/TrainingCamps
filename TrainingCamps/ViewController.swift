@@ -20,6 +20,7 @@ class ViewController: NSSplitViewController, CampGroupViewControllerProtocol {
         super.init(coder: coder)
         
         ValueTransformer.setValueTransformer(TransformerNSNumberToTimeFormat(), forName: NSValueTransformerName(rawValue: "TransformerNSNumberToTimeFormat"))
+        ValueTransformer.setValueTransformer(TextViewToStringTransformer(), forName: NSValueTransformerName(rawValue: "TextViewToStringTransformer"))
         
     }
     

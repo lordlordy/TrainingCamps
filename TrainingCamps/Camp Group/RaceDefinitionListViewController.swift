@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class RaceDefinitionListViewController: CampGroupViewController, NSTableViewDelegate{
+class RaceDefinitionListViewController: CampGroupViewController, NSTableViewDelegate, NSComboBoxDataSource{
     
     
     @IBOutlet var raceDefinitionsAC: NSArrayController!
@@ -30,6 +30,22 @@ class RaceDefinitionListViewController: CampGroupViewController, NSTableViewDele
             }
         }
         return nil
+    }
+    
+    //MARK: - NSComboBoxDataSource   participantsOnCampComboBox
+    func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
+
+        if let cg = campGroup{
+            let locations = cg.locationsArray().map({$0.name ?? "Not set"})
+            if locations.count > index{
+                return locations[index]
+            }
+        }
+        return nil
+    }
+    
+    func numberOfItems(in comboBox: NSComboBox) -> Int {
+        return campGroup?.locationsArray().count ?? 0
     }
     
 }

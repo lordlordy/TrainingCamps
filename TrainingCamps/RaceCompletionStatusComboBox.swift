@@ -11,7 +11,7 @@ class RaceCompletionStatusComboBox: NSComboBox{
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.addItems(withObjectValues: RaceCompletionStatus.All.map({$0.rawValue}))
+        self.addItems(withObjectValues: RaceCompletionStatus.All.map({$0.rawValue}).sorted(by: {$0 < $1}))
     }
     
 }
