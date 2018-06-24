@@ -34,5 +34,5 @@ class CampParticipantsSplitViewController: NSSplitViewController, CampViewContro
             }
         }
     }
-    
+
 }

@@ -29,6 +29,7 @@ extension CampGroup: TrainingValuesProtocol{
     @objc dynamic var totalSeconds: Double{ return valueFor(.total, .Seconds)}
     
     func rank(){
+        let start = Date()
         let ranker: Ranker = Ranker()
         let days: [Rankable] = participantDaysArray()
         let participantsCamps: [Rankable] =  campParticipantsArray()
@@ -36,6 +37,7 @@ extension CampGroup: TrainingValuesProtocol{
         ranker.rank(days, forRankUnits: rankUnits, isAscending: false)
         ranker.rank(participantsCamps, forRankUnits: rankUnits, isAscending: false)
         
+        print("Calculating training ranks took \(Int(Date().timeIntervalSince(start)))s")
     }
     
     func participant(withUniqueName name: String) -> Participant?{

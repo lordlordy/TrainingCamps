@@ -571,20 +571,6 @@
                                     <binding destination="WJ1-gf-bWn" name="value" keyPath="camp.campName" id="HWU-UQ-OIF"/>
                                 </connections>
                             </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="49t-ll-VEH">
-                                <rect key="frame" x="384" y="271" width="71" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Sb4-uw-mKL"/>
-                                    <constraint firstAttribute="width" constant="59" id="f7d-EV-Ezg"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="Rank" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nat-ne-bMX">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="rank:" target="WJ1-gf-bWn" id="s6g-rY-u6H"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="LkC-tI-nvd" firstAttribute="top" secondItem="IdH-lr-lBQ" secondAttribute="bottom" constant="2" id="CZH-Gx-0jA"/>
@@ -592,10 +578,8 @@
                             <constraint firstItem="ngx-ZZ-4pc" firstAttribute="leading" secondItem="IdH-lr-lBQ" secondAttribute="trailing" constant="5" id="HNY-QY-l5z"/>
                             <constraint firstAttribute="bottom" secondItem="LkC-tI-nvd" secondAttribute="bottom" constant="2" id="MqV-3U-BGZ"/>
                             <constraint firstItem="IdH-lr-lBQ" firstAttribute="top" secondItem="msT-SN-VlR" secondAttribute="top" constant="1" id="WOy-Na-bm7"/>
-                            <constraint firstAttribute="trailing" secondItem="49t-ll-VEH" secondAttribute="trailing" constant="1" id="djm-yE-5dy"/>
                             <constraint firstItem="IdH-lr-lBQ" firstAttribute="leading" secondItem="msT-SN-VlR" secondAttribute="leading" constant="1" id="m22-QO-V0G"/>
                             <constraint firstItem="LkC-tI-nvd" firstAttribute="leading" secondItem="msT-SN-VlR" secondAttribute="leading" constant="2" id="mHK-vj-1Na"/>
-                            <constraint firstItem="49t-ll-VEH" firstAttribute="top" secondItem="msT-SN-VlR" secondAttribute="top" constant="1" id="mpb-uB-1Q2"/>
                             <constraint firstAttribute="trailing" secondItem="LkC-tI-nvd" secondAttribute="trailing" constant="2" id="u7d-uU-7XO"/>
                         </constraints>
                     </view>
@@ -620,9 +604,9 @@
                 <splitViewController id="xlM-6K-MlI" customClass="CampDaySplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="hUv-sl-p4U"/>
-                        <splitViewItem id="ofy-8O-xso"/>
+                        <splitViewItem canCollapse="YES" id="ofy-8O-xso"/>
                     </splitViewItems>
-                    <splitView key="splitView" dividerStyle="thin" vertical="YES" id="kQZ-qn-LHT">
+                    <splitView key="splitView" vertical="YES" id="kQZ-qn-LHT">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
@@ -637,7 +621,7 @@
                 </splitViewController>
                 <customObject id="350-ZK-xyL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="611" y="433"/>
+            <point key="canvasLocation" x="510" y="536"/>
         </scene>
         <!--Participant Camp Days View Controller-->
         <scene sceneID="Rko-lh-rqk">

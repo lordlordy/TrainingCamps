@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class CampRaceResultViewController: CampViewController, RaceViewControllerProtocol, NSComboBoxDataSource{
+class CampRaceResultViewController: CampViewController, RaceViewControllerProtocol, NSComboBoxDataSource, NSTableViewDelegate{
     
     enum ColumnID: String{
         case swim, t1, bike, t2, run, handicap, adjTotal, guess, guessDiff
@@ -18,16 +18,13 @@ class CampRaceResultViewController: CampViewController, RaceViewControllerProtoc
     }
     
     @objc dynamic var race: Race?
-    @IBOutlet var ranksAC: NSArrayController!
+    @IBOutlet var raceResultsAC: NSArrayController!
     
-    @IBAction func rankRace(_ sender: Any) {
-        if let r = race{
-            let ranker = RaceRanker()
-            ranker.rank(r)
-            r.generatePoints()
-            raceResultsTableView.reloadData()
-        }
-    }
+//    @IBAction func rankRace(_ sender: Any) {
+//        if let r = race{
+//            r.rank()
+//        }
+//    }
     
     @IBOutlet weak var raceResultsTableView: NSTableView!
     
@@ -37,10 +34,7 @@ class CampRaceResultViewController: CampViewController, RaceViewControllerProtoc
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        ranksAC.filterPredicate = NSPredicate.init(format: "hasRankings == TRUE", argumentArray: nil)
-    }
+
     
     func setRace(_ race: Race) {
         self.race = race
@@ -60,6 +54,14 @@ class CampRaceResultViewController: CampViewController, RaceViewControllerProtoc
     
     func numberOfItems(in comboBox: NSComboBox) -> Int {
         return camp?.campParticipantDisplayNames().count ?? 0
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        if let selection = raceResultsAC.selectedObjects as? [RaceResult]{
+            if let p = parent as? RankingsViewControllerProtocol{
+                p.setRankings(selection[0])
+            }
+        }
     }
     
     private func updateColumns(){

@@ -8,7 +8,15 @@
 
 import Foundation
 
-extension RaceResult{
+extension RaceResult: Rankable{
+    
+    var gender: String { return campParticipant?.participant?.gender ?? "Not set" }
+    var name: String { return campParticipant?.participant?.uniqueName ?? "not set"}
+    var campRole: String { return campParticipant?.role ?? "Not set"}
+    var campName: String { return campParticipant?.camp?.campName ?? "not set" }
+    
+
+    
 
     @objc dynamic var uniqueName: String{
         return campParticipant?.participant?.uniqueName ?? "PARTICIPANT NOT SET"
@@ -47,7 +55,7 @@ extension RaceResult{
         }
     }
     
-    @objc dynamic var totalRank: Rank { return rankFor(activity: .total, unit: .Seconds)}
+    var totalRank: Rank { return rankFor(activity: .total, unit: .Seconds)}
     @objc dynamic var swimRank: Rank { return rankFor(activity: .swim, unit: .Seconds)}
     @objc dynamic var bikeRank: Rank { return rankFor(activity: .bike, unit: .Seconds)}
     @objc dynamic var runRank: Rank { return rankFor(activity: .run, unit: .Seconds)}
@@ -64,25 +72,14 @@ extension RaceResult{
     @objc dynamic var rankParticipant: Int32 { return totalRank.participant}
     @objc dynamic var rankRole: Int32 { return totalRank.role}
 
-
-//    func valueFor(activity: Activity, unit: Unit, gender: Gender, role: Role, location: Location?, participant: Participant?, camp: Camp?) ->  Double {
-//
-//        if participantIs(gender: gender, role: role, participant: participant){
-//            if camp == nil || camp == race!.camp!{
-//                if location == nil || location == race!.camp!.location!{
-//                    return valueFor(activity: activity, unit: unit)
-//                }
-//            }
-//        }
-//        return 0.0
-//    }
     
     // creates rank if not available
     func rankFor(activity: Activity, unit: Unit) -> Rank{
-        return rankFor(activity: activity.rawValue, unit: unit.rawValue)
+        return rankFor(activity.rawValue, unit.rawValue)
     }
 
-    func rankFor(activity: String, unit: String) -> Rank{
+    //MARK: - Rankable
+    func rankFor(_ activity: String, _ unit: String) -> Rank{
         let filtered: [Rank] = rankingsArray().filter({$0.activity! == activity && $0.unit! == unit})
         if filtered.count > 0{
             return filtered[0]
@@ -97,6 +94,19 @@ extension RaceResult{
         newRank.participant = Constants.lastPlaceRank
         mutableSetValue(forKey: RaceResultProperty.rankings.rawValue).add(newRank)
         return newRank
+    }
+    
+    func performRank() {
+        race?.rank()
+    }
+    
+    func valueFor(_ activity: String, _ unit: String) -> Double {
+        if let a = Activity(rawValue: activity){
+            if let u = Unit(rawValue: unit){
+                return valueFor(activity: a, unit: u)
+            }
+        }
+        return 0.0
     }
     
     private func rankingsArray() -> [Rank]{

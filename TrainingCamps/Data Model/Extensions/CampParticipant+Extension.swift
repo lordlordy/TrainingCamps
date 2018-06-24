@@ -78,6 +78,7 @@ extension CampParticipant: Rankable{
     var campRole: String { return role ?? "Not Set"}
     var campName: String { return camp?.campName ?? "Not Set"}
     
+    //MARK: - Rankable
     func rankFor(_ activity: String, _ unit: String) -> Rank{
         let filtered: [Rank] = rankingsArray().filter({$0.activity! == activity && $0.unit! == unit})
         if filtered.count > 0{
@@ -88,6 +89,10 @@ extension CampParticipant: Rankable{
         newRank.unit = unit
         mutableSetValue(forKey: RaceResultProperty.rankings.rawValue).add(newRank)
         return newRank
+    }
+    
+    func performRank() {
+        camp?.campGroup?.rank()
     }
     
 

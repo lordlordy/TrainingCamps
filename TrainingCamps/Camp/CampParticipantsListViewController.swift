@@ -19,20 +19,23 @@ class CampParticipantsListViewController: CampViewController, NSComboBoxDataSour
         }
     }
     
-    @IBAction func rank(_ sender: Any) {
-        let start = Date()
-        camp?.campGroup?.rank()
-        print("Ranking took \(Date().timeIntervalSince(start))s")
-    }
+//    @IBAction func rank(_ sender: Any) {
+//        let start = Date()
+//        camp?.campGroup?.rank()
+//        print("Ranking took \(Date().timeIntervalSince(start))s")
+//    }
     
     //MARK: - NSTableViewDelegate
     func tableViewSelectionDidChange(_ notification: Notification) {
         if let cp = getSelectedParticipant(){
-            if let vc = parent as? RaceResultsViewControllerProtocol{
+            if let vc = parent?.parent as? RaceResultsViewControllerProtocol{
                 vc.setRaceResults(cp.raceResults ?? NSSet())
             }
-            if let vc = parent as? CampParticipantViewControllerProtocol{
+            if let vc = parent?.parent as? CampParticipantViewControllerProtocol{
                 vc.setCampParticipant(cp)
+            }
+            if let vc = parent as? RankingsViewControllerProtocol{
+                vc.setRankings(cp)
             }
         }
     }

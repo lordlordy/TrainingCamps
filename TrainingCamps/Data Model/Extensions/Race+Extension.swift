@@ -60,7 +60,13 @@ extension Race{
         }
     }
     
-    func generatePoints(){
+    func rank(){
+        let ranker = RaceRanker() // should move this to generic Ranker.swift
+        ranker.rank(self)
+        generatePoints()
+    }
+    
+    private func generatePoints(){
         if isForCampPoints{
             let pointsResults = resultsOrderedForPoints().filter({$0.campParticipant!.isInPointsCompetition})
             var points: Int16 = Int16(pointsForAWin)

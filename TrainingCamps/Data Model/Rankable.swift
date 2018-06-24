@@ -15,6 +15,7 @@ import Foundation
     var campName: String { get }
     var rankings: NSSet? { get }
     func rankFor(_ activity: String, _ unit: String) -> Rank
+    func performRank()
     
 }
 

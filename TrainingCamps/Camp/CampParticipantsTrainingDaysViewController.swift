@@ -8,25 +8,10 @@
 
 import Cocoa
 
-class CampParticipantsTrainingDaysViewController: NSViewController, CampParticipantViewControllerProtocol, NSComboBoxDataSource {
+class CampParticipantsTrainingDaysViewController: NSViewController, CampParticipantViewControllerProtocol, NSComboBoxDataSource, NSTableViewDelegate {
     
     @objc dynamic var campParticipant: CampParticipant?
-    
-//    @IBAction func add(_ sender: Any){
-//        if let p = parent?.parent as? CampParticipantsSplitViewController{
-//            if let pdac = p.participantDaysAC{
-//                pdac.add(sender)
-//            }
-//        }
-//    }
-//
-//    @IBAction func remove(_ sender: Any){
-//        if let p = parent?.parent as? CampParticipantsSplitViewController{
-//            if let pdac = p.participantDaysAC{
-//                pdac.remove(sender)
-//            }
-//        }
-//    }
+    @IBOutlet var participantDaysAC: NSArrayController!
     
     func setCampParticipant(_ campParticipant: CampParticipant) {
         self.campParticipant = campParticipant
@@ -50,6 +35,14 @@ class CampParticipantsTrainingDaysViewController: NSViewController, CampParticip
     
     func numberOfItems(in comboBox: NSComboBox) -> Int {
         return campParticipant?.camp?.validDates().count ?? 0
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        if let selection = participantDaysAC.selectedObjects as? [ParticipantDay]{
+            if let p = parent as? RankingsViewControllerProtocol{
+                p.setRankings(selection[0])
+            }
+        }
     }
     
 

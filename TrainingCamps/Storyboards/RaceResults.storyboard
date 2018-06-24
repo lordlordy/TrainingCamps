@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="i3m-Gl-NRm">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="BIx-45-1o3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -765,6 +765,7 @@
                                                 <binding destination="uph-AM-t3S" name="content" keyPath="arrangedObjects" id="bs9-bi-UTE"/>
                                                 <binding destination="uph-AM-t3S" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="bs9-bi-UTE" id="0T3-Qb-52D"/>
                                                 <binding destination="uph-AM-t3S" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="0T3-Qb-52D" id="UJk-Rx-FQr"/>
+                                                <outlet property="delegate" destination="i3m-Gl-NRm" id="uHX-bS-Tk2"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -792,16 +793,50 @@
                     </view>
                     <connections>
                         <outlet property="participantsRacesTableView" destination="kxx-tP-4Dw" id="ZAF-2c-6tv"/>
+                        <outlet property="resultsAC" destination="uph-AM-t3S" id="om6-T1-1Js"/>
                     </connections>
                 </viewController>
                 <customObject id="m6f-o5-4XO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController objectClassName="RaceResult" id="uph-AM-t3S">
+                <arrayController mode="entity" entityName="RaceResult" id="uph-AM-t3S">
                     <connections>
                         <binding destination="i3m-Gl-NRm" name="contentSet" keyPath="raceResults" id="2hL-CG-Oct"/>
                     </connections>
                 </arrayController>
             </objects>
-            <point key="canvasLocation" x="553" y="771"/>
+            <point key="canvasLocation" x="1160" y="713"/>
+        </scene>
+        <!--Race Results Split View-->
+        <scene sceneID="JuF-MN-ghc">
+            <objects>
+                <splitViewController title="Race Results Split View" id="BIx-45-1o3" customClass="RaceResultsSplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem id="kAw-jt-dxa"/>
+                        <splitViewItem canCollapse="YES" id="sUH-4C-Vth"/>
+                    </splitViewItems>
+                    <splitView key="splitView" vertical="YES" id="80H-C8-4OE">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <outlet property="delegate" destination="BIx-45-1o3" id="JMi-SC-pj9"/>
+                        </connections>
+                    </splitView>
+                    <connections>
+                        <outlet property="splitView" destination="80H-C8-4OE" id="fkJ-9C-KN4"/>
+                        <segue destination="i3m-Gl-NRm" kind="relationship" relationship="splitItems" id="rJk-qF-eOL"/>
+                        <segue destination="brk-pC-41y" kind="relationship" relationship="splitItems" id="KJl-mw-v6Z"/>
+                    </connections>
+                </splitViewController>
+                <customObject id="FJc-Wh-rHu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="575" y="918"/>
+        </scene>
+        <!--Rankings-->
+        <scene sceneID="Fd6-M4-v95">
+            <objects>
+                <controllerPlaceholder storyboardName="Rankings" id="brk-pC-41y" sceneMemberID="viewController"/>
+                <customObject id="sQZ-Ut-E4P" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1244" y="1034"/>
         </scene>
     </scenes>
 </document>

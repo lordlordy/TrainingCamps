@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class RaceResultsViewController: NSViewController, RaceResultsViewControllerProtocol{
+class RaceResultsViewController: NSViewController, RaceResultsViewControllerProtocol, NSTableViewDelegate{
     
     private enum ColumnID: String{
         case swim, swimRank, bike, bikeRank, run, runRank
@@ -18,11 +18,13 @@ class RaceResultsViewController: NSViewController, RaceResultsViewControllerProt
     }
     
     @objc dynamic var raceResults: NSSet?
+    @IBOutlet var resultsAC: NSArrayController!
     
     func setRaceResults(_ raceResults: NSSet) {
         self.raceResults = raceResults
         updateColumns()
     }
+    
     
     
     @IBOutlet weak var participantsRacesTableView: NSTableView!
@@ -33,8 +35,19 @@ class RaceResultsViewController: NSViewController, RaceResultsViewControllerProt
         }
     }
     
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        if let selection = resultsAC.selectedObjects as? [RaceResult]{
+            if selection.count > 0{
+                if let p = parent as? RankingsViewControllerProtocol{
+                    p.setRankings(selection[0])
+                }
+            }
+        }
+    }
 
     private func updateColumns(){
+        
+        guard (participantsRacesTableView != nil) else { return }
         
         if let rr = raceResults?.allObjects as? [RaceResult]{
             let swim: Bool = rr.reduce(false, {$0 || ($1.race?.includesSwim ?? false)})

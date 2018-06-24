@@ -14,13 +14,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="42" horizontalPageScroll="10" verticalLineScroll="42" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQP-zt-GNx">
-                                <rect key="frame" x="2" y="2" width="446" height="277"/>
+                                <rect key="frame" x="2" y="2" width="446" height="273"/>
                                 <clipView key="contentView" drawsBackground="NO" id="22T-j3-bXF">
-                                    <rect key="frame" x="1" y="0.0" width="444" height="276"/>
+                                    <rect key="frame" x="1" y="0.0" width="444" height="272"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" multipleSelection="NO" autosaveName="raceRankingTable" rowHeight="40" rowSizeStyle="automatic" headerView="BB1-N9-xxo" viewBased="YES" id="026-XS-pDN">
-                                            <rect key="frame" x="0.0" y="0.0" width="444" height="253"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="444" height="249"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -309,10 +309,10 @@
                                 </tableHeaderView>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lL0-7e-xBO">
-                                <rect key="frame" x="0.0" y="281" width="450" height="17"/>
+                                <rect key="frame" x="0.0" y="281" width="389" height="17"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="Eok-fr-K7o"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="RvW-kh-aj5"/>
+                                    <constraint firstAttribute="height" constant="17" id="3Zp-J2-wh2"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="VlW-Or-4ba"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Rankings" id="8Bz-Vu-3hp">
                                     <font key="font" metaFont="systemBold"/>
@@ -320,17 +320,37 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9Vm-nQ-k9j">
+                                <rect key="frame" x="383" y="270" width="71" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="fDd-pa-k0B"/>
+                                    <constraint firstAttribute="width" constant="59" id="tcf-ej-5j5"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Rank" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OPV-sP-2k9">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="rank:" target="YuW-mc-4gL" id="Hj8-TS-u88"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="lL0-7e-xBO" firstAttribute="leading" secondItem="z9N-PV-9qk" secondAttribute="leading" constant="2" id="CAe-5Q-bme"/>
-                            <constraint firstItem="OQP-zt-GNx" firstAttribute="top" secondItem="lL0-7e-xBO" secondAttribute="bottom" constant="2" id="Lhu-8V-rDC"/>
-                            <constraint firstAttribute="trailing" secondItem="lL0-7e-xBO" secondAttribute="trailing" constant="2" id="Tw3-hN-iZk"/>
-                            <constraint firstAttribute="bottom" secondItem="OQP-zt-GNx" secondAttribute="bottom" constant="2" id="Wiw-bJ-rco"/>
-                            <constraint firstItem="OQP-zt-GNx" firstAttribute="leading" secondItem="z9N-PV-9qk" secondAttribute="leading" constant="2" id="dQL-pW-fPj"/>
-                            <constraint firstItem="lL0-7e-xBO" firstAttribute="top" secondItem="z9N-PV-9qk" secondAttribute="top" constant="2" id="eLI-zu-gMx"/>
-                            <constraint firstAttribute="trailing" secondItem="OQP-zt-GNx" secondAttribute="trailing" constant="2" id="eXU-lA-GF9"/>
+                            <constraint firstAttribute="bottom" secondItem="OQP-zt-GNx" secondAttribute="bottom" constant="2" id="8DC-c6-rU1"/>
+                            <constraint firstItem="OQP-zt-GNx" firstAttribute="leading" secondItem="z9N-PV-9qk" secondAttribute="leading" constant="2" id="CWI-fO-guZ"/>
+                            <constraint firstItem="lL0-7e-xBO" firstAttribute="top" secondItem="z9N-PV-9qk" secondAttribute="top" constant="2" id="L8k-lc-eIe"/>
+                            <constraint firstItem="OQP-zt-GNx" firstAttribute="top" secondItem="9Vm-nQ-k9j" secondAttribute="bottom" constant="2" id="X0T-E7-03C"/>
+                            <constraint firstAttribute="trailing" secondItem="9Vm-nQ-k9j" secondAttribute="trailing" constant="2" id="X6w-RT-7JJ"/>
+                            <constraint firstItem="9Vm-nQ-k9j" firstAttribute="leading" secondItem="lL0-7e-xBO" secondAttribute="trailing" constant="2" id="aIm-d1-nRv"/>
+                            <constraint firstItem="lL0-7e-xBO" firstAttribute="leading" secondItem="z9N-PV-9qk" secondAttribute="leading" constant="2" id="ath-Tc-Kno"/>
+                            <constraint firstItem="9Vm-nQ-k9j" firstAttribute="top" secondItem="z9N-PV-9qk" secondAttribute="top" constant="2" id="tY6-Lf-57M"/>
+                            <constraint firstAttribute="trailing" secondItem="OQP-zt-GNx" secondAttribute="trailing" constant="2" id="ufM-bc-xLB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="rankingsAC" destination="q5c-RF-8vN" id="sLd-8J-56n"/>
+                        <outlet property="tableView" destination="026-XS-pDN" id="zpg-ya-6bG"/>
+                    </connections>
                 </viewController>
                 <customObject id="ZDI-uT-nMf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <arrayController mode="entity" entityName="Rank" id="q5c-RF-8vN">

@@ -116,8 +116,10 @@ extension ParticipantDay: Rankable{
         }
     }
     
-    func rankFor(_ activity: Activity, _ unit: Unit) -> Rank{
-        return rankFor(activity.rawValue, unit.rawValue)
+    //MARK: - Rankable
+    func rankFor(_ activity: Activity, _ unit: Unit) -> Rank{ return rankFor(activity.rawValue, unit.rawValue) }
+    func performRank() {
+        campParticipant?.camp?.campGroup?.rank()
     }
     
     func rankFor(_ activity: String,_ unit: String) -> Rank{

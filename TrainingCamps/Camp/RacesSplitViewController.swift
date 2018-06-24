@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class RacesSplitViewController: NSSplitViewController, CampViewControllerProtocol, RaceViewControllerProtocol{
+class RacesSplitViewController: NSSplitViewController, CampViewControllerProtocol, RaceViewControllerProtocol, RankingsViewControllerProtocol{
     
     func setCamp(_ camp: Camp) {
         for c in childViewControllers{
@@ -18,50 +18,20 @@ class RacesSplitViewController: NSSplitViewController, CampViewControllerProtoco
         }
     }
     
-    
-    
-//    @IBOutlet var racesAC: NSArrayController!
-//    @IBOutlet var resultsAC: NSArrayController!
-    
-//    func selectedRaceChanged(){
-//        if let race = selectedRace(){
-//            setRace(race)
-//        }
-//    }
-    
     func setRace(_ race: Race) {
         for c in childViewControllers{
             if let r = c as? RaceViewControllerProtocol{
                 r.setRace(race)
             }
-            if let r = c as? RaceResultsViewControllerProtocol{
-//                r.setRaceResults(race.mutableSetValue(forKey: RaceProperty.results.rawValue))
-            }
         }
-        
-//        for i in getRaceViewControllerProtocols(){
-//            i.setRace(race)
-//        }
-    
     }
     
-//    private func selectedRace() -> Race?{
-//        if let races = racesAC.selectedObjects as? [Race]{
-//            if races.count > 0{
-//                return races[0]
-//            }
-//        }
-//        return nil
-//    }
+    func setRankings(_ rankings: Rankable) {
+        for c in childViewControllers{
+            if let vc = c as? RankingsViewControllerProtocol{
+                vc.setRankings(rankings)
+            }
+        }
+    }
 
-    
-//    private func getRaceViewControllerProtocols() -> [RaceViewControllerProtocol]{
-//        var result: [RaceViewControllerProtocol] = []
-//        for c in childViewControllers{
-//            if let r = c as? RaceViewControllerProtocol{
-//                result.append(r)
-//            }
-//        }
-//        return result
-//    }
 }
