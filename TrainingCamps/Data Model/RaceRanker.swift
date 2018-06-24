@@ -10,19 +10,6 @@ import Foundation
 
 class RaceRanker{
 
-    struct Ranking{
-        var overallRank: Int
-        var genderRank: Int
-        var campRank: Int
-        var participantRank: Int
-        var roleRank: Int
-        var unit: Unit
-        var activity: Activity
-    }
-    
-    
-
-    
     func rank(_ race: Race){
         let start = Date()
         

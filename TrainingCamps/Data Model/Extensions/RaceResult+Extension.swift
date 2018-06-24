@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension RaceResult: Rankable{
+extension RaceResult{
 
     @objc dynamic var uniqueName: String{
         return campParticipant?.participant?.uniqueName ?? "PARTICIPANT NOT SET"
@@ -65,17 +65,17 @@ extension RaceResult: Rankable{
     @objc dynamic var rankRole: Int32 { return totalRank.role}
 
 
-    func valueFor(activity: Activity, unit: Unit, gender: Gender, role: Role, location: Location?, participant: Participant?, camp: Camp?) ->  Double {
-
-        if participantIs(gender: gender, role: role, participant: participant){
-            if camp == nil || camp == race!.camp!{
-                if location == nil || location == race!.camp!.location!{
-                    return valueFor(activity: activity, unit: unit)
-                }
-            }
-        }
-        return 0.0
-    }
+//    func valueFor(activity: Activity, unit: Unit, gender: Gender, role: Role, location: Location?, participant: Participant?, camp: Camp?) ->  Double {
+//
+//        if participantIs(gender: gender, role: role, participant: participant){
+//            if camp == nil || camp == race!.camp!{
+//                if location == nil || location == race!.camp!.location!{
+//                    return valueFor(activity: activity, unit: unit)
+//                }
+//            }
+//        }
+//        return 0.0
+//    }
     
     // creates rank if not available
     func rankFor(activity: Activity, unit: Unit) -> Rank{

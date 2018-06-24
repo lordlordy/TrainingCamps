@@ -16,9 +16,14 @@
 		7305E99520D17FFA001748D5 /* TransformerNSNumberToTimeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7305E99420D17FFA001748D5 /* TransformerNSNumberToTimeFormat.swift */; };
 		7305E99720D18DB6001748D5 /* ParticipantListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7305E99620D18DB6001748D5 /* ParticipantListViewController.swift */; };
 		7309930320DBB20D00906DD9 /* CampParticipantsRacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7309930220DBB20D00906DD9 /* CampParticipantsRacesViewController.swift */; };
+		730B6B0E20DE244000274CA6 /* TrainingRanker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730B6B0D20DE244000274CA6 /* TrainingRanker.swift */; };
+		7312BA4920DF8616006B7A67 /* CampDaySplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312BA4820DF8616006B7A67 /* CampDaySplitViewController.swift */; };
+		7312BA4D20DF8837006B7A67 /* RankingsViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312BA4C20DF8837006B7A67 /* RankingsViewControllerProtocol.swift */; };
 		731A244D20DA0C0F0060E726 /* PointsMethodComboBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731A244C20DA0C0F0060E726 /* PointsMethodComboBox.swift */; };
 		731A244F20DA3AAF0060E726 /* RaceCompletionStatusComboBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731A244E20DA3AAF0060E726 /* RaceCompletionStatusComboBox.swift */; };
 		731A245120DA47830060E726 /* CampRaceResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731A245020DA47830060E726 /* CampRaceResultViewController.swift */; };
+		731BDFB820DF75F3006A0A8F /* Rankings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 731BDFB720DF75F3006A0A8F /* Rankings.storyboard */; };
+		731BDFBA20DF7822006A0A8F /* RankingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731BDFB920DF7822006A0A8F /* RankingsViewController.swift */; };
 		731E7BCD20D1AAE600AA00F5 /* RaceDefinition+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731E7BCC20D1AAE600AA00F5 /* RaceDefinition+Extension.swift */; };
 		731E7BCF20D1ADD200AA00F5 /* Race+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731E7BCE20D1ADD200AA00F5 /* Race+Extension.swift */; };
 		731E7BD120D1BBCA00AA00F5 /* Camp+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731E7BD020D1BBCA00AA00F5 /* Camp+Extension.swift */; };
@@ -43,6 +48,8 @@
 		73370FC120D29B120090755E /* TreeNodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73370FC020D29B120090755E /* TreeNodeViewController.swift */; };
 		73370FC320D29B5C0090755E /* Tree.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73370FC220D29B5C0090755E /* Tree.storyboard */; };
 		7337252D20D7F42400D7200E /* CampParticipantsTrainingDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337252C20D7F42400D7200E /* CampParticipantsTrainingDaysViewController.swift */; };
+		733B7BDD20DEBF4F00916BD9 /* Ranker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B7BDC20DEBF4F00916BD9 /* Ranker.swift */; };
+		733B7BDF20DED80E00916BD9 /* TrainingValuesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B7BDE20DED80E00916BD9 /* TrainingValuesProtocol.swift */; };
 		7346382020C6FFC800406C74 /* CampDays.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7346381F20C6FFC800406C74 /* CampDays.storyboard */; };
 		7346382220C700C000406C74 /* CampViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7346382120C700C000406C74 /* CampViewControllerProtocol.swift */; };
 		7346382420C700F500406C74 /* CampViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7346382320C700F500406C74 /* CampViewController.swift */; };
@@ -110,9 +117,14 @@
 		7305E99420D17FFA001748D5 /* TransformerNSNumberToTimeFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformerNSNumberToTimeFormat.swift; sourceTree = "<group>"; };
 		7305E99620D18DB6001748D5 /* ParticipantListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantListViewController.swift; sourceTree = "<group>"; };
 		7309930220DBB20D00906DD9 /* CampParticipantsRacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampParticipantsRacesViewController.swift; sourceTree = "<group>"; };
+		730B6B0D20DE244000274CA6 /* TrainingRanker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingRanker.swift; sourceTree = "<group>"; };
+		7312BA4820DF8616006B7A67 /* CampDaySplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampDaySplitViewController.swift; sourceTree = "<group>"; };
+		7312BA4C20DF8837006B7A67 /* RankingsViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingsViewControllerProtocol.swift; sourceTree = "<group>"; };
 		731A244C20DA0C0F0060E726 /* PointsMethodComboBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsMethodComboBox.swift; sourceTree = "<group>"; };
 		731A244E20DA3AAF0060E726 /* RaceCompletionStatusComboBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceCompletionStatusComboBox.swift; sourceTree = "<group>"; };
 		731A245020DA47830060E726 /* CampRaceResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampRaceResultViewController.swift; sourceTree = "<group>"; };
+		731BDFB720DF75F3006A0A8F /* Rankings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rankings.storyboard; sourceTree = "<group>"; };
+		731BDFB920DF7822006A0A8F /* RankingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingsViewController.swift; sourceTree = "<group>"; };
 		731E7BCC20D1AAE600AA00F5 /* RaceDefinition+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RaceDefinition+Extension.swift"; sourceTree = "<group>"; };
 		731E7BCE20D1ADD200AA00F5 /* Race+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Race+Extension.swift"; sourceTree = "<group>"; };
 		731E7BD020D1BBCA00AA00F5 /* Camp+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Camp+Extension.swift"; sourceTree = "<group>"; };
@@ -137,6 +149,8 @@
 		73370FC020D29B120090755E /* TreeNodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeNodeViewController.swift; sourceTree = "<group>"; };
 		73370FC220D29B5C0090755E /* Tree.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tree.storyboard; sourceTree = "<group>"; };
 		7337252C20D7F42400D7200E /* CampParticipantsTrainingDaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampParticipantsTrainingDaysViewController.swift; sourceTree = "<group>"; };
+		733B7BDC20DEBF4F00916BD9 /* Ranker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ranker.swift; sourceTree = "<group>"; };
+		733B7BDE20DED80E00916BD9 /* TrainingValuesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingValuesProtocol.swift; sourceTree = "<group>"; };
 		7346381F20C6FFC800406C74 /* CampDays.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CampDays.storyboard; sourceTree = "<group>"; };
 		7346382120C700C000406C74 /* CampViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampViewControllerProtocol.swift; sourceTree = "<group>"; };
 		7346382320C700F500406C74 /* CampViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +232,7 @@
 				73D8CB6420C8200500F7D322 /* Participants.storyboard */,
 				731E7BD620D1C13600AA00F5 /* Locations.storyboard */,
 				73370FC220D29B5C0090755E /* Tree.storyboard */,
+				731BDFB720DF75F3006A0A8F /* Rankings.storyboard */,
 				73FDF5C920DC020800A9A5B9 /* RaceResults.storyboard */,
 				73FDF5CB20DC060A00A9A5B9 /* SingleRaceResults.storyboard */,
 				73479C2E20C796AE0098E7D9 /* Races.storyboard */,
@@ -249,7 +264,6 @@
 		7305E98C20D1663A001748D5 /* Camp */ = {
 			isa = PBXGroup;
 			children = (
-				73944A3B20DBA8AD00835D07 /* Protocols */,
 				7346382920C705F000406C74 /* CampsTabViewController.swift */,
 				7346382720C7044000406C74 /* CampSplitViewController.swift */,
 				73F068E920D37484001890CB /* CampParticipantsSplitViewController.swift */,
@@ -261,6 +275,7 @@
 				7346382520C7029000406C74 /* CampsListViewController.swift */,
 				73D8CB6220C7DF4E00F7D322 /* RacesSplitViewController.swift */,
 				7365EE3920C7179A00E1A4EB /* CampDaysSplitViewController.swift */,
+				7312BA4820DF8616006B7A67 /* CampDaySplitViewController.swift */,
 				73FD6D1120D91FEF000A821D /* CampDaysViewController.swift */,
 				73BC9FC320D926CA0077AC7E /* ParticipantCampDaysViewController.swift */,
 				731A245020DA47830060E726 /* CampRaceResultViewController.swift */,
@@ -280,7 +295,10 @@
 				73653C6E20C6D4D6001A6E07 /* CoreDataStack.swift */,
 				73653C7720C6E1F1001A6E07 /* Enumerations.swift */,
 				7358FA8820DC3F9F006889FA /* RaceRanker.swift */,
+				730B6B0D20DE244000274CA6 /* TrainingRanker.swift */,
+				733B7BDC20DEBF4F00916BD9 /* Ranker.swift */,
 				7358FA8620DC35D8006889FA /* Rankable.swift */,
+				733B7BDE20DED80E00916BD9 /* TrainingValuesProtocol.swift */,
 				73653C5F20C6D08E001A6E07 /* TrainingCamps.xcdatamodeld */,
 			);
 			path = "Data Model";
@@ -350,10 +368,12 @@
 				731A244C20DA0C0F0060E726 /* PointsMethodComboBox.swift */,
 				7321489220DD486F00C0974C /* RaceTypeComboBox.swift */,
 				731A244E20DA3AAF0060E726 /* RaceCompletionStatusComboBox.swift */,
+				731BDFB920DF7822006A0A8F /* RankingsViewController.swift */,
 				73F8AB8F20D7C87900B86159 /* RoleComboBox.swift */,
 				73F8AB8D20D78DC200B86159 /* CoachingRelationshipComboBox.swift */,
 				7305E98620D164C8001748D5 /* Storyboards */,
 				7305E98D20D16640001748D5 /* Data Model */,
+				73944A3B20DBA8AD00835D07 /* Protocols */,
 				7305E98C20D1663A001748D5 /* Camp */,
 				7305E98B20D1662E001748D5 /* Camp Group */,
 				73653C6220C6D08E001A6E07 /* Assets.xcassets */,
@@ -382,6 +402,7 @@
 				73F4F46D20DA755F00A5629B /* RaceViewControllerProtocol.swift */,
 				73944A3C20DBA8CC00835D07 /* DayViewControllerProtocol.swift */,
 				739A3CD920DBF1170069542C /* RaceDefinitionViewControllerProtocol.swift */,
+				7312BA4C20DF8837006B7A67 /* RankingsViewControllerProtocol.swift */,
 				735CF5E320DBFD5A00A10340 /* RaceResultsViewControllerProtocol.swift */,
 				73944A3E20DBAE0700835D07 /* CampParticipantViewControllerProtocol.swift */,
 			);
@@ -456,6 +477,7 @@
 				73653C6620C6D08F001A6E07 /* Main.storyboard in Resources */,
 				73FDF5CC20DC060A00A9A5B9 /* SingleRaceResults.storyboard in Resources */,
 				731E7BD920D1C25500AA00F5 /* CampTypes.storyboard in Resources */,
+				731BDFB820DF75F3006A0A8F /* Rankings.storyboard in Resources */,
 				73370FC320D29B5C0090755E /* Tree.storyboard in Resources */,
 				73D8CB6520C8200500F7D322 /* Participants.storyboard in Resources */,
 				7346382020C6FFC800406C74 /* CampDays.storyboard in Resources */,
@@ -517,16 +539,19 @@
 				73653C6F20C6D4D6001A6E07 /* CoreDataStack.swift in Sources */,
 				73370FBF20D296CC0090755E /* TreeNodeImplementation.swift in Sources */,
 				73811D2B20D2B0BD009D946F /* CampRacingNode.swift in Sources */,
+				730B6B0E20DE244000274CA6 /* TrainingRanker.swift in Sources */,
 				73AA945320D2735F00CA2CAB /* ParticipantRaceResultNode.swift in Sources */,
 				73653C7420C6DF63001A6E07 /* JSONImporter.swift in Sources */,
 				732BD70920D2A4A1004FBD59 /* CampNode.swift in Sources */,
 				731E7BDB20D2544A00AA00F5 /* RaceResult+Extension.swift in Sources */,
 				7309930320DBB20D00906DD9 /* CampParticipantsRacesViewController.swift in Sources */,
+				7312BA4D20DF8837006B7A67 /* RankingsViewControllerProtocol.swift in Sources */,
 				7321489120DD459A00C0974C /* TextViewToStringTransformer.swift in Sources */,
 				73944A3D20DBA8CC00835D07 /* DayViewControllerProtocol.swift in Sources */,
 				7337252D20D7F42400D7200E /* CampParticipantsTrainingDaysViewController.swift in Sources */,
 				7346382820C7044000406C74 /* CampSplitViewController.swift in Sources */,
 				73F8AB8C20D78D7D00B86159 /* CoachComboBox.swift in Sources */,
+				733B7BDD20DEBF4F00916BD9 /* Ranker.swift in Sources */,
 				73F8AB8820D640AF00B86159 /* CampParticipantsListViewController.swift in Sources */,
 				7305E99320D17BB8001748D5 /* ParticipantDay+Extension.swift in Sources */,
 				73FDF5CE20DC06A000A9A5B9 /* SingleRaceResultsViewController.swift in Sources */,
@@ -539,8 +564,11 @@
 				732BD71520D2ABEA004FBD59 /* ParticipantCampNode.swift in Sources */,
 				73AA4EC420D26227004B05B8 /* Day+Extension.swift in Sources */,
 				7358FA8720DC35D8006889FA /* Rankable.swift in Sources */,
+				731BDFBA20DF7822006A0A8F /* RankingsViewController.swift in Sources */,
 				7305E99720D18DB6001748D5 /* ParticipantListViewController.swift in Sources */,
 				73370FBD20D296AB0090755E /* TreeNode.swift in Sources */,
+				733B7BDF20DED80E00916BD9 /* TrainingValuesProtocol.swift in Sources */,
+				7312BA4920DF8616006B7A67 /* CampDaySplitViewController.swift in Sources */,
 				7346382420C700F500406C74 /* CampViewController.swift in Sources */,
 				7365EE3A20C7179A00E1A4EB /* CampDaysSplitViewController.swift in Sources */,
 				73D8CB6720C8202500F7D322 /* CampGroupViewControllerProtocol.swift in Sources */,

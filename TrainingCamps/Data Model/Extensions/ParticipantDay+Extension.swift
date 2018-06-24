@@ -9,6 +9,14 @@
 import Foundation
 
 extension ParticipantDay: Rankable{
+
+    
+    
+    var gender: String      { return campParticipant?.participant?.gender ?? "Not set" }
+    var name: String        { return campParticipant?.participant?.uniqueName ?? "Not Set"}
+    var campRole: String    { return campParticipant?.role ?? "Not set"}
+    var campName: String    { return campParticipant?.camp?.campName ?? "Not Set"}
+    
     
     @objc dynamic var totalSeconds: Double{
         return swimSeconds + bikeSeconds + runSeconds   
@@ -108,27 +116,34 @@ extension ParticipantDay: Rankable{
         }
     }
     
-    func valueFor(activity: Activity, unit: Unit, gender: Gender, role: Role, location: Location?, participant: Participant?, camp: Camp?) -> Double {
-
-        if participantIs(gender: gender, role: role, participant: participant){
-            if camp == nil || camp == campParticipant!.camp!{
-                if location == nil || location == campParticipant!.camp!.location!{
-                    return valueFor(activity: activity, unit: unit)
-                }
+    func rankFor(_ activity: Activity, _ unit: Unit) -> Rank{
+        return rankFor(activity.rawValue, unit.rawValue)
+    }
+    
+    func rankFor(_ activity: String,_ unit: String) -> Rank{
+        let filtered: [Rank] = rankingsArray().filter({$0.activity! == activity && $0.unit! == unit})
+        if filtered.count > 0{
+            return filtered[0]
+        }
+        let newRank: Rank = CoreDataStack.shared.newRank()
+        newRank.activity = activity
+        newRank.unit = unit
+        mutableSetValue(forKey: RaceResultProperty.rankings.rawValue).add(newRank)
+        return newRank
+    }
+    
+    func valueFor(_ activity: String, _ unit: String) -> Double{
+        if let a = Activity(rawValue: activity){
+            if let u = Unit(rawValue: unit){
+                return valueFor(a, u)
             }
         }
         return 0.0
     }
     
-    private func participantIs(gender: Gender, role: Role, participant: Participant?) -> Bool{
-        let isParticipant: Bool = (participant == nil) || (participant == self.campParticipant!.participant!)
-        let isGender: Bool = (gender == Gender.All) || (campParticipant!.participant!.gender! == gender.rawValue)
-        let isRole: Bool = (role == Role.All) || (campParticipant!.role! == role.rawValue)
-        
-        return isParticipant && isGender && isRole
-    }
+
     
-    private func valueFor(activity: Activity, unit: Unit) -> Double{
+    func valueFor(_ activity: Activity,_ unit: Unit) -> Double{
         switch unit{
         case .Seconds:
             switch activity{
@@ -164,5 +179,9 @@ extension ParticipantDay: Rankable{
             case .handicapAdjusted: return 0.0
             }
         }
+    }
+    
+    private func rankingsArray() -> [Rank]{
+        return rankings?.allObjects as? [Rank] ?? []
     }
 }

@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ParticipantCampDaysViewController: CampViewController, NSComboBoxDataSource, DayViewControllerProtocol{
+class ParticipantCampDaysViewController: NSViewController, NSComboBoxDataSource, DayViewControllerProtocol, NSTableViewDelegate{
     
     @objc dynamic var day: Day?
     @IBOutlet var daysAC: NSArrayController!
@@ -31,10 +31,21 @@ class ParticipantCampDaysViewController: CampViewController, NSComboBoxDataSourc
         }
     }
     
+    //MARK: - NSTableViewDelegate
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        if let selection = daysAC.selectedObjects as? [ParticipantDay]{
+            if selection.count > 0{
+                if let p = parent as? RankingsViewControllerProtocol{
+                    p.setRankings(selection[0])
+                }
+            }
+        }
+    }
+    
     //MARK: - NSComboBoxDataSource
     func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
 
-        if let participants = camp?.campParticipantDisplayNames(){
+        if let participants = day?.camp?.campParticipantDisplayNames(){
             if index < participants.count{
                 return participants[index]
             }
@@ -45,7 +56,7 @@ class ParticipantCampDaysViewController: CampViewController, NSComboBoxDataSourc
     
     
     func numberOfItems(in comboBox: NSComboBox) -> Int {
-        return camp?.campParticipantDisplayNames().count ?? 0
+        return day?.camp?.campParticipantDisplayNames().count ?? 0
     }
     
 }

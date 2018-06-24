@@ -27,4 +27,15 @@ extension Rank{
         return "NOT SET"
     }
     
+    @objc dynamic var name: String{
+        var result: String = (activity ?? "not set") + " "
+        let u = unit ?? "not set"
+        if u == Unit.Seconds.rawValue{
+            result += "Time"
+        }else{
+            result += u
+        }
+        return result
+    }
+    
 }

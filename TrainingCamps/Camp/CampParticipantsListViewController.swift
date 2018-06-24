@@ -19,6 +19,11 @@ class CampParticipantsListViewController: CampViewController, NSComboBoxDataSour
         }
     }
     
+    @IBAction func rank(_ sender: Any) {
+        let start = Date()
+        camp?.campGroup?.rank()
+        print("Ranking took \(Date().timeIntervalSince(start))s")
+    }
     
     //MARK: - NSTableViewDelegate
     func tableViewSelectionDidChange(_ notification: Notification) {

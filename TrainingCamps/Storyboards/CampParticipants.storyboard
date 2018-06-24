@@ -970,35 +970,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="niq-Wb-ClC">
-                                <rect key="frame" x="505" y="280" width="30" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="19" id="JKq-gZ-ozW"/>
-                                    <constraint firstAttribute="width" constant="30" id="SXQ-FJ-6vI"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" alignment="center" drawsBackground="YES" id="B9u-s4-QxS">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" red="0.10570669420000001" green="0.0310975062" blue="0.040409527110000003" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
-                                </textFieldCell>
-                                <connections>
-                                    <binding destination="7Cv-bm-stH" name="value" keyPath="arrangedObjects.@count" id="mPC-B2-bOl"/>
-                                </connections>
-                            </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nVa-Rx-2SN">
-                                <rect key="frame" x="534" y="271" width="148" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="136" id="Jld-6O-R2S"/>
-                                    <constraint firstAttribute="height" constant="21" id="gjD-8d-a6q"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="Rank Competition" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kYQ-xV-8uc">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="rankCompetition:" target="ZAJ-qX-6tE" id="irE-MU-RA5"/>
-                                </connections>
-                            </button>
                             <comboBox identifier="participantsOnCampComboBox" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QlJ-KE-fA9">
                                 <rect key="frame" x="170" y="275" width="178" height="26"/>
                                 <constraints>
@@ -1030,11 +1001,40 @@
                                     <binding destination="ZAJ-qX-6tE" name="value" keyPath="camp.campName" id="bAs-PT-jAc"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jxZ-nl-f7e">
-                                <rect key="frame" x="426" y="282" width="80" height="17"/>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="niq-Wb-ClC">
+                                <rect key="frame" x="449" y="280" width="30" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="BfI-bl-Pu7"/>
-                                    <constraint firstAttribute="width" constant="76" id="vXN-ku-JjI"/>
+                                    <constraint firstAttribute="width" constant="30" id="W2l-xU-jz8"/>
+                                    <constraint firstAttribute="height" constant="19" id="Xg8-UE-ZmG"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" alignment="center" drawsBackground="YES" id="B9u-s4-QxS">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" red="0.10570669420000001" green="0.0310975062" blue="0.040409527110000003" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="7Cv-bm-stH" name="value" keyPath="arrangedObjects.@count" id="mPC-B2-bOl"/>
+                                </connections>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nVa-Rx-2SN">
+                                <rect key="frame" x="474" y="271" width="148" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="136" id="5MT-px-T5y"/>
+                                    <constraint firstAttribute="height" constant="21" id="h2t-R7-uEp"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Rank Competition" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kYQ-xV-8uc">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="rankCompetition:" target="ZAJ-qX-6tE" id="irE-MU-RA5"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jxZ-nl-f7e">
+                                <rect key="frame" x="370" y="282" width="80" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="FuI-hF-PX6"/>
+                                    <constraint firstAttribute="width" constant="76" id="cUf-JB-Fe4"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Participants:" id="Nkp-3C-nu8">
                                     <font key="font" metaFont="system"/>
@@ -1042,24 +1042,40 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LxW-MJ-SR4">
+                                <rect key="frame" x="611" y="271" width="71" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="59" id="PqL-Xc-TXn"/>
+                                    <constraint firstAttribute="height" constant="21" id="kRw-SL-GxI"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Rank" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W1f-Cg-Z2D">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="rank:" target="ZAJ-qX-6tE" id="Aqf-4I-zTo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="nVa-Rx-2SN" firstAttribute="leading" secondItem="niq-Wb-ClC" secondAttribute="trailing" constant="1" id="3WZ-Yr-vll"/>
                             <constraint firstItem="caZ-0O-NT3" firstAttribute="top" secondItem="b0g-vg-U95" secondAttribute="top" constant="1" id="Baz-E3-rGK"/>
-                            <constraint firstItem="niq-Wb-ClC" firstAttribute="top" secondItem="b0g-vg-U95" secondAttribute="top" constant="1" id="FQF-U2-UpB"/>
+                            <constraint firstItem="jxZ-nl-f7e" firstAttribute="top" secondItem="b0g-vg-U95" secondAttribute="top" constant="1" id="DVF-1A-PRI"/>
+                            <constraint firstItem="LxW-MJ-SR4" firstAttribute="top" secondItem="b0g-vg-U95" secondAttribute="top" constant="1" id="Ded-H1-wdV"/>
                             <constraint firstAttribute="trailing" secondItem="aDl-g7-hKF" secondAttribute="trailing" id="N8J-i5-jOD"/>
                             <constraint firstItem="caZ-0O-NT3" firstAttribute="leading" secondItem="txx-kf-4FD" secondAttribute="trailing" constant="5" id="UHh-o1-F4h"/>
-                            <constraint firstItem="nVa-Rx-2SN" firstAttribute="leading" secondItem="niq-Wb-ClC" secondAttribute="trailing" constant="5" id="XI4-ht-5K3"/>
+                            <constraint firstItem="LxW-MJ-SR4" firstAttribute="leading" secondItem="nVa-Rx-2SN" secondAttribute="trailing" constant="1" id="WMK-Jj-Hif"/>
                             <constraint firstItem="QlJ-KE-fA9" firstAttribute="leading" secondItem="caZ-0O-NT3" secondAttribute="trailing" constant="5" id="YB4-v4-r2y"/>
                             <constraint firstAttribute="bottom" secondItem="aDl-g7-hKF" secondAttribute="bottom" id="ZVF-x1-obV"/>
                             <constraint firstItem="aDl-g7-hKF" firstAttribute="leading" secondItem="b0g-vg-U95" secondAttribute="leading" id="d7X-gZ-v25"/>
-                            <constraint firstItem="jxZ-nl-f7e" firstAttribute="top" secondItem="b0g-vg-U95" secondAttribute="top" constant="1" id="fwc-VC-mGh"/>
                             <constraint firstItem="txx-kf-4FD" firstAttribute="leading" secondItem="b0g-vg-U95" secondAttribute="leading" constant="1" id="hKz-V8-OLW"/>
                             <constraint firstItem="QlJ-KE-fA9" firstAttribute="top" secondItem="b0g-vg-U95" secondAttribute="top" constant="1" id="hoz-58-yfd"/>
                             <constraint firstItem="txx-kf-4FD" firstAttribute="top" secondItem="b0g-vg-U95" secondAttribute="top" constant="1" id="iqN-qw-sre"/>
                             <constraint firstItem="aDl-g7-hKF" firstAttribute="top" secondItem="txx-kf-4FD" secondAttribute="bottom" constant="3" id="m2u-HE-9Y9"/>
-                            <constraint firstItem="nVa-Rx-2SN" firstAttribute="top" secondItem="b0g-vg-U95" secondAttribute="top" constant="1" id="tWW-RG-jzQ"/>
-                            <constraint firstItem="niq-Wb-ClC" firstAttribute="leading" secondItem="jxZ-nl-f7e" secondAttribute="trailing" constant="1" id="uey-1w-TIM"/>
-                            <constraint firstAttribute="trailing" secondItem="nVa-Rx-2SN" secondAttribute="trailing" constant="1" id="vM8-ht-mho"/>
+                            <constraint firstAttribute="trailing" secondItem="LxW-MJ-SR4" secondAttribute="trailing" constant="1" id="qGR-VK-3rU"/>
+                            <constraint firstItem="niq-Wb-ClC" firstAttribute="top" secondItem="b0g-vg-U95" secondAttribute="top" constant="1" id="t4f-uX-v58"/>
+                            <constraint firstItem="niq-Wb-ClC" firstAttribute="leading" secondItem="jxZ-nl-f7e" secondAttribute="trailing" constant="1" id="wvH-hG-ecm"/>
+                            <constraint firstItem="nVa-Rx-2SN" firstAttribute="top" secondItem="b0g-vg-U95" secondAttribute="top" constant="1" id="y5u-Ox-Iit"/>
                         </constraints>
                     </view>
                     <connections>

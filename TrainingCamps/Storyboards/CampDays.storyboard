@@ -13,7 +13,7 @@
                 <splitViewController title="Days" id="2F8-Ml-kPr" customClass="CampDaysSplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="lhk-zg-g1O"/>
-                        <splitViewItem id="b3N-yq-Qtb"/>
+                        <splitViewItem id="gSp-OP-b1A"/>
                     </splitViewItems>
                     <splitView key="splitView" autosaveName="campDaysSplitView" dividerStyle="paneSplitter" id="DC3-eE-eDO">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -25,7 +25,7 @@
                     <connections>
                         <outlet property="splitView" destination="DC3-eE-eDO" id="vfB-Jx-A4B"/>
                         <segue destination="WJ1-gf-bWn" kind="relationship" relationship="splitItems" id="xIY-Mo-9n7"/>
-                        <segue destination="4OZ-Oi-q01" kind="relationship" relationship="splitItems" id="7fn-RB-tL2"/>
+                        <segue destination="xlM-6K-MlI" kind="relationship" relationship="splitItems" id="uE9-ml-Itd"/>
                     </connections>
                 </splitViewController>
                 <customObject id="dac-6S-IPH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -41,13 +41,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LkC-tI-nvd">
-                                <rect key="frame" x="1" y="0.0" width="449" height="279"/>
+                                <rect key="frame" x="2" y="2" width="446" height="276"/>
                                 <clipView key="contentView" id="sDP-N7-sXo">
-                                    <rect key="frame" x="1" y="0.0" width="447" height="263"/>
+                                    <rect key="frame" x="1" y="0.0" width="444" height="275"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveName="campDay" rowSizeStyle="automatic" headerView="vZN-EJ-Vx8" viewBased="YES" id="dJm-Hj-cE7">
-                                            <rect key="frame" x="0.0" y="0.0" width="731" height="240"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="731" height="252"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -500,7 +500,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="h6I-zn-xbc">
-                                    <rect key="frame" x="1" y="263" width="447" height="15"/>
+                                    <rect key="frame" x="1" y="259" width="444" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="OLo-EY-W3h">
@@ -562,7 +562,7 @@
                                     <constraint firstAttribute="height" constant="22" id="HMb-5I-rU0"/>
                                     <constraint firstAttribute="width" constant="125" id="ykU-0S-qhs"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" id="M3T-gx-62k">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" id="M3T-gx-62k">
                                     <font key="font" metaFont="systemBold"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -571,16 +571,32 @@
                                     <binding destination="WJ1-gf-bWn" name="value" keyPath="camp.campName" id="HWU-UQ-OIF"/>
                                 </connections>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="49t-ll-VEH">
+                                <rect key="frame" x="384" y="271" width="71" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Sb4-uw-mKL"/>
+                                    <constraint firstAttribute="width" constant="59" id="f7d-EV-Ezg"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Rank" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nat-ne-bMX">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="rank:" target="WJ1-gf-bWn" id="s6g-rY-u6H"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="LkC-tI-nvd" secondAttribute="bottom" id="0Bi-Qa-JcQ"/>
+                            <constraint firstItem="LkC-tI-nvd" firstAttribute="top" secondItem="IdH-lr-lBQ" secondAttribute="bottom" constant="2" id="CZH-Gx-0jA"/>
                             <constraint firstItem="ngx-ZZ-4pc" firstAttribute="top" secondItem="msT-SN-VlR" secondAttribute="top" id="EzE-Na-Hdl"/>
                             <constraint firstItem="ngx-ZZ-4pc" firstAttribute="leading" secondItem="IdH-lr-lBQ" secondAttribute="trailing" constant="5" id="HNY-QY-l5z"/>
-                            <constraint firstItem="LkC-tI-nvd" firstAttribute="top" secondItem="IdH-lr-lBQ" secondAttribute="bottom" constant="1" id="LWu-L1-34a"/>
-                            <constraint firstItem="LkC-tI-nvd" firstAttribute="leading" secondItem="msT-SN-VlR" secondAttribute="leading" constant="1" id="ReH-vm-8xZ"/>
+                            <constraint firstAttribute="bottom" secondItem="LkC-tI-nvd" secondAttribute="bottom" constant="2" id="MqV-3U-BGZ"/>
                             <constraint firstItem="IdH-lr-lBQ" firstAttribute="top" secondItem="msT-SN-VlR" secondAttribute="top" constant="1" id="WOy-Na-bm7"/>
-                            <constraint firstAttribute="trailing" secondItem="LkC-tI-nvd" secondAttribute="trailing" id="i4g-eb-5FZ"/>
+                            <constraint firstAttribute="trailing" secondItem="49t-ll-VEH" secondAttribute="trailing" constant="1" id="djm-yE-5dy"/>
                             <constraint firstItem="IdH-lr-lBQ" firstAttribute="leading" secondItem="msT-SN-VlR" secondAttribute="leading" constant="1" id="m22-QO-V0G"/>
+                            <constraint firstItem="LkC-tI-nvd" firstAttribute="leading" secondItem="msT-SN-VlR" secondAttribute="leading" constant="2" id="mHK-vj-1Na"/>
+                            <constraint firstItem="49t-ll-VEH" firstAttribute="top" secondItem="msT-SN-VlR" secondAttribute="top" constant="1" id="mpb-uB-1Q2"/>
+                            <constraint firstAttribute="trailing" secondItem="LkC-tI-nvd" secondAttribute="trailing" constant="2" id="u7d-uU-7XO"/>
                         </constraints>
                     </view>
                     <connections>
@@ -598,6 +614,31 @@
             </objects>
             <point key="canvasLocation" x="779" y="-84"/>
         </scene>
+        <!--Camp Day Split View Controller-->
+        <scene sceneID="daM-vs-k4g">
+            <objects>
+                <splitViewController id="xlM-6K-MlI" customClass="CampDaySplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem id="hUv-sl-p4U"/>
+                        <splitViewItem id="ofy-8O-xso"/>
+                    </splitViewItems>
+                    <splitView key="splitView" dividerStyle="thin" vertical="YES" id="kQZ-qn-LHT">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <outlet property="delegate" destination="xlM-6K-MlI" id="kRc-4x-FEP"/>
+                        </connections>
+                    </splitView>
+                    <connections>
+                        <outlet property="splitView" destination="kQZ-qn-LHT" id="J4S-ON-nyH"/>
+                        <segue destination="4OZ-Oi-q01" kind="relationship" relationship="splitItems" id="DMN-rR-aen"/>
+                        <segue destination="h8v-2G-l7d" kind="relationship" relationship="splitItems" id="Quw-7u-bXv"/>
+                    </connections>
+                </splitViewController>
+                <customObject id="350-ZK-xyL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="611" y="433"/>
+        </scene>
         <!--Participant Camp Days View Controller-->
         <scene sceneID="Rko-lh-rqk">
             <objects>
@@ -609,11 +650,11 @@
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="42" horizontalPageScroll="10" verticalLineScroll="42" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUc-mb-Ho6">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="279"/>
                                 <clipView key="contentView" id="rtr-TK-bDu">
-                                    <rect key="frame" x="1" y="0.0" width="448" height="263"/>
+                                    <rect key="frame" x="1" y="0.0" width="448" height="278"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveName="participantDaysTableView" rowHeight="40" rowSizeStyle="automatic" headerView="ZGU-cP-Kfc" viewBased="YES" id="dMj-ku-gJi">
-                                            <rect key="frame" x="0.0" y="0.0" width="1094" height="240"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1094" height="255"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1243,12 +1284,13 @@
                                                 <binding destination="Fr7-kE-yr4" name="content" keyPath="arrangedObjects" id="Z8h-WQ-STr"/>
                                                 <binding destination="Fr7-kE-yr4" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="Z8h-WQ-STr" id="vZm-5i-ftj"/>
                                                 <binding destination="Fr7-kE-yr4" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="vZm-5i-ftj" id="nGX-rS-0jv"/>
+                                                <outlet property="delegate" destination="4OZ-Oi-q01" id="0Ba-Sv-aJo"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="uQk-0q-HZI">
-                                    <rect key="frame" x="1" y="263" width="448" height="15"/>
+                                    <rect key="frame" x="1" y="262" width="448" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="2Ji-Ex-c1d">
@@ -1360,7 +1402,15 @@
                     </connections>
                 </arrayController>
             </objects>
-            <point key="canvasLocation" x="779" y="348"/>
+            <point key="canvasLocation" x="1124" y="329"/>
+        </scene>
+        <!--Rankings-->
+        <scene sceneID="Wf1-S8-DH7">
+            <objects>
+                <controllerPlaceholder storyboardName="Rankings" id="h8v-2G-l7d" sceneMemberID="viewController"/>
+                <customObject id="sFj-dO-3O7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1216" y="616"/>
         </scene>
     </scenes>
     <resources>

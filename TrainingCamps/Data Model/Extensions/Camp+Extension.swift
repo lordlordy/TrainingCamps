@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Camp{
+extension Camp: TrainingValuesProtocol{
     
     @objc dynamic var campLocation: String{ return location?.name ?? "CAMP LOCATION NOT SET" }
     @objc dynamic var campType: String{ return type?.name ?? "CAMP TYPE NOT SET" }
@@ -24,21 +24,19 @@ extension Camp{
     @objc dynamic var participantCount: Int { return campParticipants?.count ?? 0}
     @objc dynamic var pointsForAWin: Int { return campParticipantsArray().filter({$0.isInPointsCompetition}).count}
     
-    @objc var totalKM: Double { return swimKM + bikeKM + runKM }
-    @objc var swimKM: Double { return campDaysArray().reduce(0.0, {$0 + $1.swimKM})}
-    @objc var bikeKM: Double { return campDaysArray().reduce(0.0, {$0 + $1.bikeKM})}
-    @objc var runKM: Double { return campDaysArray().reduce(0.0, {$0 + $1.runKM})}
+    @objc var totalKM:              Double { return valueFor(.total, .KM)}
+    @objc var swimKM:               Double { return valueFor(.swim, .KM)}
+    @objc var bikeKM:               Double { return valueFor(.bike, .KM)}
+    @objc var runKM:                Double { return valueFor(.run, .KM)}
+    @objc var totalAscentMetres:    Double { return valueFor(.total, .Ascent) }
+    @objc var bikeAscentMetres:     Double { return valueFor(.bike, .Ascent)}
+    @objc var runAscentMetres:      Double { return valueFor(.run, .Ascent)}
+    @objc var totalSeconds:         Double { return valueFor(.total, .Seconds)}
+    @objc var swimSeconds:          Double { return valueFor(.swim, .Seconds)}
+    @objc var bikeSeconds:          Double { return valueFor(.bike, .Seconds)}
+    @objc var runSeconds:           Double { return valueFor(.run, .Seconds)}
     
     @objc var  bricks: Int {return campDaysArray().reduce(0, {$0 + $1.bricks})}
-    
-    @objc var totalAscentMetres: Double { return  bikeAscentMetres + runAscentMetres }
-    @objc var bikeAscentMetres: Double { return campDaysArray().reduce(0.0, {$0 + $1.bikeAscentMetres})}
-    @objc var runAscentMetres: Double { return campDaysArray().reduce(0.0, {$0 + $1.runAscentMetres})}
-    
-    @objc var totalSeconds: Double { return swimSeconds + bikeSeconds + runSeconds}
-    @objc var swimSeconds: Double { return campDaysArray().reduce(0.0, {$0 + $1.swimSeconds})}
-    @objc var bikeSeconds: Double { return campDaysArray().reduce(0.0, {$0 + $1.bikeSeconds})}
-    @objc var runSeconds: Double { return campDaysArray().reduce(0.0, {$0 + $1.runSeconds})}
     
     @objc var campNameNotSet: Bool { return campName == nil || campName == ""}
     
@@ -224,7 +222,14 @@ extension Camp{
 
     func campParticipantsArray() -> [CampParticipant]{
         return campParticipants?.allObjects as? [CampParticipant] ?? []
-        
+    }
+    
+    func valueFor(_ a: Activity, _ u: Unit) -> Double{
+        return valueFor(a.rawValue, u.rawValue)
+    }
+    
+    func valueFor(_ activity: String, _ unit: String) -> Double{
+        return campParticipantsArray().reduce(0.0, {$0 + $1.valueFor(activity,unit)})
     }
     
     private func orderedForCampPoints() -> [CampParticipant]{

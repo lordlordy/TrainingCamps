@@ -12,6 +12,13 @@ class CampDaysViewController: CampViewController, NSComboBoxDataSource, NSTableV
     
     @IBOutlet var daysAC: NSArrayController!
     
+    @IBAction func rank(_ sender: Any) {
+        let start = Date()
+        camp?.campGroup?.rank()
+        print("Ranking took \(Int(Date().timeIntervalSince(start)))s")
+    }
+    
+    
     //MARK: - NSTableViewDelegate
     func tableViewSelectionDidChange(_ notification: Notification) {
         if let p = parent as? DayViewControllerProtocol{

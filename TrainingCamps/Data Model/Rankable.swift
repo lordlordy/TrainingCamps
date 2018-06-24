@@ -8,7 +8,13 @@
 
 import Foundation
 
-protocol Rankable{
-    func valueFor(activity: Activity, unit: Unit, gender: Gender, role: Role, location: Location?, participant: Participant?, camp: Camp?) ->  Double
-
+@objc protocol Rankable: TrainingValuesProtocol{
+    var gender: String { get }
+    var name: String { get }
+    var campRole: String { get }
+    var campName: String { get }
+    var rankings: NSSet? { get }
+    func rankFor(_ activity: String, _ unit: String) -> Rank
+    
 }
+
