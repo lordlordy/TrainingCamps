@@ -9,9 +9,22 @@
 import Foundation
 
 extension CampParticipant: Rankable{
-
     
     
+    //MARK:- TreeNode
+//    var children: [TreeNode] {
+//        let trainingNode = TreeNodeSum()
+//        trainingNode.set(name: "Training")
+//        let racesNode = TreeNodeSum()
+//        racesNode.set(name: "Races")
+//        
+//        trainingNode.addChildren(getDays())
+//        racesNode.addChildren(getRaces())
+//        
+//        return [trainingNode, racesNode]
+//    }
+//    var date: Date? { return camp?.campStart }
+//    
     @objc dynamic var trainingComplete: Bool{ return getDays().reduce(true, {$0 && $1.dayComplete})}
     @objc dynamic var racesComplete: Bool { return getRaces().filter({$0.race!.neededForCompletion}).reduce(true, {$0 && $1.raceComplete}) && getRaces().filter({$0.race!.neededForCompletion}).count == camp?.getRacesArray().filter({$0.neededForCompletion}).count ?? 0}
     @objc dynamic var campComplete: Bool{ return trainingComplete && racesComplete}
@@ -31,6 +44,15 @@ extension CampParticipant: Rankable{
     @objc dynamic var runAscentMetres: Double   { return valueFor(.run, .Ascent)}
     @objc dynamic var bricks: Int               { return getDays().reduce(0, {$0 + ($1.brick ? 1:0)})}
 
+//    var treeNodeName:       String? { return participant?.displayName }
+
+    
+//    func leavesShow(participantName show: Bool) {
+//        for c in children{
+//            c.leavesShow(participantName: show)
+//        }
+//    }
+    
     @objc dynamic var totalCompetitionSeconds: Double { return getPointsRaces().reduce(0.0, {$0 + $1.totalSeconds})}
     
     @objc dynamic var numberOfDays: Int { return days?.count ?? 0 }
@@ -73,10 +95,10 @@ extension CampParticipant: Rankable{
     }
     
     //MARK: - Rankable
-    var gender: String { return participant?.gender ?? "Not Set" }
-    var name: String { return participant?.uniqueName ?? "Not Set"}
-    var campRole: String { return role ?? "Not Set"}
-    var campName: String { return camp?.campName ?? "Not Set"}
+    var gender:     String { return participant?.gender ?? "Not Set" }
+    var name:       String? { return participant?.displayName }
+    var campRole:   String { return role ?? "Not Set"}
+    var campName:   String { return camp?.campName ?? "Not Set"}
     
     //MARK: - Rankable
     func rankFor(_ activity: String, _ unit: String) -> Rank{
@@ -97,35 +119,35 @@ extension CampParticipant: Rankable{
     
 
     
-    func generateTree() -> TreeNode{
-        
-        //TRAINING
-        let trainingNode = ParticipantTrainingNode(name: "Training", date: camp!.campStart!)
-        
-        for d in getDays().sorted(by: {$0.day!.date! < $1.day!.date!}){
-            let dayNode = ParticipantDayNode(day: d)
-            trainingNode.addChild(dayNode)
-        }
-        
-        //RACE RESULT
-        let racesNode = ParticipantRacesNode(name: "Races", date: Date())
-        
-        for r in getRaces().sorted(by: {$0.race!.date! < $1.race!.date!}){
-            let resultNode = ParticipantRaceResultNode(raceResult: r)
-            racesNode.addChild(resultNode)
-        }
-        
-        
-        
-        let participantCampNode = ParticipantCampNode(name: camp!.campName!, date: camp!.campStart!, training: trainingNode, races: racesNode)
-        
-        participantCampNode.rankChildren()
-        racesNode.rankChildren()
-        trainingNode.rankChildren()
-        
-        return participantCampNode
-
-    }
+//    func generateTree() -> TreeNodeOLD{
+//        
+//        //TRAINING
+//        let trainingNode = ParticipantTrainingNode(name: "Training", date: camp!.campStart!)
+//        
+//        for d in getDays().sorted(by: {$0.day!.date! < $1.day!.date!}){
+//            let dayNode = ParticipantDayNode(day: d)
+//            trainingNode.addChild(dayNode)
+//        }
+//        
+//        //RACE RESULT
+//        let racesNode = ParticipantRacesNode(name: "Races", date: Date())
+//        
+//        for r in getRaces().sorted(by: {$0.race!.date! < $1.race!.date!}){
+//            let resultNode = ParticipantRaceResultNode(raceResult: r)
+//            racesNode.addChild(resultNode)
+//        }
+//        
+//        
+//        
+//        let participantCampNode = ParticipantCampNode(name: camp!.campName!, date: camp!.campStart!, training: trainingNode, races: racesNode)
+//        
+//        participantCampNode.rankChildren()
+//        racesNode.rankChildren()
+//        trainingNode.rankChildren()
+//        
+//        return participantCampNode
+//
+//    }
     
     func getDays() -> [ParticipantDay]{
         return days?.allObjects as? [ParticipantDay] ?? []
@@ -143,7 +165,7 @@ extension CampParticipant: Rankable{
         return rankings?.allObjects as? [Rank] ?? []
     }
     
-    private func getRaces() -> [RaceResult]{
+    func getRaces() -> [RaceResult]{
         return raceResults?.allObjects as? [RaceResult] ?? []
     }
     

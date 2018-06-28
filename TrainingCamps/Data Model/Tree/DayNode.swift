@@ -8,14 +8,14 @@
 
 import Foundation
 
-class DayNode: NSObject, TreeNode{
+class DayNode: NSObject, TreeNodeOLD{
     
-    func addChild(_ child: TreeNode) {
+    func addChild(_ child: TreeNodeOLD) {
         print("Shouldn't be trying to add a node to a Day")
     }
     
-    var children: [TreeNode] {return []}
-    var leaves: [TreeNode] { return [self]}
+    var children: [TreeNodeOLD] {return []}
+    var leaves: [TreeNodeOLD] { return [self]}
     
     var name: String 
     

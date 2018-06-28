@@ -7,7 +7,7 @@
 //
 
 import Foundation
-//this should not be needed. The Responder Chain should do this ... At come point figure that out. This protocol is currently used so the TreeNodeViewController can move up the responder chain looking for this protocol
+//this should not be needed. The Responder Chain should do this ... At some point figure that out. This protocol is currently used so the TreeNodeViewController can move up the responder chain looking for this protocol
 protocol TreeToggler{
     func toggleTree()
 }

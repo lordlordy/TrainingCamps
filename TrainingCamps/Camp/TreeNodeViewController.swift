@@ -7,42 +7,85 @@
 //
 
 import Cocoa
-class TreeNodeViewController: NSViewController{
+class TreeNodeViewController: NSViewController, CampGroupViewControllerProtocol{
     
-    @objc dynamic var treeNodes: [TreeNode] = []{
-        didSet{
-            print("Tree nodes set to:")
-            for t in treeNodes{
-                print(t)
-                print(t.name)
-                for c in t.children{
-                    print("--> \(c.name)")
-                    
-                }
-            }
-            
-        }
-    }
- 
-    @IBAction func toggleTree(_ sender: Any){
-        print("Toggling")
-        if let nr = nextResponder{
-            tryNextResponder(nr,sender:sender)
-        }
-        
-    }
+    @objc dynamic var treeNodes: [TreeNode]?
+    @IBOutlet weak var treeView: NSOutlineView!
+    @IBOutlet var treeController: NSTreeController!
+    @IBOutlet weak var meanOrSumCB: NSComboBox!
+    @IBOutlet weak var filterComboBox: ParticipantFilterComboBox!
     
-    private func tryNextResponder(_ nr: NSResponder, sender: Any){
-        
-        print("trying \(nr)")
-        if let tt = nr as? TreeToggler{
-            tt.toggleTree()
-        }else{
-            if let next = nr.nextResponder{
-                tryNextResponder(next, sender:sender)
-            }
+    
+    private var campGroup: CampGroup?
+    private var camps: [Camp]?
+    private var treeGenerate: TreeGenerator = TreeGenerator()
+    private var treeOrder: TreeGenerator.TreeOrder = TreeGenerator.TreeOrder.standard
+    private var meanOrSum: Maths.Aggregator = Maths.Aggregator.Sum
+    private var filter: ParticipantFilter = ParticipantFilter.All
+    
 
+    @objc dynamic var filterString: String{
+        didSet{
+            if let f = ParticipantFilter(rawValue:filterString){
+                filter = f
+            }else{
+                filter = ParticipantFilter.All
+                filterString = filter.rawValue
+                filterComboBox.stringValue = filterString
+            }
+            updateTree()
         }
     }
+    
+    @objc dynamic var meanOrSumString: String{
+        didSet{
+            if let m = Maths.Aggregator(rawValue: meanOrSumString){
+                meanOrSum = m
+            }else{
+                meanOrSum = Maths.Aggregator.Sum
+                meanOrSumString = Maths.Aggregator.Sum.rawValue
+                meanOrSumCB.stringValue = meanOrSumString
+            }
+            updateTree()
+        }
+    }
+    
+    @objc dynamic var treeOrderString: String = TreeGenerator.TreeOrder.standard.rawValue{
+        didSet{
+            if let to = TreeGenerator.TreeOrder(rawValue: treeOrderString){
+                treeOrder = to
+                print("Tree Order set to: \(to). Updating tree...")
+                updateTree()
+            }
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        meanOrSumString = Maths.Aggregator.Sum.rawValue
+        filterString = ParticipantFilter.All.rawValue
+        super.init(coder: coder)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        meanOrSumCB.stringValue = Maths.Aggregator.Sum.rawValue
+    }
+    
+    func setCamps(_ camps: [Camp]?){
+        self.camps = camps
+        updateTree()
+    }
+
+    func setCampGroup(_ campGroup: CampGroup) {
+        self.campGroup = campGroup
+        updateTree()
+    }
+    
+    private func updateTree(){
+        if let cg = campGroup{
+            treeNodes = treeGenerate.generateTree(forGroup: cg, forCamps: camps, andOrder: treeOrder, nodesShow: meanOrSum, participantFilter: filter)
+        }
+    }
+    
     
 }

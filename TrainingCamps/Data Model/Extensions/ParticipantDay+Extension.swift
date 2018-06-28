@@ -10,25 +10,19 @@ import Foundation
 
 extension ParticipantDay: Rankable{
 
-    
+    var name: String? { return campParticipant?.participant?.displayName }
     
     var gender: String      { return campParticipant?.participant?.gender ?? "Not set" }
-    var name: String        { return campParticipant?.participant?.uniqueName ?? "Not Set"}
     var campRole: String    { return campParticipant?.role ?? "Not set"}
     var campName: String    { return campParticipant?.camp?.campName ?? "Not Set"}
     
+    @objc dynamic var totalSeconds: Double{ return swimSeconds + bikeSeconds + runSeconds }
+    @objc dynamic var totalKM: Double{ return swimKM + bikeKM + runKM }
+    @objc dynamic var totalAscentMetres: Double{return bikeAscentMetres + runAscentMetres}
     
-    @objc dynamic var totalSeconds: Double{
-        return swimSeconds + bikeSeconds + runSeconds   
-    }
-    
-    @objc dynamic var totalKM: Double{
-        return swimKM + bikeKM + runKM
-    }
-    
-    @objc dynamic var totalAscentMetres: Double{
-        return bikeAscentMetres + runAscentMetres
-    }
+    @objc dynamic var totalKPH: Double { return (totalSeconds > 0.0) ? (totalKM / (totalSeconds / 3600.0)) : 0.0}
+    @objc dynamic var bikeKPH: Double { return (bikeSeconds > 0.0) ? (bikeKM / (bikeSeconds / 3600.0)) : 0.0}
+    @objc dynamic var runKPH: Double { return (runSeconds > 0.0) ? (runKM / (runSeconds / 3600.0)) : 0.0}
     
     @objc dynamic var swimComplete: Bool{ return day?.swimComplete(particpantDay: self) ?? false }
     @objc dynamic var bikeComplete: Bool{ return day?.bikeComplete(particpantDay: self) ?? false }
@@ -117,12 +111,24 @@ extension ParticipantDay: Rankable{
     }
     
     //MARK: - Rankable
-    func rankFor(_ activity: Activity, _ unit: Unit) -> Rank{ return rankFor(activity.rawValue, unit.rawValue) }
+    func rankFor(_ activity: Activity, _ unit: Unit) -> Rank{
+        switch unit{
+        case .Ascent, .AscentFeet, .AscentMetres:
+            return rankFor(activity.rawValue, Unit.Ascent.rawValue)
+        case .Hours, .Minutes, .Seconds:
+            return rankFor(activity.rawValue, Unit.Seconds.rawValue)
+        case .KM, .Miles:
+            return rankFor(activity.rawValue, Unit.KM.rawValue)
+        case .KPH, .MPH:
+            return rankFor(activity.rawValue, Unit.KPH.rawValue)
+        }
+    }
+    
     func performRank() {
         campParticipant?.camp?.campGroup?.rank()
     }
     
-    func rankFor(_ activity: String,_ unit: String) -> Rank{
+    internal func rankFor(_ activity: String,_ unit: String) -> Rank{
         let filtered: [Rank] = rankingsArray().filter({$0.activity! == activity && $0.unit! == unit})
         if filtered.count > 0{
             return filtered[0]
@@ -147,39 +153,51 @@ extension ParticipantDay: Rankable{
     
     func valueFor(_ activity: Activity,_ unit: Unit) -> Double{
         switch unit{
-        case .Seconds:
+        case .Seconds, .Minutes, .Hours:
             switch activity{
-            case .total: return totalSeconds
-            case .swim: return swimSeconds
+            case .total: return totalSeconds * unit.factor()
+            case .swim: return swimSeconds * unit.factor()
             case .t1: return 0.0
-            case .bike: return bikeSeconds
+            case .bike: return bikeSeconds * unit.factor()
             case .t2: return 0.0
-            case .run: return runSeconds
+            case .run: return runSeconds * unit.factor()
             case .guessDifference: return 0.0
             case .handicapAdjusted: return 0.0
             }
-        case .Ascent:
+        case .Ascent, .AscentMetres, .AscentFeet:
             switch activity{
-            case .total: return totalAscentMetres
+            case .total: return totalAscentMetres * unit.factor()
             case .swim: return 0.0
             case .t1: return 0.0
-            case .bike: return bikeAscentMetres
+            case .bike: return bikeAscentMetres * unit.factor()
             case .t2: return 0.0
-            case .run: return runAscentMetres
+            case .run: return runAscentMetres * unit.factor()
             case .guessDifference: return 0.0
             case .handicapAdjusted: return 0.0
             }
-        case .KM:
+        case .KM, .Miles:
             switch activity{
-            case .total: return totalKM
-            case .swim: return swimKM
+            case .total: return totalKM * unit.factor()
+            case .swim: return swimKM * unit.factor()
             case .t1: return 0.0
-            case .bike: return bikeKM
+            case .bike: return bikeKM * unit.factor()
             case .t2: return 0.0
-            case .run: return runKM
+            case .run: return runKM * unit.factor()
             case .guessDifference: return 0.0
             case .handicapAdjusted: return 0.0
             }
+        case .KPH, .MPH:
+            switch activity{
+            case .total: return totalKPH * unit.factor()
+            case .swim: return 0.0
+            case .t1: return 0.0
+            case .bike: return bikeKPH * unit.factor()
+            case .t2: return 0.0
+            case .run: return runKPH * unit.factor()
+            case .guessDifference: return 0.0
+            case .handicapAdjusted: return 0.0
+            }
+            
         }
     }
     

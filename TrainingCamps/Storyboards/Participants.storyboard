@@ -12,10 +12,10 @@
             <objects>
                 <splitViewController title="Participants" id="5sk-9m-ci9" customClass="ParticipantsSplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem id="Nyp-nM-YHs"/>
-                        <splitViewItem id="CQl-Up-Y8j"/>
+                        <splitViewItem canCollapse="YES" id="Nyp-nM-YHs"/>
+                        <splitViewItem canCollapse="YES" id="2Yr-Bz-dZy"/>
                     </splitViewItems>
-                    <splitView key="splitView" dividerStyle="thin" vertical="YES" id="DmK-IS-HNj">
+                    <splitView key="splitView" id="DmK-IS-HNj">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
@@ -27,7 +27,7 @@
                         <outlet property="participantsCampsAC" destination="ndT-Vk-hF3" id="PlX-Cl-gkR"/>
                         <outlet property="splitView" destination="DmK-IS-HNj" id="UrH-dM-0cb"/>
                         <segue destination="mKP-2A-CdZ" kind="relationship" relationship="splitItems" id="lsI-ec-sge"/>
-                        <segue destination="9Yp-3o-YA4" kind="relationship" relationship="splitItems" id="gB0-2O-KrI"/>
+                        <segue destination="LcH-6U-5LR" kind="relationship" relationship="splitItems" id="gLe-kV-raE"/>
                     </connections>
                 </splitViewController>
                 <customObject id="UiN-ey-HhP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -45,6 +45,14 @@
                 </arrayController>
             </objects>
             <point key="canvasLocation" x="-234" y="132"/>
+        </scene>
+        <!--Participant-->
+        <scene sceneID="CvK-hl-iSU">
+            <objects>
+                <controllerPlaceholder storyboardName="Participant" id="LcH-6U-5LR" sceneMemberID="viewController"/>
+                <customObject id="tk8-Ut-a32" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-55" y="499"/>
         </scene>
         <!--Participant List View Controller-->
         <scene sceneID="XYO-fB-D9l">
@@ -67,7 +75,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="addParticipant:" target="mKP-2A-CdZ" id="IaL-7E-BbF"/>
+                                            <action selector="add:" target="vG9-VP-T0s" id="Tdn-vf-2cv"/>
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tmi-KF-F8w">
@@ -80,7 +88,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="removeParticipant:" target="mKP-2A-CdZ" id="mQJ-N3-fWh"/>
+                                            <action selector="remove:" target="vG9-VP-T0s" id="c0o-Ff-vzO"/>
                                             <binding destination="mKP-2A-CdZ" name="enabled" keyPath="parentViewController.participantsAC.selection.noCampsAttended" id="vg0-Ri-UYX"/>
                                         </connections>
                                     </button>
@@ -116,11 +124,11 @@
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTn-ix-RcG">
                                 <rect key="frame" x="1" y="0.0" width="449" height="279"/>
                                 <clipView key="contentView" id="BOf-GH-AiG">
-                                    <rect key="frame" x="1" y="0.0" width="447" height="263"/>
+                                    <rect key="frame" x="1" y="0.0" width="447" height="278"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" autosaveName="participantsTableView" rowSizeStyle="automatic" headerView="nhz-9r-LIR" viewBased="YES" id="izA-f7-H4v">
-                                            <rect key="frame" x="0.0" y="0.0" width="810" height="240"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="810" height="255"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -137,6 +145,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="firstName"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0Ox-bG-SSO">
@@ -173,6 +182,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="surname"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="YTB-Ti-f0B">
@@ -209,6 +219,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="knownAs"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="5vg-Q0-XLs">
@@ -245,6 +256,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="email"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="u2d-Oa-Pru">
@@ -281,6 +293,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="emailOK"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="A8r-eu-r8Z">
@@ -313,6 +326,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="gender"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView misplaced="YES" id="8lu-sD-w9C">
@@ -351,6 +365,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="coach"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView misplaced="YES" id="wPQ-Un-4C4">
@@ -389,6 +404,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="coachingRelationship"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView misplaced="YES" id="INN-zH-nbP">
@@ -427,6 +443,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="uniqueName"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="qKS-pt-VEX">
@@ -463,6 +480,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
+                                                    <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="campsAttended"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="gv2-Vm-pI6">
@@ -490,15 +508,16 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
-                                                <binding destination="mKP-2A-CdZ" name="content" keyPath="parentViewController.participantsAC.arrangedObjects" id="fpH-rU-WU5"/>
-                                                <binding destination="mKP-2A-CdZ" name="selectionIndexes" keyPath="parentViewController.participantsAC.selectionIndexes" previousBinding="fpH-rU-WU5" id="GuO-fv-lYl"/>
+                                                <binding destination="vG9-VP-T0s" name="content" keyPath="arrangedObjects" id="zb6-If-84R"/>
+                                                <binding destination="vG9-VP-T0s" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="zb6-If-84R" id="I9e-cu-wO2"/>
+                                                <binding destination="vG9-VP-T0s" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="I9e-cu-wO2" id="Fjl-jd-4kK"/>
                                                 <outlet property="delegate" destination="mKP-2A-CdZ" id="8lc-xv-xf2"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.3415977961432507" horizontal="YES" id="eRA-MM-1ge">
-                                    <rect key="frame" x="1" y="263" width="447" height="15"/>
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.98898071625344353" horizontal="YES" id="eRA-MM-1ge">
+                                    <rect key="frame" x="1" y="262" width="447" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Oip-y5-b7L">
@@ -522,18 +541,19 @@
                             <constraint firstItem="iTn-ix-RcG" firstAttribute="leading" secondItem="GIm-g5-ji7" secondAttribute="leading" constant="1" id="yi3-cB-NWI"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="participantsAC" destination="vG9-VP-T0s" id="HKU-xi-ZKY"/>
+                    </connections>
                 </viewController>
                 <customObject id="lLw-pr-mSs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <arrayController mode="entity" entityName="Participant" automaticallyPreparesContent="YES" id="vG9-VP-T0s">
+                    <connections>
+                        <binding destination="mKP-2A-CdZ" name="contentSet" keyPath="campGroup.participants" id="I5M-Pe-9dB"/>
+                        <binding destination="mKP-2A-CdZ" name="managedObjectContext" keyPath="campGroup.managedObjectContext" id="DRz-qb-X8A"/>
+                    </connections>
+                </arrayController>
             </objects>
             <point key="canvasLocation" x="436" y="-54"/>
-        </scene>
-        <!--Tree-->
-        <scene sceneID="JRF-GX-N45">
-            <objects>
-                <controllerPlaceholder storyboardName="Tree" id="9Yp-3o-YA4" sceneMemberID="viewController"/>
-                <customObject id="HhO-n7-wo2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="349" y="316"/>
         </scene>
     </scenes>
     <resources>

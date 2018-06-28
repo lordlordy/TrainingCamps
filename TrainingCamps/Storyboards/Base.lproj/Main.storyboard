@@ -889,6 +889,7 @@
                         <tabViewItem id="zWZ-ge-yrc"/>
                         <tabViewItem id="8e0-kq-uyV"/>
                         <tabViewItem id="OAd-Gc-dNn"/>
+                        <tabViewItem id="ljJ-5x-AXV"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="XKO-hY-O7J">
                         <rect key="frame" x="131" y="0.0" width="454" height="300"/>
@@ -906,6 +907,7 @@
                         <segue destination="3X1-Xf-Nap" kind="relationship" relationship="tabItems" id="FMO-2R-DIE"/>
                         <segue destination="P2C-GN-Pli" kind="relationship" relationship="tabItems" id="Ous-Rr-k79"/>
                         <segue destination="uvh-r8-W9W" kind="relationship" relationship="tabItems" id="qio-mr-s1d"/>
+                        <segue destination="SjH-Wu-czK" kind="relationship" relationship="tabItems" id="USK-nG-Uh7"/>
                     </connections>
                 </tabViewController>
                 <customObject id="YaN-1m-YRW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -951,6 +953,14 @@
                 <customObject id="WnM-Lu-Bjm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="958" y="1173"/>
+        </scene>
+        <!--EddingtonNumbers-->
+        <scene sceneID="ghe-oL-Pfa">
+            <objects>
+                <controllerPlaceholder storyboardName="EddingtonNumbers" id="SjH-Wu-czK" sceneMemberID="viewController"/>
+                <customObject id="D7E-ch-5gH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1085" y="1295"/>
         </scene>
     </scenes>
     <resources>

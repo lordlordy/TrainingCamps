@@ -9,24 +9,47 @@
 import Foundation
 
 extension CampGroup: TrainingValuesProtocol{
+
+    
     
     private var rankUnits: [(activity: Activity, unit: Unit)]{
         var result: [(activity: Activity, unit: Unit)] = []
-        result.append((Activity.total, unit: Unit.Seconds))
-        result.append((Activity.total, unit: Unit.KM))
-        result.append((Activity.total, unit: Unit.Ascent))
-        result.append((Activity.swim, unit: Unit.Seconds))
-        result.append((Activity.swim, unit: Unit.KM))
-        result.append((Activity.bike, unit: Unit.Seconds))
-        result.append((Activity.bike, unit: Unit.KM))
-        result.append((Activity.bike, unit: Unit.Ascent))
-        result.append((Activity.run, unit: Unit.Seconds))
-        result.append((Activity.run, unit: Unit.KM))
-        result.append((Activity.run, unit: Unit.Ascent))
+        result.append((Activity.total, Unit.Seconds))
+        result.append((Activity.total, Unit.KM))
+        result.append((Activity.total, Unit.Ascent))
+        result.append((Activity.total, Unit.KPH))
+        result.append((Activity.swim, Unit.Seconds))
+        result.append((Activity.swim, Unit.KM))
+        result.append((Activity.bike, Unit.Seconds))
+        result.append((Activity.bike, Unit.KM))
+        result.append((Activity.bike, Unit.Ascent))
+        result.append((Activity.bike, Unit.KPH))
+        result.append((Activity.run, Unit.Seconds))
+        result.append((Activity.run, Unit.KM))
+        result.append((Activity.run, Unit.Ascent))
+        result.append((Activity.run, Unit.KPH))
         return result
     }
     
-    @objc dynamic var totalSeconds: Double{ return valueFor(.total, .Seconds)}
+    var earliestCampStart: Date{
+        let orderedCamps: [Camp] = campsArray().sorted(by: {$0.campStart! < $1.campStart!})
+        if orderedCamps.count > 0{
+            return orderedCamps[0].campStart ?? Date()
+        }else{
+            return Date()
+        }
+    }
+    
+    @objc var totalKM:      Double { return campsArray().reduce(0.0, {$0 + $1.totalKM}) }
+    @objc var swimKM:       Double { return campsArray().reduce(0.0, {$0 + $1.swimKM}) }
+    @objc var bikeKM:       Double { return campsArray().reduce(0.0, {$0 + $1.bikeKM}) }
+    @objc var runKM:        Double { return campsArray().reduce(0.0, {$0 + $1.runKM}) }
+    @objc var totalSeconds: Double { return campsArray().reduce(0.0, {$0 + $1.totalSeconds}) }
+    @objc var swimSeconds:  Double { return campsArray().reduce(0.0, {$0 + $1.swimSeconds}) }
+    @objc var bikeSeconds:  Double { return campsArray().reduce(0.0, {$0 + $1.bikeSeconds}) }
+    @objc var runSeconds:   Double { return campsArray().reduce(0.0, {$0 + $1.runSeconds}) }
+    
+    @objc var participantEddingtonNumbers: [EddingtonNumber]{ return participantEddingtonNumbersArray()}
     
     func rank(){
         let start = Date()
@@ -37,7 +60,54 @@ extension CampGroup: TrainingValuesProtocol{
         ranker.rank(days, forRankUnits: rankUnits, isAscending: false)
         ranker.rank(participantsCamps, forRankUnits: rankUnits, isAscending: false)
         
+        rankParticipantEddingtonNumbers()
+        
         print("Calculating training ranks took \(Int(Date().timeIntervalSince(start)))s")
+    }
+    
+    func rankParticipantEddingtonNumbers(){
+        // sort by code, then by value (descending) then by plusOne ascending
+        let ordered = participantEddingtonNumbers.sorted(by: {($0.code, $0.value, -1 * $0.plusOne) > ($1.code, $1.value, -1 * $1.plusOne)})
+        let female = ordered.filter({$0.participant?.gender == Gender.Female.rawValue})
+        let male = ordered.filter({$0.participant?.gender == Gender.Male.rawValue})
+        
+        var rank: Int32 = 1
+        
+        var previousCode: String = ""
+        for o in ordered{
+            if previousCode != o.code{
+                previousCode = o.code
+                rank = 1
+            }
+            o.rank = rank
+            rank += 1
+        }
+        
+        //female
+        rank = 1
+        previousCode = ""
+        for o in female{
+            if previousCode != o.code{
+                previousCode = o.code
+                rank = 1
+            }
+            o.rankGender = rank
+            rank += 1
+        }
+        
+        rank = 1
+        previousCode = ""
+        for o in male{
+            if previousCode != o.code{
+                previousCode = o.code
+                rank = 1
+            }
+            o.rankGender = rank
+            rank += 1
+        }
+        
+
+        
     }
     
     func participant(withUniqueName name: String) -> Participant?{
@@ -96,14 +166,6 @@ extension CampGroup: TrainingValuesProtocol{
         }
     }
     
-    func generateTree() -> [TreeNode]{
-        let root: TreeNode = TreeNodeImplementation(name: "ALL", date: Date())
-        for camp in campsArray(){
-            root.addChild(camp.generateTreeByDay())
-        }
-        return [root]
-    }
-    
     func campsArray() -> [Camp]{ return camps?.allObjects as? [Camp] ?? []}
   
     func participantArray() -> [Participant]{ return participants?.allObjects as? [Participant] ?? []}
@@ -149,6 +211,12 @@ extension CampGroup: TrainingValuesProtocol{
         return raceDefinitions?.allObjects as? [RaceDefinition] ?? []
     }
     
-
+    private func participantEddingtonNumbersArray() -> [EddingtonNumber]{
+        var result: [EddingtonNumber] = []
+        for p in participantArray(){
+            result.append(contentsOf: p.eddingtonNumbers?.allObjects as? [EddingtonNumber] ?? [])
+        }
+        return result
+    }
     
 }

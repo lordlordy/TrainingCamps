@@ -63,6 +63,11 @@ class CoreDataStack{
         return mo as! CampGroup
     }
     
+    func newEddingtonNumber() -> EddingtonNumber{
+        let edNum: NSManagedObject = NSEntityDescription.insertNewObject(forEntityName: ENTITY.EddingtonNumber.rawValue, into: trainingCampsPC.viewContext)
+        return edNum as! EddingtonNumber
+    }
+    
     func newCamp() -> Camp{
         let camp: NSManagedObject = NSEntityDescription.insertNewObject(forEntityName: ENTITY.Camp.rawValue, into: trainingCampsPC.viewContext)
         return camp as! Camp

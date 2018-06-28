@@ -43,24 +43,47 @@ class RaceRanker{
             
     
             var rank: Int32 = 1
+            var bestOnlyRank: Int32 = 1
+            var bestOnly: Set<String> = Set<String>()
             
             //overall rank
             for r in sortedResults{
-                r.rankFor(activity: activity, unit: unit).overall = rank
+                let rankItem: Rank = r.rankFor(activity: activity, unit: unit)
+                rankItem.overall = rank
                 rank += 1
+                if bestOnly.contains(r.campParticipant!.participant!.displayName){
+                    rankItem.bestOnly = Constants.lastPlaceRank
+                }else{
+                    rankItem.bestOnly = bestOnlyRank
+                    bestOnlyRank += 1
+                    bestOnly.insert(r.campParticipant!.participant!.displayName)
+                }
             }
             
             //gender rank
             let genderSort = completers.sorted(by: {($0.campParticipant!.participant!.gender!, $0.value(forKey: key) as! Double) < ($1.campParticipant!.participant!.gender!, $1.value(forKey: key) as! Double)})
+            
+            bestOnlyRank = 1
+            bestOnly = Set<String>()
             
             var currentGender = ""
             for r in genderSort{
                 if r.campParticipant?.participant?.gender != currentGender{
                     rank = 1
                     currentGender = r.campParticipant!.participant!.gender!
+                    bestOnlyRank = 1
+                    bestOnly = Set<String>()
                 }
-                r.rankFor(activity: activity, unit: unit).gender = rank
+                let rankItem: Rank = r.rankFor(activity: activity, unit: unit)
+                rankItem.gender = rank
                 rank += 1
+                if bestOnly.contains(r.campParticipant!.participant!.displayName){
+                    rankItem.bestOnlyGender = Constants.lastPlaceRank
+                }else{
+                    rankItem.bestOnlyGender = bestOnlyRank
+                    bestOnlyRank += 1
+                    bestOnly.insert(r.campParticipant!.participant!.displayName)
+                }
             }
 
             //campGender rank

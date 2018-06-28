@@ -10,10 +10,13 @@ import Foundation
 
 extension Race{
     
-    @objc dynamic var name: String{return raceDefinition?.name ?? "RACE DEFINITION NOT SET"}
+    
+//    @objc dynamic var treeNodeName:         String? { return raceDefinition?.name}
     @objc dynamic var includesSwim: Bool { return (raceDefinition?.swimKM ?? 0.0) > 0.0}
     @objc dynamic var includesBike: Bool { return (raceDefinition?.bikeKM ?? 0.0) > 0.0}
     @objc dynamic var includesRun:  Bool { return (raceDefinition?.runKM ?? 0.0) > 0.0}
+    
+    @objc dynamic var name: String? { return raceDefinition?.name}
     
     @objc dynamic var pointsForAWin: Int{
         if pointsForWinOverride > 0.0{
@@ -60,11 +63,16 @@ extension Race{
         }
     }
     
+    var numberOfFinishers: Int{ return finishersArray().count }
+    
     func rank(){
         let ranker = RaceRanker() // should move this to generic Ranker.swift
         ranker.rank(self)
         generatePoints()
     }
+
+    
+    //MARK:- Private
     
     private func generatePoints(){
         if isForCampPoints{
@@ -100,7 +108,11 @@ extension Race{
         
     }
     
-    private func raceResultsArray() -> [RaceResult]{
+    private func finishersArray() -> [RaceResult]{
+        return raceResultsArray().filter({$0.raceCompletionStatus == RaceCompletionStatus.Y.rawValue})
+    }
+    
+    func raceResultsArray() -> [RaceResult]{
         return results?.allObjects as? [RaceResult] ?? []
     }
     

@@ -10,6 +10,25 @@ import Foundation
 
 extension Camp: TrainingValuesProtocol{
     
+    
+    
+    //return two nodes - one for Races and one for training 
+//    var children: [TreeNode] {
+//        let trainingNode = TreeNodeSum()
+//        trainingNode.set(name: "Training")
+//        let racesNode = TreeNodeSum()
+//        racesNode.set(name: "Races")
+//        
+//        trainingNode.addChildren(campDaysArray())
+//        racesNode.addChildren(getRacesArray())
+//        
+//        return [trainingNode, racesNode]
+//    }
+//    
+//    var treeNodeName: String? { return campName }
+//    var date: Date? { return campStart }
+//    
+    
     @objc dynamic var campLocation: String{ return location?.name ?? "CAMP LOCATION NOT SET" }
     @objc dynamic var campType: String{ return type?.name ?? "CAMP TYPE NOT SET" }
     
@@ -35,6 +54,12 @@ extension Camp: TrainingValuesProtocol{
     @objc var swimSeconds:          Double { return valueFor(.swim, .Seconds)}
     @objc var bikeSeconds:          Double { return valueFor(.bike, .Seconds)}
     @objc var runSeconds:           Double { return valueFor(.run, .Seconds)}
+    
+//    func leavesShow(participantName show: Bool) {
+//        for c in children{
+//            c.leavesShow(participantName: show)
+//        }
+//    }
     
     @objc var  bricks: Int {return campDaysArray().reduce(0, {$0 + $1.bricks})}
     
@@ -160,57 +185,57 @@ extension Camp: TrainingValuesProtocol{
         
     }
     
-    func generateTreeByDay() -> TreeNode{
-
-            let trainingNode = CampTrainingNode(name: "Training", date: campStart!)
-            let racesNode = CampRacingNode(name: "Races", date: campStart!)
-            
-            let campDays: [Day] = days?.allObjects as? [Day] ?? []
-            for d in campDays.sorted(by: {$0.date! < $1.date!}){
-                let dayNode =  TreeNodeImplementation(name: d.date!.dayOfWeek(), date: d.date!)
-                trainingNode.addChild(dayNode)
-                let participantDays: [ParticipantDay] = d.participantDays?.allObjects as? [ParticipantDay] ?? []
-                for pd in participantDays.sorted(by: {$0.campParticipant!.participant!.uniqueName! < $1.campParticipant!.participant!.uniqueName!}){
-                    let pdNode: TreeNode = DayNode(day: pd)
-                    dayNode.addChild(pdNode)
-                }
-                dayNode.rankChildren()
-                dayNode.children = dayNode.children.sorted(by: {$0.rank < $1.rank})
-            }
-            
-            let campRaces: [Race] = races?.allObjects as? [Race] ?? []
-            for r in campRaces.sorted(by: {$0.date! < $1.date!}){
-                let raceNode = TreeNodeImplementation(name: r.name, date: r.date!)
-                racesNode.addChild(raceNode)
-                let results: [RaceResult] = r.results?.allObjects as? [RaceResult] ?? []
-                for result in results.sorted(by: {$0.rank < $1.rank}){
-                    let resultNode: TreeNode = RaceResultNode(raceResult: result)
-                    raceNode.addChild(resultNode)
-                }
-                racesNode.rankChildren()
-            }
-        
-        let campsNode = CampNode(name: campName ?? "NOT SET", date: campStart!, training: trainingNode, races: racesNode)
-        trainingNode.rankChildren()
-        racesNode.rankChildren()
-        campsNode.rankChildren()
-        
-        return campsNode
-    }
+//    func generateTreeByDay() -> TreeNodeOLD{
+//
+//            let trainingNode = CampTrainingNode(name: "Training", date: campStart!)
+//            let racesNode = CampRacingNode(name: "Races", date: campStart!)
+//            
+//            let campDays: [Day] = days?.allObjects as? [Day] ?? []
+//            for d in campDays.sorted(by: {$0.date! < $1.date!}){
+//                let dayNode =  TreeNodeImplementation(name: d.date!.dayOfWeek(), date: d.date!)
+//                trainingNode.addChild(dayNode)
+//                let participantDays: [ParticipantDay] = d.participantDays?.allObjects as? [ParticipantDay] ?? []
+//                for pd in participantDays.sorted(by: {$0.campParticipant!.participant!.uniqueName! < $1.campParticipant!.participant!.uniqueName!}){
+//                    let pdNode: TreeNodeOLD = DayNode(day: pd)
+//                    dayNode.addChild(pdNode)
+//                }
+//                dayNode.rankChildren()
+//                dayNode.children = dayNode.children.sorted(by: {$0.rank < $1.rank})
+//            }
+//            
+//            let campRaces: [Race] = races?.allObjects as? [Race] ?? []
+//            for r in campRaces.sorted(by: {$0.date! < $1.date!}){
+//                let raceNode = TreeNodeImplementation(name: r.name ?? "Not Set", date: r.date!)
+//                racesNode.addChild(raceNode)
+//                let results: [RaceResult] = r.results?.allObjects as? [RaceResult] ?? []
+//                for result in results.sorted(by: {$0.rank < $1.rank}){
+//                    let resultNode: TreeNodeOLD = RaceResultNode(raceResult: result)
+//                    raceNode.addChild(resultNode)
+//                }
+//                racesNode.rankChildren()
+//            }
+//        
+//        let campsNode = CampNode(name: campName ?? "NOT SET", date: campStart!, training: trainingNode, races: racesNode)
+//        trainingNode.rankChildren()
+//        racesNode.rankChildren()
+//        campsNode.rankChildren()
+//        
+//        return campsNode
+//    }
     
-    func generateTreeByParticipant() -> TreeNode{
-        let rootNode = TreeNodeImplementation(name: campName ?? "NAME NOT SET", date: campStart!)
-        
-        for p in campParticipantsArray().sorted(by: {$0.participant!.uniqueName! < $1.participant!.uniqueName!}){
-            let node = p.generateTree()
-            node.name = p.participant?.displayName ?? "Name NOT SET"
-            rootNode.addChild(node)
-        }
-        rootNode.rankChildren()
-        rootNode.children = rootNode.children.sorted(by: {$0.rank < $1.rank})
-        return rootNode
-        
-    }
+//    func generateTreeByParticipant() -> TreeNodeOLD{
+//        let rootNode = TreeNodeImplementation(name: campName ?? "NAME NOT SET", date: campStart!)
+//
+//        for p in campParticipantsArray().sorted(by: {$0.participant!.uniqueName! < $1.participant!.uniqueName!}){
+//            let node = p.generateTree()
+//            node.name = p.participant?.displayName ?? "Name NOT SET"
+//            rootNode.addChild(node)
+//        }
+//        rootNode.rankChildren()
+//        rootNode.children = rootNode.children.sorted(by: {$0.rank < $1.rank})
+//        return rootNode
+//
+//    }
     
     func rankCompetition(){
         var rank: Int16 = 1
@@ -223,13 +248,21 @@ extension Camp: TrainingValuesProtocol{
     func campParticipantsArray() -> [CampParticipant]{
         return campParticipants?.allObjects as? [CampParticipant] ?? []
     }
-    
+
     func valueFor(_ a: Activity, _ u: Unit) -> Double{
         return valueFor(a.rawValue, u.rawValue)
     }
     
     func valueFor(_ activity: String, _ unit: String) -> Double{
         return campParticipantsArray().reduce(0.0, {$0 + $1.valueFor(activity,unit)})
+    }
+    
+    func participantDaysArray() -> [ParticipantDay]{
+        var result: [ParticipantDay] = []
+        for cp in campParticipantsArray(){
+            result.append(contentsOf: cp.getDays())
+        }
+        return result
     }
     
     private func orderedForCampPoints() -> [CampParticipant]{
@@ -242,7 +275,7 @@ extension Camp: TrainingValuesProtocol{
         })
     }
     
-    private func campDaysArray() -> [Day]{
+    func campDaysArray() -> [Day]{
         return days?.allObjects as? [Day] ?? []
     }
     

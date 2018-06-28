@@ -13,8 +13,8 @@ class CampSplitViewController: NSSplitViewController, CampViewControllerProtocol
     @objc dynamic var camp: Camp?
     @objc dynamic var campGroup: CampGroup?
     
-    private var byDay: Bool = true
-    private var camps: [Camp] = []
+//    private var byDay: Bool = true
+//    private var camps: [Camp] = []
     
     func setCamp(_ camp: Camp) {
         self.camp = camp
@@ -38,51 +38,54 @@ class CampSplitViewController: NSSplitViewController, CampViewControllerProtocol
     }
     
     func toggleTree() {
-        byDay = !byDay
-        updateTreeNodes()
+//        byDay = !byDay
+//        updateTreeNodes()
     }
     
-    func setTreeNodes(forCamps camps: [Camp]){
-        self.camps = camps.sorted(by: {$0.campStart! < $1.campStart!})
-        updateTreeNodes()
+    func setTreeNodes(forCamps camps: [Camp]?){
+//        self.camps = camps.sorted(by: {$0.campStart! < $1.campStart!})
+//        updateTreeNodes()
+        if let tree = getTreeView(){
+            tree.setCamps(camps)
+        }
     }
     
     private func updateTreeNodes(){
-        if byDay{
-            setTreeNodesByDay()
-        }else{
-            setTreeNodesByParticipant()
-        }
+//        if byDay{
+//            setTreeNodesByDay()
+//        }else{
+//            setTreeNodesByParticipant()
+//        }
     }
     
     private func setTreeNodesByDay(){
-        if let tv = getTreeView(){
-            if camps.count == 1{
-                tv.treeNodes = [camps[0].generateTreeByDay()]
-            }else if camps.count > 1{
-                let root = TreeNodeImplementation(name: "All", date: Date())
-                for camp in camps{
-                    root.addChild(camp.generateTreeByDay())
-                }
-                root.rankChildren()
-                tv.treeNodes = [root]
-            }
-        }
+//        if let tv = getTreeView(){
+//            if camps.count == 1{
+//                tv.treeNodes = [camps[0].generateTreeByDay()]
+//            }else if camps.count > 1{
+//                let root = TreeNodeImplementation(name: "All", date: Date())
+//                for camp in camps{
+//                    root.addChild(camp.generateTreeByDay())
+//                }
+//                root.rankChildren()
+//                tv.treeNodes = [root]
+//            }
+//        }
     }
 
     private func setTreeNodesByParticipant(){
-        if let tv = getTreeView(){
-            if camps.count == 1{
-                tv.treeNodes = [camps[0].generateTreeByParticipant()]
-            }else if camps.count > 1{
-                let root = TreeNodeImplementation(name: "All", date: Date())
-                for camp in camps{
-                    root.addChild(camp.generateTreeByParticipant())
-                }
-                root.rankChildren()
-                tv.treeNodes = [root]
-            }
-        }
+//        if let tv = getTreeView(){
+//            if camps.count == 1{
+//                tv.treeNodes = [camps[0].generateTreeByParticipant()]
+//            }else if camps.count > 1{
+//                let root = TreeNodeImplementation(name: "All", date: Date())
+//                for camp in camps{
+//                    root.addChild(camp.generateTreeByParticipant())
+//                }
+//                root.rankChildren()
+//                tv.treeNodes = [root]
+//            }
+//        }
     }
     
     private func getTreeView() -> TreeNodeViewController?{

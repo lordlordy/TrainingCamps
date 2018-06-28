@@ -58,8 +58,10 @@ class CampRaceResultViewController: CampViewController, RaceViewControllerProtoc
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         if let selection = raceResultsAC.selectedObjects as? [RaceResult]{
-            if let p = parent as? RankingsViewControllerProtocol{
-                p.setRankings(selection[0])
+            if selection.count > 0{
+                if let p = parent as? RankingsViewControllerProtocol{
+                    p.setRankings(selection[0])
+                }
             }
         }
     }

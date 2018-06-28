@@ -10,6 +10,8 @@ import Foundation
 
 struct Constants{
     static let lastPlaceRank: Int32 = 9999
+    static let milesPerKM: Double = 0.621371
+    static let feetPerMetre: Double = 3.280838879986877
 }
 
 enum Gender: String{
@@ -25,20 +27,48 @@ enum Role: String{
     static var Rankable: [Role]  = [Athlete, Coach, Masseuse, Physio, RideSupport, All]
 }
 
+enum ParticipantFilter: String{
+    case All, Completer, Athlete, Coach, Male, Female
+    static var AllFilters: [ParticipantFilter] = [All, Completer, Athlete, Coach, Male, Female]
+}
+
 enum Activity: String{
     case swim, bike, run, t1, t2
     case total, guessDifference, handicapAdjusted //these are all totals
-//    static var Rankable: [Activity] = [swim, bike, run, t1, t2, total, guessDifference, handicapAdjusted]
+    static var Eddington: [Activity] = [total, swim, bike, run]
+    
+    func validEddingtonUnits() -> [Unit]{
+        switch self{
+        case .swim: return [Unit.Hours, Unit.KM, Unit.Miles, Unit.Minutes]
+        case .t1, .t2: return []
+        default: return Unit.Eddington
+        }
+    }
 }
 
 enum Unit: String{
     case KM, Seconds, Ascent
-    static var Rankable: [Unit] = [KM, Seconds, Ascent]
+    case Miles, AscentMetres, AscentFeet, Minutes, Hours
+    case KPH, MPH
+    static var Rankable: [Unit] = [KM, Seconds, Ascent, KPH]
+    static var Eddington: [Unit] = [KM, Miles, Minutes, Hours, AscentMetres, AscentFeet, KPH, MPH]
+    
+    func factor() -> Double{
+        switch self{
+        case .KM, .Seconds, .Ascent, .AscentMetres, .KPH: return 1.0
+        case .AscentFeet: return Constants.feetPerMetre
+        case .Minutes: return 1.0 / 60.0
+        case .Hours: return 1.0 / (60.0 * 60.0)
+        case .Miles, .MPH: return Constants.milesPerKM
+        }
+    }
+    
 }
 
 enum ENTITY: String{
     case CampGroup, Camp, Day, ParticipantDay, Race, RaceResult, Participant, CampParticipant, RaceDefinition
     case Location, CampType, Rank
+    case EddingtonNumber
 }
 
 enum RaceCompletionStatus: String{
@@ -84,13 +114,17 @@ enum RaceResultProperty: String{
     case swimSeconds, bikeSeconds, runSeconds, t1Seconds, t2Seconds
     case handicapSeconds, guessSeconds
     case isRelay, participant, rankings
+    case raceCompletionStatus
+    
+    //calculated
+    case raceComplete, completionStatus
 }
 
 enum ParticipantProperty: String{
     case coach, coachingRelationship
     case emailAddress, emailOK
     case firstName, surname, knownAs, gender, uniqueName
-    case campGroup, campParticipations
+    case campGroup, campParticipations, eddingtonNumbers
 }
 
 enum CampParticipantProperty: String{
@@ -115,6 +149,7 @@ enum Coach: String{
 
 enum DateFormatString: String{
     case ValidCampDate = "EEE dd MMM yy"
+    case DayOfWeekOnly = "EEEE"
 }
 
 enum CoachingRelationship: String{
@@ -138,6 +173,10 @@ enum UserDefaultKey: String{
 enum RaceType: String{
     case Swim, Bike, Run, Aquathon, Triathlon, Duathlon
     static let All: [RaceType] = [ Swim, Bike, Run, Aquathon, Triathlon, Duathlon]
+}
+
+enum EddingtonNumberProperty: String{
+    case code, activity, unit, value, plusOne
 }
 
 

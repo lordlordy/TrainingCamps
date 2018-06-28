@@ -15,13 +15,16 @@ class CampsListViewController: CampGroupViewController, NSTableViewDelegate, NSC
 
     
     func tableViewSelectionDidChange(_ notification: Notification) {
-        let camps: [Camp] = selectedCamps()
-        if camps.count > 0 {
-            if let p = parent as? CampSplitViewController{
+        if let p = parent as? CampSplitViewController{
+            let camps: [Camp] = selectedCamps()
+            if camps.count > 0 {
                 p.setCamp(camps[0])
                 p.setTreeNodes(forCamps: camps)
+            }else{
+                p.setTreeNodes(forCamps: nil)
             }
         }
+        
 
     }
     

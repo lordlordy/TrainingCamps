@@ -18,10 +18,23 @@ class Ranker{
             for u in rankUnits{
                 let sortedItems: [Rankable] = items.sorted(by: {$0.valueFor( u.activity.rawValue, u.unit.rawValue) > $1.valueFor( u.activity.rawValue,  u.unit.rawValue)})
                 var rank: Int32 = 1
+                var bestOnlyRank: Int32 = 1
+                
+                var bestOnly: Set<String> = Set<String>()
+                
+                
                 
                 //overall rank
                 for d in sortedItems{
-                    d.rankFor( u.activity.rawValue, u.unit.rawValue).overall = rank
+                    let rankItem: Rank = d.rankFor( u.activity.rawValue, u.unit.rawValue)
+                    rankItem.overall = rank
+                    if bestOnly.contains(d.name!){
+                        rankItem.bestOnly = Constants.lastPlaceRank
+                    }else{
+                        rankItem.bestOnly = bestOnlyRank
+                        bestOnlyRank += 1
+                        bestOnly.insert(d.name!)
+                    }
                     rank += 1
                 }
                 
@@ -29,13 +42,25 @@ class Ranker{
                 let genderSort = items.sorted(by: {($0.gender, $0.valueFor( u.activity.rawValue, u.unit.rawValue)) > ($1.gender, $1.valueFor( u.activity.rawValue,  u.unit.rawValue))})
                 
                 var currentGender = ""
+                bestOnlyRank = 1
+                bestOnly = Set<String>()
                 for r in genderSort{
                     if r.gender != currentGender{
                         rank = 1
+                        bestOnlyRank = 1
                         currentGender = r.gender
+                        bestOnly = Set<String>()
                     }
-                    r.rankFor( u.activity.rawValue,  u.unit.rawValue).gender = rank
+                    let rankItem: Rank = r.rankFor( u.activity.rawValue,  u.unit.rawValue)
+                    rankItem.gender = rank
                     rank += 1
+                    if bestOnly.contains(r.name!){
+                        rankItem.bestOnlyGender = Constants.lastPlaceRank
+                    }else{
+                        rankItem.bestOnlyGender = bestOnlyRank
+                        bestOnlyRank += 1
+                        bestOnly.insert(r.name!)
+                    }
                 }
                 
                 //campGender rank
@@ -69,14 +94,14 @@ class Ranker{
                 }
                 
                 //participant rank
-                let participantSort = items.sorted(by: {($0.name, $0.valueFor( u.activity.rawValue, u.unit.rawValue)) > ($1.name, $1.valueFor( u.activity.rawValue,  u.unit.rawValue))})
+                let participantSort = items.sorted(by: {($0.name!, $0.valueFor( u.activity.rawValue, u.unit.rawValue)) > ($1.name!, $1.valueFor( u.activity.rawValue,  u.unit.rawValue))})
                 
                 var currenParticipant: String = ""
                 for r in participantSort{
                     if r.name != currenParticipant {
                         // reset
                         rank = 1
-                        currenParticipant = r.name
+                        currenParticipant = r.name!
                     }
                     r.rankFor( u.activity.rawValue,  u.unit.rawValue).participant = rank
                     rank += 1

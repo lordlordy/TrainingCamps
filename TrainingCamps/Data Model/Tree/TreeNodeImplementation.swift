@@ -8,14 +8,14 @@
 
 import Foundation
 
-class TreeNodeImplementation: NSObject, TreeNode{
+class TreeNodeImplementation: NSObject, TreeNodeOLD{
     
-    var children: [TreeNode] = []
-    var leaves: [TreeNode]{
+    var children: [TreeNodeOLD] = []
+    var leaves: [TreeNodeOLD]{
         return getLeaves()
     }
     
-    func addChild(_ child: TreeNode) {
+    func addChild(_ child: TreeNodeOLD) {
         children.append(child)
     }
     
@@ -49,8 +49,8 @@ class TreeNodeImplementation: NSObject, TreeNode{
         self.date = date
     }
     
-    private func getLeaves() -> [TreeNode]{
-        var result: [TreeNode] = []
+    private func getLeaves() -> [TreeNodeOLD]{
+        var result: [TreeNodeOLD] = []
         if children.count == 0{
             result.append(self)
         }else{
@@ -85,7 +85,7 @@ class TreeNodeImplementation: NSObject, TreeNode{
     
     func rankChildren(){
         //first rank on total time
-        var sorted: [TreeNode] = children.sorted(by: {$0.totalSeconds > $1.totalSeconds})
+        var sorted: [TreeNodeOLD] = children.sorted(by: {$0.totalSeconds > $1.totalSeconds})
         var rank: Int = 1
         for s in sorted{
             s.rank = rank

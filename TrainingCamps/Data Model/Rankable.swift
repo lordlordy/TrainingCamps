@@ -10,7 +10,7 @@ import Foundation
 
 @objc protocol Rankable: TrainingValuesProtocol{
     var gender: String { get }
-    var name: String { get }
+    var name: String? { get }
     var campRole: String { get }
     var campName: String { get }
     var rankings: NSSet? { get }

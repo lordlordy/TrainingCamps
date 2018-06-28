@@ -51,4 +51,13 @@ extension RaceDefinition{
         return NSSet(array: results.filter({$0.campParticipant != nil})) 
     }
     
+    var firstRunning: Date?{
+        let allRaces: [Race] = races?.allObjects as? [Race] ?? []
+        let sorted: [Race] = allRaces.sorted(by: {$0.date! < $1.date!})
+        if sorted.count > 0{
+            return sorted[0].date
+        }
+        return nil
+    }
+    
 }

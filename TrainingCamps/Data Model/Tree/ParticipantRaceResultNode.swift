@@ -11,9 +11,9 @@ import Foundation
 class ParticipantRaceResultNode: RaceResultNode{
     
     
-    override init(raceResult: RaceResult){
-        super.init(raceResult: raceResult)
-        name = raceResult.race!.name
-    }
+//    override init(raceResult: RaceResult){
+//        super.init(raceResult: raceResult)
+//        name = raceResult.race!.name ?? "NOT SET"
+//    }
 
 }

@@ -8,15 +8,15 @@
 
 import Foundation
 
-class RaceResultNode: NSObject, TreeNode{
+class RaceResultNode: NSObject{
     
-    func addChild(_ child: TreeNode) {
-        print("Shouldn't be adding a child to a race result")
-    }
+//    func addChild(_ child: TreeNodeOLD) {
+//        print("Shouldn't be adding a child to a race result")
+//    }
     
-    var children: [TreeNode] {return []}
-    var leaves: [TreeNode] {return [self]}
-    
+//    var children: [TreeNodeOLD] {return []}
+//    var leaves: [TreeNodeOLD] {return [self]}
+//    
     var name: String
     var date: Date  {return raceResult.race!.date!}
     

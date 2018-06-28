@@ -25,10 +25,10 @@ class CampNode: TreeNodeImplementation{
     
     override var completionCount: Int{ return countTrainingCompletions()}
     
-    private var trainingNode: TreeNode
-    private var racingNode: TreeNode
+    private var trainingNode: TreeNodeOLD
+    private var racingNode: TreeNodeOLD
     
-    init(name: String, date: Date, training: TreeNode, races: TreeNode){
+    init(name: String, date: Date, training: TreeNodeOLD, races: TreeNodeOLD){
         trainingNode = training
         racingNode = races
         super.init(name: name, date: date)

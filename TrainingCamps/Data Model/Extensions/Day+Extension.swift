@@ -9,6 +9,22 @@
 import Foundation
 
 extension Day{
+
+    
+    
+    //MARK:- TreeNode
+//    var children: [TreeNode] { return participantDays?.allObjects as? [TreeNode] ?? []}
+//    
+//    var treeNodeName: String? {
+//        let df: DateFormatter = DateFormatter()
+//        df.dateFormat = DateFormatString.DayOfWeekOnly.rawValue
+//        if let d = date{
+//            return df.string(from: d)
+//        }else{
+//            return "not set"
+//        }
+//    }
+    
     
     @objc var totalKM: Double { return swimKM + bikeKM + runKM }
     @objc var swimKM: Double { return participantDaysArray().reduce(0.0, {$0 + $1.swimKM})}
@@ -25,6 +41,12 @@ extension Day{
     @objc var swimSeconds: Double { return participantDaysArray().reduce(0.0, {$0 + $1.swimSeconds})}
     @objc var bikeSeconds: Double { return participantDaysArray().reduce(0.0, {$0 + $1.bikeSeconds})}
     @objc var runSeconds: Double { return participantDaysArray().reduce(0.0, {$0 + $1.runSeconds})}
+    
+//    func leavesShow(participantName show: Bool) {
+//        for c in children{
+//            c.leavesShow(participantName: show)
+//        }
+//    }
     
     @objc var participantDaysCount: Int { return participantDays?.count ?? 0}
     @objc var noParticipantDays: Bool { return participantDaysCount == 0}
@@ -75,7 +97,7 @@ extension Day{
         return pd.runSeconds >= earnWildcardRunSeconds
     }
     
-    private func participantDaysArray() -> [ParticipantDay]{
+    func participantDaysArray() -> [ParticipantDay]{
         return participantDays?.allObjects as? [ParticipantDay] ?? []
     }
     

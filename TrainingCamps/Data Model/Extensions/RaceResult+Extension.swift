@@ -11,12 +11,8 @@ import Foundation
 extension RaceResult: Rankable{
     
     var gender: String { return campParticipant?.participant?.gender ?? "Not set" }
-    var name: String { return campParticipant?.participant?.uniqueName ?? "not set"}
     var campRole: String { return campParticipant?.role ?? "Not set"}
     var campName: String { return campParticipant?.camp?.campName ?? "not set" }
-    
-
-    
 
     @objc dynamic var uniqueName: String{
         return campParticipant?.participant?.uniqueName ?? "PARTICIPANT NOT SET"
@@ -71,7 +67,10 @@ extension RaceResult: Rankable{
     @objc dynamic var rankGenderOverall: Int32 { return totalRank.gender}
     @objc dynamic var rankParticipant: Int32 { return totalRank.participant}
     @objc dynamic var rankRole: Int32 { return totalRank.role}
+    @objc dynamic var rankBestOnly: Int32 { return totalRank.bestOnly}
+    @objc dynamic var rankGenderBestOnly: Int32 { return totalRank.bestOnlyGender}
 
+    @objc dynamic var name: String? { return campParticipant?.participant?.displayName}
     
     // creates rank if not available
     func rankFor(activity: Activity, unit: Unit) -> Rank{
@@ -92,6 +91,8 @@ extension RaceResult: Rankable{
         newRank.gender = Constants.lastPlaceRank
         newRank.overall = Constants.lastPlaceRank
         newRank.participant = Constants.lastPlaceRank
+        newRank.bestOnly = Constants.lastPlaceRank
+        newRank.bestOnlyGender = Constants.lastPlaceRank
         mutableSetValue(forKey: RaceResultProperty.rankings.rawValue).add(newRank)
         return newRank
     }
@@ -107,6 +108,17 @@ extension RaceResult: Rankable{
             }
         }
         return 0.0
+    }
+    
+    override public class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String>{
+        let keyPaths = super.keyPathsForValuesAffectingValue(forKey: key)
+        switch key {
+        case RaceResultProperty.rankings.rawValue, RaceResultProperty.completionStatus.rawValue:
+            return keyPaths.union(Set([RaceResultProperty.raceCompletionStatus.rawValue]))
+
+        default:
+            return keyPaths
+        }
     }
     
     private func rankingsArray() -> [Rank]{

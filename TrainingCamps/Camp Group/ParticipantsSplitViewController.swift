@@ -8,13 +8,13 @@
 
 import Cocoa
 
-class ParticipantsSplitViewController: CampGroupSplitViewController, TreeToggler{
+class ParticipantsSplitViewController: CampGroupSplitViewController{
     
     @IBOutlet var participantsAC: NSArrayController!
     
     @IBOutlet var participantsCampsAC: NSArrayController!
     
-    private var flattenCamp: Bool = false
+//    private var flattenCamp: Bool = false
     
     func filter(forName name: String){
         if let pac = participantsAC{
@@ -26,69 +26,77 @@ class ParticipantsSplitViewController: CampGroupSplitViewController, TreeToggler
         }
     }
     
-    func toggleTree(){
-        flattenCamp = !flattenCamp
-        createTree()
-    }
-    
-    func createTree(){
-        if flattenCamp{
-            setFlattenedTreeNodes()
-        }else{
-            setTreeNodes()
-        }
-    }
-    
-    private func setFlattenedTreeNodes(){
-        if let tvc = getTreeController(){
-            let selection = getSelectedParticipants()
-            if selection.count == 0 {
-                return
-            }else if selection.count == 1{
-                let tree = selection[0].generateTree()
-                tvc.treeNodes = [tree]
-            }else{
-                let root = TreeNodeImplementation(name: "ALL", date: Date())
-                var camps: [CampParticipant] = []
-                for s in selection{
-                    camps.append(contentsOf: s.campParticipations?.allObjects as? [CampParticipant] ?? [])
-                }
-                for c in camps{
-                    let node = c.generateTree()
-                    node.name = c.participant?.uniqueName ?? "NAME NOT SET"
-                    node.name += "-"
-                    node.name += c.camp?.campName ?? "Camp not set"
-                    root.addChild(node)
-                }
-                root.rankChildren()
-                root.children = root.children.sorted(by: {$0.rank < $1.rank})
-                tvc.treeNodes = [root]
+    func setParticipants(_ participants: [Participant]){
+        for c in childViewControllers{
+            if let vc = c as? ParticipantSplitViewController{
+                vc.setParticipants(participants)
             }
         }
     }
     
-    private func setTreeNodes(){
-        if let tvc = getTreeController(){
-            let selection = getSelectedParticipants()
-            if selection.count == 0 {
-                return
-            }else if selection.count == 1{
-                let tree = selection[0].generateTree()
-                tvc.treeNodes = [tree]
-            }else{
-                let root = TreeNodeImplementation(name: "ALL", date: Date())
-                for s in selection.sorted(by: {$0.uniqueName ?? "zzz" < $1.uniqueName ?? "zzz"}){
-                    let tree = s.generateTree()
-                    if tree.totalKM > 0{
-                        root.addChild(s.generateTree())
-                    }
-                }
-                root.rankChildren()
-                root.children = root.children.sorted(by: {$0.rank < $1.rank})
-                tvc.treeNodes = [root]
-            }
-        }
-    }
+//    func toggleTree(){
+//        flattenCamp = !flattenCamp
+//        createTree()
+//    }
+    
+//    func createTree(){
+//        if flattenCamp{
+//            setFlattenedTreeNodes()
+//        }else{
+//            setTreeNodes()
+//        }
+//    }
+    
+//    private func setFlattenedTreeNodes(){
+//        if let tvc = getTreeController(){
+//            let selection = getSelectedParticipants()
+////            if selection.count == 0 {
+////                return
+////            }else if selection.count == 1{
+////                let tree = selection[0].generateTree()
+////                tvc.treeNodes = [tree]
+////            }else{
+////                let root = TreeNodeImplementation(name: "ALL", date: Date())
+////                var camps: [CampParticipant] = []
+////                for s in selection{
+////                    camps.append(contentsOf: s.campParticipations?.allObjects as? [CampParticipant] ?? [])
+////                }
+////                for c in camps{
+////                    let node = c.generateTree()
+////                    node.name = c.participant?.uniqueName ?? "NAME NOT SET"
+////                    node.name += "-"
+////                    node.name += c.camp?.campName ?? "Camp not set"
+////                    root.addChild(node)
+////                }
+////                root.rankChildren()
+////                root.children = root.children.sorted(by: {$0.rank < $1.rank})
+////                tvc.treeNodes = [root]
+////            }
+//        }
+//    }
+    
+//    private func setTreeNodes(){
+//        if let tvc = getTreeController(){
+////            let selection = getSelectedParticipants()
+////            if selection.count == 0 {
+////                return
+////            }else if selection.count == 1{
+////                let tree = selection[0].generateTree()
+////                tvc.treeNodes = [tree]
+////            }else{
+////                let root = TreeNodeImplementation(name: "ALL", date: Date())
+////                for s in selection.sorted(by: {$0.uniqueName ?? "zzz" < $1.uniqueName ?? "zzz"}){
+////                    let tree = s.generateTree()
+////                    if tree.totalKM > 0{
+////                        root.addChild(s.generateTree())
+////                    }
+////                }
+////                root.rankChildren()
+////                root.children = root.children.sorted(by: {$0.rank < $1.rank})
+////                tvc.treeNodes = [root]
+////            }
+//        }
+//    }
 
     
     private func getTreeController() -> TreeNodeViewController?{

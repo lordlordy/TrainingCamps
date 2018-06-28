@@ -26,15 +26,13 @@ extension Participant{
         return result
     }
     
-    func generateTree() -> TreeNode{
-        
-        let rootNode = TreeNodeImplementation(name: displayName, date: Date())
-        
-        for camp in campParticipationsArray().sorted(by: {$0.camp!.campStart! < $1.camp!.campStart!}){
-            rootNode.addChild(camp.generateTree())
+    func participantDaysArray() -> [ParticipantDay]{
+        var result: [ParticipantDay] = []
+        for cp in campParticipationsArray(){
+            result.append(contentsOf: cp.getDays())
         }
-        rootNode.rankChildren()
-        return rootNode
+        
+        return result
     }
     
     private func campParticipationsArray() -> [CampParticipant]{
