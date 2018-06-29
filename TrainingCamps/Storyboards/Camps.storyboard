@@ -90,7 +90,7 @@
                                     <rect key="frame" x="1" y="0.0" width="167" height="278"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" autosaveName="campsList" rowSizeStyle="automatic" headerView="c1T-Gr-thd" viewBased="YES" id="JHQ-He-39j">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveName="campsList" rowSizeStyle="automatic" headerView="c1T-Gr-thd" viewBased="YES" id="JHQ-He-39j">
                                             <rect key="frame" x="0.0" y="0.0" width="1465" height="255"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>

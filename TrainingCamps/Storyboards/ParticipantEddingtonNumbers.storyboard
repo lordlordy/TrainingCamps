@@ -47,7 +47,7 @@
                                     <rect key="frame" x="1" y="0.0" width="444" height="272"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="7Ot-ZA-4nd" viewBased="YES" id="HkF-cC-dFk">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="7Ot-ZA-4nd" viewBased="YES" id="HkF-cC-dFk">
                                             <rect key="frame" x="0.0" y="0.0" width="645" height="249"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>

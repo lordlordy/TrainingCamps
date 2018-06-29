@@ -123,7 +123,7 @@
                                     <rect key="frame" x="1" y="0.0" width="448" height="278"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveName="RaceDefinitionTableView" rowSizeStyle="automatic" headerView="VgK-kN-RuG" viewBased="YES" id="0yi-Cd-yn0">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveName="RaceDefinitionTableView" rowSizeStyle="automatic" headerView="VgK-kN-RuG" viewBased="YES" id="0yi-Cd-yn0">
                                             <rect key="frame" x="0.0" y="0.0" width="498" height="255"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -452,7 +452,7 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.92000000000000004" horizontal="YES" id="lRi-4z-2CN">
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="lRi-4z-2CN">
                                     <rect key="frame" x="1" y="262" width="448" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

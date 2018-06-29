@@ -46,7 +46,7 @@
                                     <rect key="frame" x="1" y="0.0" width="444" height="275"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveName="campDay" rowSizeStyle="automatic" headerView="vZN-EJ-Vx8" viewBased="YES" id="dJm-Hj-cE7">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveName="campDay" rowSizeStyle="automatic" headerView="vZN-EJ-Vx8" viewBased="YES" id="dJm-Hj-cE7">
                                             <rect key="frame" x="0.0" y="0.0" width="731" height="252"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -637,7 +637,7 @@
                                     <rect key="frame" x="1" y="0.0" width="448" height="278"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveName="participantDaysTableView" rowHeight="40" rowSizeStyle="automatic" headerView="ZGU-cP-Kfc" viewBased="YES" id="dMj-ku-gJi">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveName="participantDaysTableView" rowHeight="40" rowSizeStyle="automatic" headerView="ZGU-cP-Kfc" viewBased="YES" id="dMj-ku-gJi">
                                             <rect key="frame" x="0.0" y="0.0" width="1094" height="255"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>

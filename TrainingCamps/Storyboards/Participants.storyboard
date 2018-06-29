@@ -127,7 +127,7 @@
                                     <rect key="frame" x="1" y="0.0" width="447" height="278"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" autosaveName="participantsTableView" rowSizeStyle="automatic" headerView="nhz-9r-LIR" viewBased="YES" id="izA-f7-H4v">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveName="participantsTableView" rowSizeStyle="automatic" headerView="nhz-9r-LIR" viewBased="YES" id="izA-f7-H4v">
                                             <rect key="frame" x="0.0" y="0.0" width="810" height="255"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -516,7 +516,7 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.98898071625344353" horizontal="YES" id="eRA-MM-1ge">
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="eRA-MM-1ge">
                                     <rect key="frame" x="1" y="262" width="447" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -548,8 +548,8 @@
                 <customObject id="lLw-pr-mSs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <arrayController mode="entity" entityName="Participant" automaticallyPreparesContent="YES" id="vG9-VP-T0s">
                     <connections>
-                        <binding destination="mKP-2A-CdZ" name="contentSet" keyPath="campGroup.participants" id="I5M-Pe-9dB"/>
                         <binding destination="mKP-2A-CdZ" name="managedObjectContext" keyPath="campGroup.managedObjectContext" id="DRz-qb-X8A"/>
+                        <binding destination="mKP-2A-CdZ" name="contentSet" keyPath="campGroup.participants" id="I5M-Pe-9dB"/>
                     </connections>
                 </arrayController>
             </objects>

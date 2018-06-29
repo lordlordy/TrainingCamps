@@ -19,7 +19,7 @@
                                     <rect key="frame" x="1" y="0.0" width="446" height="297"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveName="raceResultsTableView" rowHeight="40" rowSizeStyle="automatic" headerView="Z3A-2G-hzX" viewBased="YES" id="kxx-tP-4Dw">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveName="raceResultsTableView" rowHeight="40" rowSizeStyle="automatic" headerView="Z3A-2G-hzX" viewBased="YES" id="kxx-tP-4Dw">
                                             <rect key="frame" x="0.0" y="0.0" width="1323" height="274"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
