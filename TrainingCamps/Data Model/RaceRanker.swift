@@ -60,8 +60,8 @@ class RaceRanker{
                 }
             }
             
-            //gender rank
-            let genderSort = completers.sorted(by: {($0.campParticipant!.participant!.gender!, $0.value(forKey: key) as! Double) < ($1.campParticipant!.participant!.gender!, $1.value(forKey: key) as! Double)})
+            //gender rank - exclude relays from this
+            let genderSort = completers.filter({!$0.isRelay}).sorted(by: {($0.campParticipant!.participant!.gender!, $0.value(forKey: key) as! Double) < ($1.campParticipant!.participant!.gender!, $1.value(forKey: key) as! Double)})
             
             bestOnlyRank = 1
             bestOnly = Set<String>()
@@ -87,7 +87,7 @@ class RaceRanker{
             }
 
             //campGender rank
-            let campGenderSort = completers.sorted(by: {($0.campParticipant!.camp!.campName!, $0.campParticipant!.participant!.gender!, $0.value(forKey: key) as! Double) < ($1.campParticipant!.camp!.campName!,$1.campParticipant!.participant!.gender!, $1.value(forKey: key) as! Double)})
+            let campGenderSort = completers.filter({!$0.isRelay}).sorted(by: {($0.campParticipant!.camp!.campName!, $0.campParticipant!.participant!.gender!, $0.value(forKey: key) as! Double) < ($1.campParticipant!.camp!.campName!,$1.campParticipant!.participant!.gender!, $1.value(forKey: key) as! Double)})
             
             var currentCampGender = ""
             for r in campGenderSort{
@@ -98,6 +98,15 @@ class RaceRanker{
                 }
                 r.rankFor(activity: activity, unit: unit).campGender = rank
                 rank += 1
+            }
+            
+            //set gender ranks to 9999 for relays
+            let relays = completers.filter({$0.isRelay})
+            for r in relays{
+                let rank: Rank = r.rankFor(activity: activity, unit: unit)
+                rank.bestOnlyGender = Constants.lastPlaceRank
+                rank.campGender = Constants.lastPlaceRank
+                rank.gender = Constants.lastPlaceRank
             }
             
             //camp rank

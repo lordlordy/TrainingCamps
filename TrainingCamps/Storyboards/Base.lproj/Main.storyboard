@@ -887,11 +887,11 @@
                         <tabViewItem id="JLD-dy-Afp"/>
                         <tabViewItem id="b4a-Q9-rhe"/>
                         <tabViewItem id="zWZ-ge-yrc"/>
-                        <tabViewItem id="8e0-kq-uyV"/>
-                        <tabViewItem id="OAd-Gc-dNn"/>
                         <tabViewItem id="ljJ-5x-AXV"/>
+                        <tabViewItem id="OAd-Gc-dNn"/>
+                        <tabViewItem id="syt-ff-pvp"/>
                     </tabViewItems>
-                    <tabView key="tabView" type="noTabsNoBorder" id="XKO-hY-O7J">
+                    <tabView key="tabView" type="noTabsBezelBorder" id="XKO-hY-O7J">
                         <rect key="frame" x="131" y="0.0" width="454" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
@@ -905,9 +905,9 @@
                         <segue destination="hNO-CN-OLw" kind="relationship" relationship="tabItems" id="eyO-mm-gHO"/>
                         <segue destination="kRS-5n-aAp" kind="relationship" relationship="tabItems" id="qV5-b1-KcZ"/>
                         <segue destination="3X1-Xf-Nap" kind="relationship" relationship="tabItems" id="FMO-2R-DIE"/>
-                        <segue destination="P2C-GN-Pli" kind="relationship" relationship="tabItems" id="Ous-Rr-k79"/>
-                        <segue destination="uvh-r8-W9W" kind="relationship" relationship="tabItems" id="qio-mr-s1d"/>
                         <segue destination="SjH-Wu-czK" kind="relationship" relationship="tabItems" id="USK-nG-Uh7"/>
+                        <segue destination="uvh-r8-W9W" kind="relationship" relationship="tabItems" id="qio-mr-s1d"/>
+                        <segue destination="BEc-1B-9Yk" kind="relationship" relationship="tabItems" id="eW0-lv-8yd"/>
                     </connections>
                 </tabViewController>
                 <customObject id="YaN-1m-YRW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -930,18 +930,10 @@
             </objects>
             <point key="canvasLocation" x="826" y="1173"/>
         </scene>
-        <!--Locations-->
-        <scene sceneID="dme-5c-DAe">
-            <objects>
-                <controllerPlaceholder storyboardName="Locations" id="P2C-GN-Pli" sceneMemberID="viewController"/>
-                <customObject id="8cW-Mo-JGs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="758" y="1288"/>
-        </scene>
-        <!--CampTypes-->
+        <!--Admin-->
         <scene sceneID="PAT-O9-QYp">
             <objects>
-                <controllerPlaceholder storyboardName="CampTypes" id="uvh-r8-W9W" sceneMemberID="viewController"/>
+                <controllerPlaceholder storyboardName="Admin" id="uvh-r8-W9W" sceneMemberID="viewController"/>
                 <customObject id="XFZ-wv-MZF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="857" y="1316"/>
@@ -953,6 +945,14 @@
                 <customObject id="WnM-Lu-Bjm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="958" y="1173"/>
+        </scene>
+        <!--HallOfFame-->
+        <scene sceneID="qtg-El-ZDC">
+            <objects>
+                <controllerPlaceholder storyboardName="HallOfFame" id="BEc-1B-9Yk" sceneMemberID="viewController"/>
+                <customObject id="au2-zn-c14" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1168" y="1186"/>
         </scene>
         <!--EddingtonNumbers-->
         <scene sceneID="ghe-oL-Pfa">

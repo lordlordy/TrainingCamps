@@ -165,12 +165,23 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BNH-Bn-CBd">
+                                <rect key="frame" x="43" y="281" width="407" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Camp Types" id="eTH-G8-9MR">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="BNH-Bn-CBd" secondAttribute="trailing" constant="2" id="0zu-T8-6tk"/>
                             <constraint firstItem="APX-mR-z7B" firstAttribute="leading" secondItem="qsp-KK-RtQ" secondAttribute="leading" constant="1" id="4n2-SU-KPt"/>
                             <constraint firstItem="8LJ-qg-I66" firstAttribute="leading" secondItem="qsp-KK-RtQ" secondAttribute="leading" constant="1" id="9oA-dE-gQl"/>
+                            <constraint firstItem="BNH-Bn-CBd" firstAttribute="leading" secondItem="APX-mR-z7B" secondAttribute="trailing" constant="5" id="Ges-HK-UuI"/>
                             <constraint firstItem="8LJ-qg-I66" firstAttribute="top" secondItem="APX-mR-z7B" secondAttribute="bottom" constant="1" id="M2G-YG-WRO"/>
                             <constraint firstAttribute="trailing" secondItem="8LJ-qg-I66" secondAttribute="trailing" id="e4E-iQ-eRQ"/>
+                            <constraint firstItem="BNH-Bn-CBd" firstAttribute="top" secondItem="qsp-KK-RtQ" secondAttribute="top" constant="2" id="hX6-Sz-djP"/>
                             <constraint firstItem="APX-mR-z7B" firstAttribute="top" secondItem="qsp-KK-RtQ" secondAttribute="top" constant="1" id="nb1-x4-Ttd"/>
                             <constraint firstAttribute="bottom" secondItem="8LJ-qg-I66" secondAttribute="bottom" id="w93-5h-MHD"/>
                         </constraints>

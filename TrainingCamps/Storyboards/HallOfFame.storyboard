@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Ws7-Fp-qN6">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Hall Of Fame-->
+        <scene sceneID="KWR-M1-Yy3">
+            <objects>
+                <tabViewController title="Hall Of Fame" id="Ws7-Fp-qN6" customClass="CampGroupTabViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem label="Races" identifier="" id="5Aa-Xy-9Y3"/>
+                        <tabViewItem label="Training" identifier="" id="UA5-PQ-XVd"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsLineBorder" id="jVw-fg-Ud4">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                        <connections>
+                            <outlet property="delegate" destination="Ws7-Fp-qN6" id="krQ-sx-BOB"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <outlet property="tabView" destination="jVw-fg-Ud4" id="la1-no-heB"/>
+                        <segue destination="hgi-8z-gd1" kind="relationship" relationship="tabItems" id="G4V-AS-6hp"/>
+                        <segue destination="R22-6v-vwb" kind="relationship" relationship="tabItems" id="QTU-8Z-WRp"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="Nix-9c-vfc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="218" y="30"/>
+        </scene>
+        <!--Hall Of Fame View Controller-->
+        <scene sceneID="LHz-xV-9Ot">
+            <objects>
+                <viewController id="hgi-8z-gd1" customClass="HallOfFameViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="xvl-TZ-MAP">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkK-cy-3rl">
+                                <rect key="frame" x="2" y="2" width="446" height="296"/>
+                                <clipView key="contentView" drawsBackground="NO" id="GLt-Qh-lsN">
+                                    <rect key="frame" x="1" y="1" width="444" height="294"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView id="uCn-gM-ff1">
+                                            <rect key="frame" x="0.0" y="0.0" width="444" height="158"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="5" minimumLineSpacing="5" id="yHd-IA-3fV">
+                                                <size key="itemSize" width="330" height="237"/>
+                                                <size key="headerReferenceSize" width="330" height="100"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="secondaryBackgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="hgi-8z-gd1" id="Dur-n2-J36"/>
+                                                <outlet property="delegate" destination="hgi-8z-gd1" id="JL2-jw-ybR"/>
+                                            </connections>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="xbQ-zI-4RH">
+                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="IDA-gZ-31a">
+                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="hkK-cy-3rl" firstAttribute="leading" secondItem="xvl-TZ-MAP" secondAttribute="leading" constant="2" id="70M-Hq-kUg"/>
+                            <constraint firstAttribute="trailing" secondItem="hkK-cy-3rl" secondAttribute="trailing" constant="2" id="E50-qs-21h"/>
+                            <constraint firstAttribute="bottom" secondItem="hkK-cy-3rl" secondAttribute="bottom" constant="2" id="HLD-Ph-KGV"/>
+                            <constraint firstItem="hkK-cy-3rl" firstAttribute="top" secondItem="xvl-TZ-MAP" secondAttribute="top" constant="2" id="VcW-88-alH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="uCn-gM-ff1" id="xBL-t4-Vvr"/>
+                    </connections>
+                </viewController>
+                <customObject id="SsM-7m-b0E" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="804" y="-104"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="DW8-L3-OrT">
+            <objects>
+                <viewController id="R22-6v-vwb" sceneMemberID="viewController">
+                    <view key="view" id="Eb4-Ft-FTT">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="Ryq-Hb-3Dn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="804" y="268"/>
+        </scene>
+    </scenes>
+</document>

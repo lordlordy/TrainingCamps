@@ -1000,7 +1000,7 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.37904468412942988" horizontal="YES" id="cO7-ZK-yir">
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="cO7-ZK-yir">
                                     <rect key="frame" x="1" y="262" width="167" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1065,7 +1065,7 @@
                         <tabViewItem label="Summary" id="Zol-WM-dcg"/>
                         <tabViewItem id="2GH-zY-Pgt"/>
                     </tabViewItems>
-                    <tabView key="tabView" type="noTabsNoBorder" id="glL-jo-Gd9">
+                    <tabView key="tabView" type="noTabsLineBorder" id="glL-jo-Gd9">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>

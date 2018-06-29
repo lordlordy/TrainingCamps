@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2yz-sS-VWi">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Admin-->
+        <scene sceneID="TH5-hm-QT0">
+            <objects>
+                <splitViewController title="Admin" id="2yz-sS-VWi" customClass="CampGroupSplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem canCollapse="YES" id="b2E-gs-I98"/>
+                        <splitViewItem canCollapse="YES" id="atq-hC-feA"/>
+                    </splitViewItems>
+                    <splitView key="splitView" vertical="YES" id="KD5-CT-4tb">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <outlet property="delegate" destination="2yz-sS-VWi" id="47w-Hh-Vfh"/>
+                        </connections>
+                    </splitView>
+                    <connections>
+                        <outlet property="splitView" destination="KD5-CT-4tb" id="p4L-Cm-Lhf"/>
+                        <segue destination="vVh-lv-G9L" kind="relationship" relationship="splitItems" id="G4l-xB-4xr"/>
+                        <segue destination="vwZ-Sb-LKR" kind="relationship" relationship="splitItems" id="rLa-RZ-59R"/>
+                    </connections>
+                </splitViewController>
+                <customObject id="uMT-up-GBn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-175" y="168"/>
+        </scene>
+        <!--Locations-->
+        <scene sceneID="OUf-NX-dnB">
+            <objects>
+                <controllerPlaceholder storyboardName="Locations" id="vVh-lv-G9L" sceneMemberID="viewController"/>
+                <customObject id="OdG-lN-Kp4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-115" y="403"/>
+        </scene>
+        <!--CampTypes-->
+        <scene sceneID="ptz-LE-2A0">
+            <objects>
+                <controllerPlaceholder storyboardName="CampTypes" id="vwZ-Sb-LKR" sceneMemberID="viewController"/>
+                <customObject id="ZCx-Mg-04L" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="29" y="434"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="MPd-D9-EQk">
+            <objects>
+                <viewController id="Par-DR-Jgc" sceneMemberID="viewController">
+                    <view key="view" id="nS0-DT-wik">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="WGb-a1-MBi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="495" y="-18"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="3sL-G5-jNj">
+            <objects>
+                <viewController id="TAp-GT-7om" sceneMemberID="viewController">
+                    <view key="view" id="xjM-kx-aXD">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="eO1-JX-tvs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="495" y="354"/>
+        </scene>
+    </scenes>
+</document>

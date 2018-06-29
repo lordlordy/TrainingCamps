@@ -60,4 +60,39 @@ extension RaceDefinition{
         return nil
     }
     
+    func overallTopTen() -> [HallOfFameResult]{
+        let results = raceResultsArray().filter({$0.rankBestOnly < 11}).sorted(by: {$0.rankBestOnly < $1.rankBestOnly})
+        var array: [HallOfFameResult] = []
+        for r in results{
+            var name: String = r.campParticipant!.participant!.displayName
+            if r.isRelay{
+                name += "*"
+            }
+            array.append(HallOfFameResult.init(r.rankBestOnly, name, r.campParticipant!.camp!.campShortName!, r.totalSeconds))
+        }
+        return array
+    }
+    
+    func femaleTopTen() -> [HallOfFameResult]{
+        let results = raceResultsArray().filter({$0.rankGenderBestOnly < 11 && $0.gender == Gender.Female.rawValue}).sorted(by: {$0.rankGenderBestOnly < $1.rankGenderBestOnly})
+        var array: [HallOfFameResult] = []
+        for r in results{
+            array.append(HallOfFameResult.init(r.rankGenderBestOnly, r.campParticipant!.participant!.displayName, r.campParticipant!.camp!.campShortName!, r.totalSeconds))
+        }
+        return array
+    }
+    
+    func maleTopTen() -> [HallOfFameResult]{
+        let results = raceResultsArray().filter({$0.rankGenderBestOnly < 11 && $0.gender == Gender.Male.rawValue}).sorted(by: {$0.rankGenderBestOnly < $1.rankGenderBestOnly})
+        var array: [HallOfFameResult] = []
+        for r in results{
+            array.append(HallOfFameResult.init(r.rankGenderBestOnly, r.campParticipant!.participant!.displayName, r.campParticipant!.camp!.campShortName!, r.totalSeconds))
+        }
+        return array
+    }
+    
+    private func raceResultsArray() -> [RaceResult]{
+        return allRaceResults.allObjects as? [RaceResult] ?? []
+    }
+    
 }

@@ -207,8 +207,9 @@ extension CampGroup: TrainingValuesProtocol{
     
     
     
-    private func raceDefinitionArray() -> [RaceDefinition]{
-        return raceDefinitions?.allObjects as? [RaceDefinition] ?? []
+    func raceDefinitionArray() -> [RaceDefinition]{
+        let a = raceDefinitions?.allObjects as? [RaceDefinition] ?? []
+        return a.sorted(by: {($0.location!.name!, $0.name!) < ($1.location!.name!, $1.name!)})
     }
     
     private func participantEddingtonNumbersArray() -> [EddingtonNumber]{

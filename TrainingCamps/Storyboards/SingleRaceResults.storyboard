@@ -74,11 +74,12 @@
                                     <rect key="frame" x="1" y="0.0" width="834" height="271"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveName="raceResultTable" rowHeight="40" rowSizeStyle="automatic" headerView="seq-yE-FAl" viewBased="YES" id="vpK-Sl-ChP">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveName="raceResultTable" rowHeight="40" rowSizeStyle="automatic" headerView="seq-yE-FAl" viewBased="YES" id="vpK-Sl-ChP">
                                             <rect key="frame" x="0.0" y="0.0" width="1744" height="248"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="ArX-gI-gBZ">
