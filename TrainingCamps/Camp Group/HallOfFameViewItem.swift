@@ -10,11 +10,7 @@ import Cocoa
 
 class HallOfFameViewItem: NSCollectionViewItem {
 
-    @objc dynamic var results: [HallOfFameResult]?{
-        didSet{
-            print("!!!! RESULTS SET !!!!")
-        }
-    }
+    @objc dynamic var results: [HallOfFameResult]?
     
     @IBOutlet var resultTitle: NSTextField!
     

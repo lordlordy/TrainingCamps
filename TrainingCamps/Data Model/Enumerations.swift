@@ -36,6 +36,7 @@ enum Activity: String{
     case swim, bike, run, t1, t2
     case total, guessDifference, handicapAdjusted //these are all totals
     static var Eddington: [Activity] = [total, swim, bike, run]
+    static var HallOfFame: [Activity] = [total, swim, bike, run]
     
     func validEddingtonUnits() -> [Unit]{
         switch self{
@@ -44,6 +45,15 @@ enum Activity: String{
         default: return Unit.Eddington
         }
     }
+    
+    func hallOfFameUnits() -> [Unit]{
+        switch self{
+        case .total, .bike, .run: return [Unit.Seconds, Unit.KM, Unit.Ascent, Unit.KPH]
+        case .swim: return [Unit.Seconds, Unit.KM, Unit.KPH]
+        default: return []
+        }
+    }
+    
 }
 
 enum Unit: String{

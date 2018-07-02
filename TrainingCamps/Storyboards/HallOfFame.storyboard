@@ -12,6 +12,7 @@
                     <tabViewItems>
                         <tabViewItem label="Races" identifier="" id="5Aa-Xy-9Y3"/>
                         <tabViewItem label="Training" identifier="" id="UA5-PQ-XVd"/>
+                        <tabViewItem label="Eddington Numbers" id="ePt-K5-Pus"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsLineBorder" id="jVw-fg-Ud4">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -26,6 +27,7 @@
                         <outlet property="tabView" destination="jVw-fg-Ud4" id="la1-no-heB"/>
                         <segue destination="hgi-8z-gd1" kind="relationship" relationship="tabItems" id="G4V-AS-6hp"/>
                         <segue destination="R22-6v-vwb" kind="relationship" relationship="tabItems" id="QTU-8Z-WRp"/>
+                        <segue destination="2hk-og-nBh" kind="relationship" relationship="tabItems" id="jLN-P5-jBb"/>
                     </connections>
                 </tabViewController>
                 <customObject id="Nix-9c-vfc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -50,7 +52,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="444" height="158"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="5" minimumLineSpacing="5" id="yHd-IA-3fV">
-                                                <size key="itemSize" width="330" height="237"/>
+                                                <size key="itemSize" width="330" height="215"/>
                                                 <size key="headerReferenceSize" width="330" height="100"/>
                                             </collectionViewFlowLayout>
                                             <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -88,18 +90,113 @@
             </objects>
             <point key="canvasLocation" x="804" y="-104"/>
         </scene>
-        <!--View Controller-->
+        <!--Hall Of Fame Training View Controller-->
         <scene sceneID="DW8-L3-OrT">
             <objects>
-                <viewController id="R22-6v-vwb" sceneMemberID="viewController">
+                <viewController id="R22-6v-vwb" customClass="HallOfFameTrainingViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Eb4-Ft-FTT">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLu-Rx-k7w">
+                                <rect key="frame" x="2" y="2" width="446" height="296"/>
+                                <clipView key="contentView" drawsBackground="NO" id="8BR-a1-EWv">
+                                    <rect key="frame" x="1" y="1" width="444" height="294"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView id="k9f-at-Oud">
+                                            <rect key="frame" x="0.0" y="0.0" width="444" height="158"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="5" minimumLineSpacing="5" id="IgV-pY-kbg">
+                                                <size key="itemSize" width="330" height="215"/>
+                                                <size key="headerReferenceSize" width="330" height="100"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="R22-6v-vwb" id="GYb-Kc-uvw"/>
+                                            </connections>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="hTs-cr-cO2">
+                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="54o-vm-fvm">
+                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PLu-Rx-k7w" secondAttribute="trailing" constant="2" id="Cs1-t6-1Rw"/>
+                            <constraint firstItem="PLu-Rx-k7w" firstAttribute="leading" secondItem="Eb4-Ft-FTT" secondAttribute="leading" constant="2" id="PHA-fn-qlG"/>
+                            <constraint firstAttribute="bottom" secondItem="PLu-Rx-k7w" secondAttribute="bottom" constant="2" id="RWf-ML-UIz"/>
+                            <constraint firstItem="PLu-Rx-k7w" firstAttribute="top" secondItem="Eb4-Ft-FTT" secondAttribute="top" constant="2" id="gtt-9a-6HC"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="k9f-at-Oud" id="1oz-T6-MMj"/>
+                    </connections>
                 </viewController>
                 <customObject id="Ryq-Hb-3Dn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="804" y="268"/>
+        </scene>
+        <!--Hall Of Fame Eddington Numbers View Controller-->
+        <scene sceneID="o57-Mh-46i">
+            <objects>
+                <viewController id="2hk-og-nBh" customClass="HallOfFameEddingtonNumbersViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="8jI-Yc-lb6">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KzE-o9-Wlg">
+                                <rect key="frame" x="2" y="2" width="446" height="296"/>
+                                <clipView key="contentView" drawsBackground="NO" id="MLP-iB-1Zq">
+                                    <rect key="frame" x="1" y="1" width="444" height="294"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView id="1If-hm-cLg">
+                                            <rect key="frame" x="0.0" y="0.0" width="444" height="158"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="5" minimumLineSpacing="5" id="J9x-YC-CEp">
+                                                <size key="itemSize" width="330" height="215"/>
+                                                <size key="headerReferenceSize" width="330" height="100"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="2hk-og-nBh" id="4Sx-J9-sdT"/>
+                                            </connections>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="rr8-aC-yGf">
+                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="iDz-qL-XVz">
+                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="KzE-o9-Wlg" firstAttribute="leading" secondItem="8jI-Yc-lb6" secondAttribute="leading" constant="2" id="BDW-Di-tIL"/>
+                            <constraint firstAttribute="trailing" secondItem="KzE-o9-Wlg" secondAttribute="trailing" constant="2" id="DLi-6I-cz1"/>
+                            <constraint firstItem="KzE-o9-Wlg" firstAttribute="top" secondItem="8jI-Yc-lb6" secondAttribute="top" constant="2" id="DO8-hQ-W3E"/>
+                            <constraint firstAttribute="bottom" secondItem="KzE-o9-Wlg" secondAttribute="bottom" constant="2" id="p2a-OJ-kPV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="1If-hm-cLg" id="FFx-ij-Wtg"/>
+                    </connections>
+                </viewController>
+                <customObject id="yXT-qV-IO2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="757" y="662"/>
         </scene>
     </scenes>
 </document>

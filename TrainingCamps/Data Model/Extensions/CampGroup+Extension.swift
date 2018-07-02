@@ -20,6 +20,7 @@ extension CampGroup: TrainingValuesProtocol{
         result.append((Activity.total, Unit.KPH))
         result.append((Activity.swim, Unit.Seconds))
         result.append((Activity.swim, Unit.KM))
+        result.append((Activity.swim, Unit.KPH))
         result.append((Activity.bike, Unit.Seconds))
         result.append((Activity.bike, Unit.KM))
         result.append((Activity.bike, Unit.Ascent))
@@ -210,6 +211,114 @@ extension CampGroup: TrainingValuesProtocol{
     func raceDefinitionArray() -> [RaceDefinition]{
         let a = raceDefinitions?.allObjects as? [RaceDefinition] ?? []
         return a.sorted(by: {($0.location!.name!, $0.name!) < ($1.location!.name!, $1.name!)})
+    }
+    
+    func topTenEddingtonNumbers(forActivity a: Activity, unit u: Unit)-> (overall: [HallOfFameResult], female: [HallOfFameResult], male: [HallOfFameResult]){
+        
+        let filtered: [EddingtonNumber] = individualEddingtonNumbers().filter({$0.activity! == a.rawValue && $0.unit! == u.rawValue})
+        
+        var oHall: [HallOfFameResult] = []
+        var fHall: [HallOfFameResult] = []
+        var mHall: [HallOfFameResult] = []
+        
+        for i in filtered.filter({$0.rank < 11}).sorted(by: {$0.rank < $1.rank}){
+            oHall.append(HallOfFameResult.init(i.rank, i.participant!.displayName, edNum: i.value, plusOne: i.plusOne))
+        }
+        
+        for i in filtered.filter({$0.rankGender < 11 && $0.participant!.gender! == Gender.Female.rawValue}).sorted(by: {$0.rankGender < $1.rankGender}){
+            fHall.append(HallOfFameResult.init(i.rankGender, i.participant!.displayName, edNum: i.value, plusOne: i.plusOne))
+        }
+        
+        for i in filtered.filter({$0.rankGender < 11 && $0.participant!.gender! == Gender.Male.rawValue}).sorted(by: {$0.rankGender < $1.rankGender}){
+            mHall.append(HallOfFameResult.init(i.rankGender, i.participant!.displayName, edNum: i.value, plusOne: i.plusOne))
+        }
+        
+        return (oHall, fHall, mHall)
+        
+    }
+    
+    func topTen(forActivity a: Activity, unit u: Unit, isDay: Bool) -> (overall: [HallOfFameResult], female: [HallOfFameResult], male: [HallOfFameResult]){
+
+        if isDay{
+            return dayTopTen(forActivity: a, unit: u)
+        }else{
+            return campTopTen(forActivity: a, unit: u)
+        }
+        
+    }
+    
+    private func individualEddingtonNumbers() -> [EddingtonNumber]{
+        var result: [EddingtonNumber] = []
+        for p in participantArray(){
+            result.append(contentsOf: p.eddingtonNumbers?.allObjects as? [EddingtonNumber] ?? [])
+        }
+        return result
+    }
+    
+    private func dayTopTen(forActivity a: Activity, unit u: Unit) -> (overall: [HallOfFameResult], female: [HallOfFameResult], male: [HallOfFameResult]){
+        
+        let filteredRanks: [Rank] = dayRanks().filter({$0.activity! == a.rawValue && $0.unit! == u.rawValue})
+        let overall: [Rank] = filteredRanks.filter({$0.bestOnly < 11}).sorted(by: {$0.bestOnly < $1.bestOnly})
+        let female: [Rank] = filteredRanks.filter({$0.bestOnlyGender < 11 && $0.participantDay!.campParticipant!.participant!.gender! == Gender.Female.rawValue}).sorted(by: {$0.bestOnlyGender < $1.bestOnlyGender})
+        let male: [Rank] = filteredRanks.filter({$0.bestOnlyGender < 11 && $0.participantDay!.campParticipant!.participant!.gender! == Gender.Male.rawValue}).sorted(by: {$0.bestOnlyGender < $1.bestOnlyGender})
+        
+        var oHall: [HallOfFameResult] = []
+        var fHall: [HallOfFameResult] = []
+        var mHall: [HallOfFameResult] = []
+        
+        for o in overall{
+            oHall.append(HallOfFameResult(o.bestOnly, o.participantDay!.campParticipant!.participant!.displayName, o.participantDay!.campParticipant!.camp!.campShortName!, value: o.value, unit: u))
+        }
+        for f in female{
+            fHall.append(HallOfFameResult(f.bestOnlyGender, f.participantDay!.campParticipant!.participant!.displayName, f.participantDay!.campParticipant!.camp!.campShortName!, value: f.value, unit: u))
+        }
+        for m in male{
+            mHall.append(HallOfFameResult(m.bestOnlyGender, m.participantDay!.campParticipant!.participant!.displayName, m.participantDay!.campParticipant!.camp!.campShortName!, value: m.value, unit: u))
+        }
+        
+        return (oHall, fHall, mHall)
+        
+    }
+    
+    private func campTopTen(forActivity a: Activity, unit u: Unit) -> (overall: [HallOfFameResult], female: [HallOfFameResult], male: [HallOfFameResult]){
+        
+        let filteredRanks: [Rank] = campRanks().filter({$0.activity! == a.rawValue && $0.unit! == u.rawValue})
+        let overall: [Rank] = filteredRanks.filter({$0.bestOnly < 11}).sorted(by: {$0.bestOnly < $1.bestOnly})
+        let female: [Rank] = filteredRanks.filter({$0.bestOnlyGender < 11 && $0.campParticipant!.participant!.gender! == Gender.Female.rawValue}).sorted(by: {$0.bestOnlyGender < $1.bestOnlyGender})
+        let male: [Rank] = filteredRanks.filter({$0.bestOnlyGender < 11 && $0.campParticipant!.participant!.gender! == Gender.Male.rawValue}).sorted(by: {$0.bestOnlyGender < $1.bestOnlyGender})
+        
+        var oHall: [HallOfFameResult] = []
+        var fHall: [HallOfFameResult] = []
+        var mHall: [HallOfFameResult] = []
+        
+        for o in overall{
+            oHall.append(HallOfFameResult(o.bestOnly, o.campParticipant!.participant!.displayName, o.campParticipant!.camp!.campShortName!, value: o.value, unit: u))
+        }
+        for f in female{
+            fHall.append(HallOfFameResult(f.bestOnlyGender, f.campParticipant!.participant!.displayName, f.campParticipant!.camp!.campShortName!, value: f.value, unit: u))
+        }
+        for m in male{
+            mHall.append(HallOfFameResult(m.bestOnlyGender, m.campParticipant!.participant!.displayName, m.campParticipant!.camp!.campShortName!, value: m.value, unit: u))
+        }
+        
+        return (oHall, fHall, mHall)
+        
+    }
+    
+    private func campRanks() -> [Rank]{
+        var result: [Rank] = []
+        for c in campParticipantsArray(){
+            result.append(contentsOf: c.rankings?.allObjects as? [Rank] ?? [])
+        }
+        return result
+    }
+
+    private func dayRanks() -> [Rank]{
+        var result: [Rank] = []
+        for d in participantDaysArray(){
+            result.append(contentsOf: d.rankings?.allObjects as? [Rank] ?? [])
+        }
+        return result
     }
     
     private func participantEddingtonNumbersArray() -> [EddingtonNumber]{

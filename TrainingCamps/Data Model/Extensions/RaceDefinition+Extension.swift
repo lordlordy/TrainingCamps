@@ -68,7 +68,7 @@ extension RaceDefinition{
             if r.isRelay{
                 name += "*"
             }
-            array.append(HallOfFameResult.init(r.rankBestOnly, name, r.campParticipant!.camp!.campShortName!, r.totalSeconds))
+            array.append(HallOfFameResult.init(r.rankBestOnly, name, r.campParticipant!.camp!.campShortName!, value: r.totalSeconds, unit: Unit.Seconds))
         }
         return array
     }
@@ -77,7 +77,7 @@ extension RaceDefinition{
         let results = raceResultsArray().filter({$0.rankGenderBestOnly < 11 && $0.gender == Gender.Female.rawValue}).sorted(by: {$0.rankGenderBestOnly < $1.rankGenderBestOnly})
         var array: [HallOfFameResult] = []
         for r in results{
-            array.append(HallOfFameResult.init(r.rankGenderBestOnly, r.campParticipant!.participant!.displayName, r.campParticipant!.camp!.campShortName!, r.totalSeconds))
+            array.append(HallOfFameResult.init(r.rankGenderBestOnly, r.campParticipant!.participant!.displayName, r.campParticipant!.camp!.campShortName!,value: r.totalSeconds, unit: Unit.Seconds))
         }
         return array
     }
@@ -86,7 +86,7 @@ extension RaceDefinition{
         let results = raceResultsArray().filter({$0.rankGenderBestOnly < 11 && $0.gender == Gender.Male.rawValue}).sorted(by: {$0.rankGenderBestOnly < $1.rankGenderBestOnly})
         var array: [HallOfFameResult] = []
         for r in results{
-            array.append(HallOfFameResult.init(r.rankGenderBestOnly, r.campParticipant!.participant!.displayName, r.campParticipant!.camp!.campShortName!, r.totalSeconds))
+            array.append(HallOfFameResult.init(r.rankGenderBestOnly, r.campParticipant!.participant!.displayName, r.campParticipant!.camp!.campShortName!, value: r.totalSeconds, unit: Unit.Seconds))
         }
         return array
     }

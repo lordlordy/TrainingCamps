@@ -16,7 +16,6 @@ class HallOfFameViewController: CampGroupViewController{
 
     override func setCampGroup(_ campGroup: CampGroup) {
         super.setCampGroup(campGroup)
-        print("!!!!!!!!!!!!")
         collectionView.reloadData()
     }
     
@@ -39,6 +38,8 @@ extension HallOfFameViewController : NSCollectionViewDataSource {
 
         guard let collectionViewItem = item as? HallOfFameViewItem else {return item}
 
+
+        
         if indexPath.section < races.count{
             let race: RaceDefinition = races[indexPath.section]
             if indexPath.item == 0{

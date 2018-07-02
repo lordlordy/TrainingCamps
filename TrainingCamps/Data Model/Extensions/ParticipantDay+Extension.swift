@@ -21,6 +21,7 @@ extension ParticipantDay: Rankable{
     @objc dynamic var totalAscentMetres: Double{return bikeAscentMetres + runAscentMetres}
     
     @objc dynamic var totalKPH: Double { return (totalSeconds > 0.0) ? (totalKM / (totalSeconds / 3600.0)) : 0.0}
+    @objc dynamic var swimKPH: Double { return (swimSeconds > 0.0) ? (swimKM / (swimSeconds / 3600.0)) : 0.0}
     @objc dynamic var bikeKPH: Double { return (bikeSeconds > 0.0) ? (bikeKM / (bikeSeconds / 3600.0)) : 0.0}
     @objc dynamic var runKPH: Double { return (runSeconds > 0.0) ? (runKM / (runSeconds / 3600.0)) : 0.0}
     
@@ -189,7 +190,7 @@ extension ParticipantDay: Rankable{
         case .KPH, .MPH:
             switch activity{
             case .total: return totalKPH * unit.factor()
-            case .swim: return 0.0
+            case .swim: return swimKPH * unit.factor()
             case .t1: return 0.0
             case .bike: return bikeKPH * unit.factor()
             case .t2: return 0.0

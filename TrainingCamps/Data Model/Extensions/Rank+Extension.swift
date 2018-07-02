@@ -38,4 +38,14 @@ extension Rank{
         return result
     }
     
+    @objc dynamic var value: Double{
+        if let pDay = participantDay{
+            return pDay.valueFor(activity!, unit!)
+        }else if let pCamp = campParticipant{
+            return pCamp.valueFor(activity!, unit!)
+        }else{
+            return 0.0
+        }
+    }
+    
 }
