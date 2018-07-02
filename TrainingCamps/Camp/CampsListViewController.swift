@@ -19,9 +19,9 @@ class CampsListViewController: CampGroupViewController, NSTableViewDelegate, NSC
             let camps: [Camp] = selectedCamps()
             if camps.count > 0 {
                 p.setCamp(camps[0])
-                p.setTreeNodes(forCamps: camps)
+//                p.setTreeNodes(forCamps: camps)
             }else{
-                p.setTreeNodes(forCamps: nil)
+//                p.setTreeNodes(forCamps: nil)
             }
         }
         
