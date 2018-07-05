@@ -7,11 +7,15 @@
 //
 
 import Cocoa
+import Quartz
 
 class CampParticipantsListViewController: CampViewController, NSComboBoxDataSource, NSTableViewDelegate{
   
     
     @IBOutlet var campParticipantAC: NSArrayController!
+    
+    @IBOutlet weak var pointsTable: NSTableView!
+    
     
     @IBAction func rankCompetition(_ sender: Any){
         if let c = camp{
@@ -19,12 +23,39 @@ class CampParticipantsListViewController: CampViewController, NSComboBoxDataSour
         }
     }
     
-//    @IBAction func rank(_ sender: Any) {
-//        let start = Date()
-//        camp?.campGroup?.rank()
-//        print("Ranking took \(Date().timeIntervalSince(start))s")
-//    }
+    @IBAction func saveAsPDF(_ sender: Any) {
+        var headers = pointsTable.headerView?.dataWithPDF(inside: (pointsTable.headerView?.bounds)!)
+        let rows = pointsTable.dataWithPDF(inside: pointsTable.bounds)
+        
+//        let rect = NSRect(x: 0, y: -0.23, width: 1489, height: 365  )
+//        let rows = pointsTable.dataWithPDF(inside: rect)
+
+        
+//        if var data = headers{
+            headers!.append(rows)
+            let pdf = PDFDocument.init(data: headers!)
+            
+            
+            if let url = OpenAndSaveDialogues().saveFilePath(suggestedFileName: "CampPoints", allowFileTypes: ["pdf"]){
+                pdf?.write(to: url)
+            }
+//        }
+    }
     
+    @IBAction func saveAsCSV(_ sender: Any) {
+        
+        let csvString: String = CSVExporter().createCSV(forObjs: campParticipantAC.arrangedObjects as? [NSObject] ?? [], CampParticipantProperty.CSV.map({$0.rawValue}))
+        
+        if let url = OpenAndSaveDialogues().saveFilePath(suggestedFileName: "PointsTable", allowFileTypes: ["csv"]){
+            do{
+                try csvString.write(to: url, atomically: false, encoding: .utf8)
+            }catch let error as NSError{
+                print(error)
+            }
+        }
+        
+    }
+
     //MARK: - NSTableViewDelegate
     func tableViewSelectionDidChange(_ notification: Notification) {
         if let cp = getSelectedParticipant(){

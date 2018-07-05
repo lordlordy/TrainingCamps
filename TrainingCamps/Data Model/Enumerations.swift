@@ -118,16 +118,22 @@ enum RaceProperty: String{
     case isForCampPoints, isGuessYourTime, isHandicap
     case pointsIncrementOverride, pointsBasedOn, pointsForWinOverride, pointsRaceNumber
     case raceDefinition
+    static var CSV: [RaceProperty] = [ date, raceNameString, includesSwim, includesBike, includesRun, isForCampPoints, isGuessYourTime, isHandicap, pointsIncrementOverride, pointsBasedOn, pointsForWinOverride, pointsRaceNumber]
 }
 
 enum RaceResultProperty: String{
+    
     case swimSeconds, bikeSeconds, runSeconds, t1Seconds, t2Seconds
     case handicapSeconds, guessSeconds
     case isRelay, participant, rankings
-    case raceCompletionStatus
+    case raceCompletionStatus, campPoints, comments
+    case gender, campRole, campName, raceComplete, raceNeededForCompletion
+    case completionStatus
+    case totalSeconds, guessDifferenceSeconds, handicapAdjustedSeconds
+    case displayName, totalRank, swimRank, bikeRank, runRank, t1Rank, t2Rank, guessRank, handicapRank
+    case rank, rankGender, rankAfterHandicap, rankOverall, rankGenderOverall, rankParticipant, rankRole, rankBestOnly, rankGenderBestOnly
     
-    //calculated
-    case raceComplete, completionStatus
+    static var CSV: [RaceResultProperty] = [ displayName, campPoints, completionStatus, totalSeconds, campName, campRole, gender,  swimSeconds, t1Seconds, bikeSeconds,  t2Seconds,runSeconds, handicapSeconds, guessSeconds, guessDifferenceSeconds, handicapAdjustedSeconds, isRelay, raceCompletionStatus, comments, raceComplete, raceNeededForCompletion, rank, rankGender, rankAfterHandicap, rankOverall, rankGenderOverall, rankParticipant, rankRole, rankBestOnly, rankGenderBestOnly]
 }
 
 enum ParticipantProperty: String{
@@ -138,7 +144,21 @@ enum ParticipantProperty: String{
 }
 
 enum CampParticipantProperty: String{
-    case role, participant, camp, bonusPoints  
+    case participant, camp
+    case role, bonusPoints, isInPointsCompetition, rankInCompetition
+    case trainingComplete, racesComplete, campComplete
+    case campPoints, totalKM, totalSeconds, totalAscentMetres
+    case swimKM, swimSeconds
+    case bikeKM, bikeSeconds, bikeAscentMetres
+    case runKM, runSeconds, runAscentMetres, bricks
+    case totalCompetitionSeconds
+    case campParticipantNameString, completionStatus
+    case overallRankTime, overallRankTimeGender, campRankTime
+    case overallRankSwimKM, overallRankSwimKMGender, campRankSwimKM
+    case overallRankBikeKM, overallRankBikeKMGender, campRankBikeKM
+    case overallRankRunKM, overallRankRunKMGender, campRankRunKM
+    
+    static var CSV: [CampParticipantProperty] = [campParticipantNameString, completionStatus, campPoints, rankInCompetition, totalSeconds, totalKM,  totalAscentMetres, swimSeconds, swimKM, bikeSeconds, bikeKM, bikeAscentMetres, bricks, runSeconds, runKM, runAscentMetres, role, bonusPoints, isInPointsCompetition, trainingComplete, racesComplete, campComplete,   totalCompetitionSeconds ,  overallRankTime, overallRankTimeGender, campRankTime, overallRankSwimKM, overallRankSwimKMGender, campRankSwimKM, overallRankBikeKM, overallRankBikeKMGender, campRankBikeKM, overallRankRunKM, overallRankRunKMGender, campRankRunKM]
 }
 
 enum CampGroupProperty: String{

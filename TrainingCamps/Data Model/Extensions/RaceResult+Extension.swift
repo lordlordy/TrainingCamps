@@ -51,7 +51,7 @@ extension RaceResult: Rankable{
         }
     }
     
-    var totalRank: Rank { return rankFor(activity: .total, unit: .Seconds)}
+    @objc dynamic var totalRank: Rank { return rankFor(activity: .total, unit: .Seconds)}
     @objc dynamic var swimRank: Rank { return rankFor(activity: .swim, unit: .Seconds)}
     @objc dynamic var bikeRank: Rank { return rankFor(activity: .bike, unit: .Seconds)}
     @objc dynamic var runRank: Rank { return rankFor(activity: .run, unit: .Seconds)}

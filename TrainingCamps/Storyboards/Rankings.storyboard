@@ -423,7 +423,6 @@
                     </view>
                     <connections>
                         <outlet property="rankingsAC" destination="q5c-RF-8vN" id="sLd-8J-56n"/>
-                        <outlet property="tableView" destination="026-XS-pDN" id="zpg-ya-6bG"/>
                     </connections>
                 </viewController>
                 <customObject id="ZDI-uT-nMf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

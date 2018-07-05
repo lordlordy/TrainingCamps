@@ -7,21 +7,56 @@
 //
 
 import Cocoa
-class TreeNodeViewController: NSViewController, CampGroupViewControllerProtocol{
-    
+import Quartz
+
+class TreeNodeViewController: NSViewController, TreeGeneratorViewControllerProtocol, NSComboBoxDataSource{
+   
+    func setGenerator(_ treeNodeGenerator: TreeNodeGenerator) {
+        generator = treeNodeGenerator
+        updateTree()
+    }
+
     @objc dynamic var treeNodes: [TreeNode]?
     @IBOutlet weak var treeView: NSOutlineView!
     @IBOutlet var treeController: NSTreeController!
     @IBOutlet weak var meanOrSumCB: NSComboBox!
     @IBOutlet weak var filterComboBox: ParticipantFilterComboBox!
     
+    @IBAction func saveAsPDF(_ sender: Any) {
+        let data = treeView.dataWithPDF(inside: treeView.bounds)
+        //        let data = mainView.dataWithPDF(inside: mainView.bounds)
+        let dialogue = OpenAndSaveDialogues()
+        
+        let pdf = PDFDocument.init(data: data)
+        
+        
+        if let url = dialogue.saveFilePath(suggestedFileName: "Saved", allowFileTypes: ["pdf"]){
+            pdf?.write(to: url)
+        }
+        
+    }
     
-    private var campGroup: CampGroup?
-    private var camps: [Camp]?
-    private var treeGenerate: TreeGenerator = TreeGenerator()
-    private var treeOrder: TreeGenerator.TreeOrder = TreeGenerator.TreeOrder.standard
+    @IBAction func saveAsCSV(_ sender: Any) {
+
+        let csvString: String = CSVExporter().createCSV(forTree: treeNodes ?? [], TreeNodeProperty.CSV.map({$0.rawValue}))
+            
+            if let url = OpenAndSaveDialogues().saveFilePath(suggestedFileName: "Saved", allowFileTypes: ["csv"]){
+                do{
+                     try csvString.write(to: url, atomically: false, encoding: .utf8)
+                }catch let error as NSError{
+                    print(error)
+                }
+            }
+
+        
+        
+    }
+    
+    private var generator: TreeNodeGenerator?
+    
     private var meanOrSum: Maths.Aggregator = Maths.Aggregator.Sum
     private var filter: ParticipantFilter = ParticipantFilter.All
+    
     
 
     @objc dynamic var filterString: String{
@@ -52,11 +87,8 @@ class TreeNodeViewController: NSViewController, CampGroupViewControllerProtocol{
     
     @objc dynamic var treeOrderString: String = TreeGenerator.TreeOrder.standard.rawValue{
         didSet{
-            if let to = TreeGenerator.TreeOrder(rawValue: treeOrderString){
-                treeOrder = to
-                print("Tree Order set to: \(to). Updating tree...")
-                updateTree()
-            }
+            print("Tree Order set to: \(treeOrderString). Updating tree...")
+            updateTree()
         }
     }
     
@@ -71,20 +103,41 @@ class TreeNodeViewController: NSViewController, CampGroupViewControllerProtocol{
         meanOrSumCB.stringValue = Maths.Aggregator.Sum.rawValue
     }
     
-    func setCamps(_ camps: [Camp]?){
-        self.camps = camps
-        updateTree()
-    }
-
-    func setCampGroup(_ campGroup: CampGroup) {
-        self.campGroup = campGroup
-        updateTree()
+    //MARK: - NSComboBoxDataSource   participantsOnCampComboBox
+    func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
+        if let identifier = comboBox.identifier{
+            switch identifier.rawValue{
+            case "treeOrderComboBox":
+                if let g = generator{
+                    let dateStrings = g.treeOrders()
+                    if index < dateStrings.count{
+                        return dateStrings[index]
+                    }
+                }
+            default:
+                print("What combo box is this \(identifier.rawValue) which I'm (TreeNodeViewController) a data source for? ")
+            }
+        }
+        return nil
     }
     
-    private func updateTree(){
-        if let cg = campGroup{
-            treeNodes = treeGenerate.generateTree(forGroup: cg, forCamps: camps, andOrder: treeOrder, nodesShow: meanOrSum, participantFilter: filter)
+    
+    func numberOfItems(in comboBox: NSComboBox) -> Int {
+        if let identifier = comboBox.identifier{
+            switch identifier.rawValue{
+            case "treeOrderComboBox":
+                return generator?.treeOrders().count ?? 0
+            default:
+                return 0
+            }
         }
+        return 0
+    }
+    
+
+    
+    private func updateTree(){
+        treeNodes = generator!.generateTree(inOrder: treeOrderString, nodesShow: meanOrSum, participantFilter: filter)
     }
     
     

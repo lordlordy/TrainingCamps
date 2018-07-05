@@ -8,9 +8,26 @@
 
 import Foundation
 
-@objc protocol TreeNode {
+enum TreeNodeProperty: String{
+    case children, childCount, treeNodeName, date, height, nodeType
+    case totalAscentMetres, bikeAscentMetres, runAscentMetres, totalKM, swimKM, bikeKM, runKM, totalSeconds, swimSeconds, bikeSeconds, runSeconds, role, completed, includeInAggregation, daysCount, raceResultsCount
+    case rankTotalAscentMetres, rankTotalKM, rankTotalSeconds, rankSwimSeconds, rankSwimKM, rankBikeAscent, rankBikeKM, rankBikeSeconds, rankRunAscent, rankRunKM, rankRunSeconds, camp, gender
+    
+    static let CSV: [TreeNodeProperty] = [treeNodeName, height, nodeType, childCount, date, totalSeconds,rankTotalSeconds,  totalKM, rankTotalKM,  totalAscentMetres, rankTotalAscentMetres, swimSeconds, rankSwimSeconds,swimKM, rankSwimKM, bikeSeconds, rankBikeSeconds, bikeKM, rankBikeKM, bikeAscentMetres, rankBikeAscent, runSeconds, rankRunSeconds, runKM,  rankRunKM, runAscentMetres, rankRunAscent, role, completed, camp, gender]
+    
+}
+
+enum TreeNodeType: String{
+    case Root, Camp, Participant, Day, Training, Racing, Race
+    case ParticipantCamp = "Participant Camp"
+    case RaceResult = "Race Result"
+    case TrainingDay = "Training Day"
+}
+
+@objc protocol TreeNode: NSObjectProtocol {
     @objc var children:             [TreeNode] { get }
     @objc var childCount:           Int {get}
+    @objc var nodeType:             String {get}
     @objc var treeNodeName:         String? {get}
     @objc var date:                 Date? {get}
     @objc var totalAscentMetres:    Double {get}
@@ -44,6 +61,8 @@ import Foundation
     
     @objc var camp: String? {get}
     @objc var gender: String? {get}
+    
+    @objc var height: Int {get}
 
     func leavesShow(participantName show: Bool)
     func rankChildren()

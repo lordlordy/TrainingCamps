@@ -34,6 +34,35 @@ class CampRaceResultViewController: CampViewController, RaceViewControllerProtoc
         }
     }
     
+    
+    @IBAction func saveAsCSV(_ sender: Any) {
+        
+        let csvString: String = CSVExporter().createCSV(forObjs: raceResultsAC.arrangedObjects as? [NSObject] ?? [], RaceResultProperty.CSV.map({$0.rawValue}))
+        
+        var suggestedName: String = "RaceResult"
+        
+        if let results = raceResultsAC?.arrangedObjects as? [RaceResult]{
+            if results.count > 0{
+                suggestedName = results[0].race?.raceDefinition?.name ?? "RaceResults"
+                if let raceDate = results[0].race?.date{
+                    let df: DateFormatter = DateFormatter()
+                    df.dateFormat = "yyyy-MMM-dd"
+                    suggestedName += "-"
+                    suggestedName += df.string(from: raceDate)
+                }
+            }
+        }
+        
+        if let url = OpenAndSaveDialogues().saveFilePath(suggestedFileName: suggestedName, allowFileTypes: ["csv"]){
+            do{
+                try csvString.write(to: url, atomically: false, encoding: .utf8)
+            }catch let error as NSError{
+                print(error)
+            }
+        }
+        
+    }
+    
 
     
     func setRace(_ race: Race) {

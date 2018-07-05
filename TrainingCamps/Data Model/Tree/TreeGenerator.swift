@@ -36,7 +36,7 @@ class TreeGenerator{
     }
     
     private func generateStandardTree(_ cg: CampGroup, _ c: [Camp]?, _ meanOrSum: Maths.Aggregator) -> [TreeNode]{
-        let rootNode: TreeNodeEditable = newGenericTreeNode(name: cg.name ?? "Not Set", date: cg.earliestCampStart, meanOrSum, true, nil)
+        let rootNode: TreeNodeEditable = newGenericTreeNode(name: cg.name ?? "Not Set", date: cg.earliestCampStart, meanOrSum, true, nil, TreeNodeType.Root)
         var camps: [Camp] = cg.campsArray()
         var campNodes: [TreeNode] = []
         
@@ -47,24 +47,24 @@ class TreeGenerator{
 
         for camp in camps{
             let campStart: Date = camp.campStart ?? Date()
-            let campNode: TreeNodeEditable = newGenericTreeNode(name: camp.campName ?? "Not Set", date: campStart, meanOrSum, true, camp.campName)
+            let campNode: TreeNodeEditable = newGenericTreeNode(name: camp.campName ?? "Not Set", date: campStart, meanOrSum, true, camp.campName, TreeNodeType.Camp)
             campNodes.append(campNode)
             rootNode.addChild(campNode)
-            let trainingNode: TreeNodeEditable = newGenericTreeNode(name: "Training", date: campStart, meanOrSum, true, camp.campName)
+            let trainingNode: TreeNodeEditable = newGenericTreeNode(name: "Training", date: campStart, meanOrSum, true, camp.campName, TreeNodeType.Training)
             campNode.addChild(trainingNode)
             for d in camp.campDaysArray(){
                 let df: DateFormatter = DateFormatter()
                 df.dateFormat = DateFormatString.DayOfWeekOnly.rawValue
-                let dayNode: TreeNodeEditable = newGenericTreeNode(name: df.string(from: d.date!),date: d.date ?? Date(), meanOrSum, true, camp.campName)
+                let dayNode: TreeNodeEditable = newGenericTreeNode(name: df.string(from: d.date!),date: d.date ?? Date(), meanOrSum, true, camp.campName, TreeNodeType.Day)
                 trainingNode.addChild(dayNode)
                 for pd in filtered(participantDays: d.participantDaysArray()) {
                     dayNode.addChild( ParticipantDayTreeNode(pd))
                 }
             }
-            let racingNode: TreeNodeEditable = newGenericTreeNode( name: "Races", date: campStart, meanOrSum, false,camp.campName)
+            let racingNode: TreeNodeEditable = newGenericTreeNode( name: "Races", date: campStart, meanOrSum, false,camp.campName, TreeNodeType.Racing)
             campNode.addChild(racingNode)
             for race in camp.getRacesArray(){
-                let raceNode: TreeNodeEditable = newGenericTreeNode(name: race.raceDefinition?.name ?? "Not Set", date: race.date ?? Date(), meanOrSum, true,camp.campName)
+                let raceNode: TreeNodeEditable = newGenericTreeNode(name: race.raceDefinition?.name ?? "Not Set", date: race.date ?? Date(), meanOrSum, true,camp.campName, TreeNodeType.Race)
                 racingNode.addChild(raceNode)
                 for result in filtered(raceResults: race.raceResultsArray()) {
                     raceNode.addChild(RaceResultTreeNode(result))
@@ -88,20 +88,20 @@ class TreeGenerator{
         
         
         if camps.count > 1{
-            let rootNode: TreeNodeEditable = newGenericTreeNode(name: "All", date: cg.earliestCampStart, meanOrSum, true, nil)
+            let rootNode: TreeNodeEditable = newGenericTreeNode(name: "All", date: cg.earliestCampStart, meanOrSum, true, nil, TreeNodeType.Root)
             for c in camps{
                 let campDate: Date = c.campStart ?? Date()
-                let campNode: TreeNodeEditable = newGenericTreeNode( name: c.campName ?? "Not Set", date: campDate, meanOrSum, true, c.campName)
+                let campNode: TreeNodeEditable = newGenericTreeNode( name: c.campName ?? "Not Set", date: campDate, meanOrSum, true, c.campName, TreeNodeType.Camp)
                 rootNode.addChild(campNode)
                 for cp in filtered(campParticipants: c.campParticipantsArray()) {
-                    let cpNode: TreeNodeEditable = newGenericTreeNode(name: cp.participant?.displayName ?? "Not set", date: campDate, meanOrSum, true, c.campName)
+                    let cpNode: TreeNodeEditable = newGenericTreeNode(name: cp.participant?.displayName ?? "Not set", date: campDate, meanOrSum, true, c.campName, TreeNodeType.Participant)
                     campNode.addChild(cpNode)
-                    let trainingNode: TreeNodeEditable = newGenericTreeNode( name: "Training", date: campDate, meanOrSum, true,c.campName)
+                    let trainingNode: TreeNodeEditable = newGenericTreeNode( name: "Training", date: campDate, meanOrSum, true,c.campName, TreeNodeType.Training)
                     cpNode.addChild(trainingNode)
                     for d in filtered(participantDays: cp.getDays()) {
                         trainingNode.addChild(ParticipantDayTreeNode(d))
                     }
-                    let racesNode: TreeNodeEditable = newGenericTreeNode(name: "Races", date: campDate, meanOrSum, false,c.campName)
+                    let racesNode: TreeNodeEditable = newGenericTreeNode(name: "Races", date: campDate, meanOrSum, false,c.campName, TreeNodeType.Racing)
                     cpNode.addChild(racesNode)
                     for r in filtered(raceResults: cp.getRaces()) {
                         racesNode.addChild(RaceResultTreeNode(r))
@@ -112,16 +112,16 @@ class TreeGenerator{
             return [rootNode]
         }else if camps.count == 1{
             let campDate: Date = camps[0].campStart ?? Date()
-            let campNode: TreeNodeEditable = newGenericTreeNode(name: camps[0].campName ?? "Not Set", date: campDate, meanOrSum, true, camps[0].campName)
+            let campNode: TreeNodeEditable = newGenericTreeNode(name: camps[0].campName ?? "Not Set", date: campDate, meanOrSum, true, camps[0].campName, TreeNodeType.Camp)
             for cp in filtered(campParticipants: camps[0].campParticipantsArray()) {
-                let cpNode: TreeNodeEditable = newGenericTreeNode(name: cp.participant?.displayName ?? "Not set", date: campDate, meanOrSum, true, camps[0].campName)
+                let cpNode: TreeNodeEditable = newGenericTreeNode(name: cp.participant?.displayName ?? "Not set", date: campDate, meanOrSum, true, camps[0].campName, TreeNodeType.Participant)
                 campNode.addChild(cpNode)
-                let trainingNode: TreeNodeEditable = newGenericTreeNode(name: "Training", date: campDate, meanOrSum, true,camps[0].campName)
+                let trainingNode: TreeNodeEditable = newGenericTreeNode(name: "Training", date: campDate, meanOrSum, true,camps[0].campName, TreeNodeType.Training)
                 cpNode.addChild(trainingNode)
                 for d in filtered(participantDays: cp.getDays()) {
                     trainingNode.addChild(ParticipantDayTreeNode(d))
                 }
-                let racesNode: TreeNodeEditable = newGenericTreeNode(name: "Races", date: campDate, meanOrSum, false, camps[0].campName)
+                let racesNode: TreeNodeEditable = newGenericTreeNode(name: "Races", date: campDate, meanOrSum, false, camps[0].campName, TreeNodeType.Racing)
                 cpNode.addChild(racesNode)
                 for r in filtered(raceResults: cp.getRaces()) {
                     racesNode.addChild(RaceResultTreeNode(r))
@@ -140,9 +140,9 @@ class TreeGenerator{
         var rootName: String = "All"
         if camps.count == 1 { rootName = camps[0].campName ?? "All"}
         
-        let rootNode = newGenericTreeNode(name: rootName, date: nil, meanOrSum, true, nil)
-        let trainingNode = newGenericTreeNode(name: "Training", date: nil, meanOrSum, true, nil)
-        let racingNode = newGenericTreeNode(name: "Races", date: nil, meanOrSum, false, nil)
+        let rootNode = newGenericTreeNode(name: rootName, date: nil, meanOrSum, true, nil, TreeNodeType.Root)
+        let trainingNode = newGenericTreeNode(name: "Training", date: nil, meanOrSum, true, nil, TreeNodeType.Training)
+        let racingNode = newGenericTreeNode(name: "Races", date: nil, meanOrSum, false, nil, TreeNodeType.Racing)
         
         rootNode.addChild(trainingNode)
         rootNode.addChild(racingNode)
@@ -158,7 +158,7 @@ class TreeGenerator{
             }
             for race in camp.getRacesArray(){
                 if resultDict[race.name!] == nil{
-                    let raceNode = newGenericTreeNode(name: race.name!, date: race.raceDefinition!.firstRunning, meanOrSum, true, nil)
+                    let raceNode = newGenericTreeNode(name: race.name!, date: race.raceDefinition!.firstRunning, meanOrSum, true, nil, TreeNodeType.Race)
                     racingNode.addChild(raceNode)
                     resultDict[race.name!] = raceNode
                 }
@@ -182,9 +182,9 @@ class TreeGenerator{
         var rootName: String = "All"
         if camps.count == 1 { rootName = camps[0].campName ?? "All"}
         
-        let rootNode = newGenericTreeNode(name: rootName, date: nil, meanOrSum, true, nil)
-        let trainingNode = newGenericTreeNode(name: "Training", date: nil, meanOrSum, true, nil)
-        let racingNode = newGenericTreeNode( name: "Races", date: nil, meanOrSum, false, nil)
+        let rootNode = newGenericTreeNode(name: rootName, date: nil, meanOrSum, true, nil, TreeNodeType.Root)
+        let trainingNode = newGenericTreeNode(name: "Training", date: nil, meanOrSum, true, nil, TreeNodeType.Training)
+        let racingNode = newGenericTreeNode( name: "Races", date: nil, meanOrSum, false, nil, TreeNodeType.Racing)
         
         rootNode.addChild(trainingNode)
         rootNode.addChild(racingNode)
@@ -193,7 +193,7 @@ class TreeGenerator{
         
         for camp in camps{
             for cp in filtered(campParticipants: camp.campParticipantsArray()) {
-                let cpNode = newGenericTreeNode(name: (cp.participant?.displayName ?? "Not Set") + " - " + (camp.campName ?? "not set"), date: cp.camp?.campStart ?? Date(), meanOrSum, true, camp.campName)
+                let cpNode = newGenericTreeNode(name: (cp.participant?.displayName ?? "Not Set") + " - " + (camp.campName ?? "not set"), date: cp.camp?.campStart ?? Date(), meanOrSum, true, camp.campName, TreeNodeType.ParticipantCamp)
                 trainingNode.addChild(cpNode)
                 for d in filtered(participantDays: cp.getDays()) {
                     cpNode.addChild(ParticipantDayTreeNode(d))
@@ -201,7 +201,7 @@ class TreeGenerator{
             }
             for race in camp.getRacesArray(){
                 if resultDict[race.name!] == nil{
-                    let raceNode = newGenericTreeNode(name: race.name!, date: race.raceDefinition!.firstRunning, meanOrSum, true, camp.campName)
+                    let raceNode = newGenericTreeNode(name: race.name!, date: race.raceDefinition!.firstRunning, meanOrSum, true, camp.campName, TreeNodeType.Race)
                     racingNode.addChild(raceNode)
                     resultDict[race.name!] = raceNode
                 }
@@ -245,10 +245,10 @@ class TreeGenerator{
     }
     
     
-    private func newGenericTreeNode(name n: String, date d: Date?,_ meanOrSum: Maths.Aggregator, _ aggregate: Bool, _ camp: String?) -> TreeNodeEditable{
+    private func newGenericTreeNode(name n: String, date d: Date?,_ meanOrSum: Maths.Aggregator, _ aggregate: Bool, _ camp: String?, _ nodeType: TreeNodeType) -> TreeNodeEditable{
         switch meanOrSum{
-        case .Mean: return TreeNodeAverage(name:n, date: d, includeInAggregation: aggregate, campName: camp)
-        case .Sum: return TreeNodeSum(name:n, date: d, includeInAggregation: aggregate, campName: camp)
+        case .Mean: return TreeNodeAverage(name:n, date: d, includeInAggregation: aggregate, campName: camp, nodeType: nodeType)
+        case .Sum: return TreeNodeSum(name:n, date: d, includeInAggregation: aggregate, campName: camp, nodeType: nodeType)
         }
     }
     

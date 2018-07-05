@@ -26,9 +26,7 @@ class HallOfFameEddingtonNumbersViewController: CampGroupViewController{
                 topTens.append((titleFor(a,u), top.overall, top.female, top.male))
             }
         }
-        
-        print("Eddington Number tops tens set for \(topTens.count) categories")
-        
+                
     }
     
     private func titleFor(_ a: Activity, _ u: Unit) -> String{

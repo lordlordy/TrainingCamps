@@ -7,12 +7,14 @@
 //
 
 import Cocoa
+import Quartz
 
 class ViewController: NSSplitViewController, CampGroupViewControllerProtocol {
 
     @objc dynamic var managedObjectContext: NSManagedObjectContext
 
     @objc dynamic var swimColour: NSColor = NSColor.blue
+    @IBOutlet weak var mainView: NSSplitView!
     
     required init?(coder: NSCoder) {
         
@@ -23,6 +25,20 @@ class ViewController: NSSplitViewController, CampGroupViewControllerProtocol {
         ValueTransformer.setValueTransformer(TextViewToStringTransformer(), forName: NSValueTransformerName(rawValue: "TextViewToStringTransformer"))
         
     }
+    
+    @IBAction func saveScreenAsPDF(_ sender: Any){
+        let data = mainView.dataWithPDF(inside: mainView.visibleRect)
+        let dialogue = OpenAndSaveDialogues()
+        
+        let pdf = PDFDocument.init(data: data)
+        
+        
+        if let url = dialogue.saveFilePath(suggestedFileName: "Camps", allowFileTypes: ["pdf"]){
+            pdf?.write(to: url)
+        }
+    }
+    
+
     
     @IBAction func newCampGroup(_ sender: Any){
         let _ = CoreDataStack.shared.newCampGroup()
@@ -36,17 +52,6 @@ class ViewController: NSSplitViewController, CampGroupViewControllerProtocol {
         }
     }
     
-/*    func setCamp(_ camp: Camp) {
-        for c in childViewControllers{
-            if let cvcp = c as? CampViewControllerProtocol{
-                cvcp.setCamp(camp)
-            }
-        }
-        if let w = view.window{
-            w.title = camp.campName ?? "Unkown Camp"
-        }
-    }
-    */
     func setCampGroup(_ campGroup: CampGroup) {
         for c in childViewControllers{
             if let cgvcp = c as? CampGroupViewControllerProtocol{

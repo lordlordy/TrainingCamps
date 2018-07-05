@@ -12,6 +12,20 @@ class CampRacesViewController: CampViewController, NSComboBoxDataSource, NSTable
     
     @IBOutlet var racesAC: NSArrayController!
     
+    @IBAction func saveAsCSV(_ sender: Any) {
+        
+        let csvString: String = CSVExporter().createCSV(forObjs: racesAC.arrangedObjects as? [NSObject] ?? [], RaceProperty.CSV.map({$0.rawValue}))
+        
+        if let url = OpenAndSaveDialogues().saveFilePath(suggestedFileName: "Saved", allowFileTypes: ["csv"]){
+            do{
+                try csvString.write(to: url, atomically: false, encoding: .utf8)
+            }catch let error as NSError{
+                print(error)
+            }
+        }
+        
+    }
+    
     //MARK: - NSComboBoxDataSource   participantsOnCampComboBox
     func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
         if let identifier = comboBox.identifier{

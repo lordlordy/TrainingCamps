@@ -302,8 +302,8 @@
                                                     <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="campStart"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView misplaced="YES" id="v5G-iI-hDa">
-                                                            <rect key="frame" x="346" y="1" width="64" height="17"/>
+                                                        <tableCellView id="v5G-iI-hDa">
+                                                            <rect key="frame" x="346" y="1" width="96" height="23"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h7d-au-yrD">
@@ -344,8 +344,8 @@
                                                     <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="campEnd"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView misplaced="YES" id="naL-U4-6z5">
-                                                            <rect key="frame" x="413" y="1" width="99" height="17"/>
+                                                        <tableCellView id="naL-U4-6z5">
+                                                            <rect key="frame" x="413" y="1" width="99" height="23"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mw5-Yk-c64">
@@ -1058,15 +1058,16 @@
         <!--Camps Tab View Controller-->
         <scene sceneID="qge-5o-yK5">
             <objects>
-                <tabViewController selectedTabViewItemIndex="2" id="VAU-fj-yuE" customClass="CampsTabViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="0" id="VAU-fj-yuE" customClass="CampsTabViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem id="Bg1-Zh-3Ca"/>
+                        <tabViewItem label="Days" id="Bg1-Zh-3Ca"/>
                         <tabViewItem id="zgk-g3-U3M"/>
                         <tabViewItem label="Summary" id="Zol-WM-dcg"/>
-                        <tabViewItem id="2GH-zY-Pgt"/>
+                        <tabViewItem label="Participants" id="2GH-zY-Pgt"/>
+                        <tabViewItem label="Certificates" id="v9i-G8-l5J"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsLineBorder" id="glL-jo-Gd9">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="514" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
                         <tabViewItems/>
@@ -1080,11 +1081,12 @@
                         <segue destination="JuP-DS-zCr" kind="relationship" relationship="tabItems" id="Ngk-Gk-6yC"/>
                         <segue destination="5IQ-Za-aPD" kind="relationship" relationship="tabItems" id="U2o-lO-fYQ"/>
                         <segue destination="URa-0e-zoe" kind="relationship" relationship="tabItems" id="puh-kX-TCQ"/>
+                        <segue destination="z5S-hQ-5q1" kind="relationship" relationship="tabItems" id="lfD-ux-yQg"/>
                     </connections>
                 </tabViewController>
                 <customObject id="4B1-1R-i0D" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1080" y="234"/>
+            <point key="canvasLocation" x="1112" y="234"/>
         </scene>
         <!--Tree-->
         <scene sceneID="tnT-Q0-x66">
@@ -1117,6 +1119,14 @@
                 <customObject id="gMI-OQ-dKd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1264" y="515"/>
+        </scene>
+        <!--CompletionCertificates-->
+        <scene sceneID="dFq-1g-Fsr">
+            <objects>
+                <controllerPlaceholder storyboardName="CompletionCertificates" id="z5S-hQ-5q1" sceneMemberID="viewController"/>
+                <customObject id="7hI-nZ-OTQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1367" y="689"/>
         </scene>
     </scenes>
     <resources>

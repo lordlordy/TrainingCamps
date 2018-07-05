@@ -10,6 +10,9 @@ import Foundation
 
 class ParticipantDayTreeNode: NSObject, TreeNode{
     
+    @objc dynamic var height: Int { return 0 } // this is a leave node
+    @objc dynamic var nodeType: String { return TreeNodeType.TrainingDay.rawValue}
+    
     var camp: String? { return day.campName}
     var gender: String? { return day.campParticipant?.participant?.gender}
     

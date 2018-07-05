@@ -9,11 +9,16 @@
 import Foundation
 
 class RaceResultTreeNode: NSObject, TreeNode{
+
     
+    
+    var nodeType: String {return TreeNodeType.RaceResult.rawValue}
     
     var camp: String? { return result.campName}
     var gender: String? { return result.campParticipant?.participant?.gender}
     
+    @objc dynamic var height: Int { return 0 } // this is a leave node
+
     
     private var result: RaceResult
     

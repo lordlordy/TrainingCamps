@@ -24,8 +24,7 @@ class RaceResultsViewController: NSViewController, RaceResultsViewControllerProt
         self.raceResults = raceResults
         updateColumns()
     }
-    
-    
+
     
     @IBOutlet weak var participantsRacesTableView: NSTableView!
     

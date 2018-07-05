@@ -72,6 +72,26 @@ extension CampParticipant: Rankable{
         }
     }
     
+    @objc dynamic var overallRankTime: Int32{ return rankFor(Activity.total.rawValue, Unit.Seconds.rawValue).overall}
+    @objc dynamic var overallRankTimeGender: Int32{ return rankFor(Activity.total.rawValue, Unit.Seconds.rawValue).gender}
+    @objc dynamic var campRankTime: Int32{ return rankFor(Activity.total.rawValue, Unit.Seconds.rawValue).camp}
+
+    @objc dynamic var overallRankSwimKM: Int32{ return rankFor(Activity.swim.rawValue, Unit.KM.rawValue).overall}
+    @objc dynamic var overallRankSwimKMGender: Int32{ return rankFor(Activity.swim.rawValue, Unit.KM.rawValue).gender}
+    @objc dynamic var campRankSwimKM: Int32{ return rankFor(Activity.swim.rawValue, Unit.KM.rawValue).camp}
+    
+    @objc dynamic var overallRankBikeKM: Int32{ return rankFor(Activity.bike.rawValue, Unit.KM.rawValue).overall}
+    @objc dynamic var overallRankBikeKMGender: Int32{ return rankFor(Activity.bike.rawValue, Unit.KM.rawValue).gender}
+    @objc dynamic var campRankBikeKM: Int32{ return rankFor(Activity.bike.rawValue, Unit.KM.rawValue).camp}
+    
+    @objc dynamic var overallRankRunKM: Int32{ return rankFor(Activity.run.rawValue, Unit.KM.rawValue).overall}
+    @objc dynamic var overallRankRunKMGender: Int32{ return rankFor(Activity.run.rawValue, Unit.KM.rawValue).gender}
+    @objc dynamic var campRankRunKM: Int32{ return rankFor(Activity.run.rawValue, Unit.KM.rawValue).camp}
+    
+    @objc dynamic var racesFinished: [RaceResult]{
+        return getRaces().filter({$0.raceCompletionStatus! == RaceCompletionStatus.Y.rawValue})
+    }
+        
     //MARK: - Rankable
     var gender:     String { return participant?.gender ?? "Not Set" }
     var name:       String? { return participant?.displayName }

@@ -18,6 +18,9 @@ class ParticipantSplitViewController: NSSplitViewController{
                     vc.setParticipant(participants[0])
                 }
             }
+            if let tree = c as? TreeNodeViewController{
+                tree.setGenerator(TreeGeneratorParticipant(participants))
+            }
         }
     }
     

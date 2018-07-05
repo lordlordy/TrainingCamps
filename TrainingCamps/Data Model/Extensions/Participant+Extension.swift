@@ -26,6 +26,16 @@ extension Participant{
         return result
     }
     
+    @objc dynamic var firstCampDate: Date?{
+        if let camps = campParticipations?.allObjects as? [CampParticipant]{
+            let sorted = camps.sorted(by: {$0.camp!.campStart! < $1.camp!.campStart!})
+            if sorted.count > 0{
+                return sorted[0].camp?.campStart
+            }
+        }
+        return nil
+    }
+    
     func participantDaysArray() -> [ParticipantDay]{
         var result: [ParticipantDay] = []
         for cp in campParticipationsArray(){
@@ -38,6 +48,8 @@ extension Participant{
     private func campParticipationsArray() -> [CampParticipant]{
         return campParticipations?.allObjects as? [CampParticipant] ?? []
     }
+    
+    
     
 
 }

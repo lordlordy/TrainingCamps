@@ -48,7 +48,28 @@ class SingleRaceResultsViewController: NSViewController, RaceResultsViewControll
     
     @IBAction func filterChanged(_sender: Any?){
         updatePredicate()
-        print(resultsAC.filterPredicate)
+    }
+    
+    @IBAction func saveAsCSV(_ sender: Any) {
+        
+        let csvString: String = CSVExporter().createCSV(forObjs: raceResults?.allObjects as? [NSObject] ?? [], RaceResultProperty.CSV.map({$0.rawValue}))
+        
+        var suggestedName: String = "RaceResult"
+        
+        if let results = raceResults?.allObjects as? [RaceResult]{
+            if results.count > 0{
+                suggestedName = results[0].race?.raceDefinition?.name ?? "RaceResults"
+            }
+        }
+        
+        if let url = OpenAndSaveDialogues().saveFilePath(suggestedFileName: suggestedName, allowFileTypes: ["csv"]){
+            do{
+                try csvString.write(to: url, atomically: false, encoding: .utf8)
+            }catch let error as NSError{
+                print(error)
+            }
+        }
+        
     }
     
     override func viewDidLoad() {

@@ -10,25 +10,6 @@ import Foundation
 
 extension Camp: TrainingValuesProtocol{
     
-    
-    
-    //return two nodes - one for Races and one for training 
-//    var children: [TreeNode] {
-//        let trainingNode = TreeNodeSum()
-//        trainingNode.set(name: "Training")
-//        let racesNode = TreeNodeSum()
-//        racesNode.set(name: "Races")
-//        
-//        trainingNode.addChildren(campDaysArray())
-//        racesNode.addChildren(getRacesArray())
-//        
-//        return [trainingNode, racesNode]
-//    }
-//    
-//    var treeNodeName: String? { return campName }
-//    var date: Date? { return campStart }
-//    
-    
     @objc dynamic var campLocation: String{ return location?.name ?? "CAMP LOCATION NOT SET" }
     @objc dynamic var campType: String{ return type?.name ?? "CAMP TYPE NOT SET" }
     
@@ -55,11 +36,6 @@ extension Camp: TrainingValuesProtocol{
     @objc var bikeSeconds:          Double { return valueFor(.bike, .Seconds)}
     @objc var runSeconds:           Double { return valueFor(.run, .Seconds)}
     
-//    func leavesShow(participantName show: Bool) {
-//        for c in children{
-//            c.leavesShow(participantName: show)
-//        }
-//    }
     
     @objc var  bricks: Int {return campDaysArray().reduce(0, {$0 + $1.bricks})}
     
@@ -99,6 +75,42 @@ extension Camp: TrainingValuesProtocol{
                 type = cg.campType(forName: newValue)
             }
         }
+    }
+    
+    @objc dynamic var allTimeCampTimeTopThree: [HallOfFameResult]{
+        if let cg = campGroup{
+            let topTens = cg.topTen(forActivity: .total, unit: .Seconds, isDay: false)
+            return topTens.overall.filter({$0.rank < 6})
+        }
+        return []
+    }
+
+    @objc dynamic var allTimeCampSwimKMTopThree: [HallOfFameResult]{
+        if let cg = campGroup{
+            let topTens = cg.topTen(forActivity: .swim, unit: .KM, isDay: false)
+            return topTens.overall.filter({$0.rank < 4})
+        }
+        return []
+    }
+    
+    @objc dynamic var allTimeCampBikeKMTopThree: [HallOfFameResult]{
+        if let cg = campGroup{
+            let topTens = cg.topTen(forActivity: .bike, unit: .KM, isDay: false)
+            return topTens.overall.filter({$0.rank < 4})
+        }
+        return []
+    }
+    
+    @objc dynamic var allTimeCampRunKMTopThree: [HallOfFameResult]{
+        if let cg = campGroup{
+            let topTens = cg.topTen(forActivity: .run, unit: .KM, isDay: false)
+            return topTens.overall.filter({$0.rank < 4})
+        }
+        return []
+    }
+    
+    @objc dynamic var campTimeTopThree: [CampParticipant]{
+        return campParticipantsArray().filter({$0.campRankTime < 4}).sorted(by: {$0.campRankTime < $1.campRankTime})
     }
     
     func getRacesArray() -> [Race]{
@@ -185,58 +197,6 @@ extension Camp: TrainingValuesProtocol{
         
     }
     
-//    func generateTreeByDay() -> TreeNodeOLD{
-//
-//            let trainingNode = CampTrainingNode(name: "Training", date: campStart!)
-//            let racesNode = CampRacingNode(name: "Races", date: campStart!)
-//            
-//            let campDays: [Day] = days?.allObjects as? [Day] ?? []
-//            for d in campDays.sorted(by: {$0.date! < $1.date!}){
-//                let dayNode =  TreeNodeImplementation(name: d.date!.dayOfWeek(), date: d.date!)
-//                trainingNode.addChild(dayNode)
-//                let participantDays: [ParticipantDay] = d.participantDays?.allObjects as? [ParticipantDay] ?? []
-//                for pd in participantDays.sorted(by: {$0.campParticipant!.participant!.uniqueName! < $1.campParticipant!.participant!.uniqueName!}){
-//                    let pdNode: TreeNodeOLD = DayNode(day: pd)
-//                    dayNode.addChild(pdNode)
-//                }
-//                dayNode.rankChildren()
-//                dayNode.children = dayNode.children.sorted(by: {$0.rank < $1.rank})
-//            }
-//            
-//            let campRaces: [Race] = races?.allObjects as? [Race] ?? []
-//            for r in campRaces.sorted(by: {$0.date! < $1.date!}){
-//                let raceNode = TreeNodeImplementation(name: r.name ?? "Not Set", date: r.date!)
-//                racesNode.addChild(raceNode)
-//                let results: [RaceResult] = r.results?.allObjects as? [RaceResult] ?? []
-//                for result in results.sorted(by: {$0.rank < $1.rank}){
-//                    let resultNode: TreeNodeOLD = RaceResultNode(raceResult: result)
-//                    raceNode.addChild(resultNode)
-//                }
-//                racesNode.rankChildren()
-//            }
-//        
-//        let campsNode = CampNode(name: campName ?? "NOT SET", date: campStart!, training: trainingNode, races: racesNode)
-//        trainingNode.rankChildren()
-//        racesNode.rankChildren()
-//        campsNode.rankChildren()
-//        
-//        return campsNode
-//    }
-    
-//    func generateTreeByParticipant() -> TreeNodeOLD{
-//        let rootNode = TreeNodeImplementation(name: campName ?? "NAME NOT SET", date: campStart!)
-//
-//        for p in campParticipantsArray().sorted(by: {$0.participant!.uniqueName! < $1.participant!.uniqueName!}){
-//            let node = p.generateTree()
-//            node.name = p.participant?.displayName ?? "Name NOT SET"
-//            rootNode.addChild(node)
-//        }
-//        rootNode.rankChildren()
-//        rootNode.children = rootNode.children.sorted(by: {$0.rank < $1.rank})
-//        return rootNode
-//
-//    }
-    
     func rankCompetition(){
         var rank: Int16 = 1
         for cp in orderedForCampPoints(){
@@ -264,6 +224,8 @@ extension Camp: TrainingValuesProtocol{
         }
         return result
     }
+    
+
     
     private func orderedForCampPoints() -> [CampParticipant]{
         return campParticipantsArray().sorted(by: {

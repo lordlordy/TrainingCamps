@@ -9,6 +9,9 @@
 import Foundation
 
 class TreeNodeAverage:NSObject, TreeNodeEditable{
+    
+    var nodeType: String = ""
+    
 
     var rankTotalAscentMetres: Int = 0
     var rankTotalKM: Int = 0
@@ -94,9 +97,17 @@ class TreeNodeAverage:NSObject, TreeNodeEditable{
         return Double(children.count)
     }
     
+    @objc dynamic var height: Int {
+        var childHeights: [Int] = []
+        for c in children{
+            childHeights.append(c.height)
+        }
+        return 1 + childHeights.reduce(0, {max($0, $1)})
+    }
     
-    init(name: String, date d: Date?, includeInAggregation: Bool, campName: String?){
+    init(name: String, date d: Date?, includeInAggregation: Bool, campName: String?, nodeType: TreeNodeType){
         super.init()
+        self.nodeType = nodeType.rawValue
         camp = campName
         set(name: name)
         date = d
