@@ -20,12 +20,6 @@ class CampRaceResultViewController: CampViewController, RaceViewControllerProtoc
     @objc dynamic var race: Race?
     @IBOutlet var raceResultsAC: NSArrayController!
     
-//    @IBAction func rankRace(_ sender: Any) {
-//        if let r = race{
-//            r.rank()
-//        }
-//    }
-    
     @IBOutlet weak var raceResultsTableView: NSTableView!
     
     @IBAction func showAllColumns(_ sender: Any?){

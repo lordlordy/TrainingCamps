@@ -18,8 +18,8 @@
             <objects>
                 <splitViewController title="Camp Participants" id="dAi-lC-JIa" customClass="CampParticipantsSplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem id="9iN-vz-YRG"/>
-                        <splitViewItem id="Ei9-Ff-Veu"/>
+                        <splitViewItem canCollapse="YES" id="9iN-vz-YRG"/>
+                        <splitViewItem canCollapse="YES" id="Ei9-Ff-Veu"/>
                     </splitViewItems>
                     <splitView key="splitView" id="6uF-mc-p4n">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -43,8 +43,8 @@
             <objects>
                 <splitViewController id="Xj0-OG-KWA" customClass="CampParticipantSplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem id="sUf-1A-BfO"/>
-                        <splitViewItem id="Puc-zy-F3Z"/>
+                        <splitViewItem canCollapse="YES" id="sUf-1A-BfO"/>
+                        <splitViewItem canCollapse="YES" id="Puc-zy-F3Z"/>
                     </splitViewItems>
                     <splitView key="splitView" id="IaL-KG-Vkg">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>

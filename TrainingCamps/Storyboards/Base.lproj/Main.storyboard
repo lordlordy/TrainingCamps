@@ -82,6 +82,12 @@
                                                             <action selector="saveScreenAsPDF:" target="Ady-hI-5gd" id="tVM-ay-Yqk"/>
                                                         </connections>
                                                     </menuItem>
+                                                    <menuItem title="Visible Table as PDF..." id="snb-nP-Llj">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="saveVisibleTableAsPDF:" target="Ady-hI-5gd" id="TD1-yM-api"/>
+                                                        </connections>
+                                                    </menuItem>
                                                     <menuItem title="All Items as PDF..." toolTip="This saves all items in the table / view even if not currently visible" id="FoB-7g-fjc">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>

@@ -7,11 +7,14 @@
 //
 
 import Cocoa
+import Quartz
 
 class AllParticipantsEddingtonNumbersViewController: CampGroupViewController, NSComboBoxDataSource{
     
     
     @IBOutlet var eddingtonNumbersAC: NSArrayController!
+//    @IBOutlet weak var clipView: NSClipView!
+    @IBOutlet weak var tableScrollView: NSScrollView!
     
     @objc dynamic var participantDisplayName: String?{
         didSet{
@@ -33,6 +36,33 @@ class AllParticipantsEddingtonNumbersViewController: CampGroupViewController, NS
     
     @IBAction func rank(_ sender: Any?){
         campGroup?.rankParticipantEddingtonNumbers()
+    }
+    
+    
+    
+    @IBAction func saveVisibleTableAsPDF(_ sender: Any){
+        let data = tableScrollView.dataWithPDF(inside: tableScrollView.bounds)
+//        let data = clipView.dataWithPDF(inside: clipView.frame)
+        let pdf = PDFDocument.init(data:data)
+        
+        if let url = OpenAndSaveDialogues().saveFilePath(suggestedFileName: "EddingtonNumbers", allowFileTypes: ["pdf"]){
+            pdf?.write(to: url)
+        }
+    }
+    
+    
+    @IBAction func saveAsCSV(_ sender: Any) {
+        
+        let csvString: String = CSVExporter().createCSV(forObjs: eddingtonNumbersAC.arrangedObjects as? [NSObject] ?? [], EddingtonNumberProperty.CSV.map({$0.rawValue}))
+        
+        if let url = OpenAndSaveDialogues().saveFilePath(suggestedFileName: "EddingtonNumbers", allowFileTypes: ["csv"]){
+            do{
+                try csvString.write(to: url, atomically: false, encoding: .utf8)
+            }catch let error as NSError{
+                print(error)
+            }
+        }
+        
     }
     
     //MARK: - NSComboBoxDataSource   participantsOnCampComboBox

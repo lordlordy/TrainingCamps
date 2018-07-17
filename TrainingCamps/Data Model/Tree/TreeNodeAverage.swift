@@ -80,9 +80,9 @@ class TreeNodeAverage:NSObject, TreeNodeEditable{
 
     
     
-    func leavesShow(participantName show: Bool) {
+    func leavesShow(trainingLeafNameType trainingShow: String, racingLeafNameType racingShow: String) {
         for c in children{
-            c.leavesShow(participantName: show)
+            c.leavesShow(trainingLeafNameType: trainingShow, racingLeafNameType: racingShow)
         }
     }
     
@@ -94,7 +94,7 @@ class TreeNodeAverage:NSObject, TreeNodeEditable{
     }
     
     func numberOfChildrenForAverage() -> Double{
-        return Double(children.count)
+        return Double(children.filter({$0.includeInAggregation}).count)
     }
     
     @objc dynamic var height: Int {

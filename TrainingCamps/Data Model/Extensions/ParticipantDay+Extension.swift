@@ -89,6 +89,22 @@ extension ParticipantDay: Rankable{
         }
     }
     
+    @objc dynamic var durationPercentile: Double{
+        return campParticipant?.camp?.campGroup?.percentile(forActivity: Activity.total, andUnit: Unit.Seconds, isCamp: false, withValue: totalSeconds) ?? 0.0
+    }
+    
+    @objc dynamic var swimKMPercentile: Double{
+        return campParticipant?.camp?.campGroup?.percentile(forActivity: Activity.swim, andUnit: Unit.KM, isCamp: false, withValue: swimKM) ?? 0.0
+    }
+
+    @objc dynamic var bikeKMPercentile: Double{
+        return campParticipant?.camp?.campGroup?.percentile(forActivity: Activity.bike, andUnit: Unit.KM, isCamp: false, withValue: bikeKM) ?? 0.0
+    }
+    
+    @objc dynamic var runKMPercentile: Double{
+        return campParticipant?.camp?.campGroup?.percentile(forActivity: Activity.run, andUnit: Unit.KM, isCamp: false, withValue: runKM) ?? 0.0
+    }
+    
     override public class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String>{
         let keyPaths = super.keyPathsForValuesAffectingValue(forKey: key)
         switch key {

@@ -10,10 +10,10 @@
             <objects>
                 <splitViewController title="Participant" id="Xi5-ks-Du1" customClass="ParticipantSplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem id="Urv-Gq-1zw"/>
-                        <splitViewItem id="tvx-PL-vmf"/>
+                        <splitViewItem canCollapse="YES" id="Urv-Gq-1zw"/>
+                        <splitViewItem canCollapse="YES" id="tvx-PL-vmf"/>
                     </splitViewItems>
-                    <splitView key="splitView" dividerStyle="thin" vertical="YES" id="MPC-Hu-aVx">
+                    <splitView key="splitView" vertical="YES" id="MPC-Hu-aVx">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>

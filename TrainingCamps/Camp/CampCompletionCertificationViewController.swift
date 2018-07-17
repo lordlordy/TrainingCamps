@@ -52,7 +52,7 @@ class CampCompletionCertificationViewController: NSViewController, CampParticipa
             rootNode.addChild(ParticipantDayTreeNode(day))
         }
         rootNode.rankChildren()
-        rootNode.leavesShow(participantName: false)
+        rootNode.leavesShow(trainingLeafNameType: TrainingLeafNameType.DayOfWeek.rawValue, racingLeafNameType: RacingLeafNameType.RaceName.rawValue)
         trainingNodes = [rootNode]
     }
     

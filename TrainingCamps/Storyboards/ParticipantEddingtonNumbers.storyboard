@@ -337,9 +337,26 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="A4w-kL-WI2">
+                                <rect key="frame" x="90" y="276" width="211" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="5iS-NK-ZU0"/>
+                                    <constraint firstAttribute="width" constant="207" id="DsB-7z-5k1"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" alignment="left" id="bKx-7P-dBX">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="Zq7-jt-1KG" name="value" keyPath="participant.displayName" id="NWO-77-HZD"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="kMr-B2-9rR" firstAttribute="top" secondItem="nAV-hB-9JK" secondAttribute="bottom" constant="2" id="0u1-Bw-Sfw"/>
+                            <constraint firstItem="A4w-kL-WI2" firstAttribute="leading" secondItem="QaU-Eq-GOn" secondAttribute="trailing" constant="5" id="2oT-gX-tvh"/>
+                            <constraint firstItem="A4w-kL-WI2" firstAttribute="top" secondItem="CkR-0v-Fd0" secondAttribute="top" constant="2" id="4kk-b6-j9V"/>
                             <constraint firstItem="kMr-B2-9rR" firstAttribute="leading" secondItem="CkR-0v-Fd0" secondAttribute="leading" constant="2" id="Ffa-YR-z5s"/>
                             <constraint firstAttribute="trailing" secondItem="kMr-B2-9rR" secondAttribute="trailing" constant="2" id="HBg-Jb-BeI"/>
                             <constraint firstItem="nAV-hB-9JK" firstAttribute="top" secondItem="CkR-0v-Fd0" secondAttribute="top" constant="2" id="HwX-pg-97H"/>

@@ -7,10 +7,12 @@
 //
 
 import Cocoa
+import Quartz
 
 class EddingtonNumberViewController: CampGroupViewController, NSComboBoxDataSource{
     
     @IBOutlet var eddingtonNumberAC: NSArrayController!
+    @IBOutlet weak var tableScrollView: NSScrollView!
     
     @IBAction func calculateSelection(_ sender: Any) {
         if let selection = eddingtonNumberAC.selectedObjects as? [EddingtonNumber]{
@@ -18,6 +20,30 @@ class EddingtonNumberViewController: CampGroupViewController, NSComboBoxDataSour
                 s.calculate()
             }
         }
+    }
+    
+    @IBAction func saveVisibleTableAsPDF(_ sender: Any){
+        let data = tableScrollView.dataWithPDF(inside: tableScrollView.bounds)
+        let pdf = PDFDocument.init(data:data)
+        
+        if let url = OpenAndSaveDialogues().saveFilePath(suggestedFileName: "EddingtonNumbers", allowFileTypes: ["pdf"]){
+            pdf?.write(to: url)
+        }
+    }
+    
+    
+    @IBAction func saveAsCSV(_ sender: Any) {
+        
+        let csvString: String = CSVExporter().createCSV(forObjs: eddingtonNumberAC.arrangedObjects as? [NSObject] ?? [], EddingtonNumberProperty.CSV.map({$0.rawValue}))
+        
+        if let url = OpenAndSaveDialogues().saveFilePath(suggestedFileName: "EddingtonNumbers", allowFileTypes: ["csv"]){
+            do{
+                try csvString.write(to: url, atomically: false, encoding: .utf8)
+            }catch let error as NSError{
+                print(error)
+            }
+        }
+        
     }
     
     //MARK: - NSComboBoxDataSource   participantsOnCampComboBox

@@ -16,7 +16,14 @@ class TransformerNSNumberToTimeFormat: ValueTransformer {
     override class func allowsReverseTransformation() -> Bool {return true}
     
     override func transformedValue(_ value: Any?) -> Any? {
-        guard let s: Int = value as? Int else { return nil }
+        var s: Int = 0
+        if let intS = value as? Int{
+            s = intS
+        }else if let doubleS = value as? Double{
+            s = Int(doubleS)
+        }else{
+            return nil
+        }
         
         let isNegative: Bool = s < 0
         

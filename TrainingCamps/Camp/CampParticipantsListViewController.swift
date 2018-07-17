@@ -14,7 +14,9 @@ class CampParticipantsListViewController: CampViewController, NSComboBoxDataSour
     
     @IBOutlet var campParticipantAC: NSArrayController!
     
+    @IBOutlet weak var tableScrollView: NSScrollView!
     @IBOutlet weak var pointsTable: NSTableView!
+    @IBOutlet weak var clipView: NSClipView!
     
     
     @IBAction func rankCompetition(_ sender: Any){
@@ -23,23 +25,90 @@ class CampParticipantsListViewController: CampViewController, NSComboBoxDataSour
         }
     }
     
-    @IBAction func saveAsPDF(_ sender: Any) {
-        var headers = pointsTable.headerView?.dataWithPDF(inside: (pointsTable.headerView?.bounds)!)
-        let rows = pointsTable.dataWithPDF(inside: pointsTable.bounds)
+    @IBAction func saveVisibleTableAsPDF(_ sender: Any){
+        let data = tableScrollView.dataWithPDF(inside: tableScrollView.frame)
+        let pdf = PDFDocument.init(data:data)
         
-//        let rect = NSRect(x: 0, y: -0.23, width: 1489, height: 365  )
-//        let rows = pointsTable.dataWithPDF(inside: rect)
+        if let url = OpenAndSaveDialogues().saveFilePath(suggestedFileName: "CampPoints", allowFileTypes: ["pdf"]){
+            pdf?.write(to: url)
+        }
+    }
+    
+    @IBAction func saveAsPDF(_ sender: Any) {
+        
+        let printView: NSView = NSView.init(frame: NSRect.init(x: 0.0, y: 0.0, width: pointsTable.bounds.width, height:  pointsTable.bounds.height + (pointsTable.headerView?.bounds.height)!))
+        
+        let headerV: NSView = pointsTable.headerView!
+        
+        let originalFram = headerV.frame
+        
+        print("Views in the clipView")
+        for v in clipView.subviews{
+            print(v)
+        }
+        
+        headerV.frame = NSRect(x: 0.0, y: pointsTable.bounds.height, width: headerV.bounds.width, height: headerV.bounds.height)
+        printView.addSubview(pointsTable)
+        printView.addSubview(headerV)
+
+
+        print("Views in the clipView")
+        for v in clipView.subviews{
+            print(v)
+        }
+        
+        
+
+//        var testData = pointsTable.dataWithPDF(inside: pointsTable.bounds)
+//        var compare: [(UInt8, UInt8)] = []
+//        var i: Int = 0
+//        test: for h in testData{
+//            compare.append((h,0))
+//            i += 1
+//        }
+//
+//        testData.append(headerV.dataWithPDF(inside: headerV.bounds))
+//
+//        var j: Int = 0
+//        test: for h in testData{
+//            if compare.count > j{
+//                compare[j].1 = h
+//            }else{
+//                compare.append((0,h))
+//            }
+//            j += 1
+//            if j>=i + 10 { break test }
+//        }
+//
+//        for c in compare{
+//            print(c)
+//        }
+        
+        printView.translatesAutoresizingMaskIntoConstraints = false
+        headerV.translatesAutoresizingMaskIntoConstraints = false
+        pointsTable.translatesAutoresizingMaskIntoConstraints = false
+        
+        let data = printView.dataWithPDF(inside: printView.bounds)
+        let pdf = PDFDocument.init(data:data)
+        
+        if let url = OpenAndSaveDialogues().saveFilePath(suggestedFileName: "CampPoints", allowFileTypes: ["pdf"]){
+            pdf?.write(to: url)
+        }
+        
+        clipView.addSubview(pointsTable)
+        
+        print("Views in the clipView")
+        for v in clipView.subviews{
+            print(v)
+        }
+        
+        
+        pointsTable.translatesAutoresizingMaskIntoConstraints = true
+        headerV.frame = originalFram
+        pointsTable.reloadData()
+        pointsTable.needsDisplay = true
 
         
-//        if var data = headers{
-            headers!.append(rows)
-            let pdf = PDFDocument.init(data: headers!)
-            
-            
-            if let url = OpenAndSaveDialogues().saveFilePath(suggestedFileName: "CampPoints", allowFileTypes: ["pdf"]){
-                pdf?.write(to: url)
-            }
-//        }
     }
     
     @IBAction func saveAsCSV(_ sender: Any) {

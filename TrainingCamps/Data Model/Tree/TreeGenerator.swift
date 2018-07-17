@@ -71,7 +71,7 @@ class TreeGenerator{
                 }
             }
         }
-        rootNode.leavesShow(participantName: true)
+        rootNode.leavesShow(trainingLeafNameType: TrainingLeafNameType.ParticipantName.rawValue, racingLeafNameType: RacingLeafNameType.ParticipantName.rawValue)
 
         if campNodes.count == 1{
             return [campNodes[0]]
@@ -108,7 +108,8 @@ class TreeGenerator{
                     }
                 }
             }
-            rootNode.leavesShow(participantName: false)
+            rootNode.leavesShow(trainingLeafNameType: TrainingLeafNameType.DayOfWeek.rawValue, racingLeafNameType: RacingLeafNameType.RaceName.rawValue)
+
             return [rootNode]
         }else if camps.count == 1{
             let campDate: Date = camps[0].campStart ?? Date()
@@ -127,7 +128,8 @@ class TreeGenerator{
                     racesNode.addChild(RaceResultTreeNode(r))
                 }
             }
-            campNode.leavesShow(participantName: false)
+            campNode.leavesShow(trainingLeafNameType: TrainingLeafNameType.DayOfWeek.rawValue, racingLeafNameType: RacingLeafNameType.RaceName.rawValue)
+
             return [campNode]
         }
         return []
@@ -169,7 +171,7 @@ class TreeGenerator{
         }
         trainingNode.addChildren(days)
         
-        rootNode.leavesShow(participantName: true)
+        rootNode.leavesShow(trainingLeafNameType: TrainingLeafNameType.ParticipantName.rawValue, racingLeafNameType: RacingLeafNameType.ParticipantName.rawValue)
         
         return [rootNode]
     
@@ -211,7 +213,7 @@ class TreeGenerator{
             }
         }
         
-        rootNode.leavesShow(participantName: false)
+        rootNode.leavesShow(trainingLeafNameType: TrainingLeafNameType.DayOfWeek.rawValue, racingLeafNameType: RacingLeafNameType.RaceName.rawValue)
         
         return [rootNode]
         

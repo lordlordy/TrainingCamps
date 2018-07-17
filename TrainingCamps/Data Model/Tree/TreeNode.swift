@@ -24,6 +24,14 @@ enum TreeNodeType: String{
     case TrainingDay = "Training Day"
 }
 
+enum TrainingLeafNameType: String{
+    case ParticipantName, DayOfWeek
+}
+
+enum RacingLeafNameType: String{
+    case ParticipantName, RaceName, CampName
+}
+
 @objc protocol TreeNode: NSObjectProtocol {
     @objc var children:             [TreeNode] { get }
     @objc var childCount:           Int {get}
@@ -64,7 +72,7 @@ enum TreeNodeType: String{
     
     @objc var height: Int {get}
 
-    func leavesShow(participantName show: Bool)
+    func leavesShow(trainingLeafNameType trainingShow: String, racingLeafNameType racingShow: String)
     func rankChildren()
     
 }

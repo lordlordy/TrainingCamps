@@ -12,7 +12,8 @@ class TreeGeneratorParticipant: TreeNodeGenerator{
     
     enum TreeOrder: String{
         case standard = "Athlete -> Camp -> Training"
-        static var All: [TreeOrder] = [standard]
+        case trainingCamp = "Athlete -> Training -> Camp"
+        static var All: [TreeOrder] = [standard, trainingCamp]
     }
     
     func treeOrders() -> [String] {
@@ -27,6 +28,7 @@ class TreeGeneratorParticipant: TreeNodeGenerator{
         if let order = TreeOrder(rawValue: inOrder){
             switch order{
             case .standard: result = generateStandardTree()
+            case .trainingCamp: result = generateTrainingCampTree()
             }
         }else{
             result = generateStandardTree()
@@ -38,6 +40,47 @@ class TreeGeneratorParticipant: TreeNodeGenerator{
         
         return result
     }
+    
+    private func generateTrainingCampTree() -> [TreeNode]{
+        let rootNode: TreeNodeEditable = newGenericTreeNode(name: "All", date: nil, true, nil, TreeNodeType.Root)
+        let trainingNode: TreeNodeEditable = newGenericTreeNode(name: "Training", date: nil, true, nil, TreeNodeType.Training)
+        let racingNode: TreeNodeEditable = newGenericTreeNode(name: "Racing", date: nil, false, nil, TreeNodeType.Racing)
+        rootNode.addChild(trainingNode)
+        rootNode.addChild(racingNode)
+        
+        for p in participants{
+            let pNodeTraining: TreeNodeEditable = newGenericTreeNode(name: p.displayName, date: p.firstCampDate, true, nil, TreeNodeType.Participant)
+            let pNodeRacing: TreeNodeEditable = newGenericTreeNode(name: p.displayName, date: p.firstCampDate, true, nil, TreeNodeType.Participant)
+            trainingNode.addChild(pNodeTraining)
+            racingNode.addChild(pNodeRacing)
+            
+            var raceDict: [String: TreeNodeEditable] = [:]
+            for c in p.campParticipations?.allObjects as? [CampParticipant] ?? []{
+                //training first
+                let campNode: TreeNodeEditable = newGenericTreeNode(name: c.campName, date: c.camp?.campStart, true, c.campName, TreeNodeType.Camp)
+                pNodeTraining.addChild(campNode)
+                for d in c.getDays(){
+                    campNode.addChild(ParticipantDayTreeNode(d))
+                }
+                
+                //now racing
+                for r in c.getRaces(){
+                    if raceDict[r.race!.raceDefinition!.name!] == nil{
+                        raceDict[r.race!.raceDefinition!.name!] = newGenericTreeNode(name: r.race!.raceDefinition!.name!, date: r.race!.date, true, c.campName, TreeNodeType.RaceResult)
+                        pNodeRacing.addChild(raceDict[r.race!.raceDefinition!.name!]!)
+                    }
+                    raceDict[r.race!.raceDefinition!.name!]?.addChild(RaceResultTreeNode(r))
+                }
+            }
+            
+        }
+        
+        rootNode.rankChildren()
+        rootNode.leavesShow(trainingLeafNameType: TrainingLeafNameType.DayOfWeek.rawValue, racingLeafNameType: RacingLeafNameType.CampName.rawValue)
+        
+        return [rootNode]
+    }
+
     
     private func generateStandardTree() -> [TreeNode]{
         let rootNode: TreeNodeEditable = newGenericTreeNode(name: "All", date: nil, true, nil, TreeNodeType.Root)
@@ -61,7 +104,7 @@ class TreeGeneratorParticipant: TreeNodeGenerator{
             }
         }
         rootNode.rankChildren()
-        rootNode.leavesShow(participantName: false)
+        rootNode.leavesShow(trainingLeafNameType: TrainingLeafNameType.DayOfWeek.rawValue, racingLeafNameType: RacingLeafNameType.RaceName.rawValue)
         if rootNode.children.count == 1{
             return [rootNode.children[0]]
         }

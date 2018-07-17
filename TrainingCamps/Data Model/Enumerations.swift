@@ -206,7 +206,8 @@ enum RaceType: String{
 }
 
 enum EddingtonNumberProperty: String{
-    case code, activity, unit, value, plusOne
+    case code, activity, unit, value, plusOne, name
+    static let CSV: [EddingtonNumberProperty] = [code, activity, unit, value, plusOne, name]
 }
 
 

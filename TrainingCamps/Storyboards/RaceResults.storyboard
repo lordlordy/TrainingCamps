@@ -810,7 +810,7 @@
             <objects>
                 <splitViewController title="Race Results Split View" id="BIx-45-1o3" customClass="RaceResultsSplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem id="kAw-jt-dxa"/>
+                        <splitViewItem canCollapse="YES" id="kAw-jt-dxa"/>
                         <splitViewItem canCollapse="YES" id="sUH-4C-Vth"/>
                     </splitViewItems>
                     <splitView key="splitView" vertical="YES" id="80H-C8-4OE">

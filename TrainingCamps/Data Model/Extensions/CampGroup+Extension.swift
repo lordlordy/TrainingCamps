@@ -50,8 +50,36 @@ extension CampGroup: TrainingValuesProtocol{
     @objc var bikeSeconds:  Double { return campsArray().reduce(0.0, {$0 + $1.bikeSeconds}) }
     @objc var runSeconds:   Double { return campsArray().reduce(0.0, {$0 + $1.runSeconds}) }
     
+    
     @objc var participantEddingtonNumbers: [EddingtonNumber]{ return participantEddingtonNumbersArray()}
     
+    private var dayTotalSecondsStdDevMeanSum: (stdDev: Double, mean: Double, total: Double){
+        return Maths().stdDevMeanTotal(participantDaysArray().map({$0.totalSeconds}))
+    }
+    private var daySwimKMStdDevMeanSum: (stdDev: Double, mean: Double, total: Double){
+        return Maths().stdDevMeanTotal(participantDaysArray().map({$0.swimKM}))
+    }
+    private var dayBikeKMStdDevMeanSum: (stdDev: Double, mean: Double, total: Double){
+        return Maths().stdDevMeanTotal(participantDaysArray().map({$0.bikeKM}))
+    }
+    private var dayRunKMStdDevMeanSum: (stdDev: Double, mean: Double, total: Double){
+        return Maths().stdDevMeanTotal(participantDaysArray().map({$0.runKM}))
+    }
+    private var campTotalSecondsStdDevMeanSum: (stdDev: Double, mean: Double, total: Double){
+        return Maths().stdDevMeanTotal(campParticipantsArray().map({$0.totalSeconds}))
+    }
+    private var campSwimKMStdDevMeanSum: (stdDev: Double, mean: Double, total: Double){
+        return Maths().stdDevMeanTotal(campParticipantsArray().map({$0.swimKM}))
+    }
+    private var campBikeKMStdDevMeanSum: (stdDev: Double, mean: Double, total: Double){
+        return Maths().stdDevMeanTotal(campParticipantsArray().map({$0.bikeKM}))
+    }
+    private var campRunKMStdDevMeanSum: (stdDev: Double, mean: Double, total: Double){
+        return Maths().stdDevMeanTotal(campParticipantsArray().map({$0.runKM}))
+    }
+    
+    
+
     func rank(){
         let start = Date()
         let ranker: Ranker = Ranker()
@@ -246,6 +274,16 @@ extension CampGroup: TrainingValuesProtocol{
         }
         
     }
+
+    func topTen(forLocation l: Location, activity a: Activity, unit u: Unit, isDay: Bool) -> (overall: [Rank], female: [Rank], male: [Rank]){
+        
+        if isDay{
+            return dayTopTen(forLocation:l, activity: a, unit: u)
+        }else{
+            return campTopTen(forLocation:l, activity: a, unit: u)
+        }
+        
+    }
     
     private func individualEddingtonNumbers() -> [EddingtonNumber]{
         var result: [EddingtonNumber] = []
@@ -253,6 +291,58 @@ extension CampGroup: TrainingValuesProtocol{
             result.append(contentsOf: p.eddingtonNumbers?.allObjects as? [EddingtonNumber] ?? [])
         }
         return result
+    }
+    
+    private func dayTopTen(forLocation l: Location, activity a: Activity, unit u: Unit) -> (overall: [Rank], female: [Rank], male: [Rank]){
+        let filteredRanks: [Rank] = dayRanks().filter({$0.participantDay!.campParticipant!.camp!.location == l && $0.activity! == a.rawValue && $0.unit! == u.rawValue}).sorted(by: {$0.bestOnly < $1.bestOnly})
+        let female: [Rank] = filteredRanks.filter({$0.participantDay!.campParticipant!.participant!.gender! == Gender.Female.rawValue})
+        let male: [Rank] = filteredRanks.filter({$0.participantDay!.campParticipant!.participant!.gender! == Gender.Male.rawValue})
+        
+        var o: [Rank] = []
+        var f: [Rank] = []
+        var m: [Rank] = []
+        
+        //pull together top 10 - they are in rank order already so...
+        for i in 0...9{
+            if filteredRanks.count > i{
+                o.append(filteredRanks[i])
+            }
+            if female.count > i{
+                f.append(female[i])
+            }
+            if male.count > i{
+                m.append(male[i])
+            }
+        }
+        
+        return (o,f,m)
+        
+    }
+    
+    private func campTopTen(forLocation l: Location, activity a: Activity, unit u: Unit) -> (overall: [Rank], female: [Rank], male: [Rank]){
+        let filteredRanks: [Rank] = campRanks().filter({$0.campParticipant!.camp!.location == l && $0.activity! == a.rawValue && $0.unit! == u.rawValue}).sorted(by: {$0.bestOnly < $1.bestOnly})
+        let female: [Rank] = filteredRanks.filter({$0.campParticipant!.participant!.gender! == Gender.Female.rawValue})
+        let male: [Rank] = filteredRanks.filter({$0.campParticipant!.participant!.gender! == Gender.Male.rawValue})
+        
+        var o: [Rank] = []
+        var f: [Rank] = []
+        var m: [Rank] = []
+        
+        //pull together top 10 - they are in rank order already so...
+        for i in 0...9{
+            if filteredRanks.count > i{
+                o.append(filteredRanks[i])
+            }
+            if female.count > i{
+                f.append(female[i])
+            }
+            if male.count > i{
+                m.append(male[i])
+            }
+        }
+        
+        return (o,f,m)
+        
     }
     
     private func dayTopTen(forActivity a: Activity, unit u: Unit) -> (overall: [HallOfFameResult], female: [HallOfFameResult], male: [HallOfFameResult]){
@@ -327,6 +417,44 @@ extension CampGroup: TrainingValuesProtocol{
             result.append(contentsOf: p.eddingtonNumbers?.allObjects as? [EddingtonNumber] ?? [])
         }
         return result
+    }
+    
+    func percentile(forActivity a: Activity, andUnit u: Unit, isCamp: Bool, withValue v: Double) -> Double{
+        let stdDevMean = stdDevMeanSum(forActivity: a, andUnit: u, isCamp: isCamp)
+        let stdDevsFromMean = (v - stdDevMean.mean) / stdDevMean.stdDev
+        let percentile = Maths().phi(stdDev: stdDevsFromMean)
+        return percentile
+    }
+    
+    private func stdDevMeanSum(forActivity a: Activity, andUnit u: Unit, isCamp: Bool) -> (stdDev: Double, mean: Double, total: Double){
+        if isCamp{
+            if a == Activity.total && u == Unit.Seconds{
+                return campTotalSecondsStdDevMeanSum
+            }
+            if u == Unit.KM{
+                switch a{
+                case .swim: return campSwimKMStdDevMeanSum
+                case .bike: return campBikeKMStdDevMeanSum
+                case .run: return campRunKMStdDevMeanSum
+                default: return (0.0,0.0,0.0)
+                }
+            }
+        }else{
+            if a == Activity.total && u == Unit.Seconds{
+                return dayTotalSecondsStdDevMeanSum
+            }
+            if u == Unit.KM{
+                switch a{
+                case .swim: return daySwimKMStdDevMeanSum
+                case .bike: return dayBikeKMStdDevMeanSum
+                case .run: return dayRunKMStdDevMeanSum
+                default: return (0.0,0.0,0.0)
+                }
+            }
+        }
+        
+       return (0.0,0.0,0.0)
+        
     }
     
 }

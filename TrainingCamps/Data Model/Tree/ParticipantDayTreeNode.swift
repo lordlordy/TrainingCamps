@@ -10,6 +10,13 @@ import Foundation
 
 class ParticipantDayTreeNode: NSObject, TreeNode{
     
+    func leavesShow(trainingLeafNameType trainingShow: String, racingLeafNameType racingShow: String) {
+        if let type = TrainingLeafNameType(rawValue: trainingShow){
+            participantDayNameType = type
+        }
+    }
+    
+    
     @objc dynamic var height: Int { return 0 } // this is a leave node
     @objc dynamic var nodeType: String { return TreeNodeType.TrainingDay.rawValue}
     
@@ -27,9 +34,10 @@ class ParticipantDayTreeNode: NSObject, TreeNode{
     @objc var children:             [TreeNode] { return [] }
     @objc var childCount:           Int { return 0}
     @objc var treeNodeName:         String? {
-        if nameIsParticipantName{
+        switch participantDayNameType{
+        case .ParticipantName:
             return day.campParticipant?.participant?.displayName
-        }else{
+        case .DayOfWeek:
             if let d = date{
                 let df = DateFormatter()
                 df.dateFormat = DateFormatString.DayOfWeekOnly.rawValue
@@ -39,6 +47,7 @@ class ParticipantDayTreeNode: NSObject, TreeNode{
             }
         }
     }
+    
     @objc var date:                 Date? {return day.day?.date}
     @objc var totalAscentMetres:    Double {return day.totalAscentMetres}
     @objc var bikeAscentMetres:     Double {return day.bikeAscentMetres}
@@ -69,14 +78,12 @@ class ParticipantDayTreeNode: NSObject, TreeNode{
     @objc var rankRunKM:                Int = 0
     @objc var rankRunSeconds:           Int = 0
     
-    func leavesShow(participantName show: Bool){
-        nameIsParticipantName = show
-    }
+
     
     func rankChildren() {
         //do nothing - no children
     }
 
-    private var nameIsParticipantName: Bool = true
+    private var participantDayNameType: TrainingLeafNameType = TrainingLeafNameType.ParticipantName
     
 }

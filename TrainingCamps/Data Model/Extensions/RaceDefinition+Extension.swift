@@ -51,6 +51,20 @@ extension RaceDefinition{
         return NSSet(array: results.filter({$0.campParticipant != nil})) 
     }
     
+    private var stdDevMeanSum: (stdDev: Double, mean: Double, total: Double){
+        return Maths().stdDevMeanTotal(raceResultsArray().map({$0.totalSeconds}).filter({$0 > 0.0}))
+    }
+    
+    func percentile(forResult r: RaceResult) -> Double{
+        if r.race!.raceDefinition! == self{
+            let stdDevsFromMean = (r.totalSeconds - stdDevMeanSum.mean) / stdDevMeanSum.stdDev
+            let percentile = Maths().phi(stdDev: stdDevsFromMean)
+            return percentile
+        }else{
+            return 0.0
+        }
+    }
+    
     var firstRunning: Date?{
         let allRaces: [Race] = races?.allObjects as? [Race] ?? []
         let sorted: [Race] = allRaces.sorted(by: {$0.date! < $1.date!})
@@ -60,33 +74,45 @@ extension RaceDefinition{
         return nil
     }
     
+    //exclude relays
     func overallTopTen() -> [HallOfFameResult]{
-        let results = raceResultsArray().filter({$0.rankBestOnly < 11}).sorted(by: {$0.rankBestOnly < $1.rankBestOnly})
+        let results = raceResultsArray().filter({!$0.isRelay}).sorted(by: {$0.rankBestOnly < $1.rankBestOnly})
         var array: [HallOfFameResult] = []
-        for r in results{
-            var name: String = r.campParticipant!.participant!.displayName
-            if r.isRelay{
-                name += "*"
+        var rank: Int32 = 1
+        ranking: for r in results{
+            array.append(HallOfFameResult.init(rank, r.campParticipant!.participant!.displayName, r.campParticipant!.camp!.campShortName!, value: r.totalSeconds, unit: Unit.Seconds))
+            rank += 1
+            if rank > 10{
+                break ranking
             }
-            array.append(HallOfFameResult.init(r.rankBestOnly, name, r.campParticipant!.camp!.campShortName!, value: r.totalSeconds, unit: Unit.Seconds))
         }
         return array
     }
     
     func femaleTopTen() -> [HallOfFameResult]{
-        let results = raceResultsArray().filter({$0.rankGenderBestOnly < 11 && $0.gender == Gender.Female.rawValue}).sorted(by: {$0.rankGenderBestOnly < $1.rankGenderBestOnly})
+        let results = raceResultsArray().filter({!$0.isRelay && $0.gender == Gender.Female.rawValue}).sorted(by: {$0.rankGenderBestOnly < $1.rankGenderBestOnly})
         var array: [HallOfFameResult] = []
-        for r in results{
-            array.append(HallOfFameResult.init(r.rankGenderBestOnly, r.campParticipant!.participant!.displayName, r.campParticipant!.camp!.campShortName!,value: r.totalSeconds, unit: Unit.Seconds))
+        var rank: Int32 = 1
+        ranking: for r in results{
+            array.append(HallOfFameResult.init(rank, r.campParticipant!.participant!.displayName, r.campParticipant!.camp!.campShortName!,value: r.totalSeconds, unit: Unit.Seconds))
+            rank += 1
+            if rank > 10{
+                break ranking
+            }
         }
         return array
     }
     
     func maleTopTen() -> [HallOfFameResult]{
-        let results = raceResultsArray().filter({$0.rankGenderBestOnly < 11 && $0.gender == Gender.Male.rawValue}).sorted(by: {$0.rankGenderBestOnly < $1.rankGenderBestOnly})
+        let results = raceResultsArray().filter({!$0.isRelay && $0.gender == Gender.Male.rawValue}).sorted(by: {$0.rankGenderBestOnly < $1.rankGenderBestOnly})
         var array: [HallOfFameResult] = []
-        for r in results{
-            array.append(HallOfFameResult.init(r.rankGenderBestOnly, r.campParticipant!.participant!.displayName, r.campParticipant!.camp!.campShortName!, value: r.totalSeconds, unit: Unit.Seconds))
+        var rank: Int32 = 1
+        ranking: for r in results{
+            array.append(HallOfFameResult.init(rank, r.campParticipant!.participant!.displayName, r.campParticipant!.camp!.campShortName!, value: r.totalSeconds, unit: Unit.Seconds))
+            rank += 1
+            if rank > 10{
+                break ranking
+            }
         }
         return array
     }

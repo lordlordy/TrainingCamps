@@ -10,6 +10,8 @@ import Foundation
 
 class RaceRanker{
 
+    // relays are excluded except for the camp rank
+    
     func rank(_ race: Race){
         let start = Date()
         
@@ -38,16 +40,40 @@ class RaceRanker{
                 r.campGender = Constants.lastPlaceRank
             }
             
+            //same for relays. The camp ranks will be orriden later
+            for i in completers.filter({$0.isRelay}){
+                let r: Rank = i.rankFor(activity: activity, unit: unit)
+                r.overall = Constants.lastPlaceRank
+                r.camp = Constants.lastPlaceRank
+                r.gender = Constants.lastPlaceRank
+                r.participant = Constants.lastPlaceRank
+                r.role = Constants.lastPlaceRank
+                r.campGender = Constants.lastPlaceRank
+            }
             
-            let sortedResults = completers.sorted(by:{($0.value(forKey: key) as! Double) < ($1.value(forKey:key) as! Double)})
-            
+            let completersNoRelays = completers.filter({!$0.isRelay})
     
             var rank: Int32 = 1
             var bestOnlyRank: Int32 = 1
             var bestOnly: Set<String> = Set<String>()
             
+            //participant rank
+            var currentParticipant: String = ""
+            for r in completersNoRelays.sorted(by: {($0.campParticipant!.participant!.uniqueName!, $0.value(forKey: key) as! Double) < ($1.campParticipant!.participant!.uniqueName!, $1.value(forKey: key) as! Double)}){
+                if r.campParticipant!.participant!.uniqueName! != currentParticipant {
+                    // reset
+                    rank = 1
+                    currentParticipant = r.campParticipant!.participant!.uniqueName!
+                }
+                r.rankFor(activity: activity, unit: unit).participant = rank
+                rank += 1
+            }
+            
+            //order results with a participants in their rank order. This is to deal with the case where a participant has two times the same - we want to ensure the best only rank is placed in the same instance
+            rank = 1
             //overall rank
-            for r in sortedResults{
+            for r in completersNoRelays.sorted(by: {(($0.value(forKey: key) as! Double), $0.rankParticipant) < (($1.value(forKey:key) as! Double), $1.rankParticipant)}){
+                
                 let rankItem: Rank = r.rankFor(activity: activity, unit: unit)
                 rankItem.overall = rank
                 rank += 1
@@ -60,20 +86,30 @@ class RaceRanker{
                 }
             }
             
-            //gender rank - exclude relays from this
-            let genderSort = completers.filter({!$0.isRelay}).sorted(by: {($0.campParticipant!.participant!.gender!, $0.value(forKey: key) as! Double) < ($1.campParticipant!.participant!.gender!, $1.value(forKey: key) as! Double)})
+            bestOnlyRank = 1
+            bestOnly = Set<String>()
+            
+            //Female ranks
+            for r in completersNoRelays.filter({$0.campParticipant!.participant!.gender! == Gender.Female.rawValue}).sorted(by: {($0.value(forKey: key) as! Int, $0.rankParticipant) < ( $1.value(forKey: key) as! Int, $0.rankParticipant)}){
+                
+                let rankItem: Rank = r.rankFor(activity: activity, unit: unit)
+                rankItem.gender = rank
+                rank += 1
+                if bestOnly.contains(r.campParticipant!.participant!.displayName){
+                    rankItem.bestOnlyGender = Constants.lastPlaceRank
+                }else{
+                    rankItem.bestOnlyGender = bestOnlyRank
+                    bestOnlyRank += 1
+                    bestOnly.insert(r.campParticipant!.participant!.displayName)
+                }
+            }
             
             bestOnlyRank = 1
             bestOnly = Set<String>()
             
-            var currentGender = ""
-            for r in genderSort{
-                if r.campParticipant?.participant?.gender != currentGender{
-                    rank = 1
-                    currentGender = r.campParticipant!.participant!.gender!
-                    bestOnlyRank = 1
-                    bestOnly = Set<String>()
-                }
+            //Male ranks
+            for r in completersNoRelays.filter({$0.campParticipant!.participant!.gender! == Gender.Male.rawValue}).sorted(by: {($0.value(forKey: key) as! Int, $0.rankParticipant) < ( $1.value(forKey: key) as! Int, $0.rankParticipant)}){
+                
                 let rankItem: Rank = r.rankFor(activity: activity, unit: unit)
                 rankItem.gender = rank
                 rank += 1
@@ -87,10 +123,8 @@ class RaceRanker{
             }
 
             //campGender rank
-            let campGenderSort = completers.filter({!$0.isRelay}).sorted(by: {($0.campParticipant!.camp!.campName!, $0.campParticipant!.participant!.gender!, $0.value(forKey: key) as! Double) < ($1.campParticipant!.camp!.campName!,$1.campParticipant!.participant!.gender!, $1.value(forKey: key) as! Double)})
-            
             var currentCampGender = ""
-            for r in campGenderSort{
+            for r in completers.sorted(by: {($0.campParticipant!.camp!.campName!, $0.campParticipant!.participant!.gender!, $0.value(forKey: key) as! Double) < ($1.campParticipant!.camp!.campName!,$1.campParticipant!.participant!.gender!, $1.value(forKey: key) as! Double)}){
                 let campGender: String = r.campParticipant!.camp!.campName! + r.campParticipant!.participant!.gender!
                 if campGender != currentCampGender{
                     rank = 1
@@ -100,21 +134,9 @@ class RaceRanker{
                 rank += 1
             }
             
-            //set gender ranks to 9999 for relays
-            let relays = completers.filter({$0.isRelay})
-            for r in relays{
-                let rank: Rank = r.rankFor(activity: activity, unit: unit)
-                rank.bestOnlyGender = Constants.lastPlaceRank
-                rank.campGender = Constants.lastPlaceRank
-                rank.gender = Constants.lastPlaceRank
-            }
-            
             //camp rank
-            let campSort = completers.sorted(by: {($0.campParticipant!.camp!.campName!, $0.value(forKey: key) as! Double) < ($1.campParticipant!.camp!.campName!, $1.value(forKey: key) as! Double)})
-            
-            
             var currentCamp: String = ""
-            for r in campSort{
+            for r in completers.sorted(by: {($0.campParticipant!.camp!.campName!, $0.value(forKey: key) as! Double) < ($1.campParticipant!.camp!.campName!, $1.value(forKey: key) as! Double)}){
                 if r.campParticipant!.camp!.campName! != currentCamp {
                     // reset
                     rank = 1
@@ -124,25 +146,9 @@ class RaceRanker{
                 rank += 1
             }
             
-            //participant rank
-            let participantSort = completers.sorted(by: {($0.campParticipant!.participant!.uniqueName!, $0.value(forKey: key) as! Double) < ($1.campParticipant!.participant!.uniqueName!, $1.value(forKey: key) as! Double)})
-            
-            var currenParticipant: String = ""
-            for r in participantSort{
-                if r.campParticipant!.participant!.uniqueName! != currenParticipant {
-                    // reset
-                    rank = 1
-                    currenParticipant = r.campParticipant!.participant!.uniqueName!
-                }
-                r.rankFor(activity: activity, unit: unit).participant = rank
-                rank += 1
-            }
-            
             //role rank
-            let roleSort = completers.sorted(by: {($0.campParticipant!.role!, $0.value(forKey: key) as! Double) < ($1.campParticipant!.role!, $1.value(forKey: key) as! Double)})
-            
             var currentRole: String = ""
-            for r in roleSort{
+            for r in completersNoRelays.sorted(by: {($0.campParticipant!.role!, $0.value(forKey: key) as! Double) < ($1.campParticipant!.role!, $1.value(forKey: key) as! Double)}){
                 if r.campParticipant!.role! != currentRole {
                     // reset
                     rank = 1

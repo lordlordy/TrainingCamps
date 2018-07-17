@@ -72,6 +72,8 @@ extension RaceResult: Rankable{
 
     @objc dynamic var name: String? { return campParticipant?.participant?.displayName}
     
+    @objc dynamic var percentile: Double{ return race!.raceDefinition!.percentile(forResult: self) }
+    
     // creates rank if not available
     func rankFor(activity: Activity, unit: Unit) -> Rank{
         return rankFor(activity.rawValue, unit.rawValue)

@@ -77,6 +77,54 @@ extension Camp: TrainingValuesProtocol{
         }
     }
     
+    @objc dynamic var locationCampTimeTopFive: [Rank]{
+        if let cg = campGroup{
+            let topTen = cg.topTen(forLocation: location!, activity: .total, unit: .Seconds, isDay: false).overall.sorted(by: {$0.overall < $1.overall})
+            var result: [Rank] = []
+            for i in 0...4{
+                result.append(topTen[i])
+            }
+            return result
+        }
+        return []
+    }
+
+    @objc dynamic var locationCampSwimKMTopThree: [Rank]{
+        if let cg = campGroup{
+            let topTen = cg.topTen(forLocation: location!, activity: .swim, unit: .KM, isDay: false).overall.sorted(by: {$0.overall < $1.overall})
+            var result: [Rank] = []
+            for i in 0...2{
+                result.append(topTen[i])
+            }
+            return result
+        }
+        return []
+    }
+
+    @objc dynamic var locationCampBikeKMTopThree: [Rank]{
+        if let cg = campGroup{
+            let topTen = cg.topTen(forLocation: location!, activity: .bike, unit: .KM, isDay: false).overall.sorted(by: {$0.overall < $1.overall})
+            var result: [Rank] = []
+            for i in 0...2{
+                result.append(topTen[i])
+            }
+            return result
+        }
+        return []
+    }
+    
+    @objc dynamic var locationCampRunKMTopThree: [Rank]{
+        if let cg = campGroup{
+            let topTen = cg.topTen(forLocation: location!, activity: .run, unit: .KM, isDay: false).overall.sorted(by: {$0.overall < $1.overall})
+            var result: [Rank] = []
+            for i in 0...2{
+                result.append(topTen[i])
+            }
+            return result
+        }
+        return []
+    }
+    
     @objc dynamic var allTimeCampTimeTopThree: [HallOfFameResult]{
         if let cg = campGroup{
             let topTens = cg.topTen(forActivity: .total, unit: .Seconds, isDay: false)
@@ -85,6 +133,10 @@ extension Camp: TrainingValuesProtocol{
         return []
     }
 
+
+    
+    
+    
     @objc dynamic var allTimeCampSwimKMTopThree: [HallOfFameResult]{
         if let cg = campGroup{
             let topTens = cg.topTen(forActivity: .swim, unit: .KM, isDay: false)

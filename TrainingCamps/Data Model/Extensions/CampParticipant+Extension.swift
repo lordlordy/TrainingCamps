@@ -91,6 +91,22 @@ extension CampParticipant: Rankable{
     @objc dynamic var racesFinished: [RaceResult]{
         return getRaces().filter({$0.raceCompletionStatus! == RaceCompletionStatus.Y.rawValue})
     }
+    
+    @objc dynamic var durationPercentile: Double{
+        return camp?.campGroup?.percentile(forActivity: Activity.total, andUnit: Unit.Seconds, isCamp: true, withValue: totalSeconds) ?? 0.0
+    }
+    
+    @objc dynamic var swimKMPercentile: Double{
+        return camp?.campGroup?.percentile(forActivity: Activity.swim, andUnit: Unit.KM, isCamp: true, withValue: swimKM) ?? 0.0
+    }
+    
+    @objc dynamic var bikeKMPercentile: Double{
+        return camp?.campGroup?.percentile(forActivity: Activity.bike, andUnit: Unit.KM, isCamp: true, withValue: bikeKM) ?? 0.0
+    }
+    
+    @objc dynamic var runKMPercentile: Double{
+        return camp?.campGroup?.percentile(forActivity: Activity.run, andUnit: Unit.KM, isCamp: true, withValue: runKM) ?? 0.0
+    }
         
     //MARK: - Rankable
     var gender:     String { return participant?.gender ?? "Not Set" }

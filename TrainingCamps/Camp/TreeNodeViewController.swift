@@ -21,6 +21,7 @@ class TreeNodeViewController: NSViewController, TreeGeneratorViewControllerProto
     @IBOutlet var treeController: NSTreeController!
     @IBOutlet weak var meanOrSumCB: NSComboBox!
     @IBOutlet weak var filterComboBox: ParticipantFilterComboBox!
+    @IBOutlet weak var treeOrderCB: NSComboBox!
     
     @IBAction func saveAsPDF(_ sender: Any) {
         let data = treeView.dataWithPDF(inside: treeView.bounds)
@@ -101,6 +102,7 @@ class TreeNodeViewController: NSViewController, TreeGeneratorViewControllerProto
     override func viewDidLoad() {
         super.viewDidLoad()
         meanOrSumCB.stringValue = Maths.Aggregator.Sum.rawValue
+        treeOrderCB.stringValue = ""
     }
     
     //MARK: - NSComboBoxDataSource   participantsOnCampComboBox

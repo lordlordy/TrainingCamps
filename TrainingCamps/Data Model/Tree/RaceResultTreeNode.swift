@@ -30,12 +30,15 @@ class RaceResultTreeNode: NSObject, TreeNode{
     @objc var children:             [TreeNode] { return [] }
     @objc var childCount:           Int {return 0}
     @objc var treeNodeName:         String? {
-        if nameIsParticipantName{
+        switch raceResultNameType{
+        case .ParticipantName:
             return result.campParticipant?.participant?.displayName
-        }else{
-            return result.race?.raceDefinition?.name ?? "Not Set"
+        case .RaceName:
+            return result.race?.raceDefinition?.name
+        case .CampName:
+            return result.campParticipant?.camp?.campName
+            
         }
-        
     }
     @objc var date:                 Date? {return result.race?.date}
     @objc var totalAscentMetres:    Double {return 0.0}
@@ -67,8 +70,10 @@ class RaceResultTreeNode: NSObject, TreeNode{
     @objc var rankRunKM:                Int = 0
     @objc var rankRunSeconds:           Int = 0
     
-    func leavesShow(participantName show: Bool){
-        nameIsParticipantName = show
+    func leavesShow(trainingLeafNameType trainingShow: String, racingLeafNameType racingShow: String){
+        if let type = RacingLeafNameType(rawValue: racingShow){
+            raceResultNameType = type
+        }
     }
 
     func rankChildren() {
@@ -76,6 +81,6 @@ class RaceResultTreeNode: NSObject, TreeNode{
     }
 
     
-    private var nameIsParticipantName: Bool = false
+    private var raceResultNameType: RacingLeafNameType = RacingLeafNameType.ParticipantName
 }
 
