@@ -51,6 +51,9 @@ extension RaceDefinition{
         return NSSet(array: results.filter({$0.campParticipant != nil})) 
     }
     
+    @objc dynamic var meanSeconds: Double{ return stdDevMeanSum.mean}
+    @objc dynamic var stdDevSeconds: Double { return stdDevMeanSum.stdDev}
+    
     private var stdDevMeanSum: (stdDev: Double, mean: Double, total: Double){
         return Maths().stdDevMeanTotal(raceResultsArray().map({$0.totalSeconds}).filter({$0 > 0.0}))
     }
@@ -117,7 +120,7 @@ extension RaceDefinition{
         return array
     }
     
-    private func raceResultsArray() -> [RaceResult]{
+    func raceResultsArray() -> [RaceResult]{
         return allRaceResults.allObjects as? [RaceResult] ?? []
     }
     

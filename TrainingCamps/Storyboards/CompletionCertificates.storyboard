@@ -700,7 +700,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="ZJf-mC-m05" viewBased="YES" id="Wv2-i5-cYr">
-                                                        <rect key="frame" x="0.0" y="0.0" width="403" height="18"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="403" height="19"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" red="0.1019607843" green="0.47058823529999999" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -924,7 +924,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="uSH-sh-qZe" viewBased="YES" id="RNB-Cj-xhl">
-                                                        <rect key="frame" x="0.0" y="0.0" width="360" height="18"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="360" height="19"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" red="0.89803921568627454" green="0.16470588235294117" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
@@ -1145,7 +1145,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="WTT-Cc-VEe" viewBased="YES" id="hSY-F0-wJD">
-                                                        <rect key="frame" x="0.0" y="0.0" width="360" height="18"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="360" height="19"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" red="0.8980392157" green="0.1647058824" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1366,7 +1366,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="HIT-Zu-nvr" viewBased="YES" id="jUL-Ee-ZWn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="360" height="18"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="360" height="19"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" red="0.8980392157" green="0.1647058824" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>

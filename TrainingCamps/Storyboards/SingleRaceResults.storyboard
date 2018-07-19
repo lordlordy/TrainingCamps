@@ -74,7 +74,7 @@
                                     <rect key="frame" x="1" y="0.0" width="834" height="271"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveName="raceResultTable" rowHeight="40" rowSizeStyle="automatic" headerView="seq-yE-FAl" viewBased="YES" id="vpK-Sl-ChP">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveName="raceResultTable" rowHeight="40" rowSizeStyle="automatic" headerView="seq-yE-FAl" viewBased="YES" id="vpK-Sl-ChP">
                                             <rect key="frame" x="0.0" y="0.0" width="1811" height="248"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -1325,6 +1325,7 @@
                                                 <binding destination="VKX-mA-dHa" name="content" keyPath="arrangedObjects" id="eWp-gf-nnE"/>
                                                 <binding destination="VKX-mA-dHa" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="eWp-gf-nnE" id="tuF-n6-s9S"/>
                                                 <binding destination="VKX-mA-dHa" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="tuF-n6-s9S" id="7Ww-dg-CLE"/>
+                                                <outlet property="delegate" destination="QN2-Pd-GMY" id="p6T-Sx-xJK"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -1460,7 +1461,7 @@
                         <outlet property="genderCB" destination="4x6-0P-qzP" id="hgJ-oG-PX2"/>
                         <outlet property="participantCB" destination="o4U-wV-eQt" id="Net-9L-kRG"/>
                         <outlet property="raceResultsTableView" destination="vpK-Sl-ChP" id="AXL-Da-esH"/>
-                        <outlet property="resultsAC" destination="VKX-mA-dHa" id="S2s-A3-UC6"/>
+                        <outlet property="resultsAC" destination="VKX-mA-dHa" id="lWw-db-V5i"/>
                         <outlet property="roleCB" destination="Km0-H0-kTu" id="aE7-U8-jAV"/>
                     </connections>
                 </viewController>

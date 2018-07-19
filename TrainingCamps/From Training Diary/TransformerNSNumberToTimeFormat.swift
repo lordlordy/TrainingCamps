@@ -10,6 +10,8 @@ import Cocoa
 
 class TransformerNSNumberToTimeFormat: ValueTransformer {
     
+    var includeHours: Bool = true
+    
     //What do I transform
     override class func transformedValueClass() -> AnyClass {return NSNumber.self}
     
@@ -31,9 +33,17 @@ class TransformerNSNumberToTimeFormat: ValueTransformer {
         let mins = (abs(s) / 60) % 60
         let hours = (abs(s) / 3600)
         if isNegative{
-            return String(format: "-%02d:%02d:%02d", hours, mins, secs)
+            if includeHours{
+                return String(format: "-%02d:%02d:%02d", hours, mins, secs)
+            }else{
+                return String(format: "-%02d:%02d", mins, secs)
+            }
         }else{
-            return String(format: "%02d:%02d:%02d", hours, mins, secs)
+            if includeHours{
+                return String(format: "%02d:%02d:%02d", hours, mins, secs)
+            }else{
+                return String(format: "%02d:%02d", mins, secs)
+            }
         }
         
     }

@@ -11,6 +11,10 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    //may shift these to a contants class
+    static var edtPink: NSColor = NSColor(red: 229.0 / 256.0, green: 42.0 / 256.0, blue: 119.0 / 256.0, alpha: 1.0)
+    static var edtBlue: NSColor = NSColor(calibratedRed: 26.0 / 256.0, green: 120.0 / 256.0, blue: 184.0 / 256.0, alpha: 1.0)
+//    static var edtBlue: NSColor = NSColor(red: 26.0, green: 120.0, blue: 184.0, alpha: 1.0)
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {

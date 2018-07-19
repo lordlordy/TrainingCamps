@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="55s-96-f2o">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--RaceResultsDistribution-->
+        <scene sceneID="dId-1Z-lnN">
+            <objects>
+                <splitViewController title="RaceResultsDistribution" id="55s-96-f2o" customClass="RaceResultsDistributionSplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem id="uqY-XH-Fth"/>
+                        <splitViewItem id="kl7-Yu-Jhs"/>
+                    </splitViewItems>
+                    <splitView key="splitView" dividerStyle="thin" id="Sus-Gp-Zyb">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <outlet property="delegate" destination="55s-96-f2o" id="qr4-6g-BfF"/>
+                        </connections>
+                    </splitView>
+                    <connections>
+                        <outlet property="splitView" destination="Sus-Gp-Zyb" id="8Ls-5J-7vt"/>
+                        <segue destination="ldD-uO-sGJ" kind="relationship" relationship="splitItems" id="Uqt-Qd-qL0"/>
+                        <segue destination="046-LD-0cC" kind="relationship" relationship="splitItems" id="Nwo-wy-OvY"/>
+                    </connections>
+                </splitViewController>
+                <customObject id="pB4-Gx-Peu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-273" y="104"/>
+        </scene>
+        <!--SingleRaceResults-->
+        <scene sceneID="pF4-p4-8X8">
+            <objects>
+                <controllerPlaceholder storyboardName="SingleRaceResults" id="ldD-uO-sGJ" sceneMemberID="viewController"/>
+                <customObject id="HDf-hj-g4T" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-500" y="360"/>
+        </scene>
+        <!--Race Definition Split View Controller-->
+        <scene sceneID="3w3-TE-nIU">
+            <objects>
+                <splitViewController id="046-LD-0cC" customClass="RaceDefinitionSplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem id="KU2-Jn-MbS"/>
+                        <splitViewItem id="H4X-Ca-c5J"/>
+                    </splitViewItems>
+                    <splitView key="splitView" dividerStyle="thin" vertical="YES" id="tyt-xf-aQF">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="169"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <outlet property="delegate" destination="046-LD-0cC" id="bGF-tL-pwY"/>
+                        </connections>
+                    </splitView>
+                    <connections>
+                        <outlet property="splitView" destination="tyt-xf-aQF" id="tI8-As-T01"/>
+                        <segue destination="lQg-UM-xNn" kind="relationship" relationship="splitItems" id="aGn-c9-6FE"/>
+                        <segue destination="d2g-Ep-E9u" kind="relationship" relationship="splitItems" id="pHi-uP-YTQ"/>
+                    </connections>
+                </splitViewController>
+                <customObject id="RE6-Mx-UJe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-172" y="504"/>
+        </scene>
+        <!--Buckets-->
+        <scene sceneID="3X3-LE-v4A">
+            <objects>
+                <controllerPlaceholder storyboardName="Buckets" id="d2g-Ep-E9u" sceneMemberID="viewController"/>
+                <customObject id="lUX-cB-Ttn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="344" y="3"/>
+        </scene>
+        <!--Race Results Graph View Controller-->
+        <scene sceneID="Boh-qb-GWN">
+            <objects>
+                <viewController id="lQg-UM-xNn" customClass="RaceResultsGraphViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="o6G-Re-t4W">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="sqv-I1-hnj" customClass="DistributionGraph" customModule="TrainingCamps" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="sqv-I1-hnj" firstAttribute="top" secondItem="o6G-Re-t4W" secondAttribute="top" id="9ua-q8-cdh"/>
+                            <constraint firstAttribute="trailing" secondItem="sqv-I1-hnj" secondAttribute="trailing" id="LqH-BG-4TL"/>
+                            <constraint firstItem="sqv-I1-hnj" firstAttribute="leading" secondItem="o6G-Re-t4W" secondAttribute="leading" id="Q6A-mS-q1L"/>
+                            <constraint firstAttribute="bottom" secondItem="sqv-I1-hnj" secondAttribute="bottom" id="yfM-qg-obP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="graphView" destination="sqv-I1-hnj" id="9iN-Ng-n2i"/>
+                    </connections>
+                </viewController>
+                <customObject id="Z6c-nm-FDv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="510" y="369"/>
+        </scene>
+    </scenes>
+</document>

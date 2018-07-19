@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class SingleRaceResultsViewController: NSViewController, RaceResultsViewControllerProtocol, RaceViewControllerProtocol, NSComboBoxDataSource{
+class SingleRaceResultsViewController: NSViewController, RaceResultsViewControllerProtocol, RaceViewControllerProtocol, NSComboBoxDataSource, NSTableViewDelegate{
 
     
     
@@ -134,6 +134,15 @@ class SingleRaceResultsViewController: NSViewController, RaceResultsViewControll
             }
         }
         return 0
+    }
+    
+    //MARK: - NSTableViewDelegate
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        if let p = parent as? RaceResultsDistributionSplitViewController{
+            if let selection = resultsAC.selectedObjects as? [RaceResult]{
+                    p.setHighlightedValue(selection.map({$0.totalSeconds}))
+            }
+        }
     }
     
     private func updateColumns(){
