@@ -939,6 +939,11 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="9Ub-a5-gNI" name="value" keyPath="objectValue.swimKMPercentile" id="4YW-Mg-ZWN"/>
+                                                                        <binding destination="YxN-ek-MDr" name="textColor" keyPath="values.swimColour" id="Alm-rd-hNx">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
+                                                                            </dictionary>
+                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -978,6 +983,11 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="9zD-bI-ntW" name="value" keyPath="objectValue.bikeKMPercentile" id="LBO-fR-Ccw"/>
+                                                                        <binding destination="YxN-ek-MDr" name="textColor" keyPath="values.bikeColour" id="tVw-JR-cfA">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
+                                                                            </dictionary>
+                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -1017,6 +1027,11 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="mBI-vO-nwd" name="value" keyPath="objectValue.runKMPercentile" id="OBP-Yh-3dB"/>
+                                                                        <binding destination="YxN-ek-MDr" name="textColor" keyPath="values.runColour" id="7Gc-F6-w7K">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
+                                                                            </dictionary>
+                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -1036,7 +1051,7 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.82080419580419584" horizontal="YES" id="9vi-Yk-ed5">
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="9vi-Yk-ed5">
                                     <rect key="frame" x="1" y="262" width="447" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

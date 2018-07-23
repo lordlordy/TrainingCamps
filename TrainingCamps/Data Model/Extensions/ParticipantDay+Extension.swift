@@ -8,8 +8,16 @@
 
 import Foundation
 
-extension ParticipantDay: Rankable{
+extension ParticipantDay: Rankable, TrainingDataProtocol{
+    
+    
+    var campComplete: Bool { return campParticipant?.campComplete ?? false}
+    var date: Date? { return day?.date}
+    var role: String? { return campParticipant?.role }
+    var participantName: String { return displayName }
+    var campType: String { return campParticipant!.camp!.campType}
 
+    
     var name: String? { return campParticipant?.participant?.displayName }
     
     var gender: String      { return campParticipant?.participant?.gender ?? "Not set" }

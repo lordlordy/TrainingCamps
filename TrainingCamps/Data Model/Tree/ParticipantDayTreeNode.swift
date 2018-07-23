@@ -10,6 +10,12 @@ import Foundation
 
 class ParticipantDayTreeNode: NSObject, TreeNode{
     
+    
+    var totalTimePercentile: Double{
+        return day.campParticipant?.camp?.campGroup?.percentile(forActivity: .total, andUnit: .Seconds, isCamp: false, withValue: day.totalSeconds) ?? 0.0
+    }
+    
+
     func leavesShow(trainingLeafNameType trainingShow: String, racingLeafNameType racingShow: String) {
         if let type = TrainingLeafNameType(rawValue: trainingShow){
             participantDayNameType = type

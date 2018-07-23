@@ -8,29 +8,69 @@
 
 import Cocoa
 
-//struct Bucket{
-//    
-//    var name: String
-//    var from: CGFloat
-//    var to: CGFloat
-//    var size: CGFloat
-//    
-//    func midPoint() -> CGFloat{
-//        return (from + to) / 2.0
-//    }
-//    
-//}
 
-class RaceResultsGraphViewController: NSViewController, RaceDefinitionViewControllerProtocol{
+class RaceResultsGraphViewController: NSViewController, RaceDefinitionViewControllerProtocol, NormalDistributionViewControllerProtocol{
+
+    
     
     @IBOutlet weak var graphView: DistributionGraph!
     let numberOfBuckets: Int = 21 // odd number
     
+    private var completerFilters: [DistributionSelection]?
+    private var genderFilters: [DistributionSelection]?
+    private var roleFilters: [DistributionSelection]?
+    private var campTypeFilters: [DistributionSelection]?
+    private var raceDefinition: RaceDefinition?
+    
     func setRaceDefinition(_ raceDefinition: RaceDefinition) {
-        let nonZero: [RaceResult] = raceDefinition.raceResultsArray().filter({$0.totalSeconds > 0.0})
+        self.raceDefinition = raceDefinition
+        updateGraph()
+    }
+    
+    func setHighlightedValue(_ x: [Double]){
+        graphView.setHighlighted(x: x)
+    }
+    
+    func updateBuckets(forSelection selection: [DistributionSelection]) {
+        print("Updating buckets again")
+        let completer: [DistributionSelection] = selection.filter({$0.isCompletion})
+        let gender: [DistributionSelection] = selection.filter({$0.isGender})
+        let role: [DistributionSelection] = selection.filter({$0.isRole})
+        let campType: [DistributionSelection] = selection.filter({$0.isCampType})
+        
+        if completer.reduce(true, {$0 && $1.include}){
+            // all true so set fitlers to nil
+            completerFilters = nil
+        }else{
+            completerFilters = completer
+        }
+        
+        if gender.reduce(true, {$0 && $1.include}){
+            genderFilters = nil
+        }else{
+            genderFilters = gender
+        }
+        
+        if role.reduce(true, {$0 && $1.include}){
+            roleFilters = nil
+        }else{
+            roleFilters = role
+        }
+        
+        if campType.reduce(true, {$0 && $1.include}){
+            campTypeFilters = nil
+        }else{
+            campTypeFilters = campType
+        }
+        updateGraph()
+    }
+    
+    private func updateGraph(){
+        guard (raceDefinition != nil) else { return }
+        let nonZero: [RaceResult] = filter(data:raceDefinition!.raceResultsArray().filter({$0.totalSeconds > 0.0}))
         let fastest: Double = nonZero.reduce(36000.0, {min($0, $1.totalSeconds)})-1.0
         let slowest: Double = nonZero.reduce(0.0, {max($0, $1.totalSeconds)})+1
-
+        
         let bucketWidth = (slowest - fastest) / Double(numberOfBuckets)
         
         var buckets: [Bucket] = []
@@ -51,23 +91,98 @@ class RaceResultsGraphViewController: NSViewController, RaceDefinitionViewContro
             to += bucketWidth
         }
         
+        let meanStdDev = Maths().stdDevMeanTotal(nonZero.map({$0.totalSeconds}))
         
-        graphView.set(buckets: buckets, mean: raceDefinition.meanSeconds, variance: pow(raceDefinition.stdDevSeconds, 2.0))
+        graphView.set(buckets: buckets, mean: meanStdDev.mean, variance: pow(meanStdDev.stdDev, 2.0))
         setBucketTable(withBuckets: buckets.filter({$0.size > 0.0}))
     }
     
-    func setHighlightedValue(_ x: [Double]){
-        graphView.setHighlighted(x: x)
+    private func filter(data: [RaceResult]) -> [RaceResult]{
+        var result: [RaceResult] = data
+        if completerFilters != nil{
+            //filter on completers
+            result = result.filter(filterCompleters)
+        }
+        if genderFilters != nil{
+            result = result.filter(filterGenders)
+        }
+        if roleFilters != nil{
+            result = result.filter(filterRoles)
+        }
+        if campTypeFilters != nil{
+            result = result.filter(filterCampTypes)
+        }
+
+        return result
+    }
+    
+    private func filterCompleters(tdp: RaceResult) -> Bool{
+        for i in completerFilters ?? []{
+            if i.name == DistributionSelectionTypes.Completers.rawValue{
+                if i.include{
+                    //include completers
+                    return tdp.campParticipant!.campComplete
+                }
+            }else if i.name == DistributionSelectionTypes.NonCompleters.rawValue{
+                if i.include{
+                    //include  Non Completers
+                    return !tdp.campParticipant!.campComplete
+                }
+            }
+        }
+        return false
+    }
+    
+    private func filterGenders(tdp: RaceResult) -> Bool{
+        var result = false
+        for i in genderFilters ?? []{
+            if tdp.campParticipant!.participant!.gender! == i.name{
+                result = result || i.include
+            }
+        }
+        return result
+    }
+    
+    private func filterRoles(tdp: RaceResult) -> Bool{
+        var result = false
+        for i in roleFilters ?? []{
+            if tdp.campParticipant!.role! == i.name{
+                result = result || i.include
+            }
+        }
+        return result
+    }
+    
+    private func filterCampTypes(tdp: RaceResult) -> Bool{
+        var result = false
+        for i in campTypeFilters ?? []{
+            if tdp.campParticipant!.camp!.campType == i.name{
+                result = result || i.include
+            }
+        }
+        return result
     }
     
     private func setBucketTable(withBuckets buckets: [Bucket]){
         if let p = parent{
-            for c in p.childViewControllers{
-                if let b = c as? BucketsViewController{
-                    b.buckets = buckets
-                }
+            if let b = findBucketView(fromVCs: p.childViewControllers){
+                b.buckets = buckets
             }
         }
+    }
+    
+    private func findBucketView(fromVCs vcs: [NSViewController]) -> BucketsViewController?{
+        for child in vcs{
+            if let vc = child as? BucketsViewController{
+                return vc
+            }
+        }
+        for child in vcs{
+            if let bvc = findBucketView(fromVCs: child.childViewControllers){
+                return bvc
+            }
+        }
+        return nil
     }
     
 }

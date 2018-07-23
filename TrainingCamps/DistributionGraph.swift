@@ -10,7 +10,12 @@ import Cocoa
 
 class DistributionGraph: NSView{
     
-    var numberOfPoints: Int = 101
+    var numberOfNormalDistributionPoints: Int = 101
+    var xAxisFormatter: (Double) -> String = {
+        let timeFormatter: TransformerNSNumberToTimeFormat = TransformerNSNumberToTimeFormat()
+        timeFormatter.includeHours = false
+        return timeFormatter.transformedValue($0) as! String
+    }
     
     private var normalData: [(x:Double, y:Double)] = []
     private var mean: Double = 0.0
@@ -30,7 +35,7 @@ class DistributionGraph: NSView{
     private var paddingRight: CGFloat = 10.0
     private var paddingLeft: CGFloat = 30.0
     private var labelHeight: CGFloat = 14.0
-    private var timeLabelWidth: CGFloat = 50.0
+    private var timeLabelWidth: CGFloat = 75.0
     
     private var labels: [NSTextField] = []
     
@@ -60,7 +65,7 @@ class DistributionGraph: NSView{
             gradient.draw(in: dirtyRect, angle: 90.0)
         }
         
-        if normalData.count == 0 { return }
+        if normalData.count == 0 || buckets.count == 0 { return }
         
         for b in buckets{
             let bucketPath = NSBezierPath()
@@ -98,16 +103,14 @@ class DistributionGraph: NSView{
         //create markers for stdDevs - start 3 below to 3 above. So 7 lines.
         let stdDev: Double = sqrt(variance)
         let start: Double = mean - 3.0 * stdDev
-        let timeFormatter: TransformerNSNumberToTimeFormat = TransformerNSNumberToTimeFormat()
-        timeFormatter.includeHours = false
         
         for i in 0...6{
             let x = start + stdDev * Double(i)
             axisMarkersLine.move(to: coordinatesInGraph(x, minY, dirtyRect))
             axisMarkersLine.line(to: coordinatesInGraph(x, maxY, dirtyRect))
             let coord = coordinatesInGraph(x, 0.0, dirtyRect)
-            let time: String = timeFormatter.transformedValue(x) as! String
-            let label = createLabel(value: time, origin: CGPoint(x: coord.x - timeLabelWidth/2.0, y: paddingBottom - labelHeight - 2.0), width: timeLabelWidth, alignment: .center)
+            let labelName: String = xAxisFormatter(x)
+            let label = createLabel(value: labelName, origin: CGPoint(x: coord.x - timeLabelWidth/2.0, y: paddingBottom - labelHeight - 2.0), width: timeLabelWidth, alignment: .center)
             labels.append(label)
             addSubview(label)
         }
@@ -201,12 +204,12 @@ class DistributionGraph: NSView{
     }
     
     private func createNormalData() -> [(x:Double, y:Double)]{
-        let xIncrement: Double = (maxX - minX) / Double(numberOfPoints - 1)
+        let xIncrement: Double = (maxX - minX) / Double(numberOfNormalDistributionPoints - 1)
         let xStart: Double = minX
         let calculator: Maths = Maths()
         let scale: Double = buckets.reduce(0.0, {max($0, $1.size)}) / calculator.normalDensityFunction(x: mean, mean: mean, variance: variance)
         var result: [(x:Double, y:Double)] = []
-        for i in 0...numberOfPoints{
+        for i in 0...numberOfNormalDistributionPoints{
             let x: Double = xStart + Double(i) * xIncrement
             let y: Double = calculator.normalDensityFunction(x: x, mean: mean, variance: variance) * scale
             result.append((x,y))
@@ -232,14 +235,12 @@ class DistributionGraph: NSView{
         maxX = mean + sqrt(variance) * 3.0
         minX = mean - sqrt(variance) * 3.0
         
-        let maxBucketX = buckets.reduce(0.0, {max($0, $1.to)})
-        let minBucketX = buckets.reduce(1000000.0, {min($0, $1.from)})
+        let maxBucketX = buckets.filter({$0.size > 0.0}).reduce(0.0, {max($0, $1.to)})
+        let minBucketX = buckets.filter({$0.size > 0.0}).reduce(1000000.0, {min($0, $1.from)})
         
         maxX = max(maxX, maxBucketX)
         minX = min(minX, minBucketX)
-        
-        print("X range: \(minX) - \(maxX)")
-        
+                
         maxY = buckets.reduce(0.0,{max($0,$1.size)})
     }
     

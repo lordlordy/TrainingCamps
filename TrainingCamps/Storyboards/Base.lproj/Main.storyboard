@@ -922,6 +922,7 @@
                         <tabViewItem id="ljJ-5x-AXV"/>
                         <tabViewItem id="OAd-Gc-dNn"/>
                         <tabViewItem id="syt-ff-pvp"/>
+                        <tabViewItem id="NMT-B7-nct"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsBezelBorder" id="XKO-hY-O7J">
                         <rect key="frame" x="131" y="0.0" width="454" height="300"/>
@@ -940,6 +941,7 @@
                         <segue destination="SjH-Wu-czK" kind="relationship" relationship="tabItems" id="USK-nG-Uh7"/>
                         <segue destination="uvh-r8-W9W" kind="relationship" relationship="tabItems" id="qio-mr-s1d"/>
                         <segue destination="BEc-1B-9Yk" kind="relationship" relationship="tabItems" id="eW0-lv-8yd"/>
+                        <segue destination="HfI-pg-SUV" kind="relationship" relationship="tabItems" id="gII-OP-1Bq"/>
                     </connections>
                 </tabViewController>
                 <customObject id="YaN-1m-YRW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -977,6 +979,14 @@
                 <customObject id="WnM-Lu-Bjm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="958" y="1173"/>
+        </scene>
+        <!--TrainingDistribution-->
+        <scene sceneID="2g1-dH-qzZ">
+            <objects>
+                <controllerPlaceholder storyboardName="TrainingDistribution" id="HfI-pg-SUV" sceneMemberID="viewController"/>
+                <customObject id="aqb-f3-6cM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1222" y="943"/>
         </scene>
         <!--HallOfFame-->
         <scene sceneID="qtg-El-ZDC">

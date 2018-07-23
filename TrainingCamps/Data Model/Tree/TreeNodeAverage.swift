@@ -10,6 +10,9 @@ import Foundation
 
 class TreeNodeAverage:NSObject, TreeNodeEditable{
     
+    var totalTimePercentile: Double = 0.0
+    
+    
     var nodeType: String = ""
     
 

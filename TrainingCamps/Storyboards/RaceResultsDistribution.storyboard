@@ -38,10 +38,10 @@
             </objects>
             <point key="canvasLocation" x="-500" y="360"/>
         </scene>
-        <!--Race Definition Split View Controller-->
+        <!--Race Results Graph Split View Controller-->
         <scene sceneID="3w3-TE-nIU">
             <objects>
-                <splitViewController id="046-LD-0cC" customClass="RaceDefinitionSplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController id="046-LD-0cC" customClass="RaceResultsGraphSplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="KU2-Jn-MbS"/>
                         <splitViewItem id="H4X-Ca-c5J"/>

@@ -9,8 +9,6 @@
 import Foundation
 
 extension CampGroup: TrainingValuesProtocol{
-
-    
     
     private var rankUnits: [(activity: Activity, unit: Unit)]{
         var result: [(activity: Activity, unit: Unit)] = []
@@ -77,7 +75,6 @@ extension CampGroup: TrainingValuesProtocol{
     private var campRunKMStdDevMeanSum: (stdDev: Double, mean: Double, total: Double){
         return Maths().stdDevMeanTotal(campParticipantsArray().map({$0.runKM}))
     }
-    
     
 
     func rank(){

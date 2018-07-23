@@ -9,8 +9,11 @@
 import Foundation
 
 class RaceResultTreeNode: NSObject, TreeNode{
-
     
+    
+    var totalTimePercentile: Double{
+        return result.race?.raceDefinition?.percentile(forResult: result) ?? 0.0
+    }
     
     var nodeType: String {return TreeNodeType.RaceResult.rawValue}
     

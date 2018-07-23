@@ -8,7 +8,12 @@
 
 import Foundation
 
-extension CampParticipant: Rankable{
+extension CampParticipant: Rankable, TrainingDataProtocol{
+    
+    
+    var date: Date? { return camp?.campStart }
+    var participantName: String { return participant?.displayName ?? "" }
+    var campType: String { return camp?.campType ?? ""}
     
     
     @objc dynamic var trainingComplete: Bool{ return getDays().reduce(true, {$0 && $1.dayComplete})}

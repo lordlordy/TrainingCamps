@@ -8,7 +8,16 @@
 
 import Cocoa
 
-class RaceResultsDistributionSplitViewController: NSSplitViewController, RaceDefinitionViewControllerProtocol{
+class RaceResultsDistributionSplitViewController: NSSplitViewController, RaceDefinitionViewControllerProtocol, CampGroupViewControllerProtocol{
+    
+    func setCampGroup(_ campGroup: CampGroup) {
+        for c in childViewControllers{
+            if let vc = c as? CampGroupViewControllerProtocol{
+                vc.setCampGroup(campGroup)
+            }
+        }
+    }
+    
     
     func setRaceDefinition(_ raceDefinition: RaceDefinition) {
         for c in childViewControllers{

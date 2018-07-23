@@ -67,6 +67,8 @@ enum RacingLeafNameType: String{
     @objc var rankRunKM:                Int { get set}
     @objc var rankRunSeconds:           Int { get set}
     
+    @objc var totalTimePercentile:      Double {get}
+    
     @objc var camp: String? {get}
     @objc var gender: String? {get}
     

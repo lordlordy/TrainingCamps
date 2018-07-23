@@ -8,10 +8,16 @@
 
 import Cocoa
 
-class CampCompletionCertificationViewController: NSViewController, CampParticipantViewControllerProtocol{
+class CampCompletionCertificationViewController: NSViewController, CampParticipantViewControllerProtocol, CampViewControllerProtocol{
+
+    
+    
     
     @IBOutlet var certificateView: NSView!
+    @IBOutlet weak var campGraph: DistributionGraph!
+    @IBOutlet weak var dayGraph: DistributionGraph!
     
+    @objc dynamic var camp: Camp?
     @objc dynamic var campParticipant: CampParticipant?
     @objc dynamic var campParticipantArray: [CampParticipant] = []
     @objc dynamic var trainingNodes: [TreeNode] = []
@@ -22,13 +28,54 @@ class CampCompletionCertificationViewController: NSViewController, CampParticipa
     }
     
     @objc dynamic var footer: String = ""
+    
+    private var hourMinuteFormatter: (Double) -> String = { // this is hours:minutes - so no seconds
+        let s: Int = Int($0)
+        let mins = (abs(s) / 60) % 60
+        let hours = (abs(s) / 3600)
+        return String(format: "%02d:%02d", hours, mins)
+    }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if let cg = camp?.campGroup{
+            let dayData = cg.participantDaysArray().filter({$0.totalSeconds > 0.0})
+            let dayBucketGenerator = FixedWidthBucketGenerator(startingAt: 0.0, width: 30.0 * 60.0)
+            let dayBuckets = dayBucketGenerator.createBuckets(forDoubleProperty: TrainingDataProtocolProperty.totalSeconds, data: dayData)
+            let dayStdDevMean = Maths().stdDevMeanTotal(dayData.map({$0.totalSeconds}))
+
+            dayGraph.set(buckets: dayBuckets, mean: dayStdDevMean.mean, variance: pow(dayStdDevMean.stdDev,2.0))
+            dayGraph.xAxisFormatter = hourMinuteFormatter
+            
+            let campData = cg.campParticipantsArray().filter({$0.totalSeconds > 0.0})
+            let campBucketGenerator = FixedWidthBucketGenerator(startingAt: 0.0, width: 60.0 * 60.0)
+            let campBuckets = campBucketGenerator.createBuckets(forDoubleProperty: TrainingDataProtocolProperty.totalSeconds, data: campData)
+            let campStdDevMean = Maths().stdDevMeanTotal(campData.map({$0.totalSeconds}))
+
+            campGraph.set(buckets: campBuckets, mean: campStdDevMean.mean, variance: pow(campStdDevMean.stdDev,2.0))
+            campGraph.xAxisFormatter = hourMinuteFormatter
+
+        }
+
+    }
+    
+    func setCamp(_ camp: Camp) {
+        self.camp = camp
+    }
+    
     
     func setCampParticipant(_ campParticipant: CampParticipant) {
         self.campParticipant = campParticipant
         campParticipantArray = [campParticipant]
         setFooter()
         createTreeViews(campParticipant)
+        
+        let campSeconds: Double = campParticipant.totalSeconds
+        let daySeconds: [Double] = campParticipant.getDays().map({$0.totalSeconds})
+        
+        campGraph.setHighlighted(x: [campSeconds])
+        dayGraph.setHighlighted(x: daySeconds)
+        
     }
     
     

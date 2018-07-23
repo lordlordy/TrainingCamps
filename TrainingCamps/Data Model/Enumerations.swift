@@ -56,6 +56,12 @@ enum Activity: String{
     
 }
 
+enum TrainingDataProtocolProperty: String{
+    case swimKM, bikeKM, runKM, totalSeconds
+    
+    static var distributable: [TrainingDataProtocolProperty] = [swimKM, bikeKM, runKM, totalSeconds]
+}
+
 enum Unit: String{
     case KM, Seconds, Ascent
     case Miles, AscentMetres, AscentFeet, Minutes, Hours
