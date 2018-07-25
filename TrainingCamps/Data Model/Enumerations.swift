@@ -97,6 +97,7 @@ enum CampProperty: String{
     case campEnd, campStart
     case campName, campShortName, campLocation, campType
     case days, races, campParticipants
+    case campDatesDescription
 }
 
 enum DayProperty: String{
@@ -115,7 +116,8 @@ enum ParticipantDayProperty: String{
     case swimKM, swimSeconds, swimWildcardUsed
     case totalSeconds, totalKM, totalAscentMetres
     case trainingCompletionStatus, swimComplete, bikeComplete, runComplete, dayComplete
-
+    case swimWildcardEarned, bikeWildcardEarned, runWildcardEarned
+    case durationPercentile, swimKMPercentile, bikeKMPercentile, runKMPercentile
 }
 
 enum RaceProperty: String{
@@ -147,6 +149,7 @@ enum ParticipantProperty: String{
     case emailAddress, emailOK
     case firstName, surname, knownAs, gender, uniqueName
     case campGroup, campParticipations, eddingtonNumbers
+    case displayName
 }
 
 enum CampParticipantProperty: String{

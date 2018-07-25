@@ -18,11 +18,15 @@ class CampParticipantsListViewController: CampViewController, NSComboBoxDataSour
     @IBOutlet weak var pointsTable: NSTableView!
     @IBOutlet weak var clipView: NSClipView!
     
+    @IBAction func reload(_ sender: Any) {
+        pointsTable.reloadData()
+    }
     
     @IBAction func rankCompetition(_ sender: Any){
         if let c = camp{
             c.rankCompetition()
         }
+        pointsTable.reloadData()
     }
     
     @IBAction func saveVisibleTableAsPDF(_ sender: Any){

@@ -93,6 +93,8 @@ extension ParticipantDay: Rankable, TrainingDataProtocol{
         set{
             if let c = campParticipant?.camp{
                 campParticipant = c.campParticipant(forDisplayName: newValue)
+            }else if let c = day?.camp{
+                campParticipant = c.campParticipant(forDisplayName: newValue)
             }
         }
     }
@@ -116,20 +118,38 @@ extension ParticipantDay: Rankable, TrainingDataProtocol{
     override public class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String>{
         let keyPaths = super.keyPathsForValuesAffectingValue(forKey: key)
         switch key {
-        case ParticipantDayProperty.totalSeconds.rawValue:
-            return keyPaths.union(Set([ParticipantDayProperty.swimSeconds.rawValue, ParticipantDayProperty.bikeSeconds.rawValue, ParticipantDayProperty.runSeconds.rawValue]))
+        case ParticipantDayProperty.totalSeconds.rawValue, ParticipantDayProperty.durationPercentile.rawValue:
+            return keyPaths.union(Set([ParticipantDayProperty.swimSeconds.rawValue,
+                                       ParticipantDayProperty.bikeSeconds.rawValue,
+                                       ParticipantDayProperty.runSeconds.rawValue]))
         case ParticipantDayProperty.totalKM.rawValue:
-            return keyPaths.union(Set([ParticipantDayProperty.swimKM.rawValue, ParticipantDayProperty.bikeKM.rawValue, ParticipantDayProperty.runKM.rawValue]))
+            return keyPaths.union(Set([ParticipantDayProperty.swimKM.rawValue,
+                                       ParticipantDayProperty.bikeKM.rawValue,
+                                       ParticipantDayProperty.runKM.rawValue]))
         case ParticipantDayProperty.totalAscentMetres.rawValue:
-                return keyPaths.union(Set([ParticipantDayProperty.bikeAscentMetres.rawValue, ParticipantDayProperty.runAscentMetres.rawValue]))
+            return keyPaths.union(Set([ParticipantDayProperty.bikeAscentMetres.rawValue,
+                                       ParticipantDayProperty.runAscentMetres.rawValue]))
         case ParticipantDayProperty.swimComplete.rawValue:
             return keyPaths.union(Set([ParticipantDayProperty.swimSeconds.rawValue]))
-        case ParticipantDayProperty.bikeComplete.rawValue:
+        case ParticipantDayProperty.bikeComplete.rawValue, ParticipantDayProperty.bikeKMPercentile.rawValue, ParticipantDayProperty.bikeWildcardEarned.rawValue:
             return keyPaths.union(Set([ParticipantDayProperty.bikeKM.rawValue]))
         case ParticipantDayProperty.runComplete.rawValue:
             return keyPaths.union(Set([ParticipantDayProperty.runSeconds.rawValue]))
         case ParticipantDayProperty.dayComplete.rawValue, ParticipantDayProperty.trainingCompletionStatus.rawValue:
-            return keyPaths.union(Set([ParticipantDayProperty.swimComplete.rawValue, ParticipantDayProperty.bikeComplete.rawValue, ParticipantDayProperty.runComplete.rawValue, ParticipantDayProperty.runWildcardUsed.rawValue, ParticipantDayProperty.swimWildcardUsed.rawValue, ParticipantDayProperty.bikeWildcardUsed.rawValue]))
+            return keyPaths.union(Set([ParticipantDayProperty.swimComplete.rawValue,
+                                       ParticipantDayProperty.bikeComplete.rawValue,
+                                       ParticipantDayProperty.runComplete.rawValue,
+                                       ParticipantDayProperty.runWildcardUsed.rawValue,
+                                       ParticipantDayProperty.swimWildcardUsed.rawValue,
+                                       ParticipantDayProperty.bikeWildcardUsed.rawValue]))
+        case ParticipantDayProperty.swimWildcardEarned.rawValue:
+            return keyPaths.union(Set([ParticipantDayProperty.swimSeconds.rawValue]))
+        case ParticipantDayProperty.runWildcardEarned.rawValue:
+            return keyPaths.union(Set([ParticipantDayProperty.runSeconds.rawValue]))
+        case ParticipantDayProperty.swimKMPercentile.rawValue:
+            return keyPaths.union(Set([ParticipantDayProperty.swimKM.rawValue]))
+        case ParticipantDayProperty.runKMPercentile.rawValue:
+            return keyPaths.union(Set([ParticipantDayProperty.runKM.rawValue]))
         default:
             return keyPaths
         }

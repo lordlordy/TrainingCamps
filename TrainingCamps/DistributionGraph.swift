@@ -56,7 +56,9 @@ class DistributionGraph: NSView{
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-
+        
+        if mean.isNaN || variance.isNaN { return }
+        
         for l in labels{
             l.removeFromSuperview()
         }
@@ -175,6 +177,10 @@ class DistributionGraph: NSView{
     private func coordinatesInGraph(_ x: Double, _ y: Double, _ dirtyRect: NSRect) -> NSPoint{
         let xRange: CGFloat = CGFloat(maxX - minX)
         let yRange: CGFloat = CGFloat(maxY - minY)
+        
+        if xRange == 0.0 || yRange == 0.0{
+            return NSPoint(x: 0, y: 0)
+        }
         
         let xInView = paddingLeft + (dirtyRect.maxX - (paddingLeft + paddingRight)) * CGFloat(x - minX) / xRange
         let yInView = paddingBottom + (dirtyRect.maxY - (paddingBottom + paddingTop)) * CGFloat(y - minY) / yRange

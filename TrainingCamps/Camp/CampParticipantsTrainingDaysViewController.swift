@@ -40,7 +40,9 @@ class CampParticipantsTrainingDaysViewController: NSViewController, CampParticip
     func tableViewSelectionDidChange(_ notification: Notification) {
         if let selection = participantDaysAC.selectedObjects as? [ParticipantDay]{
             if let p = parent as? RankingsViewControllerProtocol{
-                p.setRankings(selection[0])
+                if selection.count > 0{
+                    p.setRankings(selection[0])
+                }
             }
         }
     }

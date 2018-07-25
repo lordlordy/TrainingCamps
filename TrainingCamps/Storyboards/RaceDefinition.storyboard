@@ -39,7 +39,7 @@
                 <splitViewController title="Race Definition" id="qbm-9G-F49" customClass="RaceDefinitionSplitViewController" customModule="TrainingCamps" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem canCollapse="YES" id="ZP7-0E-ap2"/>
-                        <splitViewItem id="uDL-Zu-FbY"/>
+                        <splitViewItem canCollapse="YES" id="uDL-Zu-FbY"/>
                     </splitViewItems>
                     <splitView key="splitView" vertical="YES" id="Chv-FJ-65x">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -101,6 +101,11 @@
                                         </buttonCell>
                                         <connections>
                                             <action selector="remove:" target="AN5-eo-ufX" id="k23-3v-krG"/>
+                                            <binding destination="AN5-eo-ufX" name="enabled" keyPath="selection.raceCount" id="jze-RQ-eMS">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                </dictionary>
+                                            </binding>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -532,7 +537,7 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.97826086956521741" horizontal="YES" id="lRi-4z-2CN">
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="lRi-4z-2CN">
                                     <rect key="frame" x="1" y="262" width="448" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

@@ -97,7 +97,7 @@ class TreeNodeAverage:NSObject, TreeNodeEditable{
     }
     
     func numberOfChildrenForAverage() -> Double{
-        return Double(children.filter({$0.includeInAggregation}).count)
+        return Double(max(1,children.filter({$0.includeInAggregation}).count))
     }
     
     @objc dynamic var height: Int {

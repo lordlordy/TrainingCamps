@@ -55,7 +55,7 @@ class TreeGenerator{
             for d in camp.campDaysArray(){
                 let df: DateFormatter = DateFormatter()
                 df.dateFormat = DateFormatString.DayOfWeekOnly.rawValue
-                let dayNode: TreeNodeEditable = newGenericTreeNode(name: df.string(from: d.date!),date: d.date ?? Date(), meanOrSum, true, camp.campName, TreeNodeType.Day)
+                let dayNode: TreeNodeEditable = newGenericTreeNode(name: df.string(from: d.date ?? Date()),date: d.date ?? Date(), meanOrSum, true, camp.campName, TreeNodeType.Day)
                 trainingNode.addChild(dayNode)
                 for pd in filtered(participantDays: d.participantDaysArray()) {
                     dayNode.addChild( ParticipantDayTreeNode(pd))

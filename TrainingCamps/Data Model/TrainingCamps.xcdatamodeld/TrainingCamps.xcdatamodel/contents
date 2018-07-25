@@ -2,8 +2,8 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Camp" representedClassName="Camp" syncable="YES" codeGenerationType="class">
         <attribute name="campEnd" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="campName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="campShortName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="campName" optional="YES" attributeType="String" defaultValueString="New Camp" syncable="YES"/>
+        <attribute name="campShortName" optional="YES" attributeType="String" defaultValueString="New" syncable="YES"/>
         <attribute name="campStart" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="campGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CampGroup" inverseName="camps" inverseEntity="CampGroup" syncable="YES"/>
         <relationship name="campParticipants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CampParticipant" inverseName="camp" inverseEntity="CampParticipant" syncable="YES"/>
@@ -23,7 +23,7 @@
     </entity>
     <entity name="CampParticipant" representedClassName="CampParticipant" syncable="YES" codeGenerationType="class">
         <attribute name="bonusPoints" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isInPointsCompetition" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isInPointsCompetition" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="rankInCompetition" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="role" attributeType="String" syncable="YES"/>
         <relationship name="camp" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Camp" inverseName="campParticipants" inverseEntity="Camp" syncable="YES"/>
@@ -38,16 +38,16 @@
         <relationship name="camps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Camp" inverseName="type" inverseEntity="Camp" syncable="YES"/>
     </entity>
     <entity name="Day" representedClassName="Day" syncable="YES" codeGenerationType="class">
-        <attribute name="completionBikeKM" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="completionBikeKMWithWildcard" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="completionRunSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="completionBikeKM" optional="YES" attributeType="Double" defaultValueString="80" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="completionBikeKMWithWildcard" optional="YES" attributeType="Double" defaultValueString="40" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="completionRunSeconds" optional="YES" attributeType="Double" defaultValueString="1800" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="completionRunSecondsWithWildcard" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="completionSwimSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="completionSwimSeconds" optional="YES" attributeType="Double" defaultValueString="1800" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="completionSwimSecondsWithWildcard" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="earnWildcardBikeKM" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="earnWildcardRunSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="earnWildcardSwimSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="earnWildcardBikeKM" optional="YES" attributeType="Double" defaultValueString="120" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="earnWildcardRunSeconds" optional="YES" attributeType="Double" defaultValueString="3600" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="earnWildcardSwimSeconds" optional="YES" attributeType="Double" defaultValueString="3600" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="camp" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Camp" inverseName="days" inverseEntity="Camp" syncable="YES"/>
         <relationship name="participantDays" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="ParticipantDay" inverseName="day" inverseEntity="ParticipantDay" syncable="YES"/>
     </entity>
@@ -76,7 +76,7 @@
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="knownAs" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="surname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uniqueName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uniqueName" attributeType="String" defaultValueString="UniqueName" syncable="YES"/>
         <relationship name="campGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CampGroup" inverseName="participants" inverseEntity="CampGroup" syncable="YES"/>
         <relationship name="campParticipations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CampParticipant" inverseName="participant" inverseEntity="CampParticipant" syncable="YES"/>
         <relationship name="eddingtonNumbers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="EddingtonNumber" inverseName="participant" inverseEntity="EddingtonNumber" syncable="YES"/>
@@ -136,7 +136,7 @@
         <attribute name="handicapSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="includeInCampPoints" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isRelay" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="raceCompletionStatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="raceCompletionStatus" optional="YES" attributeType="String" defaultValueString="DNS" syncable="YES"/>
         <attribute name="runSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="swimSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="t1Seconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -162,7 +162,7 @@
         <relationship name="raceResult" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RaceResult" inverseName="rankings" inverseEntity="RaceResult" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Camp" positionX="-29" positionY="-9" width="128" height="193"/>
+        <element name="Camp" positionX="-29" positionY="-9" width="128" height="195"/>
         <element name="CampGroup" positionX="-38" positionY="-270" width="128" height="148"/>
         <element name="CampParticipant" positionX="-74" positionY="224" width="128" height="180"/>
         <element name="CampType" positionX="-171" positionY="-108" width="128" height="90"/>

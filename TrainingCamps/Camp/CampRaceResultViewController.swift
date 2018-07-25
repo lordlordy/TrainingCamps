@@ -28,6 +28,9 @@ class CampRaceResultViewController: CampViewController, RaceViewControllerProtoc
         }
     }
     
+    @IBAction func reload(_ sender: Any) {
+        raceResultsTableView.reloadData()
+    }
     
     @IBAction func saveAsCSV(_ sender: Any) {
         

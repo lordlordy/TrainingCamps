@@ -91,6 +91,7 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
+                                                                        <binding destination="Ytg-9j-a5w" name="fontBold" keyPath="objectValue.raceComplete" id="rLT-00-woE"/>
                                                                         <binding destination="Ytg-9j-a5w" name="value" keyPath="objectValue.race.raceDefinition.name" id="h7u-wV-2r3"/>
                                                                     </connections>
                                                                 </textField>

@@ -115,9 +115,20 @@ extension RaceResult: Rankable{
     override public class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String>{
         let keyPaths = super.keyPathsForValuesAffectingValue(forKey: key)
         switch key {
-        case RaceResultProperty.rankings.rawValue, RaceResultProperty.completionStatus.rawValue:
+        case RaceResultProperty.completionStatus.rawValue, RaceResultProperty.raceComplete.rawValue:
             return keyPaths.union(Set([RaceResultProperty.raceCompletionStatus.rawValue]))
-
+        case RaceResultProperty.totalSeconds.rawValue:
+            return keyPaths.union(Set([RaceResultProperty.swimSeconds.rawValue,
+                                       RaceResultProperty.t1Seconds.rawValue,
+                                       RaceResultProperty.bikeSeconds.rawValue,
+                                       RaceResultProperty.t2Seconds.rawValue,
+                                       RaceResultProperty.runSeconds.rawValue]))
+        case RaceResultProperty.handicapAdjustedSeconds.rawValue:
+            return keyPaths.union(Set([RaceResultProperty.totalSeconds.rawValue,
+                                       RaceResultProperty.handicapSeconds.rawValue]))
+        case RaceResultProperty.guessDifferenceSeconds.rawValue:
+            return keyPaths.union(Set([RaceResultProperty.totalSeconds.rawValue,
+                                       RaceResultProperty.guessSeconds.rawValue]))
         default:
             return keyPaths
         }

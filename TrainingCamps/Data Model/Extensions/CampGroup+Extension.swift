@@ -31,7 +31,7 @@ extension CampGroup: TrainingValuesProtocol{
     }
     
     var earliestCampStart: Date{
-        let orderedCamps: [Camp] = campsArray().sorted(by: {$0.campStart! < $1.campStart!})
+        let orderedCamps: [Camp] = campsArray().sorted(by: {$0.campStart ?? Date() < $1.campStart ?? Date()})
         if orderedCamps.count > 0{
             return orderedCamps[0].campStart ?? Date()
         }else{
@@ -220,7 +220,7 @@ extension CampGroup: TrainingValuesProtocol{
     
     
     func races(forLocation l: Location) -> [RaceDefinition]{
-        return raceDefinitionArray().filter({$0.location!.name! == l.name})
+        return raceDefinitionArray().filter({$0.location?.name ?? "" == l.name})
     }
     
     func valueFor(_ activity: Activity, _ unit: Unit) -> Double{
@@ -235,7 +235,9 @@ extension CampGroup: TrainingValuesProtocol{
     
     func raceDefinitionArray() -> [RaceDefinition]{
         let a = raceDefinitions?.allObjects as? [RaceDefinition] ?? []
-        return a.sorted(by: {($0.location!.name!, $0.name!) < ($1.location!.name!, $1.name!)})
+        return a
+//not sure why I was sorting this
+        //        return a.sorted(by: {($0.location!.name!, $0.name!) < ($1.location!.name!, $1.name!)})
     }
     
     func topTenEddingtonNumbers(forActivity a: Activity, unit u: Unit)-> (overall: [HallOfFameResult], female: [HallOfFameResult], male: [HallOfFameResult]){

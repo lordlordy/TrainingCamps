@@ -67,7 +67,7 @@
                                         </buttonCell>
                                         <connections>
                                             <action selector="remove:" target="HQK-La-vou" id="8i6-XV-SA9"/>
-                                            <binding destination="HQK-La-vou" name="enabled" keyPath="selection.campNameNotSet" id="fPZ-9W-b1e"/>
+                                            <binding destination="HQK-La-vou" name="enabled" keyPath="selection.canRemove" id="yHP-B6-srt"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -302,8 +302,8 @@
                                                     <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="campStart"/>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="v5G-iI-hDa">
-                                                            <rect key="frame" x="346" y="1" width="96" height="23"/>
+                                                        <tableCellView misplaced="YES" id="v5G-iI-hDa">
+                                                            <rect key="frame" x="346" y="1" width="64" height="23"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h7d-au-yrD">
@@ -595,11 +595,6 @@
                                                                                 <string key="NSValueTransformerName">TransformerNSNumberToTimeFormat</string>
                                                                             </dictionary>
                                                                         </binding>
-                                                                        <binding destination="OoM-Tr-dkJ" name="textColor" keyPath="values.swimColour" id="43r-MX-cTq">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                                            </dictionary>
-                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -638,11 +633,6 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="Exb-44-i0E" name="value" keyPath="objectValue.swimKM" id="K68-2K-A3K"/>
-                                                                        <binding destination="OoM-Tr-dkJ" name="textColor" keyPath="values.swimColour" id="AbB-dN-sZQ">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                                            </dictionary>
-                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -684,11 +674,6 @@
                                                                                 <string key="NSValueTransformerName">TransformerNSNumberToTimeFormat</string>
                                                                             </dictionary>
                                                                         </binding>
-                                                                        <binding destination="OoM-Tr-dkJ" name="textColor" keyPath="values.bikeColour" id="ema-Co-7Cn">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                                            </dictionary>
-                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -727,11 +712,6 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="Oxt-6P-ULO" name="value" keyPath="objectValue.bikeKM" id="rTb-os-yd7"/>
-                                                                        <binding destination="OoM-Tr-dkJ" name="textColor" keyPath="values.bikeColour" id="mWg-aZ-gMY">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                                            </dictionary>
-                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -770,11 +750,6 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="ier-oD-9Us" name="value" keyPath="objectValue.bikeAscentMetres" id="7hb-Cr-SqX"/>
-                                                                        <binding destination="OoM-Tr-dkJ" name="textColor" keyPath="values.bikeColour" id="qhd-bX-NNF">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                                            </dictionary>
-                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -816,11 +791,6 @@
                                                                                 <string key="NSValueTransformerName">TransformerNSNumberToTimeFormat</string>
                                                                             </dictionary>
                                                                         </binding>
-                                                                        <binding destination="OoM-Tr-dkJ" name="textColor" keyPath="values.runColour" id="GhC-Kl-K6j">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                                            </dictionary>
-                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -859,11 +829,6 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="I46-B5-fp2" name="value" keyPath="objectValue.runKM" id="S1h-0K-fuE"/>
-                                                                        <binding destination="OoM-Tr-dkJ" name="textColor" keyPath="values.runColour" id="upW-hj-YcL">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                                            </dictionary>
-                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -902,11 +867,6 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="oyX-B0-Qwt" name="value" keyPath="objectValue.runAscentMetres" id="n7d-tI-VUe"/>
-                                                                        <binding destination="OoM-Tr-dkJ" name="textColor" keyPath="values.runColour" id="qBW-r9-WAb">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                                            </dictionary>
-                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -1000,7 +960,7 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="cO7-ZK-yir">
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.82126348228043144" horizontal="YES" id="cO7-ZK-yir">
                                     <rect key="frame" x="1" y="262" width="167" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1045,7 +1005,7 @@
                     </connections>
                 </viewController>
                 <customObject id="JdY-cu-Ps2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController id="HQK-La-vou" userLabel="Camps AC">
+                <arrayController mode="entity" entityName="Camp" automaticallyPreparesContent="YES" id="HQK-La-vou" userLabel="Camps AC">
                     <connections>
                         <binding destination="OGd-rb-FY3" name="contentSet" keyPath="campGroup.camps" id="nVF-Lu-44D"/>
                         <binding destination="OGd-rb-FY3" name="managedObjectContext" keyPath="campGroup.managedObjectContext" id="HTG-Fl-AGe"/>

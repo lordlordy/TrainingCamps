@@ -45,6 +45,18 @@ extension Participant{
         return result
     }
     
+    override public class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String>{
+        let keyPaths = super.keyPathsForValuesAffectingValue(forKey: key)
+        switch key {
+        case ParticipantProperty.displayName.rawValue:
+            return keyPaths.union(Set([ParticipantProperty.firstName.rawValue,
+                                       ParticipantProperty.surname.rawValue]))
+            
+        default:
+            return keyPaths
+        }
+    }
+    
     private func campParticipationsArray() -> [CampParticipant]{
         return campParticipations?.allObjects as? [CampParticipant] ?? []
     }

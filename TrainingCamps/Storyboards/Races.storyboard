@@ -668,6 +668,7 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </comboBoxCell>
                                                                     <connections>
+                                                                        <binding destination="nLj-Vh-YtW" name="fontBold" keyPath="objectValue.raceComplete" id="ruh-c0-3Gq"/>
                                                                         <binding destination="nLj-Vh-YtW" name="value" keyPath="objectValue.displayName" id="dSB-Jr-h7O"/>
                                                                         <outlet property="dataSource" destination="OAd-Ab-1xH" id="H5y-9p-pKC"/>
                                                                     </connections>
@@ -906,11 +907,6 @@
                                                                                 <string key="NSValueTransformerName">TransformerNSNumberToTimeFormat</string>
                                                                             </dictionary>
                                                                         </binding>
-                                                                        <binding destination="OYy-JR-szb" name="textColor" keyPath="values.swimColour" id="Pxa-YY-fqT">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                                            </dictionary>
-                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -993,11 +989,6 @@
                                                                                 <string key="NSValueTransformerName">TransformerNSNumberToTimeFormat</string>
                                                                             </dictionary>
                                                                         </binding>
-                                                                        <binding destination="OYy-JR-szb" name="textColor" keyPath="values.bikeColour" id="g6D-89-k6D">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                                            </dictionary>
-                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -1078,11 +1069,6 @@
                                                                         <binding destination="xC0-hz-EIa" name="value" keyPath="objectValue.runSeconds" id="0Q1-WK-f11">
                                                                             <dictionary key="options">
                                                                                 <string key="NSValueTransformerName">TransformerNSNumberToTimeFormat</string>
-                                                                            </dictionary>
-                                                                        </binding>
-                                                                        <binding destination="OYy-JR-szb" name="textColor" keyPath="values.runColour" id="bx1-ZK-K17">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
                                                                             </dictionary>
                                                                         </binding>
                                                                     </connections>
@@ -1493,7 +1479,7 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.99728997289972898" horizontal="YES" id="fBC-kB-Ixe">
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="fBC-kB-Ixe">
                                     <rect key="frame" x="1" y="259" width="612" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1535,6 +1521,20 @@
                                     <action selector="showAllColumns:" target="OAd-Ab-1xH" id="Ebx-6J-Q5E"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RKm-Hx-f8o">
+                                <rect key="frame" x="401" y="271" width="82" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="HCf-CS-cZh"/>
+                                    <constraint firstAttribute="height" constant="21" id="MGa-8n-KzQ"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Reload" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mgo-Jq-WQW">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="reload:" target="OAd-Ab-1xH" id="lmU-AQ-EeZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="rMP-lJ-o8x" firstAttribute="leading" secondItem="Rjr-1Z-NyD" secondAttribute="leading" constant="2" id="5RM-cC-3vq"/>
@@ -1543,7 +1543,9 @@
                             <constraint firstAttribute="bottom" secondItem="rMP-lJ-o8x" secondAttribute="bottom" constant="2" id="JFy-mm-OcM"/>
                             <constraint firstItem="ldi-eA-5Os" firstAttribute="top" secondItem="Rjr-1Z-NyD" secondAttribute="top" constant="1" id="Jhh-qt-Z2s"/>
                             <constraint firstItem="Wu1-gk-mYv" firstAttribute="leading" secondItem="Rjr-1Z-NyD" secondAttribute="leading" constant="2" id="PJN-wr-yWS"/>
+                            <constraint firstItem="ldi-eA-5Os" firstAttribute="leading" secondItem="RKm-Hx-f8o" secondAttribute="trailing" constant="2" id="WH5-Cb-y2u"/>
                             <constraint firstItem="axf-XQ-3lQ" firstAttribute="top" secondItem="Rjr-1Z-NyD" secondAttribute="top" constant="1" id="YzP-m3-c1R"/>
+                            <constraint firstItem="RKm-Hx-f8o" firstAttribute="top" secondItem="Rjr-1Z-NyD" secondAttribute="top" constant="1" id="gyV-fC-KKn"/>
                             <constraint firstItem="Wu1-gk-mYv" firstAttribute="top" secondItem="Rjr-1Z-NyD" secondAttribute="top" constant="1" id="wCg-t8-KCd"/>
                             <constraint firstAttribute="trailing" secondItem="ldi-eA-5Os" secondAttribute="trailing" constant="2" id="wWw-av-YeI"/>
                             <constraint firstItem="axf-XQ-3lQ" firstAttribute="leading" secondItem="Wu1-gk-mYv" secondAttribute="trailing" constant="5" id="xsT-tE-5xe"/>

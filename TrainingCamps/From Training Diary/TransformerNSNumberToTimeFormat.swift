@@ -22,6 +22,9 @@ class TransformerNSNumberToTimeFormat: ValueTransformer {
         if let intS = value as? Int{
             s = intS
         }else if let doubleS = value as? Double{
+            if doubleS.isNaN || doubleS.isInfinite{
+                return nil
+            }
             s = Int(doubleS)
         }else{
             return nil

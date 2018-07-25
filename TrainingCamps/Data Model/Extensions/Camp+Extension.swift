@@ -39,7 +39,9 @@ extension Camp: TrainingValuesProtocol{
     
     @objc var  bricks: Int {return campDaysArray().reduce(0, {$0 + $1.bricks})}
     
-    @objc var campNameNotSet: Bool { return campName == nil || campName == ""}
+    @objc var canRemove: Bool{
+        return days?.count == 0 && campParticipants?.count == 0 && races?.count == 0
+    }
     
     @objc var campDatesDescription: String{
         let df = DateFormatter()
@@ -277,6 +279,17 @@ extension Camp: TrainingValuesProtocol{
         return result
     }
     
+    override public class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String>{
+        let keyPaths = super.keyPathsForValuesAffectingValue(forKey: key)
+        switch key {
+        case CampProperty.campDatesDescription.rawValue:
+            return keyPaths.union(Set([CampProperty.campEnd.rawValue,
+                                       CampProperty.campStart.rawValue]))
+            
+        default:
+            return keyPaths
+        }
+    }
 
     
     private func orderedForCampPoints() -> [CampParticipant]{
