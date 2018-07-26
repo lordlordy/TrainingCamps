@@ -645,11 +645,6 @@
                                                                             </dictionary>
                                                                         </binding>
                                                                         <binding destination="QN2-Pd-GMY" name="editable" keyPath="resultsEditable" id="bGc-eb-dVD"/>
-                                                                        <binding destination="esP-g5-xBB" name="textColor" keyPath="values.swimColour" id="Um6-hh-Q5B">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                                            </dictionary>
-                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -742,11 +737,6 @@
                                                                             </dictionary>
                                                                         </binding>
                                                                         <binding destination="QN2-Pd-GMY" name="editable" keyPath="resultsEditable" id="9k6-oO-o3C"/>
-                                                                        <binding destination="esP-g5-xBB" name="textColor" keyPath="values.bikeColour" id="EHS-B1-oup">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                                            </dictionary>
-                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -839,11 +829,6 @@
                                                                             </dictionary>
                                                                         </binding>
                                                                         <binding destination="QN2-Pd-GMY" name="editable" keyPath="resultsEditable" id="OS6-DH-oAh"/>
-                                                                        <binding destination="esP-g5-xBB" name="textColor" keyPath="values.runColour" id="4We-DQ-kks">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
-                                                                            </dictionary>
-                                                                        </binding>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>

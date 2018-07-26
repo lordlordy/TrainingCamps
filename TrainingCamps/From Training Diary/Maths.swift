@@ -84,6 +84,13 @@ class Maths{
         return (monotony, strain)
     }
     
+    func standardNormalProbability(from: Double, to: Double) -> Double{
+        if to >= from {
+            return phi(stdDev: to) - phi(stdDev: from)
+        }
+        return 0.0
+    }
+    
     /* Implementation from https://www.johndcook.com/blog/cpp_phi/
      */
     func phi(stdDev: Double) -> Double{
@@ -133,6 +140,20 @@ class Maths{
         }
     }
     
+    func logNormalProbabilityEstimate(from: Double, to: Double, numberOfSamples s: Int, logMean: Double, logStdDev: Double) -> Double{
+        let sampleWidth: Double = (to - from) / Double(s)
+        var probability: Double = 0.0
+        
+        var sampleStart: Double = from
+        
+        while sampleStart < to{
+            let yStart: Double = logNormalDensityFunction(x: sampleStart, logMean: logMean, logStdDev: logStdDev)
+            probability += yStart * sampleWidth
+            sampleStart += sampleWidth
+        }
+        
+        return probability
+    }
     
     func testStDev(){
         let testStdDevs = [-3.0, -2.0, -1.0, 0, 1.0, 2.0, 3.0]
@@ -178,9 +199,16 @@ class Maths{
         let stdDev = sqrt(sumOfSquaredAvgDiff / length)
         return (stdDev, avg, sum)
     }
-    
+        
     func normalDensityFunction(x: Double, mean: Double, variance: Double) -> Double{
         return exp(-pow(x-mean,2.0)/(2 * variance)) / (sqrt(2 * Double.pi * variance))
+    }
+    
+    func logNormalDensityFunction(x: Double, logMean: Double, logStdDev: Double) -> Double{
+        if x < 0.0 { return 0.0}
+        if logStdDev == 0.0 { return 0.0}
+        let i: Double = pow(log(x) - logMean,2) / (2 * pow(logStdDev,2))
+        return (1/x) * (1 / (logStdDev * sqrt(2 * Double.pi))) * exp(-i)
     }
     
 }

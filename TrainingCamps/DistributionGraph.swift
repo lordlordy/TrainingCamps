@@ -20,7 +20,20 @@ class DistributionGraph: NSView{
     private var normalData: [(x:Double, y:Double)] = []
     private var mean: Double = 0.0
     private var variance: Double = 1.0
-    private var buckets: [Bucket] = []
+    
+    private var logNormalData: [(x:Double, y:Double)] = []
+    private var meanOfLogs: Double = 0.0
+    private var stdDevOfLogs: Double = 1.0
+    private var logNormalMode: Double{
+        return exp(meanOfLogs - pow(stdDevOfLogs,2.0))
+    }
+
+    private var buckets: [Bucket] = [] {
+        didSet{
+            averageBucketWidth = buckets.reduce(0.0, {$0 + $1.to - $1.from}) / Double(buckets.count)
+        }
+    }
+    private var averageBucketWidth: Double = 1.0
 
     private var highlightedValues: [Double] = []
     
@@ -46,6 +59,13 @@ class DistributionGraph: NSView{
         buckets = b
         updateLimits()
         normalData = createNormalData()
+        needsDisplay = true
+    }
+    
+    func setLogNormal(meanOfLogs m: Double, stdDevOfLogs sd: Double){
+        meanOfLogs = m
+        stdDevOfLogs = sd
+        logNormalData = createLogNormalData()
         needsDisplay = true
     }
     
@@ -91,10 +111,9 @@ class DistributionGraph: NSView{
         
         path.move(to: coordinatesInGraph(normalData[0].x, normalData[0].y, dirtyRect))
         
-        for p in createNormalData(){
+        for p in normalData{
             path.line(to: coordinatesInGraph(p.x, p.y, dirtyRect))
         }
-        
         
         path.lineWidth = 2.0
         NSColor.red.setStroke()
@@ -135,6 +154,23 @@ class DistributionGraph: NSView{
         axisMarkersLine.setLineDash(dash, count: 2, phase: 0.0)
         NSColor.white.setStroke()
         axisMarkersLine.stroke()
+        
+        
+        if logNormalData.count > 0{
+            //create log normal
+            let logPath = NSBezierPath()
+            logPath.move(to: coordinatesInGraph(logNormalData[0].x, logNormalData[0].y, dirtyRect))
+            
+            for p in logNormalData{
+                logPath.line(to: coordinatesInGraph(p.x, p.y, dirtyRect))
+            }
+            
+            logPath.lineWidth = 2.0
+            NSColor.green.setStroke()
+            let dash: [CGFloat] = [3.0,2.0,1.0, 0.5]
+            logPath.setLineDash(dash, count: 4, phase: 0.0)
+            logPath.stroke()
+        }
         
         //create markers for
         
@@ -213,14 +249,53 @@ class DistributionGraph: NSView{
         let xIncrement: Double = (maxX - minX) / Double(numberOfNormalDistributionPoints - 1)
         let xStart: Double = minX
         let calculator: Maths = Maths()
-        let scale: Double = buckets.reduce(0.0, {max($0, $1.size)}) / calculator.normalDensityFunction(x: mean, mean: mean, variance: variance)
+        let scale: Double = normalMaxHeight() / calculator.normalDensityFunction(x: mean, mean: mean, variance: variance)
         var result: [(x:Double, y:Double)] = []
         for i in 0...numberOfNormalDistributionPoints{
             let x: Double = xStart + Double(i) * xIncrement
             let y: Double = calculator.normalDensityFunction(x: x, mean: mean, variance: variance) * scale
             result.append((x,y))
         }
+        
+        return result
+    }
+    
+    private func normalMaxHeight() -> Double{
+        //this is to scale the standard normal distribution to overlay the buckets
+        //look at the probability a bucket width centred at the mean
+        
+        let stdWidth: Double = averageBucketWidth / ( 2.0 * sqrt(variance))
+        let probability: Double = Maths().standardNormalProbability(from: -stdWidth, to: stdWidth)
+        let totalSize: Double = buckets.reduce(0.0, {$0 + $1.size})
+        return totalSize * probability
+    }
 
+    private func logNormalMaxHeight() -> Double{
+        //this is to scale the standard log normal distribution to overlay the buckets
+        //look at the probability a bucket width centred at the mode (ie the highest point in log normal distribution)
+        
+        let stdWidth: Double = averageBucketWidth / 2.0
+        let probability: Double = Maths().logNormalProbabilityEstimate(from: logNormalMode - stdWidth, to: logNormalMode + stdWidth, numberOfSamples: 100, logMean: meanOfLogs, logStdDev: stdDevOfLogs)
+        let totalSize: Double = buckets.reduce(0.0, {$0 + $1.size})
+        return totalSize * probability
+    }
+    
+    private func createLogNormalData() -> [(x:Double, y:Double)]{
+        let xIncrement: Double = (maxX - max(0.0001,minX)) / Double(numberOfNormalDistributionPoints - 1)
+        let xStart: Double = max(0.0001, minX)
+        let calculator: Maths = Maths()
+//        let bucketMax: Double = buckets.reduce(0.0, {max($0, $1.size)})
+        let scale: Double = logNormalMaxHeight() / calculator.logNormalDensityFunction(x: logNormalMode, logMean: meanOfLogs, logStdDev: stdDevOfLogs)
+        var result: [(x:Double, y:Double)] = []
+        for i in 0...numberOfNormalDistributionPoints{
+            let x: Double = xStart + Double(i) * xIncrement
+            let y: Double = calculator.logNormalDensityFunction(x: x, logMean: meanOfLogs, logStdDev: stdDevOfLogs) * scale
+            result.append((x,y))
+        }
+//        let maxDistributionY: Double = result.reduce(0.0, {max($0, $1.y)})
+        
+//        let scaledResults = result.map({($0.x, $0.y * bucketMax / maxDistributionY)})
+        
         return result
     }
     

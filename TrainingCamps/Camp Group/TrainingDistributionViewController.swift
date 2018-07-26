@@ -150,8 +150,10 @@ class TrainingDistributionViewController: NSViewController, CampGroupViewControl
                     let bucketGenerator = getBucketGenerator(forProperty: property)
                     let buckets = bucketGenerator.createBuckets(forDoubleProperty: property, data: data)
                     let stdDevMean = Maths().stdDevMeanTotal(data.map({$0.value(forKey: property.rawValue) as! Double}))
+                    let logStdDevMean = Maths().stdDevMeanTotal(data.map({log($0.value(forKey: property.rawValue) as! Double)}))
                     if let dg = getGraphView(){
                         dg.set(buckets: buckets, mean: stdDevMean.mean , variance: pow(stdDevMean.stdDev,2))
+                        dg.setLogNormal(meanOfLogs: logStdDevMean.mean, stdDevOfLogs: logStdDevMean.stdDev)
                         dg.xAxisFormatter = getXAxisFormatter(forProperty: property)
                         
                     }
@@ -257,7 +259,7 @@ class TrainingDistributionViewController: NSViewController, CampGroupViewControl
 
         switch p{
         case .totalSeconds:
-            let bg = FixedWidthBucketGenerator(startingAt: 0.0, width: 30.0 * 60.0)
+            let bg = FixedWidthBucketGenerator(startingAt: 0.0, width: 15.0 * 60.0)
             if campDayCB.stringValue == "Camp"{
                 bg.bucketWidth = 60.0 * 60.0
             }

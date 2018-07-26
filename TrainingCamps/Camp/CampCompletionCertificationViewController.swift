@@ -43,16 +43,20 @@ class CampCompletionCertificationViewController: NSViewController, CampParticipa
             let dayBucketGenerator = FixedWidthBucketGenerator(startingAt: 0.0, width: 30.0 * 60.0)
             let dayBuckets = dayBucketGenerator.createBuckets(forDoubleProperty: TrainingDataProtocolProperty.totalSeconds, data: dayData)
             let dayStdDevMean = Maths().stdDevMeanTotal(dayData.map({$0.totalSeconds}))
+            let dayLogStdDevMean = Maths().stdDevMeanTotal(dayData.map({log($0.totalSeconds)}))
 
             dayGraph.set(buckets: dayBuckets, mean: dayStdDevMean.mean, variance: pow(dayStdDevMean.stdDev,2.0))
+            dayGraph.setLogNormal(meanOfLogs: dayLogStdDevMean.mean, stdDevOfLogs: dayLogStdDevMean.stdDev)
             dayGraph.xAxisFormatter = hourMinuteFormatter
             
             let campData = cg.campParticipantsArray().filter({$0.totalSeconds > 0.0})
             let campBucketGenerator = FixedWidthBucketGenerator(startingAt: 0.0, width: 60.0 * 60.0)
             let campBuckets = campBucketGenerator.createBuckets(forDoubleProperty: TrainingDataProtocolProperty.totalSeconds, data: campData)
             let campStdDevMean = Maths().stdDevMeanTotal(campData.map({$0.totalSeconds}))
+            let campLogStdDevMean = Maths().stdDevMeanTotal(campData.map({log($0.totalSeconds)}))
 
             campGraph.set(buckets: campBuckets, mean: campStdDevMean.mean, variance: pow(campStdDevMean.stdDev,2.0))
+            campGraph.setLogNormal(meanOfLogs: campLogStdDevMean.mean, stdDevOfLogs: campLogStdDevMean.stdDev)
             campGraph.xAxisFormatter = hourMinuteFormatter
 
         }

@@ -58,6 +58,10 @@ extension RaceDefinition{
         return Maths().stdDevMeanTotal(raceResultsArray().map({$0.totalSeconds}).filter({$0 > 0.0}))
     }
     
+    private var stdDevMeanSumOfLogs: (stdDev: Double, mean: Double, total: Double){
+        return Maths().stdDevMeanTotal(raceResultsArray().filter({$0.totalSeconds > 0.0}).map({log($0.totalSeconds)}))
+    }
+    
     func percentile(forResult r: RaceResult) -> Double{
         if r.race!.raceDefinition! == self{
             let stdDevsFromMean = (r.totalSeconds - stdDevMeanSum.mean) / stdDevMeanSum.stdDev

@@ -92,8 +92,10 @@ class RaceResultsGraphViewController: NSViewController, RaceDefinitionViewContro
         }
         
         let meanStdDev = Maths().stdDevMeanTotal(nonZero.map({$0.totalSeconds}))
+        let logMeanStdDev = Maths().stdDevMeanTotal(nonZero.map({log($0.totalSeconds)}))
         
         graphView.set(buckets: buckets, mean: meanStdDev.mean, variance: pow(meanStdDev.stdDev, 2.0))
+        graphView.setLogNormal(meanOfLogs: logMeanStdDev.mean, stdDevOfLogs: logMeanStdDev.stdDev)
         setBucketTable(withBuckets: buckets.filter({$0.size > 0.0}))
     }
     
