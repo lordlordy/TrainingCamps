@@ -9,15 +9,15 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView identifier="HallOfFameHeaderView" id="c22-O7-iKe" customClass="HallOfFameHeaderView" customModule="TrainingCamps" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="17"/>
+            <rect key="frame" x="0.0" y="0.0" width="480" height="24"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qsq-ma-r09">
-                    <rect key="frame" x="-2" y="0.0" width="484" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Race Name" id="u4e-ls-qXn">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="24"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Race Name" drawsBackground="YES" id="u4e-ls-qXn">
+                        <font key="font" metaFont="system" size="20"/>
+                        <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" red="0.10196078431372549" green="0.47058823529411764" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </textFieldCell>
                     <connections>
                         <accessibilityConnection property="title" destination="c22-O7-iKe" id="4sS-KB-Lmk"/>
@@ -30,6 +30,10 @@
                 <constraint firstItem="qsq-ma-r09" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="6Xk-rr-s0Z"/>
                 <constraint firstAttribute="trailing" secondItem="qsq-ma-r09" secondAttribute="trailing" id="RRo-7n-4N7"/>
             </constraints>
+            <connections>
+                <outlet property="title" destination="qsq-ma-r09" id="BUS-ED-Ctb"/>
+                <outlet property="titleTextField" destination="u4e-ls-qXn" id="xQ8-PG-KTk"/>
+            </connections>
         </customView>
     </objects>
 </document>

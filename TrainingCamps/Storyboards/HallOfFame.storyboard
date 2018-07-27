@@ -49,11 +49,10 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="uCn-gM-ff1">
-                                            <rect key="frame" x="0.0" y="0.0" width="444" height="158"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="444" height="294"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="5" minimumLineSpacing="5" id="yHd-IA-3fV">
-                                                <size key="itemSize" width="330" height="215"/>
-                                                <size key="headerReferenceSize" width="330" height="100"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="5" minimumLineSpacing="5" id="VSb-il-J53">
+                                                <size key="itemSize" width="50" height="50"/>
                                             </collectionViewFlowLayout>
                                             <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="secondaryBackgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -114,6 +113,7 @@
                                             <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <connections>
                                                 <outlet property="dataSource" destination="R22-6v-vwb" id="GYb-Kc-uvw"/>
+                                                <outlet property="delegate" destination="R22-6v-vwb" id="dmo-D2-gsH"/>
                                             </connections>
                                         </collectionView>
                                     </subviews>
@@ -168,6 +168,7 @@
                                             <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <connections>
                                                 <outlet property="dataSource" destination="2hk-og-nBh" id="4Sx-J9-sdT"/>
+                                                <outlet property="delegate" destination="2hk-og-nBh" id="ptc-dz-s7i"/>
                                             </connections>
                                         </collectionView>
                                     </subviews>

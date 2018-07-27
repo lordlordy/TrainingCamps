@@ -21,9 +21,9 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="DcP-35-vxZ"/>
                     </constraints>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Race Name" id="2gF-qT-IJI">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Title" id="2gF-qT-IJI">
                         <font key="font" metaFont="systemBold" size="15"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" red="0.89803921568627454" green="0.16470588235294117" blue="0.46666666666666667" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>

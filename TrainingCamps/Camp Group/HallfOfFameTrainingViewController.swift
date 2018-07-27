@@ -65,7 +65,8 @@ extension HallOfFameTrainingViewController : NSCollectionViewDataSource {
         if indexPath.section < topTens.count{
             if indexPath.item == 0{
                 collectionViewItem.results = topTens[indexPath.section].overall
-                collectionViewItem.resultTitle.stringValue = topTens[indexPath.section].title
+                collectionViewItem.resultTitle.stringValue = "Overall"
+//                collectionViewItem.resultTitle.stringValue = topTens[indexPath.section].title
             }else if indexPath.item == 1{
                 collectionViewItem.results = topTens[indexPath.section].female
                 collectionViewItem.resultTitle.stringValue = "Female"
@@ -78,4 +79,27 @@ extension HallOfFameTrainingViewController : NSCollectionViewDataSource {
         
         return item
     }
+    
+    func collectionView(_ collectionView: NSCollectionView, viewForSupplementaryElementOfKind kind: NSCollectionView.SupplementaryElementKind, at indexPath: IndexPath) -> NSView {
+        
+        let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.SupplementaryElementKind.sectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameHeaderView"), for: indexPath)
+        
+        if let v = view as? HallOfFameHeaderView{
+            v.title.stringValue = topTens[indexPath.section].title ?? "NOT SET"
+        }
+        return view
+    }
+    
+}
+
+extension HallOfFameTrainingViewController : NSCollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> NSSize {
+        return NSSize(width: 1000, height: 25)
+    }
+    
+    func collectionView(_: NSCollectionView, layout: NSCollectionViewLayout, sizeForItemAt: IndexPath) -> NSSize{
+        return NSSize(width: 340   , height: 214   )
+    }
+    
+    
 }
