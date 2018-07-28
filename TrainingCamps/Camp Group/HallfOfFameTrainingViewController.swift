@@ -13,7 +13,15 @@ class HallOfFameTrainingViewController: CampGroupViewController{
 
     @IBOutlet weak var collectionView: NSCollectionView!
     
-    var topTens: [(title: String, overall: [HallOfFameResult], female: [HallOfFameResult], male: [HallOfFameResult])] = []
+    private var participantDaysCount: Int{
+        return campGroup?.participantDaysArray().count ?? 0
+    }
+    
+    private var participantCampsCount: Int{
+        return campGroup?.campParticipantsArray().count ?? 0
+    }
+    
+    var topTens: [(title: String, overall: [HallOfFameResult], female: [HallOfFameResult], male: [HallOfFameResult], isDay: Bool)] = []
 
 
     override func setCampGroup(_ campGroup: CampGroup) {
@@ -24,9 +32,9 @@ class HallOfFameTrainingViewController: CampGroupViewController{
         for a in Activity.HallOfFame{
             for u in a.hallOfFameUnits(){
                 var top = campGroup.topTen(forActivity: a, unit: u, isDay: true)
-                topTens.append((titleFor(a,u,true), top.overall, top.female, top.male))
+                topTens.append((titleFor(a,u,true), top.overall, top.female, top.male, true))
                 top = campGroup.topTen(forActivity: a, unit: u, isDay: false)
-                topTens.append((titleFor(a,u,false), top.overall, top.female, top.male))
+                topTens.append((titleFor(a,u,false), top.overall, top.female, top.male, false))
             }
         }
     
@@ -85,7 +93,13 @@ extension HallOfFameTrainingViewController : NSCollectionViewDataSource {
         let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.SupplementaryElementKind.sectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameHeaderView"), for: indexPath)
         
         if let v = view as? HallOfFameHeaderView{
-            v.title.stringValue = topTens[indexPath.section].title ?? "NOT SET"
+            v.title.stringValue = topTens[indexPath.section].title
+            if topTens[indexPath.section].isDay{
+                v.subTitle.stringValue = "( " + String(participantDaysCount) + " participant days )"
+            }else{
+                v.subTitle.stringValue = "( " + String(participantCampsCount) + " participant camps )"
+
+            }
         }
         return view
     }
@@ -94,7 +108,7 @@ extension HallOfFameTrainingViewController : NSCollectionViewDataSource {
 
 extension HallOfFameTrainingViewController : NSCollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> NSSize {
-        return NSSize(width: 1000, height: 25)
+        return NSSize(width: 1000, height: 47)
     }
     
     func collectionView(_: NSCollectionView, layout: NSCollectionViewLayout, sizeForItemAt: IndexPath) -> NSSize{

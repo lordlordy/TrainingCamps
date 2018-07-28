@@ -12,6 +12,10 @@ class HallOfFameEddingtonNumbersViewController: CampGroupViewController{
     
     @IBOutlet weak var collectionView: NSCollectionView!
     
+    private var participantCount: Int {
+        return campGroup?.participantArray().filter({$0.campsAttended > 0}).count ?? 0
+    }
+    
     var topTens: [(title: String, overall: [HallOfFameResult], female: [HallOfFameResult], male: [HallOfFameResult])] = []
     
     
@@ -74,6 +78,7 @@ extension HallOfFameEddingtonNumbersViewController : NSCollectionViewDataSource 
         
         if let v = view as? HallOfFameHeaderView{
             v.title.stringValue = topTens[indexPath.section].title ?? "NOT SET"
+            v.subTitle.stringValue = "( " + String(participantCount) + " participants )"
         }
         return view
     }
@@ -82,7 +87,7 @@ extension HallOfFameEddingtonNumbersViewController : NSCollectionViewDataSource 
 
 extension HallOfFameEddingtonNumbersViewController : NSCollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> NSSize {
-        return NSSize(width: 1000, height: 25)
+        return NSSize(width: 1000, height: 47)
     }
     
     func collectionView(_: NSCollectionView, layout: NSCollectionViewLayout, sizeForItemAt: IndexPath) -> NSSize{

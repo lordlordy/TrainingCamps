@@ -12,7 +12,7 @@ class HallOfFameViewController: CampGroupViewController{
     
     @IBOutlet weak var collectionView: NSCollectionView!
     
-    var races:  [RaceDefinition]{ return campGroup?.raceDefinitionArray() ?? []}
+    var races:  [RaceDefinition]{ return campGroup?.raceDefinitionArray().sorted(by: {$0.raceResultsArray().count > $1.raceResultsArray().count}) ?? []}
 
     override func setCampGroup(_ campGroup: CampGroup) {
         super.setCampGroup(campGroup)
@@ -45,7 +45,6 @@ extension HallOfFameViewController : NSCollectionViewDataSource {
             if indexPath.item == 0{
                 collectionViewItem.results = race.overallTopTen()
                 collectionViewItem.resultTitle.stringValue = "Overall"
-//                collectionViewItem.resultTitle.stringValue = race.name ?? "Not Set"
             }else if indexPath.item == 1{
                 collectionViewItem.results = race.femaleTopTen()
                 collectionViewItem.resultTitle.stringValue = "Female"
@@ -64,7 +63,23 @@ extension HallOfFameViewController : NSCollectionViewDataSource {
         let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.SupplementaryElementKind.sectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameHeaderView"), for: indexPath)
         
         if let v = view as? HallOfFameHeaderView{
-            v.title.stringValue = races[indexPath.section].name ?? "NOT SET"
+            let race = races[indexPath.section]
+            let numberOfResults = race.raceResultsArray().count
+            let maleResults = race.raceResultsArray().filter({$0.campParticipant?.participant?.gender == Gender.Male.rawValue}).count
+            let femaleResults = race.raceResultsArray().filter({$0.campParticipant?.participant?.gender == Gender.Female.rawValue}).count
+            if let name = race.name{
+//                var title: String = name
+                v.title.stringValue = name
+                v.subTitle.stringValue = " (" + String(numberOfResults) + " results - " + String(femaleResults) + "  female / " + String(maleResults) +  " male )"
+            }else{
+                v.title.stringValue = "NOT SET"
+            }
+                
+
+
+            
+//            let numberOfResults = race.raceResultsArray().count
+//            v.title.stringValue = races[indexPath.section].name ?? "NOT SET"
         }
         return view
     }
@@ -73,7 +88,7 @@ extension HallOfFameViewController : NSCollectionViewDataSource {
 
 extension HallOfFameViewController : NSCollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> NSSize {
-        return NSSize(width: 1000, height: 25)
+        return NSSize(width: 1000, height: 47   )
     }
     
     func collectionView(_: NSCollectionView, layout: NSCollectionViewLayout, sizeForItemAt: IndexPath) -> NSSize{

@@ -55,6 +55,7 @@
 		732BD71320D2AB6D004FBD59 /* ParticipantTrainingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BD71220D2AB6D004FBD59 /* ParticipantTrainingNode.swift */; };
 		732BD71520D2ABEA004FBD59 /* ParticipantCampNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BD71420D2ABEA004FBD59 /* ParticipantCampNode.swift */; };
 		732BD71720D2AD0F004FBD59 /* CampTrainingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BD71620D2AD0F004FBD59 /* CampTrainingNode.swift */; };
+		732F4088210B17790037B555 /* StickyHeaderFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F4087210B17790037B555 /* StickyHeaderFlowLayout.swift */; };
 		7331B719210081E1006392E1 /* TrainingDistribution.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7331B718210081E1006392E1 /* TrainingDistribution.storyboard */; };
 		7331B71B21008789006392E1 /* TrainingDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7331B71A21008789006392E1 /* TrainingDataProtocol.swift */; };
 		7331B71D21008EAB006392E1 /* TrainingDistributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7331B71C21008EAB006392E1 /* TrainingDistributionViewController.swift */; };
@@ -220,6 +221,7 @@
 		732BD71220D2AB6D004FBD59 /* ParticipantTrainingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantTrainingNode.swift; sourceTree = "<group>"; };
 		732BD71420D2ABEA004FBD59 /* ParticipantCampNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCampNode.swift; sourceTree = "<group>"; };
 		732BD71620D2AD0F004FBD59 /* CampTrainingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampTrainingNode.swift; sourceTree = "<group>"; };
+		732F4087210B17790037B555 /* StickyHeaderFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeaderFlowLayout.swift; sourceTree = "<group>"; };
 		7331B718210081E1006392E1 /* TrainingDistribution.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TrainingDistribution.storyboard; sourceTree = "<group>"; };
 		7331B71A21008789006392E1 /* TrainingDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingDataProtocol.swift; sourceTree = "<group>"; };
 		7331B71C21008EAB006392E1 /* TrainingDistributionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingDistributionViewController.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				73B6D91E20EB749D00E88392 /* CompletionCertificates.storyboard */,
 				7314EF8220E4C89E0032176F /* EddingtonNumbers.storyboard */,
 				733735EE20E5545C00931C43 /* HallOfFame.storyboard */,
+				732F4087210B17790037B555 /* StickyHeaderFlowLayout.swift */,
 				730BE08820E6588400FA86FD /* HallOfFameHeaderView.swift */,
 				730BE08420E656F400FA86FD /* HallOfFameHeaderView.xib */,
 				739F3A0020E63FBC0068B350 /* HallOfFameViewItem.xib */,
@@ -787,6 +790,7 @@
 				7337252D20D7F42400D7200E /* CampParticipantsTrainingDaysViewController.swift in Sources */,
 				7346382820C7044000406C74 /* CampSplitViewController.swift in Sources */,
 				7331B71F21008F34006392E1 /* TrainingDataViewController.swift in Sources */,
+				732F4088210B17790037B555 /* StickyHeaderFlowLayout.swift in Sources */,
 				73F8AB8C20D78D7D00B86159 /* CoachComboBox.swift in Sources */,
 				733B7BDD20DEBF4F00916BD9 /* Ranker.swift in Sources */,
 				73A84B3720DF9DC500506236 /* CampAthleteListSplitViewController.swift in Sources */,

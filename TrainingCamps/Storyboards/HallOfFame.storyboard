@@ -51,8 +51,9 @@
                                         <collectionView id="uCn-gM-ff1">
                                             <rect key="frame" x="0.0" y="0.0" width="444" height="294"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="5" minimumLineSpacing="5" id="VSb-il-J53">
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="5" minimumLineSpacing="5" id="VSb-il-J53" customClass="StickyHeaderFlowLayout" customModule="TrainingCamps" customModuleProvider="target">
                                                 <size key="itemSize" width="50" height="50"/>
+                                                <size key="footerReferenceSize" width="5" height="0.0"/>
                                             </collectionViewFlowLayout>
                                             <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="secondaryBackgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -106,7 +107,7 @@
                                         <collectionView id="k9f-at-Oud">
                                             <rect key="frame" x="0.0" y="0.0" width="444" height="158"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="5" minimumLineSpacing="5" id="IgV-pY-kbg">
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="5" minimumLineSpacing="5" id="IgV-pY-kbg" customClass="StickyHeaderFlowLayout" customModule="TrainingCamps" customModuleProvider="target">
                                                 <size key="itemSize" width="330" height="215"/>
                                                 <size key="headerReferenceSize" width="330" height="100"/>
                                             </collectionViewFlowLayout>
@@ -161,7 +162,7 @@
                                         <collectionView id="1If-hm-cLg">
                                             <rect key="frame" x="0.0" y="0.0" width="444" height="158"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="5" minimumLineSpacing="5" id="J9x-YC-CEp">
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="5" minimumLineSpacing="5" id="J9x-YC-CEp" customClass="StickyHeaderFlowLayout" customModule="TrainingCamps" customModuleProvider="target">
                                                 <size key="itemSize" width="330" height="215"/>
                                                 <size key="headerReferenceSize" width="330" height="100"/>
                                             </collectionViewFlowLayout>
