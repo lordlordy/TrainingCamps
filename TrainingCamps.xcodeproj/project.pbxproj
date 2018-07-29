@@ -101,6 +101,8 @@
 		73789B2A20FE3BA40019695D /* DistributionGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73789B2920FE3BA40019695D /* DistributionGraph.swift */; };
 		73789B2C20FE4A2F0019695D /* RaceResultsDistribution.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73789B2B20FE4A2F0019695D /* RaceResultsDistribution.storyboard */; };
 		73789B2E20FE56B80019695D /* RaceResultsDistributionSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73789B2D20FE56B80019695D /* RaceResultsDistributionSplitViewController.swift */; };
+		737FD9EF210DBA7E00F17632 /* HallOfFameFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737FD9EE210DBA7E00F17632 /* HallOfFameFooterView.swift */; };
+		737FD9F1210DBAA300F17632 /* HallOfFameFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 737FD9F0210DBAA300F17632 /* HallOfFameFooterView.xib */; };
 		73811D2B20D2B0BD009D946F /* CampRacingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73811D2A20D2B0BD009D946F /* CampRacingNode.swift */; };
 		7384573120E388DA00155EB6 /* Maths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7384573020E388DA00155EB6 /* Maths.swift */; };
 		7384573520E3AAA100155EB6 /* ParticipantFilterCombBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7384573420E3AAA100155EB6 /* ParticipantFilterCombBox.swift */; };
@@ -270,6 +272,8 @@
 		73789B2920FE3BA40019695D /* DistributionGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributionGraph.swift; sourceTree = "<group>"; };
 		73789B2B20FE4A2F0019695D /* RaceResultsDistribution.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RaceResultsDistribution.storyboard; sourceTree = "<group>"; };
 		73789B2D20FE56B80019695D /* RaceResultsDistributionSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceResultsDistributionSplitViewController.swift; sourceTree = "<group>"; };
+		737FD9EE210DBA7E00F17632 /* HallOfFameFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallOfFameFooterView.swift; sourceTree = "<group>"; };
+		737FD9F0210DBAA300F17632 /* HallOfFameFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HallOfFameFooterView.xib; sourceTree = "<group>"; };
 		73811D2A20D2B0BD009D946F /* CampRacingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampRacingNode.swift; sourceTree = "<group>"; };
 		7384573020E388DA00155EB6 /* Maths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Maths.swift; sourceTree = "<group>"; };
 		7384573420E3AAA100155EB6 /* ParticipantFilterCombBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantFilterCombBox.swift; sourceTree = "<group>"; };
@@ -367,8 +371,10 @@
 				7314EF8220E4C89E0032176F /* EddingtonNumbers.storyboard */,
 				733735EE20E5545C00931C43 /* HallOfFame.storyboard */,
 				732F4087210B17790037B555 /* StickyHeaderFlowLayout.swift */,
+				737FD9EE210DBA7E00F17632 /* HallOfFameFooterView.swift */,
 				730BE08820E6588400FA86FD /* HallOfFameHeaderView.swift */,
 				730BE08420E656F400FA86FD /* HallOfFameHeaderView.xib */,
+				737FD9F0210DBAA300F17632 /* HallOfFameFooterView.xib */,
 				739F3A0020E63FBC0068B350 /* HallOfFameViewItem.xib */,
 				731E7BD620D1C13600AA00F5 /* Locations.storyboard */,
 				73653C6420C6D08F001A6E07 /* Main.storyboard */,
@@ -681,6 +687,7 @@
 				739B6D4B20E4E77A006C5DF0 /* ParticipantEddingtonNumbers.storyboard in Resources */,
 				73A84B3520DF9BCF00506236 /* CampAthleteList.storyboard in Resources */,
 				730BE08520E656F400FA86FD /* HallOfFameHeaderView.xib in Resources */,
+				737FD9F1210DBAA300F17632 /* HallOfFameFooterView.xib in Resources */,
 				731E7BD920D1C25500AA00F5 /* CampTypes.storyboard in Resources */,
 				7314EF8320E4C89E0032176F /* EddingtonNumbers.storyboard in Resources */,
 				731BDFB820DF75F3006A0A8F /* Rankings.storyboard in Resources */,
@@ -763,6 +770,7 @@
 				731A245120DA47830060E726 /* CampRaceResultViewController.swift in Sources */,
 				731A244D20DA0C0F0060E726 /* PointsMethodComboBox.swift in Sources */,
 				7320566521006FBE00499947 /* Bucket.swift in Sources */,
+				737FD9EF210DBA7E00F17632 /* HallOfFameFooterView.swift in Sources */,
 				73F8AB8620D5264500B86159 /* TreeToggler.swift in Sources */,
 				73370FBB20D28CA60090755E /* CampParticipant+Extension.swift in Sources */,
 				73F0CAFD20DD13F50073D63B /* Rank+Extension.swift in Sources */,

@@ -57,7 +57,6 @@ extension HallOfFameEddingtonNumbersViewController : NSCollectionViewDataSource 
         if indexPath.section < topTens.count{
             if indexPath.item == 0{
                 collectionViewItem.results = topTens[indexPath.section].overall
-//                collectionViewItem.resultTitle.stringValue = topTens[indexPath.section].title
                 collectionViewItem.resultTitle.stringValue = "Overall"
             }else if indexPath.item == 1{
                 collectionViewItem.results = topTens[indexPath.section].female
@@ -74,20 +73,36 @@ extension HallOfFameEddingtonNumbersViewController : NSCollectionViewDataSource 
     
     func collectionView(_ collectionView: NSCollectionView, viewForSupplementaryElementOfKind kind: NSCollectionView.SupplementaryElementKind, at indexPath: IndexPath) -> NSView {
         
-        let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.SupplementaryElementKind.sectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameHeaderView"), for: indexPath)
-        
-        if let v = view as? HallOfFameHeaderView{
-            v.title.stringValue = topTens[indexPath.section].title ?? "NOT SET"
-            v.subTitle.stringValue = "( " + String(participantCount) + " participants )"
+        switch kind{
+        case NSCollectionView.SupplementaryElementKind.sectionHeader:
+            let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.SupplementaryElementKind.sectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameHeaderView"), for: indexPath)
+            
+            if let v = view as? HallOfFameHeaderView{
+                v.title.stringValue = topTens[indexPath.section].title
+            }
+            return view
+        case NSCollectionView.SupplementaryElementKind.sectionFooter:
+            let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.SupplementaryElementKind.sectionFooter, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameFooterView"), for: indexPath)
+            
+            if let v = view as? HallOfFameFooterView{
+                v.title.stringValue = String(participantCount) + " participants"
+            }
+            return view
+        default:
+            print("Not using \(kind)")
+            return NSView()
         }
-        return view
     }
     
 }
 
 extension HallOfFameEddingtonNumbersViewController : NSCollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> NSSize {
-        return NSSize(width: 1000, height: 47)
+        return NSSize(width: 1000, height: 25)
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForFooterInSection section: Int) -> NSSize {
+        return NSSize(width: 1000, height: 25   )
     }
     
     func collectionView(_: NSCollectionView, layout: NSCollectionViewLayout, sizeForItemAt: IndexPath) -> NSSize{

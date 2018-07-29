@@ -90,25 +90,42 @@ extension HallOfFameTrainingViewController : NSCollectionViewDataSource {
     
     func collectionView(_ collectionView: NSCollectionView, viewForSupplementaryElementOfKind kind: NSCollectionView.SupplementaryElementKind, at indexPath: IndexPath) -> NSView {
         
-        let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.SupplementaryElementKind.sectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameHeaderView"), for: indexPath)
-        
-        if let v = view as? HallOfFameHeaderView{
-            v.title.stringValue = topTens[indexPath.section].title
-            if topTens[indexPath.section].isDay{
-                v.subTitle.stringValue = "( " + String(participantDaysCount) + " participant days )"
-            }else{
-                v.subTitle.stringValue = "( " + String(participantCampsCount) + " participant camps )"
-
+        switch kind{
+        case NSCollectionView.SupplementaryElementKind.sectionHeader:
+            let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.SupplementaryElementKind.sectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameHeaderView"), for: indexPath)
+            
+            if let v = view as? HallOfFameHeaderView{
+                v.title.stringValue = topTens[indexPath.section].title
             }
+            return view
+        case NSCollectionView.SupplementaryElementKind.sectionFooter:
+            let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.SupplementaryElementKind.sectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameFooterView"), for: indexPath)
+            
+            if let v = view as? HallOfFameFooterView{
+                if topTens[indexPath.section].isDay{
+                    v.title.stringValue = String(participantDaysCount) + " participant days"
+                }else{
+                    v.title.stringValue = String(participantCampsCount) + " participant camps"
+    
+                }
+            }
+            return view
+        default:
+            print("Not using \(kind)")
+            return NSView()
         }
-        return view
+        
     }
     
 }
 
 extension HallOfFameTrainingViewController : NSCollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> NSSize {
-        return NSSize(width: 1000, height: 47)
+        return NSSize(width: 1000, height: 25)
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForFooterInSection section: Int) -> NSSize {
+        return NSSize(width: 1000, height: 25   )
     }
     
     func collectionView(_: NSCollectionView, layout: NSCollectionViewLayout, sizeForItemAt: IndexPath) -> NSSize{

@@ -9,11 +9,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView identifier="HallOfFameHeaderView" id="c22-O7-iKe" customClass="HallOfFameHeaderView" customModule="TrainingCamps" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="46"/>
+            <rect key="frame" x="0.0" y="0.0" width="480" height="24"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qsq-ma-r09">
-                    <rect key="frame" x="0.0" y="22" width="480" height="24"/>
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="24"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="wHH-xA-VHY"/>
                     </constraints>
@@ -26,32 +26,17 @@
                         <accessibilityConnection property="title" destination="c22-O7-iKe" id="4sS-KB-Lmk"/>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VPe-gS-jH2">
-                    <rect key="frame" x="0.0" y="-1" width="480" height="23"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="23" id="35O-A1-onj"/>
-                    </constraints>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" alignment="center" title="Test" drawsBackground="YES" id="KME-rL-P7d">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" red="0.1019607843" green="0.47058823529999999" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </textFieldCell>
-                </textField>
             </subviews>
             <constraints>
-                <constraint firstItem="VPe-gS-jH2" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="ATv-7T-iy3"/>
-                <constraint firstAttribute="trailing" secondItem="VPe-gS-jH2" secondAttribute="trailing" id="FGA-ss-rOx"/>
                 <constraint firstItem="qsq-ma-r09" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="Oa2-N1-Krx"/>
                 <constraint firstItem="qsq-ma-r09" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="gEh-Yd-eXG"/>
-                <constraint firstItem="VPe-gS-jH2" firstAttribute="top" secondItem="qsq-ma-r09" secondAttribute="bottom" id="hlP-PU-dKi"/>
                 <constraint firstAttribute="trailing" secondItem="qsq-ma-r09" secondAttribute="trailing" id="sFx-yj-pWL"/>
             </constraints>
             <connections>
-                <outlet property="subTitle" destination="VPe-gS-jH2" id="4qU-EE-HRa"/>
                 <outlet property="title" destination="qsq-ma-r09" id="BUS-ED-Ctb"/>
                 <outlet property="titleTextField" destination="u4e-ls-qXn" id="xQ8-PG-KTk"/>
             </connections>
-            <point key="canvasLocation" x="139" y="181"/>
+            <point key="canvasLocation" x="139" y="170"/>
         </customView>
     </objects>
 </document>

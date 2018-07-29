@@ -11,7 +11,6 @@ import Cocoa
 class HallOfFameHeaderView: NSView {
 
     @IBOutlet weak var title: NSTextField!
-    @IBOutlet weak var subTitle: NSTextField!
     
     
     override func draw(_ dirtyRect: NSRect) {

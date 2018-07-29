@@ -13,5 +13,6 @@ class StickyHeaderFlowLayout: NSCollectionViewFlowLayout{
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.sectionHeadersPinToVisibleBounds = true
+        self.sectionFootersPinToVisibleBounds = true
     }
 }
