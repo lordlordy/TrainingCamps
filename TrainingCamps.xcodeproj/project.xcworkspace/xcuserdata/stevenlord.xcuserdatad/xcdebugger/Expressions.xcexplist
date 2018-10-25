@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "TreeNodeViewController.updateTree():TreeNodeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "treeNodes[0].children[0].name">
+            </PersistentString>
+            <PersistentString
+               value = "treeNodes[0].name">
+            </PersistentString>
+            <PersistentString
+               value = "newTree[0].name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RaceRanker.rankFor(_:_:_:):RaceRanker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "nonCompleters[0].campParticipant.participant.displayName">
+            </PersistentString>
+            <PersistentString
+               value = "r.gender">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HallOfFameViewController.numberOfSections(in:):HallOfFameViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "races">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CampSplitViewController.getTreeView():CampSplitViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.childViewControllers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TreeNodeViewController.setCamps(_:):TreeNodeViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "EddingtonNumber.calculate():EddingtonNumber+Extension.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.activity">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RacesSplitViewController.setRace(_:):RacesSplitViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "race.name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TrainingDistributionViewController.filterRoles(tdp:):TrainingDistributionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tdp.role">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SingleRaceResultsViewController.setRaceResults(_:):SingleRaceResultsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "managedObjectContext">
+            </PersistentString>
+            <PersistentString
+               value = "race">
+            </PersistentString>
+            <PersistentString
+               value = "campGroup">
+            </PersistentString>
+            <PersistentString
+               value = "raceResults">
+            </PersistentString>
+            <PersistentString
+               value = "resultsEditable">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HallOfFameViewController.collectionView(_:viewForSupplementaryElementOfKind:at:):HallOfFameViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "JSONImporter.addParticipants(fromJSON:toCampGroup:):JSONImporter.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "i.value">
+            </PersistentString>
+            <PersistentString
+               value = "i.key">
+            </PersistentString>
+            <PersistentString
+               value = "newParticipant.uniqueName">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SingleRaceResultsViewController.raceResults.getter:SingleRaceResultsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "r.results.allObjects as! [RaceResult]">
+            </PersistentString>
+            <PersistentString
+               value = "r.results">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SingleRaceResultsViewController.resultsEditable.getter:SingleRaceResultsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CampGroupViewController.setCampGroup(_:):CampGroupViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "campGroup.camps.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CampRaceResultViewController.updateColumns():CampRaceResultViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "col.identifier.rawValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CampRaceResultViewController.showColumns(isSwim:isBike:isRun:isPointsRace:isHandicap:isGuess:):CampRaceResultViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "col.identifier.rawValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CampRaceResultViewController.setRace(_:):CampRaceResultViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "race.name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CampsTabViewController.setCamp(_:):CampsTabViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "childViewControllers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DistributionSelectionViewController.setCampGroup(_:):DistributionSelectionViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ParticipantDay.rankFor(_:_:):ParticipantDay+Extension.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "filtered[0].overall">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "JSONImporter.importCampGroup(fromURL:):JSONImporter.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "newCampGroup.raceDefinitions.count">
+            </PersistentString>
+            <PersistentString
+               value = "newCampGroup.camps.count">
+            </PersistentString>
+            <PersistentString
+               value = "newCampGroup.participants.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TreeNodeViewController.treeNodes.didset:TreeNodeViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "RaceResult.participantIs(gender:role:participant:):RaceResult+Extension.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "campParticipant">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TreeGenerator.generateCampPersonTraining(_:_:):TreeGenerator.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tree[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RaceDefinition.overallTopTen():RaceDefinition+Extension.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

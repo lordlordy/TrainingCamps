@@ -46,20 +46,20 @@ class CampParticipantsListViewController: CampViewController, NSComboBoxDataSour
         
         let originalFram = headerV.frame
         
-        print("Views in the clipView")
-        for v in clipView.subviews{
-            print(v)
-        }
+//        print("Views in the clipView")
+//        for v in clipView.subviews{
+//            print(v)
+//        }
         
         headerV.frame = NSRect(x: 0.0, y: pointsTable.bounds.height, width: headerV.bounds.width, height: headerV.bounds.height)
         printView.addSubview(pointsTable)
         printView.addSubview(headerV)
 
 
-        print("Views in the clipView")
-        for v in clipView.subviews{
-            print(v)
-        }
+//        print("Views in the clipView")
+//        for v in clipView.subviews{
+//            print(v)
+//        }
         
         
 
@@ -101,10 +101,10 @@ class CampParticipantsListViewController: CampViewController, NSComboBoxDataSour
         
         clipView.addSubview(pointsTable)
         
-        print("Views in the clipView")
-        for v in clipView.subviews{
-            print(v)
-        }
+//        print("Views in the clipView")
+//        for v in clipView.subviews{
+//            print(v)
+//        }
         
         
         pointsTable.translatesAutoresizingMaskIntoConstraints = true
