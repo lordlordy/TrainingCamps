@@ -11,7 +11,7 @@ import Foundation
 class RaceResultsGraphSplitViewController: RaceDefinitionSplitViewController, NormalDistributionViewControllerProtocol{
     
     func updateBuckets(forSelection selection: [DistributionSelection]) {
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? NormalDistributionViewControllerProtocol{
                 vc.updateBuckets(forSelection: selection)
             }

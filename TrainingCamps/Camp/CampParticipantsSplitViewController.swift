@@ -12,7 +12,7 @@ class CampParticipantsSplitViewController: NSSplitViewController, CampViewContro
     
     
     func setCamp(_ camp: Camp) {
-        for child in childViewControllers{
+        for child in children{
             if let c = child as? CampViewControllerProtocol{
                 c.setCamp(camp)
             }
@@ -20,7 +20,7 @@ class CampParticipantsSplitViewController: NSSplitViewController, CampViewContro
     }
     
     func setCampParticipant(_ campParticipant: CampParticipant) {
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? CampParticipantViewControllerProtocol{
                 vc.setCampParticipant(campParticipant)
             }
@@ -28,7 +28,7 @@ class CampParticipantsSplitViewController: NSSplitViewController, CampViewContro
     }
     
     func setRaceResults(_ raceResults: NSSet) {
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? RaceResultsViewControllerProtocol{
                 vc.setRaceResults(raceResults)
             }

@@ -14,7 +14,7 @@ class CampGroupSplitViewController: NSSplitViewController, CampGroupViewControll
     
     func setCampGroup(_ campGroup: CampGroup) {
         self.campGroup = campGroup
-        for c in childViewControllers{
+        for c in children{
             if let cgvcp = c as? CampGroupViewControllerProtocol{
                 cgvcp.setCampGroup(campGroup)
             }

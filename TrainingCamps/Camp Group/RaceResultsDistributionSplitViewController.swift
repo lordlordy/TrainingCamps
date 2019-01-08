@@ -11,7 +11,7 @@ import Cocoa
 class RaceResultsDistributionSplitViewController: NSSplitViewController, RaceDefinitionViewControllerProtocol, CampGroupViewControllerProtocol{
     
     func setCampGroup(_ campGroup: CampGroup) {
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? CampGroupViewControllerProtocol{
                 vc.setCampGroup(campGroup)
             }
@@ -20,7 +20,7 @@ class RaceResultsDistributionSplitViewController: NSSplitViewController, RaceDef
     
     
     func setRaceDefinition(_ raceDefinition: RaceDefinition) {
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? RaceResultsViewControllerProtocol{
                 vc.setRaceResults(raceDefinition.allRaceResults)
             }
@@ -28,8 +28,8 @@ class RaceResultsDistributionSplitViewController: NSSplitViewController, RaceDef
     }
     
     func setHighlightedValue(_ v: [Double]){
-        for c in childViewControllers{
-            for child in c.childViewControllers{
+        for c in children{
+            for child in c.children{
                 if let graph = child as? RaceResultsGraphViewController{
                     graph.setHighlightedValue(v)
                 }

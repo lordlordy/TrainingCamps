@@ -11,7 +11,7 @@ import Cocoa
 class CampParticipantSplitViewController: NSSplitViewController, RaceResultsViewControllerProtocol, CampParticipantViewControllerProtocol, RankingsViewControllerProtocol{
     
     func setRaceResults(_ raceResults: NSSet) {
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? RaceResultsViewControllerProtocol{
                 vc.setRaceResults(raceResults)
             }
@@ -19,7 +19,7 @@ class CampParticipantSplitViewController: NSSplitViewController, RaceResultsView
     }
     
     func setCampParticipant(_ campParticipant: CampParticipant) {
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? CampParticipantViewControllerProtocol{
                 vc.setCampParticipant(campParticipant)
             }
@@ -28,7 +28,7 @@ class CampParticipantSplitViewController: NSSplitViewController, RaceResultsView
     
     
     func setRankings(_ rankings: Rankable) {
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? RankingsViewControllerProtocol{
                 vc.setRankings(rankings)
             }

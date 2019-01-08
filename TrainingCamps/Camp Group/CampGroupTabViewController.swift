@@ -12,7 +12,7 @@ class CampGroupTabViewController: NSTabViewController, CampGroupViewControllerPr
     
     
     func setCampGroup(_ campGroup: CampGroup) {
-        for child in childViewControllers{
+        for child in children{
             if let c = child as? CampGroupViewControllerProtocol{
                 c.setCampGroup(campGroup)
             }

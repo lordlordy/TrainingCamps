@@ -12,7 +12,7 @@ class ParticipantSplitViewController: NSSplitViewController{
     
     
     func setParticipants(_ participants: [Participant]){
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? ParticipantViewControllerProtocol{
                 if participants.count > 0{
                     vc.setParticipant(participants[0])

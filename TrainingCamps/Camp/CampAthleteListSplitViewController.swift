@@ -12,7 +12,7 @@ class CampAthleteListSplitViewController: CampSplitViewController, RankingsViewC
     
     
     func setRankings(_ rankings: Rankable) {
-        for c in childViewControllers{
+        for c in children{
             if let r = c as? RankingsViewControllerProtocol{
                 r.setRankings(rankings)
             }

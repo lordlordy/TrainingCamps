@@ -11,7 +11,7 @@ import Cocoa
 class CompletionCertificatesSplitViewController: NSSplitViewController, CampViewControllerProtocol, CampParticipantViewControllerProtocol{
     
     func getCerticate() -> NSView?{
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? CampCompletionCertificationViewController{
                 return vc.certificateView
             }
@@ -20,7 +20,7 @@ class CompletionCertificatesSplitViewController: NSSplitViewController, CampView
     }
     
     func setCamp(_ camp: Camp) {
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? CampViewControllerProtocol{
                 vc.setCamp(camp)
             }
@@ -28,7 +28,7 @@ class CompletionCertificatesSplitViewController: NSSplitViewController, CampView
     }
     
     func setCampParticipant(_ campParticipant: CampParticipant) {
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? CampParticipantViewControllerProtocol{
                 vc.setCampParticipant(campParticipant)
             }

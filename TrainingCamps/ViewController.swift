@@ -53,7 +53,7 @@ class ViewController: NSSplitViewController, CampGroupViewControllerProtocol {
     }
     
     func setCampGroup(_ campGroup: CampGroup) {
-        for c in childViewControllers{
+        for c in children{
             if let cgvcp = c as? CampGroupViewControllerProtocol{
                 cgvcp.setCampGroup(campGroup)
             }

@@ -11,14 +11,14 @@ import Cocoa
 class RaceDefinitionSplitViewController: CampGroupSplitViewController, RaceDefinitionViewControllerProtocol{
     
     func setRaceDefinition(_ raceDefinition: RaceDefinition) {
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? RaceDefinitionViewControllerProtocol{
                 vc.setRaceDefinition(raceDefinition)
             }
             if let vc = c as? RaceResultsViewControllerProtocol{
                 vc.setRaceResults(raceDefinition.allRaceResults)
             }
-            for gc in c.childViewControllers{
+            for gc in c.children{
                 if let vc = gc as? RaceDefinitionViewControllerProtocol{
                     vc.setRaceDefinition(raceDefinition)
                 }

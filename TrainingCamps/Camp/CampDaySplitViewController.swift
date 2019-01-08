@@ -12,7 +12,7 @@ class CampDaySplitViewController: NSSplitViewController, DayViewControllerProtoc
     
     
     func setDay(_ day: Day) {
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? DayViewControllerProtocol{
                 vc.setDay(day)
             }
@@ -20,7 +20,7 @@ class CampDaySplitViewController: NSSplitViewController, DayViewControllerProtoc
     }
     
     func setRankings(_ ranks: Rankable){
-        for c in childViewControllers{
+        for c in children{
             if let rvcp = c as? RankingsViewControllerProtocol{
                 rvcp.setRankings(ranks)
             }

@@ -11,7 +11,7 @@ import Cocoa
 class CampSplitViewController: NSSplitViewController, CampViewControllerProtocol, CampGroupViewControllerProtocol, TreeGeneratorViewControllerProtocol{
     
     func setGenerator(_ treeNodeGenerator: TreeNodeGenerator) {
-        for c in childViewControllers{
+        for c in children{
             if let tree = c as? TreeGeneratorViewControllerProtocol{
                 tree.setGenerator(treeNodeGenerator)
             }
@@ -20,7 +20,7 @@ class CampSplitViewController: NSSplitViewController, CampViewControllerProtocol
     
     
     func setCamp(_ camp: Camp) {
-        for c in childViewControllers{
+        for c in children{
             if let cvcp = c as? CampViewControllerProtocol{
                 cvcp.setCamp(camp)
             }
@@ -31,7 +31,7 @@ class CampSplitViewController: NSSplitViewController, CampViewControllerProtocol
     }
     
     func setCampGroup(_ campGroup: CampGroup) {
-        for child in childViewControllers{
+        for child in children{
             if let c = child as? CampGroupViewControllerProtocol{
                 c.setCampGroup(campGroup)
             }

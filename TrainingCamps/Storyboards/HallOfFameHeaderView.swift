@@ -29,10 +29,10 @@ class HallOfFameHeaderView: NSView {
     @objc func doubleClick(_ sender: Any?){
         print("Double clicked")
         if let g = sender as? NSClickGestureRecognizer{
-            print(g.target)
+            print(g.target!)
             if let hv = g.target as? HallOfFameHeaderView{
                 
-                print(hv.superview)
+                print(hv.superview!)
                 if let cv = hv.superview as? NSCollectionView{
                     
                     cv.toggleSectionCollapse(hv)

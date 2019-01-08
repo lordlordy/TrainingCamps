@@ -167,7 +167,7 @@ class RaceResultsGraphViewController: NSViewController, RaceDefinitionViewContro
     
     private func setBucketTable(withBuckets buckets: [Bucket]){
         if let p = parent{
-            if let b = findBucketView(fromVCs: p.childViewControllers){
+            if let b = findBucketView(fromVCs: p.children){
                 b.buckets = buckets
             }
         }
@@ -180,7 +180,7 @@ class RaceResultsGraphViewController: NSViewController, RaceDefinitionViewContro
             }
         }
         for child in vcs{
-            if let bvc = findBucketView(fromVCs: child.childViewControllers){
+            if let bvc = findBucketView(fromVCs: child.children){
                 return bvc
             }
         }

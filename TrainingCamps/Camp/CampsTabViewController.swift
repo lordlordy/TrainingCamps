@@ -11,7 +11,7 @@ import Cocoa
 class CampsTabViewController: NSTabViewController, CampViewControllerProtocol, CampGroupViewControllerProtocol, TreeGeneratorViewControllerProtocol{
     
     func setGenerator(_ treeNodeGenerator: TreeNodeGenerator) {
-        for c in childViewControllers{
+        for c in children{
             if let tree = c as? TreeGeneratorViewControllerProtocol{
                 tree.setGenerator(treeNodeGenerator)
             }
@@ -21,7 +21,7 @@ class CampsTabViewController: NSTabViewController, CampViewControllerProtocol, C
     
     
     func setCamp(_ camp: Camp) {
-        for c in childViewControllers{
+        for c in children{
             if let cvcp = c as? CampViewControllerProtocol{
                 cvcp.setCamp(camp)
             }
@@ -30,7 +30,7 @@ class CampsTabViewController: NSTabViewController, CampViewControllerProtocol, C
     }
     
     func setCampGroup(_ campGroup: CampGroup) {
-        for c in childViewControllers{
+        for c in children{
             if let cgvcp = c as? CampGroupViewControllerProtocol{
                 cgvcp.setCampGroup(campGroup)
             }

@@ -61,8 +61,8 @@ extension HallOfFameViewController : NSCollectionViewDataSource {
     func collectionView(_ collectionView: NSCollectionView, viewForSupplementaryElementOfKind kind: NSCollectionView.SupplementaryElementKind, at indexPath: IndexPath) -> NSView {
         
         switch kind{
-        case NSCollectionView.SupplementaryElementKind.sectionHeader:
-            let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.SupplementaryElementKind.sectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameHeaderView"), for: indexPath)
+        case NSCollectionView.elementKindSectionHeader:
+            let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.elementKindSectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameHeaderView"), for: indexPath)
             
             if let v = view as? HallOfFameHeaderView{
                 if let name = races[indexPath.section].name{
@@ -72,8 +72,8 @@ extension HallOfFameViewController : NSCollectionViewDataSource {
                 }
             }
             return view
-        case NSCollectionView.SupplementaryElementKind.sectionFooter:
-            let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.SupplementaryElementKind.sectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameFooterView"), for: indexPath) as! HallOfFameFooterView
+        case NSCollectionView.elementKindSectionFooter:
+            let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.elementKindSectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameFooterView"), for: indexPath) as! HallOfFameFooterView
             let race = races[indexPath.section]
             let numberOfResults = race.raceResultsArray().count
             let maleResults = race.raceResultsArray().filter({$0.campParticipant?.participant?.gender == Gender.Male.rawValue}).count

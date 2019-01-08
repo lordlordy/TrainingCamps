@@ -27,7 +27,7 @@ class ParticipantsSplitViewController: CampGroupSplitViewController{
     }
     
     func setParticipants(_ participants: [Participant]){
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? ParticipantSplitViewController{
                 vc.setParticipants(participants)
             }
@@ -100,7 +100,7 @@ class ParticipantsSplitViewController: CampGroupSplitViewController{
 
     
     private func getTreeController() -> TreeNodeViewController?{
-        for c in childViewControllers{
+        for c in children{
             if let t = c as? TreeNodeViewController{
                 return t
             }

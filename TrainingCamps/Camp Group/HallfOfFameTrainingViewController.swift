@@ -91,15 +91,15 @@ extension HallOfFameTrainingViewController : NSCollectionViewDataSource {
     func collectionView(_ collectionView: NSCollectionView, viewForSupplementaryElementOfKind kind: NSCollectionView.SupplementaryElementKind, at indexPath: IndexPath) -> NSView {
         
         switch kind{
-        case NSCollectionView.SupplementaryElementKind.sectionHeader:
-            let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.SupplementaryElementKind.sectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameHeaderView"), for: indexPath)
+        case NSCollectionView.elementKindSectionHeader:
+            let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.elementKindSectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameHeaderView"), for: indexPath)
             
             if let v = view as? HallOfFameHeaderView{
                 v.title.stringValue = topTens[indexPath.section].title
             }
             return view
-        case NSCollectionView.SupplementaryElementKind.sectionFooter:
-            let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.SupplementaryElementKind.sectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameFooterView"), for: indexPath)
+        case NSCollectionView.elementKindSectionFooter:
+            let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.elementKindSectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "HallOfFameFooterView"), for: indexPath)
             
             if let v = view as? HallOfFameFooterView{
                 if topTens[indexPath.section].isDay{

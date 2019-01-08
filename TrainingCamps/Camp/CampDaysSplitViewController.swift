@@ -12,7 +12,7 @@ class CampDaysSplitViewController: CampSplitViewController, DayViewControllerPro
     
 
     func setDay(_ day: Day) {
-        for c in childViewControllers{
+        for c in children{
             if let dvcp = c as? DayViewControllerProtocol{
                 dvcp.setDay(day)
             }

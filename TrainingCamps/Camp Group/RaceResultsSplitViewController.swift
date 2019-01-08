@@ -12,7 +12,7 @@ class RaceResultsSplitViewController: NSSplitViewController, RaceResultsViewCont
     
     
     func setRaceResults(_ raceResults: NSSet) {
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? RaceResultsViewControllerProtocol{
                 vc.setRaceResults(raceResults)
             }
@@ -20,7 +20,7 @@ class RaceResultsSplitViewController: NSSplitViewController, RaceResultsViewCont
     }
     
     func setRankings(_ rankings: Rankable) {
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? RankingsViewControllerProtocol{
                 vc.setRankings(rankings)
             }

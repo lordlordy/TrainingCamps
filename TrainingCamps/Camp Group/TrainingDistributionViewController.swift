@@ -45,7 +45,7 @@ class TrainingDistributionViewController: NSViewController, CampGroupViewControl
     func setCampGroup(_ campGroup: CampGroup) {
         self.campGroup = campGroup
         campDayCBChange(self)
-        for c in childViewControllers{
+        for c in children{
             if let vc = c as? CampGroupViewControllerProtocol{
                 vc.setCampGroup(campGroup)
             }
@@ -157,7 +157,7 @@ class TrainingDistributionViewController: NSViewController, CampGroupViewControl
                         dg.xAxisFormatter = getXAxisFormatter(forProperty: property)
                         
                     }
-                    if let bv = getBucketView(fromVCs: childViewControllers){
+                    if let bv = getBucketView(fromVCs: children){
                         bv.buckets = buckets.filter({$0.size > 0.0})
                     }
 
@@ -323,15 +323,15 @@ class TrainingDistributionViewController: NSViewController, CampGroupViewControl
     
     
     private func getTrainingDataViewController() -> TrainingDataViewController?{
-        for child in childViewControllers{
+        for child in children{
             if let vc = child as? TrainingDataViewController{
                 return vc
             }else{
-                for c in child.childViewControllers{
+                for c in child.children{
                     if let vc = c as? TrainingDataViewController{
                         return vc
                     }else{
-                        for grandChild in c.childViewControllers{
+                        for grandChild in c.children{
                             if let vc = grandChild as? TrainingDataViewController{
                                 return vc
                             }
@@ -344,15 +344,15 @@ class TrainingDistributionViewController: NSViewController, CampGroupViewControl
     }
     
     private func getGraphView() -> DistributionGraph?{
-        for child in childViewControllers{
+        for child in children{
             if let vc = child as? TrainingDistributionGraphViewController{
                 return vc.graphView
             }else{
-                for c in child.childViewControllers{
+                for c in child.children{
                     if let vc = c as? TrainingDistributionGraphViewController{
                         return vc.graphView
                     }else{
-                        for grandChild in c.childViewControllers{
+                        for grandChild in c.children{
                             if let vc = grandChild as? TrainingDistributionGraphViewController{
                                 return vc.graphView
                             }
@@ -371,7 +371,7 @@ class TrainingDistributionViewController: NSViewController, CampGroupViewControl
             }
         }
         for child in vcs{
-            if let bvc = getBucketView(fromVCs: child.childViewControllers){
+            if let bvc = getBucketView(fromVCs: child.children){
                 return bvc
             }
         }
