@@ -2,14 +2,16 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Camp" representedClassName="Camp" syncable="YES" codeGenerationType="class">
         <attribute name="bikeBonusPointKM" optional="YES" attributeType="Double" defaultValueString="10" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="bikeMinimumRequiredForBonusPoints" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="campEnd" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="campName" optional="YES" attributeType="String" defaultValueString="New Camp" syncable="YES"/>
         <attribute name="campShortName" optional="YES" attributeType="String" defaultValueString="New" syncable="YES"/>
         <attribute name="campStart" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="competitionIncludesTrainingPoints" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dailyMinimumsForCompletion" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="runBonusPointSeconds" optional="YES" attributeType="Double" defaultValueString="1200" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="runPointSeconds" optional="YES" attributeType="Double" defaultValueString="1800" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="swimBonusPointSeconds" optional="YES" attributeType="Double" defaultValueString="1200" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="swimPointSeconds" optional="YES" attributeType="Double" defaultValueString="1800" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="trainingPointsForCompletion" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="campGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CampGroup" inverseName="camps" inverseEntity="CampGroup" syncable="YES"/>
         <relationship name="campParticipants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CampParticipant" inverseName="camp" inverseEntity="CampParticipant" syncable="YES"/>
         <relationship name="days" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Day" inverseName="camp" inverseEntity="Day" syncable="YES"/>
@@ -92,7 +94,9 @@
         <attribute name="bikeKM" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="bikeSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="bikeWildcardUsed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="bonusPoints" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="brick" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="runAscentMetres" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="runKM" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="runSeconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -168,7 +172,7 @@
         <relationship name="raceResult" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RaceResult" inverseName="rankings" inverseEntity="RaceResult" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Camp" positionX="-29" positionY="-9" width="128" height="270"/>
+        <element name="Camp" positionX="-29" positionY="-9" width="128" height="298"/>
         <element name="CampGroup" positionX="-38" positionY="-270" width="128" height="148"/>
         <element name="CampParticipant" positionX="-74" positionY="224" width="128" height="195"/>
         <element name="CampType" positionX="-171" positionY="-108" width="128" height="90"/>
@@ -176,7 +180,7 @@
         <element name="EddingtonNumber" positionX="-162" positionY="54" width="128" height="163"/>
         <element name="Location" positionX="-254" positionY="-270" width="128" height="105"/>
         <element name="Participant" positionX="-522" positionY="-198" width="128" height="225"/>
-        <element name="ParticipantDay" positionX="-189" positionY="470" width="128" height="270"/>
+        <element name="ParticipantDay" positionX="-189" positionY="470" width="128" height="300"/>
         <element name="Race" positionX="198" positionY="30" width="128" height="223"/>
         <element name="RaceDefinition" positionX="153" positionY="-270" width="128" height="255"/>
         <element name="RaceResult" positionX="187" positionY="336" width="128" height="285"/>

@@ -118,6 +118,7 @@ enum ParticipantDayProperty: String{
     case trainingCompletionStatus, swimComplete, bikeComplete, runComplete, dayComplete
     case swimWildcardEarned, bikeWildcardEarned, runWildcardEarned
     case durationPercentile, swimKMPercentile, bikeKMPercentile, runKMPercentile
+    case swimTrainingPoints, bikeTrainingPoints, runTrainingPoints, trainingPoints, bonusPoints, comments
 }
 
 enum RaceProperty: String{

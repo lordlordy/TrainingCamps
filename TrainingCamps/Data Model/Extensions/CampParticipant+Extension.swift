@@ -15,8 +15,11 @@ extension CampParticipant: Rankable, TrainingDataProtocol{
     var participantName: String { return participant?.displayName ?? "" }
     var campType: String { return camp?.campType ?? ""}
     
+    @objc dynamic var trainingPointsComplete: Bool{
+        return trainingPoints >= (camp?.trainingPointsForCompletion ?? 0.0)
+    }
     
-    @objc dynamic var trainingComplete: Bool{ return getDays().reduce(true, {$0 && $1.dayComplete})}
+    @objc dynamic var trainingComplete: Bool{ return getDays().reduce(true, {$0 && $1.dayComplete}) && trainingPointsComplete}
     @objc dynamic var racesComplete: Bool {
         if getRaces().count == 0{
             return true
@@ -25,8 +28,14 @@ extension CampParticipant: Rankable, TrainingDataProtocol{
         }
     
     @objc dynamic var campComplete: Bool{ return trainingComplete && racesComplete}
-    
-    @objc dynamic var campPoints: Int { return racePoints}
+    @objc dynamic var totalPoints: Double {return Double(racePoints) + trainingPoints}
+    @objc dynamic var campPoints: Double {
+        if camp!.competitionIncludesTrainingPoints{
+            return totalPoints
+        }else{
+            return Double(racePoints)
+        }
+    }
     @objc dynamic var racePoints: Int{ return Int(getRaces().reduce(0, {$0 + $1.campPoints}) + bonusPoints)}
     
     @objc dynamic var totalKM: Double           { return valueFor(.total, .KM)}
@@ -119,7 +128,14 @@ extension CampParticipant: Rankable, TrainingDataProtocol{
     @objc dynamic var runKMPercentile: Double{
         return camp?.campGroup?.percentile(forActivity: Activity.run, andUnit: Unit.KM, isCamp: true, withValue: runKM) ?? 0.0
     }
-        
+    
+    @objc dynamic var swimTrainingPoints: Double{ return getDays().reduce(0.0, {$0 + $1.swimTrainingPoints}) }
+    @objc dynamic var bikeTrainingPoints: Double{ return getDays().reduce(0.0, {$0 + $1.bikeTrainingPoints}) }
+    @objc dynamic var runTrainingPoints: Double{ return getDays().reduce(0.0, {$0 + $1.runTrainingPoints}) }
+    @objc dynamic var bonusTrainingPoints: Double{ return getDays().reduce(0.0, {$0 + $1.bonusPoints}) }
+    @objc dynamic var trainingPoints: Double { return swimTrainingPoints + bikeTrainingPoints + runTrainingPoints + bonusTrainingPoints }
+
+
     //MARK: - Rankable
     var gender:     String { return participant?.gender ?? "Not Set" }
     var name:       String? { return participant?.displayName }

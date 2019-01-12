@@ -115,6 +115,53 @@ extension ParticipantDay: Rankable, TrainingDataProtocol{
         return campParticipant?.camp?.campGroup?.percentile(forActivity: Activity.run, andUnit: Unit.KM, isCamp: false, withValue: runKM) ?? 0.0
     }
     
+    @objc dynamic var swimTrainingPoints: Double{
+        var points: Double = 0.0
+        if let swimPointsSeconds = day?.completionSwimSeconds{
+            if swimSeconds >= swimPointsSeconds{
+                points += 1.0
+                if !(campParticipant?.camp?.bikeMinimumRequiredForBonusPoints ?? false) || achievedBikeMin{
+                    let remainingSeconds: Double = swimSeconds - swimPointsSeconds
+                    points += Double(Int(remainingSeconds / campParticipant!.camp!.swimBonusPointSeconds))
+                }
+            }
+        }
+        return points
+    }
+    @objc dynamic var bikeTrainingPoints: Double{
+        var points: Double = 0.0
+        if let stdKM = day?.completionBikeKM{
+            if bikeKM >= stdKM{
+                points += 1.0
+                let remainingKM: Double = bikeKM - stdKM
+                points += Double(Int(remainingKM / campParticipant!.camp!.bikeBonusPointKM))
+            }
+        }
+        return points
+    }
+    
+    private var achievedBikeMin: Bool{
+        if let stdKM = day?.completionBikeKM{
+            return bikeKM >= stdKM
+        }
+        return true
+    }
+    
+    @objc dynamic var runTrainingPoints: Double{
+        var points: Double = 0.0
+        if let runPointsSeconds = day?.completionRunSeconds{
+            if runSeconds >= runPointsSeconds{
+                points += 1.0
+                if !(campParticipant?.camp?.bikeMinimumRequiredForBonusPoints ?? false) || achievedBikeMin{
+                    let remainingSeconds: Double = runSeconds - runPointsSeconds
+                    points += Double(Int(remainingSeconds / campParticipant!.camp!.runBonusPointSeconds))
+                }
+            }
+        }
+        return points
+    }
+    @objc dynamic var trainingPoints: Double{ return swimTrainingPoints + bikeTrainingPoints + runTrainingPoints + bonusPoints}
+
     override public class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String>{
         let keyPaths = super.keyPathsForValuesAffectingValue(forKey: key)
         switch key {
@@ -150,6 +197,8 @@ extension ParticipantDay: Rankable, TrainingDataProtocol{
             return keyPaths.union(Set([ParticipantDayProperty.swimKM.rawValue]))
         case ParticipantDayProperty.runKMPercentile.rawValue:
             return keyPaths.union(Set([ParticipantDayProperty.runKM.rawValue]))
+        case ParticipantDayProperty.trainingPoints.rawValue:
+            return keyPaths.union(Set([ParticipantDayProperty.bonusPoints.rawValue]))
         default:
             return keyPaths
         }

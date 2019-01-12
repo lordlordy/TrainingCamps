@@ -74,14 +74,29 @@ extension Day{
     }
     
     func swimComplete(particpantDay pd: ParticipantDay) -> Bool{
+        if let c = camp{
+            if !c.dailyMinimumsForCompletion{
+                return true
+            }
+        }
         return (pd.swimWildcardUsed && pd.swimSeconds >= completionSwimSecondsWithWildcard) || (pd.swimSeconds >= completionSwimSeconds)
     }
 
     func bikeComplete(particpantDay pd: ParticipantDay) -> Bool{
+        if let c = camp{
+            if !c.dailyMinimumsForCompletion{
+                return true
+            }
+        }
         return (pd.bikeWildcardUsed && pd.bikeKM >= completionBikeKMWithWildcard) || (pd.bikeKM >= completionBikeKM)
     }
     
     func runComplete(particpantDay pd: ParticipantDay) -> Bool{
+        if let c = camp{
+            if !c.dailyMinimumsForCompletion{
+                return true
+            }
+        }
         return (pd.runWildcardUsed && pd.runSeconds >= completionRunSecondsWithWildcard) || (pd.runSeconds >= completionRunSeconds)
     }
     
