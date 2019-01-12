@@ -17,10 +17,16 @@ extension CampParticipant: Rankable, TrainingDataProtocol{
     
     
     @objc dynamic var trainingComplete: Bool{ return getDays().reduce(true, {$0 && $1.dayComplete})}
-    @objc dynamic var racesComplete: Bool { return getRaces().filter({$0.race!.neededForCompletion}).reduce(true, {$0 && $1.raceComplete}) && getRaces().filter({$0.race!.neededForCompletion}).count == camp?.getRacesArray().filter({$0.neededForCompletion}).count ?? 0}
+    @objc dynamic var racesComplete: Bool {
+        if getRaces().count == 0{
+            return true
+        }else{
+            return getRaces().filter({$0.race!.neededForCompletion}).reduce(true, {$0 && $1.raceComplete}) && getRaces().filter({$0.race!.neededForCompletion}).count == camp?.getRacesArray().filter({$0.neededForCompletion}).count ?? 0}
+        }
+    
     @objc dynamic var campComplete: Bool{ return trainingComplete && racesComplete}
     
-    @objc dynamic var campPoints: Int{ return Int(getRaces().reduce(0, {$0 + $1.campPoints}) + bonusPoints)}
+    @objc dynamic var racePoints: Int{ return Int(getRaces().reduce(0, {$0 + $1.campPoints}) + bonusPoints)}
     
     @objc dynamic var totalKM: Double           { return valueFor(.total, .KM)}
     @objc dynamic var totalSeconds: Double      { return valueFor(.total, .Seconds)}

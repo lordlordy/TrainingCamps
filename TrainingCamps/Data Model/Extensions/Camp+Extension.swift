@@ -294,10 +294,10 @@ extension Camp: TrainingValuesProtocol{
     
     private func orderedForCampPoints() -> [CampParticipant]{
         return campParticipantsArray().sorted(by: {
-            if ($0.campComplete ? 1:0, $0.campPoints, $0.racesComplete ? 1:0) == ($1.campComplete ? 1:0, $1.campPoints, $1.racesComplete ? 1:0){
+            if ($0.campComplete ? 1:0, $0.racePoints, $0.racesComplete ? 1:0) == ($1.campComplete ? 1:0, $1.racePoints, $1.racesComplete ? 1:0){
                 return $0.totalCompetitionSeconds < $1.totalCompetitionSeconds
             }else{
-                return ($0.campComplete ? 1:0, $0.campPoints, $0.racesComplete ? 1:0) > ($1.campComplete ? 1:0, $1.campPoints, $1.racesComplete ? 1:0)
+                return ($0.campComplete ? 1:0, $0.racePoints, $0.racesComplete ? 1:0) > ($1.campComplete ? 1:0, $1.racePoints, $1.racesComplete ? 1:0)
             }
         })
     }

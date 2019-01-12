@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Camp" representedClassName="Camp" syncable="YES" codeGenerationType="class">
         <attribute name="campEnd" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="campName" optional="YES" attributeType="String" defaultValueString="New Camp" syncable="YES"/>
@@ -23,6 +23,7 @@
     </entity>
     <entity name="CampParticipant" representedClassName="CampParticipant" syncable="YES" codeGenerationType="class">
         <attribute name="bonusPoints" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="bonusReason" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isInPointsCompetition" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="rankInCompetition" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="role" attributeType="String" syncable="YES"/>
@@ -164,7 +165,7 @@
     <elements>
         <element name="Camp" positionX="-29" positionY="-9" width="128" height="195"/>
         <element name="CampGroup" positionX="-38" positionY="-270" width="128" height="148"/>
-        <element name="CampParticipant" positionX="-74" positionY="224" width="128" height="180"/>
+        <element name="CampParticipant" positionX="-74" positionY="224" width="128" height="195"/>
         <element name="CampType" positionX="-171" positionY="-108" width="128" height="90"/>
         <element name="Day" positionX="-378" positionY="198" width="128" height="225"/>
         <element name="EddingtonNumber" positionX="-162" positionY="54" width="128" height="163"/>

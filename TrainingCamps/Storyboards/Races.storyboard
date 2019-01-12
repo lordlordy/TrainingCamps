@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kId-pR-f01">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kId-pR-f01">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
         <!--Races-->
@@ -86,17 +85,17 @@
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSp-Cp-UxY">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="279"/>
                                 <clipView key="contentView" id="2sj-19-mpJ">
-                                    <rect key="frame" x="1" y="0.0" width="448" height="278"/>
+                                    <rect key="frame" x="1" y="0.0" width="448" height="263"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveName="racesTable" rowSizeStyle="automatic" headerView="Dyv-7y-TiA" viewBased="YES" id="p48-i2-bRY">
-                                            <rect key="frame" x="0.0" y="0.0" width="857" height="255"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="857" height="240"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="" width="116" minWidth="40" maxWidth="1000" id="XnH-5u-Ozi">
+                                                <tableColumn width="116" minWidth="40" maxWidth="1000" id="XnH-5u-Ozi">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Date">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -136,7 +135,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="175" minWidth="40" maxWidth="1000" id="6f6-OB-UNU">
+                                                <tableColumn width="175" minWidth="40" maxWidth="1000" id="6f6-OB-UNU">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Name">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -176,7 +175,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="45" minWidth="10" maxWidth="3.4028234663852886e+38" id="lFh-4d-FO4">
+                                                <tableColumn width="45" minWidth="10" maxWidth="3.4028234663852886e+38" id="lFh-4d-FO4">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Points">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -214,7 +213,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="vkQ-Br-BZJ">
+                                                <tableColumn width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="vkQ-Br-BZJ">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="For Completion">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -251,7 +250,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="40" minWidth="10" maxWidth="3.4028234663852886e+38" id="nl3-Mg-sLu">
+                                                <tableColumn width="40" minWidth="10" maxWidth="3.4028234663852886e+38" id="nl3-Mg-sLu">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Guess">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -289,7 +288,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="faM-Zi-ZM5">
+                                                <tableColumn width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="faM-Zi-ZM5">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Handicap">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -327,7 +326,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="C1v-jg-61A">
+                                                <tableColumn width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="C1v-jg-61A">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Method">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -365,7 +364,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="dHn-iE-3AP">
+                                                <tableColumn width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="dHn-iE-3AP">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Points For Win Override">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -402,7 +401,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="5C8-vP-8Fj">
+                                                <tableColumn width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="5C8-vP-8Fj">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Points Increment Override">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -439,7 +438,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="N7r-jK-b0i">
+                                                <tableColumn width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="N7r-jK-b0i">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Points Race #">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -477,7 +476,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="e6u-GG-8qC">
+                                                <tableColumn width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="e6u-GG-8qC">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Type">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -525,7 +524,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="m64-UG-aIw">
-                                    <rect key="frame" x="1" y="262" width="448" height="16"/>
+                                    <rect key="frame" x="1" y="263" width="448" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="urP-xU-wyc">
@@ -632,17 +631,17 @@
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMP-lJ-o8x">
                                 <rect key="frame" x="2" y="2" width="614" height="276"/>
                                 <clipView key="contentView" id="tug-1a-rpg">
-                                    <rect key="frame" x="1" y="0.0" width="612" height="275"/>
+                                    <rect key="frame" x="1" y="0.0" width="612" height="260"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" autosaveName="raceResultTable" rowSizeStyle="automatic" headerView="5Fq-Om-ubz" viewBased="YES" id="jEe-z3-Dm0">
-                                            <rect key="frame" x="0.0" y="0.0" width="1350" height="252"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1350" height="237"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="" width="125" minWidth="40" maxWidth="1000" id="AO8-2b-cFz">
+                                                <tableColumn width="125" minWidth="40" maxWidth="1000" id="AO8-2b-cFz">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Name">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -668,8 +667,8 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </comboBoxCell>
                                                                     <connections>
-                                                                        <binding destination="nLj-Vh-YtW" name="fontBold" keyPath="objectValue.raceComplete" id="ruh-c0-3Gq"/>
                                                                         <binding destination="nLj-Vh-YtW" name="value" keyPath="objectValue.displayName" id="dSB-Jr-h7O"/>
+                                                                        <binding destination="nLj-Vh-YtW" name="fontBold" keyPath="objectValue.raceComplete" id="ruh-c0-3Gq"/>
                                                                         <outlet property="dataSource" destination="OAd-Ab-1xH" id="H5y-9p-pKC"/>
                                                                     </connections>
                                                                 </comboBox>
@@ -683,7 +682,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="50" minWidth="10" maxWidth="3.4028234663852886e+38" id="YDt-Zw-Dhb">
+                                                <tableColumn width="50" minWidth="10" maxWidth="3.4028234663852886e+38" id="YDt-Zw-Dhb">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Status">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -800,7 +799,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="50" minWidth="10" maxWidth="3.4028234663852886e+38" id="FyS-tc-o7c">
+                                                <tableColumn width="50" minWidth="10" maxWidth="3.4028234663852886e+38" id="FyS-tc-o7c">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Rank">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -838,7 +837,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="ScE-Az-wOZ">
+                                                <tableColumn width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="ScE-Az-wOZ">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Gender Rank">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1357,7 +1356,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="50" minWidth="10" maxWidth="3.4028234663852886e+38" headerToolTip="Where race is viewed as complete for camp completion" id="uB3-ON-8GX">
+                                                <tableColumn width="50" minWidth="10" maxWidth="3.4028234663852886e+38" headerToolTip="Where race is viewed as complete for camp completion" id="uB3-ON-8GX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Complete">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1394,7 +1393,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="rKy-Yo-Xxm">
+                                                <tableColumn width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="rKy-Yo-Xxm">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Comments">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1430,7 +1429,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="rRn-uN-ZSv">
+                                                <tableColumn width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="rRn-uN-ZSv">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Percentile">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1480,7 +1479,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="fBC-kB-Ixe">
-                                    <rect key="frame" x="1" y="259" width="612" height="16"/>
+                                    <rect key="frame" x="1" y="260" width="612" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="0xJ-p7-596">
