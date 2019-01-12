@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Camp" representedClassName="Camp" syncable="YES" codeGenerationType="class">
+        <attribute name="bikeBonusPointKM" optional="YES" attributeType="Double" defaultValueString="10" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="campEnd" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="campName" optional="YES" attributeType="String" defaultValueString="New Camp" syncable="YES"/>
         <attribute name="campShortName" optional="YES" attributeType="String" defaultValueString="New" syncable="YES"/>
         <attribute name="campStart" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="runBonusPointSeconds" optional="YES" attributeType="Double" defaultValueString="1200" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="runPointSeconds" optional="YES" attributeType="Double" defaultValueString="1800" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="swimBonusPointSeconds" optional="YES" attributeType="Double" defaultValueString="1200" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="swimPointSeconds" optional="YES" attributeType="Double" defaultValueString="1800" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="campGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CampGroup" inverseName="camps" inverseEntity="CampGroup" syncable="YES"/>
         <relationship name="campParticipants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CampParticipant" inverseName="camp" inverseEntity="CampParticipant" syncable="YES"/>
         <relationship name="days" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Day" inverseName="camp" inverseEntity="Day" syncable="YES"/>
@@ -163,7 +168,7 @@
         <relationship name="raceResult" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RaceResult" inverseName="rankings" inverseEntity="RaceResult" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Camp" positionX="-29" positionY="-9" width="128" height="195"/>
+        <element name="Camp" positionX="-29" positionY="-9" width="128" height="270"/>
         <element name="CampGroup" positionX="-38" positionY="-270" width="128" height="148"/>
         <element name="CampParticipant" positionX="-74" positionY="224" width="128" height="195"/>
         <element name="CampType" positionX="-171" positionY="-108" width="128" height="90"/>
