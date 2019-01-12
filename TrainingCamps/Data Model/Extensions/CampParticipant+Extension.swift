@@ -26,6 +26,7 @@ extension CampParticipant: Rankable, TrainingDataProtocol{
     
     @objc dynamic var campComplete: Bool{ return trainingComplete && racesComplete}
     
+    @objc dynamic var campPoints: Int { return racePoints}
     @objc dynamic var racePoints: Int{ return Int(getRaces().reduce(0, {$0 + $1.campPoints}) + bonusPoints)}
     
     @objc dynamic var totalKM: Double           { return valueFor(.total, .KM)}
