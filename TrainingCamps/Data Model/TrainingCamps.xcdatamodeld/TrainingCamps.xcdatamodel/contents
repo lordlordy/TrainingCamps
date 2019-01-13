@@ -56,6 +56,7 @@
         <attribute name="earnWildcardBikeKM" optional="YES" attributeType="Double" defaultValueString="120" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="earnWildcardRunSeconds" optional="YES" attributeType="Double" defaultValueString="3600" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="earnWildcardSwimSeconds" optional="YES" attributeType="Double" defaultValueString="3600" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="pointsForStdBike" optional="YES" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="camp" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Camp" inverseName="days" inverseEntity="Camp" syncable="YES"/>
         <relationship name="participantDays" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="ParticipantDay" inverseName="day" inverseEntity="ParticipantDay" syncable="YES"/>
     </entity>
@@ -176,7 +177,7 @@
         <element name="CampGroup" positionX="-38" positionY="-270" width="128" height="148"/>
         <element name="CampParticipant" positionX="-74" positionY="224" width="128" height="195"/>
         <element name="CampType" positionX="-171" positionY="-108" width="128" height="90"/>
-        <element name="Day" positionX="-378" positionY="198" width="128" height="225"/>
+        <element name="Day" positionX="-378" positionY="198" width="128" height="240"/>
         <element name="EddingtonNumber" positionX="-162" positionY="54" width="128" height="163"/>
         <element name="Location" positionX="-254" positionY="-270" width="128" height="105"/>
         <element name="Participant" positionX="-522" positionY="-198" width="128" height="225"/>

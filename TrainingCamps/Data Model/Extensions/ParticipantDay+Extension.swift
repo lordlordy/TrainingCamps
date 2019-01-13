@@ -130,10 +130,10 @@ extension ParticipantDay: Rankable, TrainingDataProtocol{
     }
     @objc dynamic var bikeTrainingPoints: Double{
         var points: Double = 0.0
-        if let stdKM = day?.completionBikeKM{
-            if bikeKM >= stdKM{
-                points += 1.0
-                let remainingKM: Double = bikeKM - stdKM
+        if let d = day{
+            if bikeKM >= d.completionBikeKM{
+                points += Double(d.pointsForStdBike)
+                let remainingKM: Double = bikeKM - d.completionBikeKM
                 points += Double(Int(remainingKM / campParticipant!.camp!.bikeBonusPointKM))
             }
         }
